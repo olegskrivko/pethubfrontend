@@ -1,76 +1,76 @@
-// const CACHE_NAME = "pwa-cache-v1";
-// const STATIC_ASSETS = ["/", "/index.html", "/manifest.json"];
-// // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-// const API_BASE_URL_NEW = "https://petfinderbackend.onrender.com"
+// // const CACHE_NAME = "pwa-cache-v1";
+// // const STATIC_ASSETS = ["/", "/index.html", "/manifest.json"];
+// // // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+// // const API_BASE_URL_NEW = "https://petfinderbackend.onrender.com"
 
-// // Install event (Cache static assets)
-// self.addEventListener("install", (event) => {
-//   event.waitUntil(
-//     caches.open(CACHE_NAME).then((cache) => {
-//       return cache.addAll(STATIC_ASSETS);
-//     })
-//   );
-//   self.skipWaiting(); // Ensure the new SW takes over immediately
-// });
+// // // Install event (Cache static assets)
+// // self.addEventListener("install", (event) => {
+// //   event.waitUntil(
+// //     caches.open(CACHE_NAME).then((cache) => {
+// //       return cache.addAll(STATIC_ASSETS);
+// //     })
+// //   );
+// //   self.skipWaiting(); // Ensure the new SW takes over immediately
+// // });
 
-// // Fetch event (Bypass cache for API requests)
+// // // Fetch event (Bypass cache for API requests)
+// // // self.addEventListener("fetch", (event) => {
+// // //   const url = new URL(event.request.url);
+
+// // //   // Bypass cache for API requests
+// // //   // if (url.origin.includes("127.0.0.1:8000") || url.origin.includes("localhost:8000")) {
+// // //   //   return fetch(event.request);
+// // //   // }
+// // // if (url.origin.includes("127.0.0.1:8000") || 
+// // //     url.origin.includes("localhost:8000") || 
+// // //     url.origin.includes(API_BASE_URL_NEW)) {
+// // //   return fetch(event.request);
+// // // }
+// // //   // Serve from cache if available, otherwise fetch from network
+// // //   event.respondWith(
+// // //     caches.match(event.request).then((response) => {
+// // //       return response || fetch(event.request);
+// // //     })
+// // //   );
+// // // });
 // // self.addEventListener("fetch", (event) => {
 // //   const url = new URL(event.request.url);
 
-// //   // Bypass cache for API requests
-// //   // if (url.origin.includes("127.0.0.1:8000") || url.origin.includes("localhost:8000")) {
-// //   //   return fetch(event.request);
-// //   // }
-// // if (url.origin.includes("127.0.0.1:8000") || 
-// //     url.origin.includes("localhost:8000") || 
-// //     url.origin.includes(API_BASE_URL_NEW)) {
-// //   return fetch(event.request);
-// // }
-// //   // Serve from cache if available, otherwise fetch from network
+// //   // Bypass cache for API requests — serve fresh from network
+// //   if (
+// //     url.origin.includes("127.0.0.1:8000") ||
+// //     url.origin.includes("localhost:8000") ||
+// //     url.origin.includes("pethubbackend.onrender.com")
+// //   ) {
+// //     event.respondWith(fetch(event.request));
+// //     return;
+// //   }
+
+// //   // Serve from cache for static assets
 // //   event.respondWith(
 // //     caches.match(event.request).then((response) => {
 // //       return response || fetch(event.request);
 // //     })
 // //   );
 // // });
-// self.addEventListener("fetch", (event) => {
-//   const url = new URL(event.request.url);
 
-//   // Bypass cache for API requests — serve fresh from network
-//   if (
-//     url.origin.includes("127.0.0.1:8000") ||
-//     url.origin.includes("localhost:8000") ||
-//     url.origin.includes("pethubbackend.onrender.com")
-//   ) {
-//     event.respondWith(fetch(event.request));
-//     return;
-//   }
+// // // Activate event (Delete old caches)
+// // self.addEventListener("activate", (event) => {
+// //   event.waitUntil(
+// //     caches.keys().then((cacheNames) => {
+// //       return Promise.all(
+// //         cacheNames.map((cacheName) => {
+// //           if (cacheName !== CACHE_NAME) {
+// //             return caches.delete(cacheName);
+// //           }
+// //         })
+// //       );
+// //     })
+// //   );
+// //   self.clients.claim(); // Ensure clients use the new SW immediately
+// // });
 
-//   // Serve from cache for static assets
-//   event.respondWith(
-//     caches.match(event.request).then((response) => {
-//       return response || fetch(event.request);
-//     })
-//   );
-// });
-
-// // Activate event (Delete old caches)
-// self.addEventListener("activate", (event) => {
-//   event.waitUntil(
-//     caches.keys().then((cacheNames) => {
-//       return Promise.all(
-//         cacheNames.map((cacheName) => {
-//           if (cacheName !== CACHE_NAME) {
-//             return caches.delete(cacheName);
-//           }
-//         })
-//       );
-//     })
-//   );
-//   self.clients.claim(); // Ensure clients use the new SW immediately
-// });
-
-// THIS IS WITHOUT CACHING
+// // THIS IS WITHOUT CACHING
 // const CACHE_NAME = "pwa-cache-v1";
 // const STATIC_ASSETS = ["/", "/index.html", "/manifest.json"];
 
@@ -183,165 +183,73 @@
 //   return outputArray;
 // }
 
-const CACHE_NAME = "pwa-cache-v1";
-const STATIC_ASSETS = ["/", "/index.html", "/manifest.json"];
-const API_BASE_URL = "https://pethubbackend.onrender.com"; // Your API base URL
-
-// Install event - only cache the minimal required assets
+// Install event - skip waiting to activate
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS);
-    })
-  );
   self.skipWaiting();
 });
 
-// Fetch event - handle both network and cache
+// Fetch event - directly fetch from network (no caching)
 self.addEventListener("fetch", (event) => {
-  // Handle API requests
-  if (event.request.url.startsWith(API_BASE_URL)) {
-    event.respondWith(
-      fetch(event.request, {
-        credentials: 'include',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-          // Add any other required headers
-        }
-      }).catch((error) => {
-        console.error('Fetch error:', error);
-        // You could return a fallback response here if needed
-        return new Response(JSON.stringify({ error: 'Network error' }), {
-          status: 500,
-          headers: { 'Content-Type': 'application/json' }
-        });
-      })
-    );
-    return;
-  }
-
-  // Handle static assets
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      // Return cached response if found
-      if (response) {
-        return response;
-      }
-
-      // Otherwise fetch from network
-      return fetch(event.request).then((response) => {
-        // Check if we received a valid response
-        if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response;
-        }
-
-        // Clone the response
-        const responseToCache = response.clone();
-
-        // Cache the new response
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseToCache);
-        });
-
-        return response;
-      });
-    })
-  );
+  event.respondWith(fetch(event.request));
 });
 
-// Activate event - clean up old caches
+// Activate event - claim control immediately
 self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
-  );
   self.clients.claim();
 });
 
-// Push notification event
-self.addEventListener('push', function(event) {
+// Push notification event listener
+self.addEventListener("push", function(event) {
   if (event.data) {
     const data = event.data.json();
     const options = {
-      body: data.body || 'New notification',
-      icon: '/icon-192x192.png',
-      badge: '/badge-192x192.png',
-      data: {
-        url: data.url || '/',
-      },
+      body: data.body || "New notification",
+      icon: "/icon-192x192.png",
+      badge: "/badge-192x192.png",
+      data: { url: data.url || "/" },
       actions: [
-        {
-          action: 'open',
-          title: 'Open',
-        },
-        {
-          action: 'close',
-          title: 'Close',
-        },
+        { action: "open", title: "Open" },
+        { action: "close", title: "Close" },
       ],
     };
 
     event.waitUntil(
-      self.registration.showNotification(data.title || 'PetHub Notification', options)
+      self.registration.showNotification(data.title || "PetHub Notification", options)
     );
   }
 });
 
-// Handle notification click
-self.addEventListener('notificationclick', function(event) {
+// Notification click handler
+self.addEventListener("notificationclick", function(event) {
   event.notification.close();
 
-  if (event.action === 'open') {
-    event.waitUntil(
-      clients.openWindow(event.notification.data.url)
-    );
+  if (event.action === "open") {
+    event.waitUntil(clients.openWindow(event.notification.data.url));
   }
 });
 
 // Handle push subscription change
-self.addEventListener('pushsubscriptionchange', function(event) {
+self.addEventListener("pushsubscriptionchange", function(event) {
   event.waitUntil(
     registration.pushManager.subscribe({ 
       userVisibleOnly: true,
       applicationServerKey: urlBase64ToUint8Array("BOZTcqsdJXUbELTV3ax5lK3X3Wh4S33MuJAZ75MVWCxjtrcn7nVr2Xp-JPiPlVJCE9gqmLv23_PR_f-7uKgU8iU")
     })
     .then(function(subscription) {
-      // Send the new subscription to your server with proper CORS headers
-      return fetch(`${API_BASE_URL}/api/notifications/update-subscription/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('access_token')}` // If using token auth
-        },
-        credentials: 'include',
-        mode: 'cors',
-        body: JSON.stringify({
-          subscription: subscription.toJSON()
-        })
+      return fetch("/api/notifications/update-subscription/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ subscription: subscription.toJSON() })
       });
-    })
-    .catch(error => {
-      console.error('Subscription update failed:', error);
     })
   );
 });
 
 // Helper function to convert VAPID key
 function urlBase64ToUint8Array(base64String) {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding)
-    .replace(/\-/g, '+')
-    .replace(/_/g, '/');
-
-  const rawData = window.atob(base64);
+  const padding = "=".repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding).replace(/-/g, "+").replace(/_/g, "/");
+  const rawData = atob(base64);
   const outputArray = new Uint8Array(rawData.length);
 
   for (let i = 0; i < rawData.length; ++i) {
