@@ -15,6 +15,8 @@ import {
   CardContent,
   Container,
   Typography,
+  Alert,
+  CircularProgress,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -26,6 +28,8 @@ import axios from 'axios';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import NotificationsOffIcon from '@mui/icons-material/NotificationsOff';
 import SendIcon from '@mui/icons-material/Send';
+import CardMembershipIcon from '@mui/icons-material/CardMembership';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; 
 
@@ -60,6 +64,10 @@ function UserSettings() {
   });
 
   const [openDialog, setOpenDialog] = useState(false);
+  const [subscriptionStatus, setSubscriptionStatus] = useState(null);
+  const [loadingSubscription, setLoadingSubscription] = useState(false);
+  const [subscriptionError, setSubscriptionError] = useState(null);
+  const [cancelDialogOpen, setCancelDialogOpen] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -239,8 +247,80 @@ function UserSettings() {
     }
   };
 
+  const fetchSubscriptionStatus = async () => {
+    try {
+      setLoadingSubscription(true);
+      setSubscriptionError(null);
+      const accessToken = localStorage.getItem("access_token");
+      const response = await fetch(`${API_BASE_URL}/api/payment/subscription/status/`, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+      const data = await response.json();
+      setSubscriptionStatus(data);
+    } catch (error) {
+      setSubscriptionError("Failed to fetch subscription status");
+      console.error("Error fetching subscription status:", error);
+    } finally {
+      setLoadingSubscription(false);
+    }
+  };
+
+  const handleCancelSubscription = async () => {
+    try {
+      setLoadingSubscription(true);
+      setSubscriptionError(null);
+      const accessToken = localStorage.getItem("access_token");
+      const response = await fetch(`${API_BASE_URL}/api/payment/subscription/cancel/`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      });
+      const data = await response.json();
+      setSubscriptionStatus(prev => ({
+        ...prev,
+        cancel_at_period_end: true,
+        cancel_at: data.cancel_at
+      }));
+      setCancelDialogOpen(false);
+    } catch (error) {
+      setSubscriptionError("Failed to cancel subscription");
+      console.error("Error canceling subscription:", error);
+    } finally {
+      setLoadingSubscription(false);
+    }
+  };
+
+  // const handleReactivateSubscription = async () => {
+  //   try {
+  //     setLoadingSubscription(true);
+  //     setSubscriptionError(null);
+  //     const accessToken = localStorage.getItem("access_token");
+  //     const response = await fetch(`${API_BASE_URL}/api/payment/subscription/reactivate/`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Authorization': `Bearer ${accessToken}`
+  //       }
+  //     });
+  //     const data = await response.json();
+  //     setSubscriptionStatus(prev => ({
+  //       ...prev,
+  //       cancel_at_period_end: false,
+  //       cancel_at: null
+  //     }));
+  //   } catch (error) {
+  //     setSubscriptionError("Failed to reactivate subscription");
+  //     console.error("Error reactivating subscription:", error);
+  //   } finally {
+  //     setLoadingSubscription(false);
+  //   }
+  // };
+
   useEffect(() => {
     checkExistingSubscription();
+    fetchSubscriptionStatus();
   }, []);
   if (!user) {
     return <Typography>Loading user data...</Typography>;
@@ -355,10 +435,11 @@ function UserSettings() {
   <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
     {isSubscribed ? (
       <>
-        <NotificationsActiveIcon color="primary" sx={{ mr: 1 }} />
-        <Typography variant="h6" color="text.secondary">
-          You are subscribed to push notifications.
-        </Typography>
+      
+         <Box display="flex" alignItems="center" mb={2}>
+                  <NotificationsActiveIcon color="primary" sx={{ mr: 1 }} />
+                  <Typography variant="h6"> You are subscribed to push notifications.</Typography>
+                </Box>
       </>
     ) : (
       <>
@@ -401,6 +482,108 @@ function UserSettings() {
     </Box>
         </Grid>
       
+{/* 
+      <Container container spacing={2} sx={{ mt: 4 }}> */}
+        <Grid container spacing={2}>
+          {/* Add Subscription Management Card */}
+          <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+            <Card sx={{
+            // px: 2,
+            p: 3,
+            borderRadius: 3,
+            background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+            // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
+            // cursor: 'pointer',
+            transition: 'all 0.3s ease-in-out',
+            // '&:hover': {
+            //   // boxShadow: '0px 6px 20px rgba(0,0,0,0.1)',
+            //   // transform: 'scale(1.01)',
+            //   background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
+            // },
+            // '&:focus': {
+            //   outline: '2px solid #00b5ad',
+            // },
+          }}>
+              {/* <CardContent> */}
+                <Box display="flex" alignItems="center" mb={2}>
+                  <CardMembershipIcon sx={{ mr: 1 }} />
+                  <Typography variant="h6">Subscription Management</Typography>
+                </Box>
+                
+                {loadingSubscription ? (
+                  <Box display="flex" justifyContent="center" p={2}>
+                    <CircularProgress />
+                  </Box>
+                ) : subscriptionError ? (
+                  <Alert severity="error" sx={{ mb: 2 }}>
+                    {subscriptionError}
+                  </Alert>
+                ) : subscriptionStatus ? (
+                  <Box>
+                    {subscriptionStatus.is_subscribed ? (
+                      <Box sx={{display:'flex', flexDirection: "column"}}>
+                        <Alert severity="success" sx={{ mb: 2 }}>
+                          Active Subscription: {subscriptionStatus.subscription_type}
+                        </Alert>
+                        <Typography variant="body2" color="text.secondary" gutterBottom>
+                          Started: {new Date(subscriptionStatus.subscription_start).toLocaleDateString()}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary" gutterBottom>
+                          Current Period Ends: {new Date(subscriptionStatus.subscription_end).toLocaleDateString()}
+                        </Typography>
+                        
+                        {subscriptionStatus.cancel_at_period_end ? (
+                          <Box mt={2}>
+                            <Alert severity="warning" sx={{ mb: 2 }}>
+                              Subscription will end on {new Date(subscriptionStatus.cancel_at).toLocaleDateString()}
+                            </Alert>
+                            {/* <Button
+                              variant="contained"
+                              color="primary"
+                              onClick={handleReactivateSubscription}
+                              startIcon={<CardMembershipIcon />}
+                            >
+                              Reactivate Subscription
+                            </Button> */}
+                          </Box>
+                        ) : (
+                          <Box>
+                          {/* <Button
+                            variant="contained"
+                            color="error"
+                            onClick={() => setCancelDialogOpen(true)}
+                            startIcon={<CancelIcon />}
+                            sx={{ mt: 2 }}
+                          >
+                            Cancel Subscription
+                          </Button> */}
+                          <Button
+  variant="contained"
+  color="error"
+  onClick={() => setCancelDialogOpen(true)}
+  startIcon={<CancelIcon />}
+  sx={{ mt: 2 }}
+  
+  disabled={subscriptionStatus.cancel_at_period_end}  // Disable if cancel is scheduled
+>
+  Cancel Subscription
+</Button>
+
+                          </Box>
+                        )}
+                      </Box>
+                    ) : (
+                      <Alert severity="info">
+                        No active subscription
+                      </Alert>
+                    )}
+                  </Box>
+                ) : null}
+              {/* </CardContent> */}
+            </Card>
+          </Grid>
+        </Grid>
+      {/* </Container> */}
 
       <Grid container spacing={2} sx={{ mt: 4 }}>
         {/* Logout Card */}
@@ -523,6 +706,25 @@ function UserSettings() {
         </Grid>
       </Grid>
       </Container>
+
+      {/* Add Cancel Subscription Dialog */}
+      <Dialog
+        open={cancelDialogOpen}
+        onClose={() => setCancelDialogOpen(false)}
+      >
+        <DialogTitle>Cancel Subscription</DialogTitle>
+        <DialogContent>
+          <Typography>
+            Are you sure you want to cancel your subscription? You'll continue to have access until the end of your current billing period.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setCancelDialogOpen(false)}>Keep Subscription</Button>
+          <Button onClick={handleCancelSubscription} color="error">
+            Cancel Subscription
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }
