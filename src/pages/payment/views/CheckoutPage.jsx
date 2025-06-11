@@ -11,11 +11,11 @@ const CheckoutPage = () => {
   const planDetails = {
     plus: {
       name: "Plus Subscription",
-      priceId: "price_1RL6AsBnYVUZPzgipQBY09uT", // Example price ID for Plus plan
+      priceId: "price_1RYk7uBnYVUZPzgiGonItYec", // Example price ID for Plus plan
     },
     premium: {
       name: "Premium Subscription",
-      priceId: "price_1RL6AsBnYVUZPzgipQBY09uT", // Example price ID for Premium plan
+      priceId: "price_1RYk6rBnYVUZPzginrD4F4cV", // Example price ID for Premium plan
     },
     freemium: {
       name: "Freemium Plan",
