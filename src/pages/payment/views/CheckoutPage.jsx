@@ -22,7 +22,7 @@ const CheckoutPage = () => {
       priceId: "", // No price for Freemium
     },
   };
-
+ 
   const selectedPlan = planDetails[plan] || planDetails["freemium"];
 
   return (
