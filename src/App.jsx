@@ -149,8 +149,8 @@ function App() {
             <Route path="checkout" element={<CheckoutPage />} />
             <Route path="success" element={<SuccessPage />} />
             <Route path="subscription-success" element={<SuccessPage />} />
-            <Route path="cancel" element={<CancelPage />} />
-
+            {/* <Route path="cancel" element={<CancelPage />} /> */}
+            <Route path="subscription-cancel" element={<CancelPage />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="logout" element={<Logout />} />
