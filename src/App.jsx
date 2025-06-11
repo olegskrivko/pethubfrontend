@@ -95,7 +95,7 @@ const theme = createTheme({
   },
 });
 
-const stripePromise = loadStripe("pk_test_51MsAnbFtt77ZbwT7jUTgepakOdkTikP2RJ3kzrwX5Gb87hbTQidZ6ZGzUFkPxdsEuZ8pBrQUihsEcV2JefMUXRWE00it4TPUPI");
+const stripePromise = loadStripe("pk_test_51MsAlCBnYVUZPzgiEPtA6hevdWCEOymSzerTmiA2mWpkutsMBMyo8aAuryBXQGXt7rqAk7pgkWCwCmPQddSCXoHQ00gJEKTAS3");
 
 function App() {
   
