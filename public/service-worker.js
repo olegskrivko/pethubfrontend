@@ -40,7 +40,7 @@ self.addEventListener("fetch", (event) => {
   if (
     url.origin.includes("127.0.0.1:8000") ||
     url.origin.includes("localhost:8000") ||
-    url.origin.includes("petfinderbackend.onrender.com")
+    url.origin.includes("pethubbackend.onrender.com")
   ) {
     event.respondWith(fetch(event.request));
     return;
