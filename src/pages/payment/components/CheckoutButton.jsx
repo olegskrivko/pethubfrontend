@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Button, CircularProgress, Snackbar, Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext"; // Assuming you have this context
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; 
+
 const CheckoutButton = ({ priceId }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
