@@ -22,7 +22,7 @@ const CheckoutButton = ({ priceId }) => {
       const accessToken = localStorage.getItem("access_token");
 
       // Check if the plan has a price ID for subscription
-      const response = await fetch(`${API_BASE_URL}/api/payments/create-checkout-session/subscription/`, {
+      const response = await fetch(`${API_BASE_URL}/api/payment/create-checkout-session/subscription/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
