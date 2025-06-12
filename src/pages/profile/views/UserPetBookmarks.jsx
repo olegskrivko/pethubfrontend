@@ -23,6 +23,8 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Lottie from 'lottie-react';
+import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; 
 
 function UserPetBookmarks() {
@@ -124,11 +126,28 @@ function UserPetBookmarks() {
   // Loading and error state handling
   if (loading) {
     return (
-      <Container>
-        <Typography variant="h5" align="center">
-          Loading your favorited pets...
-        </Typography>
-      </Container>
+      // <Container>
+      //   <Typography variant="h5" align="center">
+      //     Loading your favorited pets...
+      //   </Typography>
+      // </Container>
+            <Box
+      sx={{
+        minHeight: '100vh',
+        // background: 'linear-gradient(135deg, #6a1b9a, #9c27b0)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        textAlign: 'center',
+        overflow: 'hidden',
+      }}
+    >
+        <Box sx={{ width: 180, height: 180 }}>
+          <Lottie animationData={spinnerAnimation} loop autoplay />
+        </Box>
+    </Box>
     );
   }
 
@@ -181,8 +200,8 @@ function UserPetBookmarks() {
         {favoritedPets.map((pet) => (
           <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} key={pet.id}>
             <Card sx={{
-            px: 2,
-            
+     padding: 2,
+   
             borderRadius: 3,
             background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
             // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
@@ -197,7 +216,7 @@ function UserPetBookmarks() {
             //   outline: '2px solid #00b5ad',
             // },
           }}>
-              <CardContent>
+              {/* <CardContent> */}
                 <Box display="flex" alignItems="center">
                   <Avatar
                     src={pet.pet_image_1}
@@ -222,7 +241,7 @@ function UserPetBookmarks() {
                   </Box>
                   <Tooltip title="Izdzēst">
                     <IconButton
-                      edge="end"
+                      // edge="end"
                       color="error"
                       aria-label="delete"
                       style={{ backgroundColor: "#FF746C", color: "#fff" }}
@@ -232,7 +251,7 @@ function UserPetBookmarks() {
                     </IconButton>
                   </Tooltip>
                 </Box>
-              </CardContent>
+              {/* </CardContent> */}
             </Card>
           </Grid>
         ))}

@@ -18,7 +18,7 @@ import StepImages from "../components/StepImages";
 import StepContact from "../components/StepContact";
 import StepAppearance from "../components/StepAppearance";
 
-// import { getCurrentDate, getCurrentTime } from '../../../utils/formHelpers';
+import { getCurrentDate, getCurrentTime } from '../../../utils/formHelpers';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; 
 const steps = [
 "Dzīvnieka raksturojums",
@@ -35,7 +35,7 @@ const PetAddStepper = () => {
   const [formErrors, setFormErrors] = useState({});
   const [formState, setFormState] = useState({
     location: { lat: 56.946285, lng: 24.105078, 
-      // date: getCurrentDate(), time: getCurrentTime()  
+      date: getCurrentDate(), time: getCurrentTime()  
     },
     characteristics: {
       status: "", species: "", breed: "",
@@ -188,19 +188,16 @@ const PetAddStepper = () => {
 
   return (
     
-     <Container component="main" maxWidth="lg" sx={{ paddingLeft: 0, paddingRight: 0 }}>
-        {/* <Typography variant="h3" align="center" sx={{ mb: 5, fontWeight: 500 }}>
-        Ziņot par mājdzīvnieku
-        </Typography> */}
+    <Container component="main" maxWidth="lg">
     {/* Top section: Progress and Step Title */}
-    <Box sx={{ display: 'flex', alignItems: 'center',  }}>
-      <Box sx={{ width: 70, height: 70, mr: 2 }}>
+    <Box sx={{ display: 'flex', alignItems: 'center',  mb: { xs: 2, sm: 3, md: 3, lg: 4, xl: 5, }  }}>
+      <Box sx={{ width: 70, height: 70, mr: 2,}}>
         <CircularProgressbar
           value={progress}
           text={`${activeStep + 1}/${steps.length}`}
           styles={buildStyles({
-            textSize: "18px",
-            pathColor: "#1976d2",
+            textSize: "1.4rem",
+            pathColor: "#00b3a4",
             textColor: "#333",
             trailColor: "#ddd",
           })}

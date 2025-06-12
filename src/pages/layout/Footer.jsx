@@ -50,7 +50,7 @@ const infoLinks = [
         padding: '20px 0',
         textAlign: 'center',
         marginTop: 'auto',
-        paddingBottom: '2rem',
+        // paddingBottom: '2rem',
         width: '100%',
         margin: 0,
         

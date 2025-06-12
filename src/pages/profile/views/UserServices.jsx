@@ -154,8 +154,17 @@ function UserServices() {
         <Grid container spacing={2}>
           {ownedServices.map((service) => (
             <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} key={service.id}>
-              <Card>
-                <CardContent>
+              <Card sx={{
+            p: 2,
+            borderRadius: 3,
+            background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+            // cursor: 'pointer',
+            transition: 'all 0.3s ease-in-out',
+            '&:hover': {
+              background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
+            },
+          }}>
+                {/* <CardContent> */}
                   <Box display="flex" alignItems="center">
                     <Avatar
                       src={service.service_image_1}
@@ -202,7 +211,7 @@ function UserServices() {
                       </IconButton>
                     </Tooltip>
                   </Box>
-                </CardContent>
+                {/* </CardContent> */}
               </Card>
             </Grid>
           ))}

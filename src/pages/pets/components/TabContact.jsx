@@ -25,6 +25,7 @@ const TabContact = ({ pet }) => {
           }}>
     <CardContent style={{ paddingBottom: "1rem" }}>
       <Box display="flex" alignItems="center" mb={2}>
+
         <Avatar src={`a.svg`} alt={pet.author.username.toUpperCase()} style={{ backgroundColor: '#00b3a4', color: '#f7f9fd', }} />
         <Box ml={2}>
         <Typography variant="body2" fontWeight="bold">

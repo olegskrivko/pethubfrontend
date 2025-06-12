@@ -10,7 +10,7 @@ import LeafletAddPetMap from '../../../shared/maps/LeafletAddPetMap';
       };
 
   return (
-    <Grid container spacing={2} my={1}>
+    <Grid container spacing={2}>
          <Grid  size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
             {/* <LeafletAddPetMap onLocationChange={handleLocationChange} location={formState.location}  /> */}
             <LeafletAddPetMap   onLocationChange={handleMapChange} location={formState.location}  />

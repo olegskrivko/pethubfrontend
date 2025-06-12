@@ -165,7 +165,7 @@ function UserServiceBookmarks() {
               background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
             },
           }}>
-        <CardContent  sx={{paddingBottom: "1rem !important"}}>
+        {/* <CardContent  sx={{paddingBottom: "1rem !important"}}> */}
 
         <Box display="flex" alignItems="center">
         <BookmarkIcon color="primary" sx={{ fontSize: 28, marginRight: "1rem"  }} />
@@ -174,7 +174,7 @@ function UserServiceBookmarks() {
           </Typography>
         
           </Box>
-        </CardContent>
+        {/* </CardContent> */}
       </Card>
     ) : (
       <Grid container spacing={2}>

@@ -158,13 +158,13 @@ function UserPets() {
             p: 2,
             borderRadius: 3,
             background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
-            cursor: 'pointer',
+            // cursor: 'pointer',
             transition: 'all 0.3s ease-in-out',
             '&:hover': {
               background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
             },
           }}>
-                <CardContent>
+                {/* <CardContent> */}
                   <Box display="flex" alignItems="center">
                     <Avatar
                       src={pet.pet_image_1}
@@ -211,14 +211,14 @@ function UserPets() {
                       </IconButton>
                     </Tooltip>
                   </Box>
-                </CardContent>
+                {/* </CardContent> */}
               </Card>
             </Grid>
           ))}
         </Grid>
       )}
 
-      <Grid container spacing={2}>
+      {/* <Grid container spacing={2}>
         <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
           <Box textAlign="center" style={{ display: "flex", justifyContent: "space-between" }} mt={4}>
             <Button
@@ -233,7 +233,40 @@ function UserPets() {
             </Button>
           </Box>
         </Grid>
-      </Grid>
+      </Grid> */}
+      <Grid container spacing={2}>
+  <Grid size={{xs: 12, sm: 12, md: 12, lg: 12}} >
+    <Box
+      display="flex"
+      justifyContent="space-between"
+      alignItems="center"
+      mt={4}
+    >
+      <Button
+        variant="outlined"
+        color="primary"
+        startIcon={<ArrowBackIcon />}
+        component={Link}
+        to={`/user-profile`}
+        style={{ textDecoration: "none", color: "inherit" }}
+      >
+        Atpakaļ
+      </Button>
+
+      <Button
+        variant="contained"
+        color="primary"
+        startIcon={<PetsIcon />}
+        component={Link}
+        to="/add-pet"
+        style={{ textDecoration: "none" }}
+      >
+        Pievienot mājdzīvnieku
+      </Button>
+    </Box>
+  </Grid>
+</Grid>
+
     </Container>
   );
 }
