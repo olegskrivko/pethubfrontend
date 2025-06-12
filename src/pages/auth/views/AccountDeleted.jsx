@@ -6,7 +6,7 @@ const AccountDeleted = () => {
   const navigate = useNavigate();
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="xs">
       <Box sx={{ marginTop: 8, textAlign: "center" }}>
         <Typography variant="h4" gutterBottom>
           Jūsu konts ir izdzēsts

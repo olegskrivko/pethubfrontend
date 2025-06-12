@@ -23,6 +23,8 @@ import IconLabelTabs from '../components/IconLabelTabs';
 import ImageCarousel from '../components/ImageCarousel';
 // import LeafletPetDetailsMap from '../../../components/LeafletPetDetailsMap'
 import LeafletPetDetailsMapNew from '../../../shared/maps/LeafletPetDetailsMapNew'
+import Lottie from 'lottie-react';
+import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; 
 
@@ -212,24 +214,13 @@ if (markerPosition && markerPosition.length === 2) {
     }
   };
   useEffect(() => {
+ 
     // const fetchPetDetails = async () => {
-    //   const accessToken = localStorage.getItem('access_token'); // Retrieve token from localStorage
-
-    //   if (!accessToken) {
-    //     setError('You must be logged in to view pets.');
-    //     setLoading(false);
-    //     return; // Exit early if no token
-    //   }
-
     //   try {
     //     setLoading(true);
     //     setError(null);
-    //       const response = await fetch(`${API_BASE_URL}/pets/${id}/?format=json`, {
-          
-    //       headers: {
-    //         Authorization: `Bearer ${accessToken}`, // Add the token to the request header
-    //       },
-    //     });
+
+    //     const response = await fetch(`${API_BASE_URL}/api/pets/${id}/?format=json`);
     //     const data = await response.json();
 
     //     if (data) {
@@ -245,44 +236,27 @@ if (markerPosition && markerPosition.length === 2) {
     // };
 
     const fetchPetDetails = async () => {
-      try {
-        setLoading(true);
-        setError(null);
+  try {
+    setLoading(true);
+    setError(null);
 
-        const response = await fetch(`${API_BASE_URL}/api/pets/${id}/?format=json`);
-        const data = await response.json();
+    const response = await fetch(`${API_BASE_URL}/api/pets/${id}/?format=json`);
+    const data = await response.json();
 
-        if (data) {
-          setPet(data);
-        } else {
-          throw new Error('Pet not found');
-        }
-      } catch (err) {
-        setError('Failed to fetch pet details. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
-  //   const fetchFavoriteStatus = async () => {
-  //     const accessToken = localStorage.getItem('access_token');
-  //     if (!accessToken) return;
-  
-  //     try {
-  //         const response = await fetch(`${API_BASE_URL}/user-profile/favorite-pets/${id}/`, {
-  //             method: 'GET',
-  //             headers: { Authorization: `Bearer ${accessToken}` },
-  //         });
-  
-  //         if (response.ok) {
-  //             const data = await response.json();
-  //             setIsFavorite(data.is_favorite);
-  //         } else {
-  //             setIsFavorite(false);
-  //         }
-  //     } catch (error) {
-  //         console.error('Error checking favorite status:', error);
-  //     }
-  // };
+    if (data && Object.keys(data).length > 0) {
+      setPet(data);  // pet is loaded
+    } else {
+      setPet(null);  // no pet data available
+    }
+  } catch (err) {
+    setError('Failed to fetch pet details. Please try again later.');
+    setPet(null);
+  } finally {
+    setLoading(false);
+  }
+};
+
+
   const fetchFavoriteStatus = async () => {
     // If the user is not logged in, skip favorite fetch
     const accessToken = localStorage.getItem('access_token');
@@ -308,36 +282,6 @@ if (markerPosition && markerPosition.length === 2) {
     fetchFavoriteStatus();
   }, [id]); // Run the effect when the pet ID changes
 
-  // const fetchPetSightings = async () => {
-  //   const accessToken = localStorage.getItem('access_token');
-  //   if (!accessToken) {
-  //     setError('You must be logged in to view sightings.');
-  //     return;
-  //   }
-  
-  //   try {
-  //     setLoading(true);
-  //     setError(null);
-  
-  //     const response = await fetch(`${API_BASE_URL}/pets/${id}/pet-sightings/?format=json`, {
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     });
-  
-  //     const data = await response.json();
-  //     if (data) {
-  //       setSightings(data);  // Store the fetched sightings
-  //       console.log("Sightings fetched:", data);
-  //     } else {
-  //       throw new Error('No sightings found');
-  //     }
-  //   } catch (err) {
-  //     setError('Failed to fetch pet sightings. Please try again later.');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
   const fetchPetSightings = async () => {
     try {
       setLoading(true);
@@ -395,27 +339,85 @@ if (markerPosition && markerPosition.length === 2) {
     }
   };
 
-  if (loading) {
-    return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <CircularProgress size={80} style={{ color: '#ff6600' }} />
-      </div>
-    );
-  }
-  if (error) {
-    return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <Alert severity="error">{error}</Alert>
-      </div>
-    );
-  }
-  if (!pet) {
-    return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <Alert severity="info">No pet details available</Alert>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+  //       <CircularProgress size={80} style={{ color: '#ff6600' }} />
+  //     </div>
+  //   );
+  // }
+  // if (error) {
+  //   return (
+  //     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+  //       <Alert severity="error">{error}</Alert>
+  //     </div>
+  //   );
+  // }
+  // if (!pet) {
+  //   return (
+  //     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+  //       <Alert severity="info">No pet details available</Alert>
+  //     </div>
+  //   );
+  // }
+
+  if (loading && !pet) {
+  return (
+    // <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    //   <CircularProgress size={80} style={{ color: '#ff6600' }} />
+    // </div>
+           <Box
+      sx={{
+        minHeight: '100vh',
+        // background: 'linear-gradient(135deg, #6a1b9a, #9c27b0)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        textAlign: 'center',
+        overflow: 'hidden',
+      }}
+    >
+      {/* <Fade in={showContent} timeout={1000}>
+        <Typography
+          variant="h4"
+          sx={{
+            mb: 2,
+            fontWeight: 300,
+            color: "#FFB4B1",
+            transition: 'opacity 0.5s ease',
+          }}
+        >
+         Initializing System...
+        </Typography>
+      </Fade> */}
+
+      {/* <Slide direction="up" in={showContent} timeout={1200}> */}
+        <Box sx={{ width: 180, height: 180 }}>
+          <Lottie animationData={spinnerAnimation} loop autoplay />
+        </Box>
+      {/* </Slide> */}
+    </Box>
+  );
+}
+
+if (error) {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <Alert severity="error">{error}</Alert>
+    </div>
+  );
+}
+
+if (!pet) {
+  // No pet found
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <Alert severity="info">No pet details available</Alert>
+    </div>
+  );
+}
   
 
   return (
@@ -423,92 +425,7 @@ if (markerPosition && markerPosition.length === 2) {
     <Grid container spacing={3}>
   
           <Grid size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
-          {/* <b>{pet.status_display} {pet.species_display.toLowerCase()}</b> */}
-            {/* <Card style={{ position: 'relative' }}>
-            <Grid item xs={12} >
-
-            <CardMedia
-              component="img"
-              alt={pet.name}
-              // height="500"
-              image={imageList[currentIndex] || "/default_pet_image.jpg"}
-              sx={{
-                height: {
-                  xs: 380, 
-                  sm: 420,
-                  md: 460,
-                  lg: 500, 
-                },
-                objectFit: 'cover',
-              }}
-            />
-
-            <Box
-              sx={{
-             
-                display: "flex",
-                justifyContent: "center",
-                gap: "8px",
-                my: 0.6,
-                padding: "10px",
-              }}
-            >
-              {imageList.length > 1 && imageList.map((_, index) => (
-                <div
-                  key={index}
-                  onClick={() => handleDotClick(index)}
-                  style={{
-                    width: 12,
-                    height: 12,
-                    borderRadius: "50%",
-                    backgroundColor: index === currentIndex ? "#5B9BD5" : "#ddd",
-                    cursor: "pointer",
-                    transition: "background-color 0.3s",
-                  }}
-                />
-              ))}
-            </Box>
-        </Grid>
-             
-
-          <Box style={{position: 'absolute', top: -20, right: 0, zIndex: 999 }}>
-          <IconButton aria-label="add to favorites" sx={{position: 'absolute', top: '40px', right: '20px', background: '#FFFFFF'}}>
-          <BookmarkIcon />
-          </IconButton>
-
-          <Tooltip sx={{position: "absolute", top: "40px", right: "20px", background: "#FFFFFF"}} title={isFavorite ? "Remove from favorites" : "Add to favorites"}>
-          <IconButton onClick={handleFavorite}>
-            {isFavorite ? <BookmarkIcon color="secondary" /> : <BookmarkBorderIcon />}
-          </IconButton>
-        </Tooltip>
-          <Link to={`/pets/${id}/poster`}>
-          <IconButton aria-label="Download" sx={{position: 'absolute', top: '95px', right: '20px', background: '#FFFFFF'}}>
-          <DownloadIcon />
-          </IconButton>
-          </Link>
-          <IconButton aria-label="Share" sx={{position: 'absolute', top: '150px', right: '20px', background: '#FFFFFF'}} onClick={handleShare}>
-          <ShareIcon />
-          </IconButton>
-          </Box>
-          <Box style={{position: 'absolute', top: 16, left: 16, zIndex: 999 }}>
-          <Chip
-    label={pet.status_display}
-    variant="filled"
-    sx={{
  
-      backgroundColor: 'rgba(0, 0, 0, 0.6)',
-      color: 'white',
-      letterSpacing: "1.2px",
-      fontWeight: 500,
-      backdropFilter: 'blur(6px)', 
-      boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-      paddingY: 0.5,
-      fontSize: '0.85rem',
-    }}
-  />
-
-          </Box>
-          </Card> */}
 <ImageCarousel pet={pet} images={imageList.filter(Boolean)} />
  {/* 👉 Action Buttons BELOW the image */}
  <Box sx={{ display: 'flex', justifyContent: 'space-around', py: 1 }}>

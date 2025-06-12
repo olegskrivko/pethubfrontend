@@ -5,9 +5,8 @@ import { Box, Skeleton } from '@mui/material';
 
 const PetCardSkeleton = () => {
   return (
-    <Box sx={{ p: 1 }}>
+    <Box>
       <Skeleton
-
         variant="rectangular"
         // height={200}
         sx={{
@@ -16,7 +15,7 @@ const PetCardSkeleton = () => {
               sm: 200, // tablets
               md: 180, // medium screens
             },
-            borderRadius: 2,
+            borderRadius: 1,
           }}
       />
       <Skeleton height={30} width="80%" sx={{ mt: 1 }} />

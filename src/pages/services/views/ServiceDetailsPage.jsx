@@ -21,6 +21,9 @@ import { useSnackbar } from 'notistack';
 // import spinnerGif from '../../images/features/paws.gif';
 import RatingForm from '../components/RatingForm';
 import ServiceRatingDisplay from '../components/ServiceRatingDisplay';
+import Lottie from 'lottie-react';
+import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const ServiceDetail = () => {
@@ -143,14 +146,33 @@ const ServiceDetail = () => {
   };
 
   // Allow unauthenticated users to view the service details but block certain actions
-  if (loading) {
+  if (loading && !service) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
-        {/* <CircularProgress /> */}
-        {/* <img src={spinnerGif} alt="Loading..." /> */}
-      </Box>
+      // <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+      //   {/* <CircularProgress /> */}
+      //   {/* <img src={spinnerGif} alt="Loading..." /> */}
+      // </Box>
+               <Box
+      sx={{
+        minHeight: '100vh',
+        // background: 'linear-gradient(135deg, #6a1b9a, #9c27b0)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+        textAlign: 'center',
+        overflow: 'hidden',
+      }}
+    >
+        <Box sx={{ width: 180, height: 180 }}>
+          <Lottie animationData={spinnerAnimation} loop autoplay />
+        </Box>
+    </Box>
     );
   }
+
+
 
   if (error) {
     return (
@@ -162,6 +184,8 @@ const ServiceDetail = () => {
     );
   }
 
+
+  
   return (
     <Container component="main" maxWidth="lg" >
       {/* Service Image */}
