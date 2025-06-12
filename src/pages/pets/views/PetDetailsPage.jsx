@@ -360,13 +360,12 @@ if (markerPosition && markerPosition.length === 2) {
   //     </div>
   //   );
   // }
+const isStillLoading = loading || (!pet && !error);
 
-  if (loading && !pet) {
+
+if (isStillLoading) {
   return (
-    // <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-    //   <CircularProgress size={80} style={{ color: '#ff6600' }} />
-    // </div>
-           <Box
+      <Box
       sx={{
         minHeight: '100vh',
         // background: 'linear-gradient(135deg, #6a1b9a, #9c27b0)',
@@ -379,28 +378,36 @@ if (markerPosition && markerPosition.length === 2) {
         overflow: 'hidden',
       }}
     >
-      {/* <Fade in={showContent} timeout={1000}>
-        <Typography
-          variant="h4"
-          sx={{
-            mb: 2,
-            fontWeight: 300,
-            color: "#FFB4B1",
-            transition: 'opacity 0.5s ease',
-          }}
-        >
-         Initializing System...
-        </Typography>
-      </Fade> */}
-
-      {/* <Slide direction="up" in={showContent} timeout={1200}> */}
         <Box sx={{ width: 180, height: 180 }}>
           <Lottie animationData={spinnerAnimation} loop autoplay />
         </Box>
-      {/* </Slide> */}
     </Box>
   );
 }
+//   if (loading && !pet) {
+//   return (
+//     // <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+//     //   <CircularProgress size={80} style={{ color: '#ff6600' }} />
+//     // </div>
+//            <Box
+//       sx={{
+//         minHeight: '100vh',
+//         // background: 'linear-gradient(135deg, #6a1b9a, #9c27b0)',
+//         display: 'flex',
+//         flexDirection: 'column',
+//         alignItems: 'center',
+//         justifyContent: 'center',
+//         color: 'white',
+//         textAlign: 'center',
+//         overflow: 'hidden',
+//       }}
+//     >
+//         <Box sx={{ width: 180, height: 180 }}>
+//           <Lottie animationData={spinnerAnimation} loop autoplay />
+//         </Box>
+//     </Box>
+//   );
+// }
 
 if (error) {
   return (

@@ -14,10 +14,18 @@ import moment from 'moment';
   
 const TabContact = ({ pet }) => {
   return (
-  <Card>
+  <Card sx={{
+            borderRadius: 3,
+            background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease-in-out',
+            '&:hover': {
+              background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
+            },
+          }}>
     <CardContent style={{ paddingBottom: "1rem" }}>
       <Box display="flex" alignItems="center" mb={2}>
-        <Avatar src={`a.svg`} alt={pet.author.username.toUpperCase()} style={{ backgroundColor: '#555', color: '#fff' }} />
+        <Avatar src={`a.svg`} alt={pet.author.username.toUpperCase()} style={{ backgroundColor: '#00b3a4', color: '#f7f9fd', }} />
         <Box ml={2}>
         <Typography variant="body2" fontWeight="bold">
         {pet.author.username.toUpperCase()}
@@ -28,7 +36,8 @@ const TabContact = ({ pet }) => {
       </Box>
       </Box>               
        <Box display="flex" alignItems="center" gap={2} mt={2}>
-      <IconButton style={{ backgroundColor: '#555', color: '#fff', pointerEvents: 'none' }}>
+      
+      <IconButton style={{ backgroundColor: '#00b3a4', color: '#f7f9fd', pointerEvents: 'none' }}>
         <PhoneIcon />
       </IconButton>
   

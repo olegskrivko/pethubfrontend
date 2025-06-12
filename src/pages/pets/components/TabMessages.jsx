@@ -117,7 +117,7 @@ const TabMessages = ({ pet, sightings, onZoomMap  }) => {
   
 
   return (
-    <Grid container>
+  
     <Grid container spacing={2}>
     {pet && sightings && sightings.length > 0 ? (
       sightings.map((status, index) => {
@@ -326,17 +326,17 @@ const TabMessages = ({ pet, sightings, onZoomMap  }) => {
       })
     ) : (
       <Grid  size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-        <Card>
-                  <CardContent style={{ paddingBottom: "1rem" }}>
-        {/* <Typography variant="body2" color="textSecondary">
-          No status history available.
-        </Typography> */}
-                             {/* <Typography color="textSecondary">
-                      <Box display="flex" alignItems="center" gap={2}>
-                        Šobrīd nav pievienota neviena novērojuma.
-                      </Box>
-                    </Typography> */}
-                               <Typography color="textSecondary">
+        <Card sx={{
+            borderRadius: 3,
+            background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease-in-out',
+            '&:hover': {
+              background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
+            },
+          }}>
+                  <CardContent style={{ paddingBottom: "1rem",  }}>
+                               <Typography color="textSecondary" >
                                   <Box display="flex"  alignItems="center" gap={2}>
                                     <IconButton style={{ backgroundColor: '#555', color: '#fff', pointerEvents: 'none' }}>
                                       <TextSnippetIcon />
@@ -357,7 +357,7 @@ const TabMessages = ({ pet, sightings, onZoomMap  }) => {
       </Grid>
     )} */}
   </Grid>
-  </Grid>
+ 
 
   );
 };

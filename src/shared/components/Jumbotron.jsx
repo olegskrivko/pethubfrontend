@@ -55,7 +55,7 @@ const Jumbotron = () => {
             </Typography>
             <Button
               component={Link}
-              to="/feedback"
+              to="/support"
               variant="outlined"
           
                  style={{
