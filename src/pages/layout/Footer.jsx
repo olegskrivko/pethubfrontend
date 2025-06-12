@@ -50,8 +50,10 @@ const infoLinks = [
         padding: '20px 0',
         textAlign: 'center',
         marginTop: 'auto',
+        paddingBottom: '2rem',
         width: '100%',
         margin: 0,
+        
         // background: '#5B9BD5 !important',
         background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
       }}

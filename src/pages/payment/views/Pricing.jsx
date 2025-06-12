@@ -659,7 +659,7 @@ const PricingPage = () => {
     return (
       <Box textAlign="center" mt={10}>
         <CircularProgress />
-        <Typography mt={2}>Ielādē plānus...</Typography>
+        {/* <Typography mt={2}>Ielādē plānus...</Typography> */}
       </Box>
     );
   }
@@ -697,12 +697,12 @@ const PricingPage = () => {
         Izvēlieties savu plānu
       </Typography>
 
-      {hasActiveSubscription && (
+      {/* {hasActiveSubscription && (
         <Box mb={3} textAlign="center" color="error.main" fontWeight="bold">
           Jums jau ir aktīvs <u>{currentPlanId}</u> plāns līdz{" "}
           {new Date(subscription.subscription_end).toLocaleDateString()}. Jaunus plānus varēs iegādāties tikai pēc šī perioda beigām.
         </Box>
-      )}
+      )} */}
 
       <Grid container spacing={3} justifyContent="center">
         {plans.map((plan) => {
@@ -716,7 +716,7 @@ const PricingPage = () => {
               justifyContent="center"
             >
               <Box position="relative" width="100%" maxWidth="380px">
-                {isActive && (
+                {/* {isActive && (
                   <Chip
                     label="Aktīvais plāns"
                     color="success"
@@ -728,7 +728,7 @@ const PricingPage = () => {
                       fontWeight: "bold",
                     }}
                   />
-                )}
+                )} */}
                 <Card
                   sx={{
                     display: "flex",
@@ -738,7 +738,8 @@ const PricingPage = () => {
                     border: "1px solid #ddd",
                     textAlign: "center",
                     height: "100%",
-                    background: `linear-gradient(90deg, ${plan.color} 0%, #f1faff 100%)`,
+                    background: isActive ? 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)' : 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+                    //background: isActive ? `linear-gradient(90deg, ${plan.color} 0%, #f1faff 100%)` : "white",
                   }}
                 >
                   <CardContent sx={{ flexGrow: 1 }}>
@@ -823,7 +824,13 @@ const PricingPage = () => {
       <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
         <DialogTitle>Nevar iegādāties jaunu plānu</DialogTitle>
         <DialogContent>
-          Jums jau ir aktīvs abonements. Jaunu plānu varēs iegādāties tikai pēc esošā abonementa perioda beigām.
+              {hasActiveSubscription && (
+        <Box mb={3} textAlign="center" color="error.main" fontWeight="bold">
+          Jums jau ir aktīvs <u>{currentPlanId}</u> plāns līdz{" "}
+          {new Date(subscription.subscription_end).toLocaleDateString()}. Jaunus plānus varēs iegādāties tikai pēc šī perioda beigām.
+        </Box>
+      )}
+          {/* Jums jau ir aktīvs abonements. Jaunu plānu varēs iegādāties tikai pēc esošā abonementa perioda beigām. */}
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setDialogOpen(false)} autoFocus>

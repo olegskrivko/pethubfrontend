@@ -14,5 +14,6 @@ export const X = "https://www.x.com";
 export const THREADS = "https://www.threads.com";
 export const FACEBOOK = "https://www.facebook.com";
 export const INSTAGRAM = "https://www.instagram.com";
-export const DOMAIN_URL = "https://pawclix.netlify.app";
+export const DOMAIN_URL = "https://www.pawclix.com";
+export const DOMAIN_URL2 = "https://pawclix.netlify.app";
 export const PAYPAL_BUTTON_ID = "7X42GYG39BMSG";
