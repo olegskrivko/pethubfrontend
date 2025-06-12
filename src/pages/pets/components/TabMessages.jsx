@@ -132,11 +132,11 @@ const TabMessages = ({ pet, sightings, onZoomMap  }) => {
               <Grid container spacing={2}>
                  {/* Left section (avatar, author info, text) */}
                 <Grid  size={{ xs: 12, sm: 12, md: 8, lg: 8 }}>
-                <Box display="flex" alignItems="flex-start">
+                <Box display="flex"  alignItems="flex-start">
                 <Avatar src={`a.svg`} alt={status.reporter.username.toUpperCase()} sx={{ backgroundColor: "#22badf" }} />
     
 
-              <Box ml={2}>
+              <Box ml={2} display="flex" flexDirection="column">
               <Typography variant="body2" fontWeight="bold">
                       {status.reporter.username.toUpperCase()}
                     </Typography>

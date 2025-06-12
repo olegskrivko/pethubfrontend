@@ -26,8 +26,8 @@ import {
 } from '@mui/material';
 import { useAuth } from '../../../contexts/AuthContext';
 import { STATUS_CHOICES, SPECIES_CHOICES, AGE_CHOICES_BY_SPECIES, SIZE_CHOICES, GENDER_CHOICES, BEHAVIOR_CHOICES, AGE_CHOICES, PHONE_CODE_CHOICES, COLOR_CHOICES, PATTERN_CHOICES } from '../../../constants/petOptions';
-import { getCurrentDate, getCurrentTime } from '../../../utils/formHelpers';
-import LeafletAddPetMap from '../../../components/LeafletAddPetMap';
+// import { getCurrentDate, getCurrentTime } from '../../../utils/formHelpers';
+// import LeafletAddPetMap from '../../../components/LeafletAddPetMap';
 // React MUI Icons
 import CloseIcon from '@mui/icons-material/Close';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -57,8 +57,8 @@ function PetsAdd() {
     notes: '',
     contact_phone: '',
     phone_code: '371',
-    date: getCurrentDate(),
-    time: getCurrentTime(),
+    // date: getCurrentDate(),
+    // time: getCurrentTime(),
     pet_image_1: "",
     pet_image_2: "",
     pet_image_3: "",
@@ -839,7 +839,7 @@ const [ageChoices, setAgeChoices] = useState(AGE_CHOICES_BY_SPECIES[3]);
 
             {/* Map Display */}
             <Grid item xs={12}>
-            <LeafletAddPetMap onLocationChange={handleLocationChange} location={formState.location}  />
+            {/* <LeafletAddPetMap onLocationChange={handleLocationChange} location={formState.location}  /> */}
               
        {/* Location Display */}
        {/* <Stack direction="row" alignItems="center" spacing={1} my={1}>

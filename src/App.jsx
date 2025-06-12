@@ -42,6 +42,8 @@ import UserServiceBookmarks from './pages/profile/views/UserServiceBookmarks'
 import PetsListPage from './pages/pets/views/PetsPage';
 import PetDetailsPage from './pages/pets/views/PetDetailsPage';
 import Poster from './pages/pets/views/Poster';
+import PetAddStepper from "./pages/pets/views/PetAddStepper"
+
 
 import Login from './pages/auth/views/Login';
 import Register from './pages/auth/views/Register';
@@ -140,6 +142,8 @@ function App() {
             <Route path="pets" element={<PetsListPage />} />
             <Route path="pets/:id" element={<PetDetailsPage />} />
             <Route path="pets/:id/poster" element={<Poster />} />
+
+            
             <Route path="services" element={<ServicesListPage />} />
             <Route path="services/:id" element={<ServiceDetailsPage />} />
             <Route path="articles" element={<ArticlesListPage />} />
@@ -159,8 +163,8 @@ function App() {
 
             {/* Protected routes */}
             <Route element={<PrivateRoute />}>
-            
-              <Route path="user-profile" element={<Profile />} />
+            <Route path="add-pet" element={<PetAddStepper />} />
+            <Route path="user-profile" element={<Profile />} />
 
             
             <Route path="user-profile/settings" element={<UserSettings />} />

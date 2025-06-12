@@ -18,7 +18,7 @@ import StepImages from "../components/StepImages";
 import StepContact from "../components/StepContact";
 import StepAppearance from "../components/StepAppearance";
 
-import { getCurrentDate, getCurrentTime } from '../../../utils/formHelpers';
+// import { getCurrentDate, getCurrentTime } from '../../../utils/formHelpers';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; 
 const steps = [
 "Dzīvnieka raksturojums",
@@ -34,7 +34,9 @@ const PetAddStepper = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [formErrors, setFormErrors] = useState({});
   const [formState, setFormState] = useState({
-    location: { lat: 56.946285, lng: 24.105078, date: getCurrentDate(), time: getCurrentTime()  },
+    location: { lat: 56.946285, lng: 24.105078, 
+      // date: getCurrentDate(), time: getCurrentTime()  
+    },
     characteristics: {
       status: "", species: "", breed: "",
       identifier: "", 

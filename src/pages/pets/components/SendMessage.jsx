@@ -140,11 +140,24 @@ const SendMessage = ({
               </Box>
 
             <Box>
-              <Tooltip title="Aizsūtīt">
+              {/* <Tooltip title="Aizsūtīt">
                 <IconButton onClick={onSendMessage} style={{ backgroundColor: '#555', color: '#fff' }}>
                   <SendIcon />
                 </IconButton>
-              </Tooltip>
+                
+              </Tooltip> */}
+              <Tooltip title="Aizsūtīt">
+  <IconButton
+    onClick={() => {
+      onSendMessage();       // Send the message
+       if (isLocationAdded) onRemoveLocation();   // Clear the map pin
+    }}
+    style={{ backgroundColor: '#555', color: '#fff' }}
+  >
+    <SendIcon />
+  </IconButton>
+</Tooltip>
+
             </Box>
 
           </Box>

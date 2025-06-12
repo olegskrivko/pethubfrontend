@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Grid,TextField, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import  { STATUS_CHOICES, SPECIES_CHOICES, AGE_CHOICES_BY_SPECIES, SIZE_CHOICES, GENDER_CHOICES, BEHAVIOR_CHOICES, AGE_CHOICES, PHONE_CODE_CHOICES, COLOR_CHOICES, PATTERN_CHOICES }from "../../../constants/petOptions";
-import LeafletAddPetMap from '../../../components/LeafletAddPetMap';
+import LeafletAddPetMap from '../../../shared/maps/LeafletAddPetMap';
 
 // const StepLocation = ({ formState, handleLocationChange }) => {
     const StepLocation = ({ formState,formErrors, handleChange  }) => {
