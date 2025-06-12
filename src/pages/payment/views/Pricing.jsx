@@ -682,7 +682,7 @@ const PricingPage = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ px: 0 }}>
+    <Container maxWidth="lg">
       <Typography
         variant="h4"
         align="center"
@@ -694,7 +694,7 @@ const PricingPage = () => {
           WebkitTextFillColor: "transparent",
         }}
       >
-        Izvēlieties savu plānu
+        Izvēlieties savu plānu 
       </Typography>
 
       {/* {hasActiveSubscription && (
