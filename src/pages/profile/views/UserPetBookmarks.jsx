@@ -20,11 +20,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 // import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-
+import FlagIcon from '@mui/icons-material/Flag';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Lottie from 'lottie-react';
+import LabelImportantIcon from '@mui/icons-material/LabelImportant';
 import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
+import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; 
 
 function UserPetBookmarks() {
@@ -235,10 +237,37 @@ function UserPetBookmarks() {
                         />
                       </MuiLink>
                     </Typography>
+                    <Box style={{display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
                     <Typography variant="body1" color="textSecondary">
                       {pet.status_display || "Nav statusa"}
                     </Typography>
+                    <DoubleArrowIcon color="primary"  sx={{marginLeft: "1rem", marginRight: "1rem"}} />
+     <Typography variant="body1" color="textSecondary">
+                      {pet.final_status_display || "Nav statusa"}
+                    </Typography>
+               </Box>
                   </Box>
+                  
+                  {/* <Box flexGrow={1}  display="flex" alignItems="center" justifyContent="flex-start">
+                       <Chip
+                          label={pet.status_display || "Nav statusa"}
+                          size="small"
+                          variant="contained"
+                          color='primary'
+                       
+                        />
+                        
+                                          
+                      <LabelImportantIcon color="primary" sx={{ fontSize: 28, margin: "0rem 1rem"  }} />
+                <Chip
+                          label={pet.final_status_display || "Nav statusa"}
+                          size="small"
+                          variant="contained"
+                          color='primary'
+                       
+                        />
+                
+                    </Box> */}
                   <Tooltip title="Izdzēst">
                     <IconButton
                       // edge="end"

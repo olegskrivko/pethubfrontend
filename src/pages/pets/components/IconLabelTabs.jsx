@@ -92,24 +92,24 @@ function IconLabelTabs({pet,sightings, onZoomMap}) {
         
             {...a11yProps(0)}
           />
-          <Tab
+          {/* <Tab
             icon={<AirlineStopsIcon />}
             label="Vēsture"
             sx={{ fontSize: '0.7rem' }}
             {...a11yProps(1)}
-          />
+          /> */}
           <Tab
             icon={<DescriptionIcon />}
             label="Piezīmes"
             sx={{ fontSize: '0.7rem' }}
-            {...a11yProps(2)}
+            {...a11yProps(1)}
           />
 
           <Tab
             icon={<ContactPageIcon />}
             label="Kontakti"
             sx={{ fontSize: '0.7rem' }}
-            {...a11yProps(3)}
+            {...a11yProps(2)}
           />
         </Tabs>
       </div>
@@ -117,13 +117,13 @@ function IconLabelTabs({pet,sightings, onZoomMap}) {
       <TabPanel value={value} index={0}>
         <TabMessages pet={pet} sightings={sightings} onZoomMap={handleZoomMap}   />
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      {/* <TabPanel value={value} index={1}>
         <TabLocationHistory pet={pet} sightings={sightings} />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
+      </TabPanel> */}
+      <TabPanel value={value} index={1}>
         <TabNotes pet={pet} />
       </TabPanel>
-      <TabPanel value={value} index={3}>
+      <TabPanel value={value} index={2}>
         <TabContact pet={pet} />
       </TabPanel>
     </Box>

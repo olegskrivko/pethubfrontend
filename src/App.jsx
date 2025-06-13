@@ -43,6 +43,7 @@ import PetsListPage from './pages/pets/views/PetsPage';
 import PetDetailsPage from './pages/pets/views/PetDetailsPage';
 import Poster from './pages/pets/views/Poster';
 import PetAddStepper from "./pages/pets/views/PetAddStepper"
+import EditPetPage from "./pages/pets/views/EditPetPage"
 
 
 import Login from './pages/auth/views/Login';
@@ -142,6 +143,7 @@ function App() {
             <Route path="pets" element={<PetsListPage />} />
             <Route path="pets/:id" element={<PetDetailsPage />} />
             <Route path="pets/:id/poster" element={<Poster />} />
+            <Route path="user-profile/edit-pet/:id" element={<EditPetPage />} />
 
             
             <Route path="services" element={<ServicesListPage />} />
@@ -165,6 +167,7 @@ function App() {
             <Route element={<PrivateRoute />}>
             <Route path="add-pet" element={<PetAddStepper />} />
             <Route path="user-profile" element={<Profile />} />
+            
 
             
             <Route path="user-profile/settings" element={<UserSettings />} />
