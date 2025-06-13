@@ -30,6 +30,7 @@ import NotificationsOffIcon from '@mui/icons-material/NotificationsOff';
 import SendIcon from '@mui/icons-material/Send';
 import CardMembershipIcon from '@mui/icons-material/CardMembership';
 import CancelIcon from '@mui/icons-material/Cancel';
+import LeafletAddNotificationMap from "../../../shared/maps/LeafletAddNotificationMap";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; 
 
@@ -62,6 +63,8 @@ function UserSettings() {
     username: "",
     email: "",
   });
+  const [location, setLocation] = useState({ lat: 56.946285, lng: 24.105078 });
+  const [distance, setDistance] = useState(5); // Default 5 km
 
   const [openDialog, setOpenDialog] = useState(false);
   const [subscriptionStatus, setSubscriptionStatus] = useState(null);
@@ -112,9 +115,50 @@ function UserSettings() {
   
  const [isSubscribed, setIsSubscribed] = useState(false);
   const [subscription, setSubscription] = useState(null);
-  const [lat, setLat] = useState(56.946);     // Default to Riga
-  const [lon, setLon] = useState(24.1059);    // Default to Riga
-  const [distance, setDistance] = useState(5); // Default 5 km
+  // const [lat, setLat] = useState(56.946);     // Default to Riga
+  // const [lon, setLon] = useState(24.1059);    // Default to Riga
+
+  // Add useEffect to fetch user location on component mount
+  useEffect(() => {
+    fetchUserLocation();
+  }, []);
+
+  const handleLocationChange = (coords) => {
+    setLocation({
+      lat: coords.lat,
+      lng: coords.lng,
+    });
+    // If user is subscribed, update the subscription with new location
+    if (isSubscribed && subscription) {
+      saveSubscriptionToBackend(subscription);
+    }
+  };
+
+  const fetchUserLocation = async () => {
+    try {
+      const accessToken = localStorage.getItem("access_token");
+      const response = await fetch(`${API_BASE_URL}/api/notifications/user-location/`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch user location");
+      }
+
+      const data = await response.json();
+      console.log("Fetched location data:", data);
+
+      // Make sure lat/lng exist before setting
+      if (data.lat && data.lon) {
+        setLocation({ lat: data.lat, lng: data.lon });
+        if (data.distance) setDistance(data.distance);
+      }
+    } catch (error) {
+      console.error("Error fetching user location:", error);
+    }
+  };
 
   const askForNotificationPermission = async () => {
     try {
@@ -147,14 +191,15 @@ function UserSettings() {
   const saveSubscriptionToBackend = async (subscription) => {
     try {
       const accessToken = localStorage.getItem("access_token");
-      const subscriptionData = {
-        endpoint: subscription.endpoint,
-        p256dh: arrayBufferToBase64(subscription.getKey("p256dh")),
-        auth: arrayBufferToBase64(subscription.getKey("auth")),
-        lat,
-        lon,
-        distance,
-      };
+
+const subscriptionData = {
+  endpoint: subscription.endpoint,
+  p256dh: arrayBufferToBase64(subscription.getKey("p256dh")),
+  auth: arrayBufferToBase64(subscription.getKey("auth")),
+  lat: location.lat,
+  lon: location.lng,
+  distance,
+};
 
       const response = await fetch(`${API_BASE_URL}/api/notifications/subscribe/`, {
         method: "POST",
@@ -317,10 +362,10 @@ function UserSettings() {
   //     setLoadingSubscription(false);
   //   }
   // };
-
+ 
   useEffect(() => {
-    checkExistingSubscription();
-    fetchSubscriptionStatus();
+   checkExistingSubscription();
+  fetchSubscriptionStatus();
   }, []);
   if (!user) {
     return <Typography>Loading user data...</Typography>;
@@ -363,58 +408,16 @@ function UserSettings() {
       </Grid>
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
       <Box sx={{ py: 4 }}>
-      <Typography variant="h6" gutterBottom>
+      {/* <Typography variant="h6" gutterBottom>
         Push Notifications
-      </Typography>
+      </Typography> */}
 
-      <Box sx={{ my: 3 }}>
-        <TextField
-          label="Latitude"
-          type="number"
-          value={lat}
-          onChange={(e) => setLat(parseFloat(e.target.value))}
-          fullWidth
-          sx={{ mb: 2 }}
-        />
-        <TextField
-          label="Longitude"
-          type="number"
-          value={lon}
-          onChange={(e) => setLon(parseFloat(e.target.value))}
-          fullWidth
-          sx={{ mb: 2 }}
-        />
 
-        <Typography gutterBottom>Distance (km)</Typography>
-        <Slider
-          value={distance}
-          onChange={(e, newValue) => setDistance(newValue)}
-          min={1}
-          max={50}
-          step={1}
-          valueLabelDisplay="auto"
-        />
-      </Box>
 
-      {/* {isSubscribed ? (
-        <Box>
-          <Typography>You are subscribed to push notifications.</Typography>
-          <Button variant="contained" color="error" onClick={unsubscribeUser} sx={{ mt: 2, mr: 2 }}>
-            Unsubscribe
-          </Button>
-          <Button variant="outlined" onClick={sendTestNotification} sx={{ mt: 2 }}>
-            Send Test Notification
-          </Button>
-        </Box>
-      ) : (
-        <Box>
-          <Typography>You are not subscribed yet.</Typography>
-          <Button variant="contained" onClick={askForNotificationPermission} sx={{ mt: 2 }}>
-            Subscribe
-          </Button>
-        </Box>
-      )} */}
-      {/* sx={{ p: 3, borderRadius: 3, boxShadow: 3, bgcolor: '#f9f9f9',  }} */}
+
+
+
+  
       <Card  sx={{
             // px: 2,
             p: 3,
@@ -432,7 +435,45 @@ function UserSettings() {
             //   outline: '2px solid #00b5ad',
             // },
           }}>
+             <Box display="flex" alignItems="center" mb={2}>
+                  <NotificationsActiveIcon sx={{ mr: 1 }} />
+                  <Typography variant="h6">Push Notification Management</Typography>
+                </Box>
+            <LeafletAddNotificationMap onLocationChange={handleLocationChange} location={location} />
+                  <Box sx={{ my: 3 }}>
+<TextField
+  label="Latitude"
+  type="number"
+  value={location.lat}
+  onChange={(e) =>
+    setLocation({ ...location, lat: parseFloat(e.target.value) })
+  }
+  fullWidth
+  sx={{ mb: 2 }}
+/>
+<TextField
+  label="Longitude"
+  type="number"
+  value={location.lng}
+  onChange={(e) =>
+    setLocation({ ...location, lng: parseFloat(e.target.value) })
+  }
+  fullWidth
+  sx={{ mb: 2 }}
+/>
+
+        <Typography gutterBottom>Distance (km)</Typography>
+        <Slider
+          value={distance}
+          onChange={(e, newValue) => setDistance(newValue)}
+          min={1}
+          max={50}
+          step={1}
+          valueLabelDisplay="auto"
+        />
+      </Box>
   <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+    
     {isSubscribed ? (
       <>
       
@@ -458,6 +499,7 @@ function UserSettings() {
           variant="contained"
           color="error"
           onClick={unsubscribeUser}
+           startIcon={<CancelIcon />}
         >
           Unsubscribe
         </Button>

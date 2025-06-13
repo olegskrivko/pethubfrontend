@@ -552,6 +552,7 @@ import {
 } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import TestVisaCard from "../components/TestVisaCard";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const plans = [
@@ -838,6 +839,8 @@ const PricingPage = () => {
           </Button>
         </DialogActions>
       </Dialog>
+
+        <TestVisaCard />
     </Container>
   );
 };

@@ -47,6 +47,7 @@
 import { Container, Typography, Paper, Box } from "@mui/material";
 import CheckoutButton from "../components/CheckoutButton";
 import { useLocation } from "react-router-dom";
+import TestVisaCard from "../components/TestVisaCard";
 
 const CheckoutPage = () => {
   const location = useLocation();
@@ -125,6 +126,8 @@ const CheckoutPage = () => {
           <CheckoutButton subscriptionType={plan} />
         )}
       </Paper>
+
+    
     </Container>
   );
 };
