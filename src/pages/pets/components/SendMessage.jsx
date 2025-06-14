@@ -20,22 +20,14 @@ import EventIcon from '@mui/icons-material/Event';
 import { useAuth } from '../../../contexts/AuthContext'; // Import Auth context
 
 const SendMessage = ({
-  message, // message value
-  selectedDate, // date value
-  selectedTime, // time value
+  message,
   onUploadImage,
   filePreview,
-  
-
   locationAdded,
-  // addLocationTrigger,
   isLocationAdded,
   onAddLocation,
   onRemoveLocation,
-
   onMessageChange, // event handler on message change
-  onSelectDate, // event handler on date change
-  onSelectTime, // event handler on time change
   onSendMessage, // event handler on SEND msg
 
 }) => {
@@ -48,7 +40,7 @@ const SendMessage = ({
   };
 
   return (
-    <Card sx={{p: 2, borderRadius: 3,            background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
+    <Card sx={{ borderRadius: 3,            background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)', marginBottom: "2rem" }}>
       <CardContent style={{ paddingBottom: "1rem" }} >
           {/* <Box display="flex" alignItems="center" marginBottom="1rem">
@@ -81,14 +73,14 @@ const SendMessage = ({
           {/* {addLocationTrigger && ( */}
           {/* {isLocationAdded && ( */}
           
-          <Grid container spacing={2} marginBottom="1rem">
+          {/* <Grid container spacing={2} marginBottom="1rem">
             <Grid  size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
                 <TextField id="date" size='small' name="date" label="Datums" type="date" fullWidth InputLabelProps={{ shrink: true }} variant="outlined" value={selectedDate} onChange={(e) => onSelectDate(e.target.value)} />
             </Grid>
             <Grid  size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
                 <TextField id="time" size='small' name="time" label="Laiks" type="time" fullWidth InputLabelProps={{ shrink: true }} variant="outlined" value={selectedTime} onChange={(e) => onSelectTime(e.target.value)} />
             </Grid>
-          </Grid>
+          </Grid> */}
           {/* )} */}
 
   

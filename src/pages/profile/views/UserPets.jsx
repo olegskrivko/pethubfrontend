@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {
+  Modal,
+ 
+
+  Select,
+  MenuItem,
+
+} from '@mui/material';
+import {
   Typography,
   Card,
   Chip,
@@ -21,6 +29,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';  // ✅ Import missing 
 import axios from 'axios';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import PetsIcon from '@mui/icons-material/Pets';
+import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; 
 function UserPets() {
   const { user } = useAuth();
@@ -28,6 +37,10 @@ function UserPets() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [ownedPets, setOwnedPets] = useState([]);
+
+  const [editModalOpen, setEditModalOpen] = useState(false);
+const [selectedPet, setSelectedPet] = useState(null);
+const [newStatus, setNewStatus] = useState('');
 
   console.log("user", user);
   console.log("ownedPets", ownedPets);
@@ -89,10 +102,14 @@ function UserPets() {
     }
   };
 
-  const handleEditPet = (petId) => {
-    navigate(`/user-profile/edit-pet/${petId}`);
-  };
-
+  // const handleEditPet = (petId) => {
+  //   navigate(`/user-profile/edit-pet/${petId}`);
+  // };
+const handleEditPet = (pet) => {
+  setSelectedPet(pet);
+  setNewStatus(pet.final_status || '');
+  setEditModalOpen(true);
+};
   // Loading and error state handling
   if (loading) {
     return (
@@ -182,9 +199,15 @@ function UserPets() {
                           />
                         </MuiLink>
                       </Typography>
-                      <Typography variant="body1" color="textSecondary">
-                        {pet.status_display || 'Nav statusa'}
-                      </Typography>
+                          <Box style={{display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
+                    <Typography variant="body2" color="textSecondary">
+                      {pet.status_display || "Nav statusa"}
+                    </Typography>
+                    <DoubleArrowIcon color="primary"  sx={{marginLeft: "1rem", marginRight: "1rem", fontSize: "1rem"}} />
+     <Typography variant="body2" color="textSecondary">
+                      {pet.final_status_display || "Nav statusa"}
+                    </Typography>
+               </Box>
                     </Box>
 
                     <Tooltip title="Rediģēt">
@@ -193,7 +216,8 @@ function UserPets() {
                         color="primary"
                         style={{ marginLeft: '0.5rem' }}
                         aria-label="edit"
-                        onClick={() => handleEditPet(pet.id)}
+                        // onClick={() => handleEditPet(pet.id)}
+                        onClick={() => handleEditPet(pet)}
                       >
                         <EditIcon />
                       </IconButton>
@@ -203,7 +227,7 @@ function UserPets() {
                       <IconButton
                         edge="end"
                         color="error"
-                        style={{ marginLeft: '0.5rem' }}
+                        style={{ marginLeft: '1rem' }}
                         aria-label="delete"
                         onClick={() => handleDeletePet(pet.id)}
                       >
@@ -218,22 +242,7 @@ function UserPets() {
         </Grid>
       )}
 
-      {/* <Grid container spacing={2}>
-        <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-          <Box textAlign="center" style={{ display: "flex", justifyContent: "space-between" }} mt={4}>
-            <Button
-              variant="outlined"
-              color="primary"
-              startIcon={<ArrowBackIcon />}
-              component={Link}
-              to={`/user-profile`}
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              Atpakaļ
-            </Button>
-          </Box>
-        </Grid>
-      </Grid> */}
+
       <Grid container spacing={2}>
   <Grid size={{xs: 12, sm: 12, md: 12, lg: 12}} >
     <Box
@@ -266,7 +275,73 @@ function UserPets() {
     </Box>
   </Grid>
 </Grid>
+<Modal open={editModalOpen} onClose={() => setEditModalOpen(false)}>
+  <Box
+    sx={{
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: 300,
+      bgcolor: 'background.paper',
+      borderRadius: 2,
+      boxShadow: 24,
+      p: 4,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 2,
+    }}
+  >
+    <Typography variant="h6">Mainīt statusu</Typography>
+    <Select
+      fullWidth
+      value={newStatus}
+      onChange={(e) => setNewStatus(e.target.value)}
+      sx={{ mb: 3 }}
+    >
+      <MenuItem value={1}>Nav atrisināts</MenuItem>
+      <MenuItem value={2}>Atgriezts saimniekam</MenuItem>
+      <MenuItem value={3}>Nodots patversmei</MenuItem>
+      <MenuItem value={4}>Joprojām tiek meklēts</MenuItem>
+      <MenuItem value={5}>Nav aktuāli</MenuItem>
+      <MenuItem value={6}>Atradies miris</MenuItem>
+      <MenuItem value={7}>Saimnieks neatrasts</MenuItem>
+    </Select>
 
+    <Box display="flex" justifyContent="space-between">
+      <Button onClick={() => setEditModalOpen(false)}>Atcelt</Button>
+      <Button
+        variant="contained"
+        onClick={async () => {
+          try {
+            const accessToken = localStorage.getItem('access_token');
+            await axios.patch(`${API_BASE_URL}/api/accounts/user-pets/${selectedPet.id}/update/`, {
+              final_status: newStatus,
+            }, {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            });
+
+            // Update state
+            setOwnedPets((prev) =>
+              prev.map((pet) =>
+                pet.id === selectedPet.id ? { ...pet, final_status: newStatus } : pet
+              )
+            );
+
+            setEditModalOpen(false);
+          } catch (err) {
+            console.error("Error updating status", err);
+            alert("Neizdevās saglabāt statusu.");
+          }
+        }}
+      >
+        Saglabāt
+      </Button>
+    </Box>
+  </Box>
+</Modal>
     </Container>
   );
 }

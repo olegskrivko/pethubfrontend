@@ -238,11 +238,11 @@ function UserPetBookmarks() {
                       </MuiLink>
                     </Typography>
                     <Box style={{display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
-                    <Typography variant="body1" color="textSecondary">
+                    <Typography variant="body2" color="textSecondary">
                       {pet.status_display || "Nav statusa"}
                     </Typography>
-                    <DoubleArrowIcon color="primary"  sx={{marginLeft: "1rem", marginRight: "1rem"}} />
-     <Typography variant="body1" color="textSecondary">
+                    <DoubleArrowIcon color="primary"  sx={{marginLeft: "1rem", marginRight: "1rem", fontSize: "1rem"}} />
+     <Typography variant="body2" color="textSecondary">
                       {pet.final_status_display || "Nav statusa"}
                     </Typography>
                </Box>

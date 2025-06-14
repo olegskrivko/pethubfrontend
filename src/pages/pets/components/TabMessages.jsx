@@ -124,41 +124,64 @@ const TabMessages = ({ pet, sightings, onZoomMap  }) => {
         const canDelete = user?.username === status.reporter.username;
 
         return (
-          <Grid  size={{ xs: 12, sm: 12, md: 12, lg: 12 }} key={index}>
-          {/* reporter  {status.reporter.id} {status.reporter.username}
-           tagad {user?.userId} {user?.username} */}
-            <Card style={{ width: '100%' }}>
-              <CardContent style={{ paddingBottom: "1rem" }}>
-              <Grid container spacing={2}>
-                 {/* Left section (avatar, author info, text) */}
-                <Grid  size={{ xs: 12, sm: 12, md: 8, lg: 8 }}>
-                <Box display="flex"  alignItems="flex-start">
-                <Avatar src={`a.svg`} alt={status.reporter.username.toUpperCase()} sx={{ backgroundColor: "#22badf" }} />
+          <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} key={index}>
+            <Card>
+                <CardContent style={{ paddingBottom: "1rem" }}>
+               <Grid container spacing={2} sx={{position:"relative"}}>
+             <Grid item xs={12} sm={12} md={8} lg={8} >
+  <Box
+    display="flex"
+    flexDirection="column"
+    justifyContent="space-between"
+    height="100%"
     
+  >
+    {/* Top section: Avatar and notes */}
+    <Box >
+      <Box display="flex" alignItems="flex-start" mb={2} >
+        <Avatar src={`a.svg`} alt={status.reporter.username.toUpperCase()} sx={{ backgroundColor: "#22badf" }} />
+        <Box ml={2} display="flex" flexDirection="column">
+          <Typography variant="body2" fontWeight="bold">
+            {status.reporter.username.toUpperCase()}
+          </Typography>
+          <Typography variant="body2" color="textSecondary">
+            {dayjs(status.created_at).fromNow()}
+          </Typography>
+        </Box>
+      </Box>
 
-              <Box ml={2} display="flex" flexDirection="column">
-              <Typography variant="body2" fontWeight="bold">
-                      {status.reporter.username.toUpperCase()}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                    {/* {moment(status.created_at).locale('lv').fromNow()} */}
-                    {/* {dayjs(status.created_at).format('dddd, D MMMM YYYY')} */}
-                    {dayjs(status.created_at).fromNow()}
+      <Typography variant="body1" >
+        {status.notes}
+      </Typography>
+    </Box>
 
-                    </Typography>
-                          </Box>
-              </Box>
-                        <Box mt={1}>
-                          <Typography variant="body1" style={{ color: '#333' }}>
-                           {status.notes}
-                          </Typography>
-                        </Box>
-                </Grid>
-                {/* Right section (image and buttons) */}
-                <Grid  size={{ xs: 12, sm: 12, md: 4, lg: 4 }}>
-                <Box position="relative">
+    {/* Spacer to push buttons down */}
+    <Box flexGrow={1} />
+
+    {/* Buttons at bottom */}
+    <Box mt={2} display="flex" justifyContent="flex-start" gap={3} >
+      <Tooltip title="Parādīt kartē">
+        <IconButton onClick={() => onZoomMap(status?.latitude, status?.longitude)} sx={{ backgroundColor: '#555', color: '#fff' }}>
+          {status?.latitude && status?.longitude ? <LocationOnIcon /> : <LocationOffIcon />}
+        </IconButton>
+      </Tooltip>
+      {canDelete && (
+        <Box sx={{position: "absolute", right: "0" , zIndex: "999"}}>
+        <Tooltip title="Izdzēst ziņu">
+          <IconButton onClick={() => handleDeleteMessage(status.id)}>
+            <DeleteIcon color="secondary" />
+          </IconButton>
+        </Tooltip>
+        </Box>
+      )}
+    </Box>
+  </Box>
+</Grid>
+   <Box flexGrow={1} />
+             <Grid size={{ xs: 12, sm: 12, md: 4, lg: 4 }}>
+                 <Box position="relative">
       
-  {status.pet_image && ( // Only render if image exists
+  {status.pet_image && ( 
     <CardMedia
       component="img"
       style={{
@@ -233,94 +256,12 @@ const TabMessages = ({ pet, sightings, onZoomMap  }) => {
     </Fade>
   </Modal>
 </Box>
-                </Grid>
-
-                {/* Buttons section */}
-                <Grid  size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-                <Box mt={2} display="flex" justifyContent="space-between">
-             
-             <Tooltip title="Parādīt kartē">
-               <IconButton onClick={() => onZoomMap(status?.latitude, status?.longitude)} style={{backgroundColor: '#555',  color: '#fff'}}>
-                 {status?.latitude && status?.longitude ? <LocationOnIcon /> : <LocationOffIcon />}
-               </IconButton>
-             </Tooltip>
-{/* Render Delete Button ONLY if the user is the author */}
-{canDelete && (
-             <Tooltip title="Izdzēst ziņu">
-               <IconButton onClick={() => handleDeleteMessage(status.id)}>
-                 <DeleteIcon color="error" />
-               </IconButton>
-             </Tooltip>
-           )}
-
-           </Box>
-
-
-
-                </Grid>
               </Grid>
-                {/* Header with reporter info */}
-                {/* <Box display="flex" alignItems="center" mb={2}>
-                  <Avatar src={`a.svg`} alt={status.reporter.username.toUpperCase()} sx={{ backgroundColor: "#22badf" }} />
-                  <Box ml={2}>
-                    <Typography variant="body2" fontWeight="bold">
-                      {status.reporter.username.toUpperCase()}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      {moment(status.timestamp).fromNow()}
-                    </Typography>
-                  </Box>
-                </Box> */}
-
-                {/* Status note */}
-                {/* <Typography>{status.notes}</Typography> */}
-
-                {/* Status image */}
-                {/* {status.image && (
-                  <Box display="flex" justifyContent="flex-end" mt={2}>
-                    <img
-                      src={status.image}
-                      alt="Status"
-                      onClick={() => handleImageOpen(status.image)}
-                      style={{
-                        cursor: 'pointer',
-                        borderRadius: '8px',
-                        maxWidth: '150px',
-                        height: 'auto',
-                      }}
-                    />
-                  </Box>
-                )} */}
-
-                {/* Footer with map and delete options */}
-                {/* <Box mt={2} display="flex" justifyContent="space-between">
-             
-                  <Tooltip title="Parādīt kartē">
-                    <IconButton onClick={() => onZoomMap(status?.latitude, status?.longitude)}>
-                      {status?.latitude && status?.longitude ? <LocationOnIcon /> : <LocationOffIcon />}
-                    </IconButton>
-                  </Tooltip>
-
- {canDelete && (
-                  <Tooltip title="Izdzēst ziņu">
-                    <IconButton onClick={() => handleDeleteMessage(status.id)}>
-                      <DeleteIcon color="error" />
-                    </IconButton>
-                  </Tooltip>
-                )}
-
-                </Box> */}
+              </Grid>
               </CardContent>
             </Card>
 
-            {/* Image Modal */}
-            {/* <Modal open={open} onClose={handleImageClose} closeAfterTransition BackdropComponent={Backdrop}>
-              <Fade in={open}>
-                <Box sx={{ width: '90%', maxHeight: '90%', margin: 'auto', outline: 0 }}>
-                  <img src={selectedImage} alt="Selected" style={{ width: '100%' }} />
-                </Box>
-              </Fade>
-            </Modal> */}
+         
           </Grid>
         );
       })

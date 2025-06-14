@@ -25,26 +25,26 @@ import ImageCarousel from '../components/ImageCarousel';
 import LeafletPetDetailsMapNew from '../../../shared/maps/LeafletPetDetailsMapNew'
 import Lottie from 'lottie-react';
 import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
-
+import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; 
 
 const PetDetailsPage = () => {
   const { user } = useAuth();
-  const [isFormOpen, setIsFormOpen] = useState(false);
-  const { id } = useParams(); // Get the pet ID from the URL
+  const { id } = useParams();
+  const { enqueueSnackbar } = useSnackbar();
+
   const [pet, setPet] = useState(null);
-  const [sightings, setSightings] = useState([]);  // State to store pet sightings
+  const [sightings, setSightings] = useState([]);
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
-  const { enqueueSnackbar } = useSnackbar();
+
   const [zoomPosition, setZoomPosition] = useState(null)
   // new states for sending message
   const [message, setMessage] = useState('');
   const [file, setFile] = useState(null);
   const [filePreview, setFilePreview] = useState(null);
-  const [selectedDate, setSelectedDate] = useState('');
-  const [selectedTime, setSelectedTime] = useState('');
   const [markerPosition, setMarkerPosition] = useState(null);
   const [locationAdded, setLocationAdded] = useState(false);
   const [isLocationAdded, setIsLocationAdded] = useState(false);
@@ -75,12 +75,6 @@ const PetDetailsPage = () => {
     setCurrentIndex(index);
   };
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-  const handleTimeChange = (time) => {
-    setSelectedTime(time);
-  };
   const handleZoomMap = (lat, lng) => {
     if (lat && lng) {
       console.log("aaa")
@@ -132,11 +126,28 @@ const PetDetailsPage = () => {
 };
 
   const handleSendMessage = async () => {
-    // if (!message.trim()) return;
-    if (!message && !file) {
-      alert('Please enter a message or upload an image.');
+    const hasMessage = !!message.trim();
+    const hasImage = !!file;
+    const hasCoords = Array.isArray(markerPosition) && markerPosition.length === 2 && markerPosition.every(coord => !isNaN(parseFloat(coord)));
+
+
+    // 1. Message is always required
+    if (!hasMessage) {
+      alert('Please enter a message.');
       return;
     }
+
+    // 2. If image is included, coords are also required
+    if (hasImage && !hasCoords) {
+      alert('Please add the location where the image was taken.');
+      return;
+    }
+
+    // if (!message.trim()) return;
+    // if (!message && !file) {
+    //   alert('Please enter a message or upload an image.');
+    //   return;
+    // }
     const formData = new FormData();
     //formData.append('message', message);  // Assuming 'message' is included
  
@@ -156,23 +167,10 @@ if (markerPosition && markerPosition.length === 2) {
   }
 }
 
-    // Send the pet sighting details
-   // formData.append('latitude', markerPosition[0]);  // Replace with actual latitude
-    //formData.append('longitude', markerPosition[1]);  // Replace with actual longitude
-    // formData.append('latitude', coords.lat);  // Replace with actual latitude
-    // formData.append('longitude', coords.lng); 
-    // formData.append('latitude',  56.9496);
-    // formData.append('longitude', 24.1052); 
     formData.append('status', 2);  // Replace with the actual status (e.g., '3' for Seen)
     formData.append('notes', message);
     formData.append('reporter', user.userId);  // Optional
-   // ✅ Validate date & time before sending
-   if (!selectedDate || !selectedTime) {
-    alert('Please select a valid date and time.');
-    return;
-  }
-  formData.append('date', selectedDate);
-  formData.append('time', selectedTime);
+
    
   const accessToken = localStorage.getItem('access_token');  // Retrieve the access token from localStorage
     if (!accessToken) {
@@ -197,43 +195,20 @@ if (markerPosition && markerPosition.length === 2) {
       const result = await response.json();
       console.log('Message sent:', result);
   
-      // Reset after sending
+      // Reset form after sending
       setMessage('');
       setFile(null);
       setFilePreview(null);
       setLocationAdded(false);
-      // setSelectedDateTime('');
-      setSelectedDate('');
-      setSelectedTime('');
+      setMarkerPosition(null);
       setIsFormOpen(false);
-      
-    // Fetch sightings again after sending message (optional)
-    fetchPetSightings();
+      setIsLocationAdded(false);
+      fetchPetSightings();
     } catch (error) {
       console.error('Error sending message:', error);
     }
   };
   useEffect(() => {
- 
-    // const fetchPetDetails = async () => {
-    //   try {
-    //     setLoading(true);
-    //     setError(null);
-
-    //     const response = await fetch(`${API_BASE_URL}/api/pets/${id}/?format=json`);
-    //     const data = await response.json();
-
-    //     if (data) {
-    //       setPet(data);
-    //     } else {
-    //       throw new Error('Pet not found');
-    //     }
-    //   } catch (err) {
-    //     setError('Failed to fetch pet details. Please try again later.');
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // };
 
     const fetchPetDetails = async () => {
   try {
@@ -339,27 +314,7 @@ if (markerPosition && markerPosition.length === 2) {
     }
   };
 
-  // if (loading) {
-  //   return (
-  //     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-  //       <CircularProgress size={80} style={{ color: '#ff6600' }} />
-  //     </div>
-  //   );
-  // }
-  // if (error) {
-  //   return (
-  //     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-  //       <Alert severity="error">{error}</Alert>
-  //     </div>
-  //   );
-  // }
-  // if (!pet) {
-  //   return (
-  //     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-  //       <Alert severity="info">No pet details available</Alert>
-  //     </div>
-  //   );
-  // }
+
 const isStillLoading = loading || (!pet && !error);
 
 
@@ -384,30 +339,7 @@ if (isStillLoading) {
     </Box>
   );
 }
-//   if (loading && !pet) {
-//   return (
-//     // <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-//     //   <CircularProgress size={80} style={{ color: '#ff6600' }} />
-//     // </div>
-//            <Box
-//       sx={{
-//         minHeight: '100vh',
-//         // background: 'linear-gradient(135deg, #6a1b9a, #9c27b0)',
-//         display: 'flex',
-//         flexDirection: 'column',
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//         color: 'white',
-//         textAlign: 'center',
-//         overflow: 'hidden',
-//       }}
-//     >
-//         <Box sx={{ width: 180, height: 180 }}>
-//           <Lottie animationData={spinnerAnimation} loop autoplay />
-//         </Box>
-//     </Box>
-//   );
-// }
+
 
 if (error) {
   return (
@@ -468,8 +400,17 @@ if (!pet) {
 
 
           <Grid  size={{ xs: 12, sm: 12, md: 12, lg: 12 }} style={{paddingTop: '2rem', paddingBottom: '2rem'}}>
+                      <Box  style={{display: "flex", alignItems: "center", justifyContent: "flex-start", marginBottom: "1rem"  }}>
+       
+                    <Typography variant="body2" color="textSecondary">
+                    <b>Sākotnējais status:</b> {pet.status_display || "Nav statusa"}
+                    </Typography>
+                    <DoubleArrowIcon color="primary"  sx={{marginLeft: "1rem", marginRight: "1rem", fontSize: "1rem"}} />
+     <Typography variant="body2" color="textSecondary">
+                      <b>Tagadējais status:</b> {pet.final_status_display || "Nav statusa"}
+                    </Typography>
+               </Box>
           <LeafletPetDetailsMapNew pet={pet} sightings={sightings} zoomPosition={zoomPosition} 
-          // addLocationTrigger={addLocationTrigger} 
           isLocationAdded={isLocationAdded} 
           setMarkerPosition={setMarkerPosition}
           onRemoveLocation={handleRemoveLocation} 
@@ -498,18 +439,11 @@ if (!pet) {
               onSendMessage={handleSendMessage}
               onUploadImage={handleFileInputChange}
               filePreview={filePreview}
-
               onAddLocation={handleAddLocation}
               onRemoveLocation={handleRemoveLocation}
-              // addLocationTrigger={addLocationTrigger}
               isLocationAdded={isLocationAdded}
-              
               locationAdded={locationAdded}
-
-              selectedDate={selectedDate}
-              selectedTime={selectedTime}
-              onSelectDate={handleDateChange}
-              onSelectTime={handleTimeChange} />
+              />
       }
       </Grid>
       <Grid  size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
