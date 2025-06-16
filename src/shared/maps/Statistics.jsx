@@ -1,13 +1,12 @@
 // import React from 'react';
 // import { Box, Grid, Typography, Card, CardContent } from '@mui/material';
 
-
 // // const [statistics, setStatistics] = useState({
 // //     lostPets: 0,
 // //     foundPets: 0,
 // //     reunitedPets: 0,
 // //   });
-  
+
 // //   useEffect(() => {
 // //     async function fetchData() {
 // //       const response = await axios.get('/api/statistics');
@@ -15,13 +14,12 @@
 // //     }
 // //     fetchData();
 // //   }, []);
-  
+
 // //   const data = [
 // //     { label: 'Total Lost Pets', value: statistics.lostPets, color: '#FF7043' },
 // //     { label: 'Total Found Pets', value: statistics.foundPets, color: '#81C784' },
 // //     { label: 'Pets Reunited', value: statistics.reunitedPets, color: '#64B5F6' },
 // //   ];
-  
 
 // const Statistics = () => {
 //   const data = [
@@ -71,12 +69,12 @@
 //   });
 
 //   const data = [
-//     // { label: 'Total Lost Pets', value: 125, color: '#FF7043' },  
-//     // { label: 'Total Found Pets', value: 75, color: '#81C784' },  
-//     // { label: 'Pets Reunited', value: 50, color: '#64B5F6' },     
-//     { label: 'Kopējais pazudušo mājdzīvnieku skaits', value: 125, color: '#FF7043' },  
-//     { label: 'Kopējais atrasto mājdzīvnieku skaits', value: 75, color: '#81C784' },  
-//     { label: 'Atgrieztie mājdzīvnieki', value: 50, color: '#64B5F6' },     
+//     // { label: 'Total Lost Pets', value: 125, color: '#FF7043' },
+//     // { label: 'Total Found Pets', value: 75, color: '#81C784' },
+//     // { label: 'Pets Reunited', value: 50, color: '#64B5F6' },
+//     { label: 'Kopējais pazudušo mājdzīvnieku skaits', value: 125, color: '#FF7043' },
+//     { label: 'Kopējais atrasto mājdzīvnieku skaits', value: 75, color: '#81C784' },
+//     { label: 'Atgrieztie mājdzīvnieki', value: 50, color: '#64B5F6' },
 //   ];
 
 //   return (
@@ -234,9 +232,9 @@
 //   });
 
 //   const data = [
-//     { label: 'Total Lost Pets', value: 125, color: '#FF7043' },  
-//     { label: 'Total Found Pets', value: 75, color: '#81C784' },  
-//     { label: 'Pets Reunited', value: 50, color: '#64B5F6' },     
+//     { label: 'Total Lost Pets', value: 125, color: '#FF7043' },
+//     { label: 'Total Found Pets', value: 75, color: '#81C784' },
+//     { label: 'Pets Reunited', value: 50, color: '#64B5F6' },
 //   ];
 
 //   return (
@@ -244,16 +242,16 @@
 //       <Grid container spacing={3} justifyContent="center">
 //         {data.map((item, index) => (
 //           <Grid item xs={12} sm={4} key={index}>
-//             <Card 
-//               sx={{ 
-//                 textAlign: 'center', 
+//             <Card
+//               sx={{
+//                 textAlign: 'center',
 //                 backgroundColor: item.color,
 //                 borderRadius: '50%', // Make the card circular
 //                 height: 150,  // Fixed height for round shape
 //                 width: 150,   // Fixed width to make it a perfect circle
-//                 display: 'flex', 
-//                 alignItems: 'center', 
-//                 justifyContent: 'center', 
+//                 display: 'flex',
+//                 alignItems: 'center',
+//                 justifyContent: 'center',
 //                 boxShadow: 3 // Optional: add a shadow for more emphasis
 //               }}
 //             >
@@ -436,9 +434,21 @@ const Statistics = () => {
   }, []);
 
   const data = [
-    { label: 'Kopējais pazudušo mājdzīvnieku skaits', value: stats.lost, color: '#5B9BD5' },
-    { label: 'Kopējais atrasto mājdzīvnieku skaits', value: stats.found, color: '#5B9BD5' },
-    { label: 'Redzēto mājdzīvnieku skaits', value: stats.seen, color: '#5B9BD5' },
+    {
+      label: 'Kopējais pazudušo mājdzīvnieku skaits',
+      value: stats.lost,
+      color: '#5B9BD5',
+    },
+    {
+      label: 'Kopējais atrasto mājdzīvnieku skaits',
+      value: stats.found,
+      color: '#5B9BD5',
+    },
+    {
+      label: 'Redzēto mājdzīvnieku skaits',
+      value: stats.seen,
+      color: '#5B9BD5',
+    },
   ];
 
   return (
@@ -451,7 +461,7 @@ const Statistics = () => {
             style={{
               fontSize: '1.6rem',
               fontWeight: '500',
-              color: "#5B5B5B",
+              color: '#5B5B5B',
             }}
           >
             Pazudušo un atrasto mājdzīvnieku pārskats
@@ -474,7 +484,7 @@ const Statistics = () => {
                 alignItems: 'center',
                 textAlign: 'center',
                 padding: '1rem',
-                margin: 'auto',  // Ensures even spacing between circles
+                margin: 'auto', // Ensures even spacing between circles
               }}
             >
               <div>

@@ -1,13 +1,5 @@
-
 import React, { useState } from 'react';
-import {
-  Box,
-  Typography,
-  Rating,
-  TextField,
-  Button,
-  Paper
-} from '@mui/material';
+import { Box, Typography, Rating, TextField, Button, Paper } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import axios from 'axios';
 
@@ -29,12 +21,16 @@ const RatingForm = ({ serviceId, onSuccess }) => {
     console.log('Comment:', comment);
 
     if (!accessToken) {
-      enqueueSnackbar('Lūdzu, piesakieties, lai pievienotu atsauksmi.', { variant: 'warning' });
+      enqueueSnackbar('Lūdzu, piesakieties, lai pievienotu atsauksmi.', {
+        variant: 'warning',
+      });
       return;
     }
 
     if (rating < 1 || !comment.trim()) {
-      enqueueSnackbar('Lūdzu, aizpildiet vērtējumu un komentāru.', { variant: 'info' });
+      enqueueSnackbar('Lūdzu, aizpildiet vērtējumu un komentāru.', {
+        variant: 'info',
+      });
       console.log('Validation failed: rating or comment is missing.');
       return;
     }
@@ -52,7 +48,9 @@ const RatingForm = ({ serviceId, onSuccess }) => {
         }
       );
       console.log('Review submitted successfully:', response.data);
-      enqueueSnackbar('Atsauksme pievienota veiksmīgi!', { variant: 'success' });
+      enqueueSnackbar('Atsauksme pievienota veiksmīgi!', {
+        variant: 'success',
+      });
       setRating(0);
       setComment('');
       onSuccess?.(); // callback to refresh reviews

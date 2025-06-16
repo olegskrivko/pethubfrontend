@@ -3,7 +3,14 @@ import { Card, CardContent, Skeleton } from '@mui/material';
 
 const ShelterCardSkeleton = () => {
   return (
-    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: 2 }}>
+    <Card
+      sx={{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        borderRadius: 2,
+      }}
+    >
       <Skeleton variant="rectangular" height={160} />
       <CardContent>
         <Skeleton variant="text" height={30} width="60%" />

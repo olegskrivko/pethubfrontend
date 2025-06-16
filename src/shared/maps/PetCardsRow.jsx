@@ -32,11 +32,17 @@ const cardData = [
     desc: 'Dalieties ar sava mājdzīvnieka informāciju sociālajos tīklos, lai palielinātu redzamību.',
     offset: 0, // default
   },
-];    
+];
 
 const PetCardsRow = () => {
   return (
-    <Box sx={{ padding: '60px 20px', position: 'relative', backgroundColor: '#fff' }}>
+    <Box
+      sx={{
+        padding: '60px 20px',
+        position: 'relative',
+        backgroundColor: '#fff',
+      }}
+    >
       {/* Cards Row */}
       <Box
         sx={{
@@ -51,8 +57,8 @@ const PetCardsRow = () => {
           <Card
             key={index}
             sx={{
-             width: 240,
-             
+              width: 240,
+
               transform: `translateY(${card.offset}px)`,
               boxShadow: 3,
               borderRadius: 2,
@@ -60,14 +66,19 @@ const PetCardsRow = () => {
               transition: 'transform 0.3s ease',
             }}
           >
-            <CardMedia
-              component="img"
-              height="140"
-              image={card.img}
-              alt={card.title}
-            />
+            <CardMedia component="img" height="140" image={card.img} alt={card.title} />
             <CardContent>
-              <Typography variant="subtitle1" fontWeight="600" style={{  fontFamily: '"Titillium Web", Verdana, Arial, sans-serif',   color: "#16477c",lineHeight: 1.3, letterSpacing: 0, marginBottom: "1.5rem"}}>
+              <Typography
+                variant="subtitle1"
+                fontWeight="600"
+                style={{
+                  fontFamily: '"Titillium Web", Verdana, Arial, sans-serif',
+                  color: '#16477c',
+                  lineHeight: 1.3,
+                  letterSpacing: 0,
+                  marginBottom: '1.5rem',
+                }}
+              >
                 {card.title}
               </Typography>
               <Typography variant="body2" color="text.secondary">
@@ -77,7 +88,7 @@ const PetCardsRow = () => {
           </Card>
         ))}
       </Box>
-    {/* font-family: "Titillium", Verdana, Arial, sans-serif;
+      {/* font-family: "Titillium", Verdana, Arial, sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
     line-height: 1.3;

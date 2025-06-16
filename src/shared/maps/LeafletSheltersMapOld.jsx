@@ -66,17 +66,17 @@ const MapTilerLayerComponent = () => {
 };
 
 function LeafletSheltersMap({ shelters, centerCoords }) {
-    const [userLocation, setUserLocation] = useState(null);
-  
-    useEffect(() => {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          const { latitude, longitude } = pos.coords;
-          setUserLocation([latitude, longitude]);
-        },
-        (err) => console.error('Location error:', err)
-      );
-    }, []);
+  const [userLocation, setUserLocation] = useState(null);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords;
+        setUserLocation([latitude, longitude]);
+      },
+      (err) => console.error('Location error:', err)
+    );
+  }, []);
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm')); // 📱 Detect mobile size
 
@@ -185,26 +185,26 @@ function LeafletSheltersMap({ shelters, centerCoords }) {
               </Marker>
             ) : null
           )}
-                    {userLocation && (
-                      <Marker position={userLocation} icon={userPulseIcon}>
-                        <Popup offset={[0, 5]}>
-                          <div
-                            style={{
-                              background: '#5B9BD5',
-                              color: 'white',
-                              padding: '6px 12px',
-                              borderRadius: '12px',
-                              fontSize: '14px',
-                              fontWeight: 500,
-                              boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
-                              whiteSpace: 'nowrap',
-                            }}
-                          >
-                            Tava atrašanās vieta
-                          </div>
-                        </Popup>
-                      </Marker>
-                    )}
+          {userLocation && (
+            <Marker position={userLocation} icon={userPulseIcon}>
+              <Popup offset={[0, 5]}>
+                <div
+                  style={{
+                    background: '#5B9BD5',
+                    color: 'white',
+                    padding: '6px 12px',
+                    borderRadius: '12px',
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  Tava atrašanās vieta
+                </div>
+              </Popup>
+            </Marker>
+          )}
         </MarkerClusterGroup>
       </MapContainer>
     </div>

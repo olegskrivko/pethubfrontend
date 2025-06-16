@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { MapContainer, Marker, Popup, useMap } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
@@ -72,18 +71,24 @@ const MapTilerLayer = () => {
 
 const getIconByCategory = (category) => {
   switch (category) {
-    case 1: return defaultIcon; // Pet Sitting
-    case 2: return defaultIcon;     // Dog Walking
-    case 3: return defaultIcon;     // Grooming
-    case 4: return defaultIcon; // Training
-    case 5: return defaultIcon; // Boarding
-    default: return defaultIcon;
+    case 1:
+      return defaultIcon; // Pet Sitting
+    case 2:
+      return defaultIcon; // Dog Walking
+    case 3:
+      return defaultIcon; // Grooming
+    case 4:
+      return defaultIcon; // Training
+    case 5:
+      return defaultIcon; // Boarding
+    default:
+      return defaultIcon;
   }
 };
 
 function LeafletServicesMap({ services, centerCoords }) {
   const [userLocation, setUserLocation] = useState(null);
-console.log("locationservices", services)
+  console.log('locationservices', services);
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
@@ -112,79 +117,84 @@ console.log("locationservices", services)
           spiderfyOnMaxZoom={false}
           showCoverageOnHover={false}
         >
-        {/* {services?.flatMap((service) =>
+          {/* {services?.flatMap((service) =>
   service.locations
     .filter(loc => loc.latitude && loc.longitude)
     .map((loc) => ( */}
-    {services?.flatMap((service) =>
-  (service.locations || [])
-    .filter(loc => loc.latitude && loc.longitude)
-    .map((loc) => (
-
-      <Marker
-        key={`service-${service.id}-loc-${loc.id}`}
-        icon={getIconByCategory(service.category)}
-        position={[parseFloat(loc.latitude), parseFloat(loc.longitude)]}
-      >
- <Popup offset={[0, 5]}>
-  <div style={{
-    padding: '16px',
-    maxWidth: '250px',
-    textAlign: 'center',
-    borderRadius: '12px',
-    background: 'white',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-    fontFamily: 'Arial, sans-serif',
-  }}>
-    <h3 style={{
-      margin: '0 0 8px',
-      fontSize: '18px',
-      fontWeight: '600',
-      color: '#333',
-    }}>
-      {service.title}
-    </h3>
-    <p style={{
-      margin: '0 0 6px',
-      fontSize: '14px',
-      color: '#666',
-    }}>
-      <strong style={{ color: '#5B9BD5' }}>{loc.city}</strong> — {loc.address}
-    </p>
-    {/* <p style={{
+          {services?.flatMap((service) =>
+            (service.locations || [])
+              .filter((loc) => loc.latitude && loc.longitude)
+              .map((loc) => (
+                <Marker
+                  key={`service-${service.id}-loc-${loc.id}`}
+                  icon={getIconByCategory(service.category)}
+                  position={[parseFloat(loc.latitude), parseFloat(loc.longitude)]}
+                >
+                  <Popup offset={[0, 5]}>
+                    <div
+                      style={{
+                        padding: '16px',
+                        maxWidth: '250px',
+                        textAlign: 'center',
+                        borderRadius: '12px',
+                        background: 'white',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                        fontFamily: 'Arial, sans-serif',
+                      }}
+                    >
+                      <h3
+                        style={{
+                          margin: '0 0 8px',
+                          fontSize: '18px',
+                          fontWeight: '600',
+                          color: '#333',
+                        }}
+                      >
+                        {service.title}
+                      </h3>
+                      <p
+                        style={{
+                          margin: '0 0 6px',
+                          fontSize: '14px',
+                          color: '#666',
+                        }}
+                      >
+                        <strong style={{ color: '#5B9BD5' }}>{loc.city}</strong> — {loc.address}
+                      </p>
+                      {/* <p style={{
       margin: '8px 0',
       fontSize: '14px',
       color: '#555',
     }}>
       {service.description}
     </p> */}
-    <p style={{
-      margin: '8px 0 0',
-      fontSize: '14px',
-      color: '#555',
-      lineHeight: '1.4',
-    }}>
-      <strong style={{ display: 'block', color: '#5B9BD5' }}>{loc.phone_number}</strong>
-      <a 
-        href={`mailto:${loc.email}`} 
-        style={{
-          color: '#5B9BD5',
-          textDecoration: 'none',
-          fontWeight: '500',
-          marginTop: '4px',
-          display: 'inline-block',
-        }}
-      >
-        {loc.email}
-      </a>
-    </p>
-  </div>
-</Popup>
-
-      </Marker>
-    ))
-)}
-
+                      <p
+                        style={{
+                          margin: '8px 0 0',
+                          fontSize: '14px',
+                          color: '#555',
+                          lineHeight: '1.4',
+                        }}
+                      >
+                        <strong style={{ display: 'block', color: '#5B9BD5' }}>{loc.phone_number}</strong>
+                        <a
+                          href={`mailto:${loc.email}`}
+                          style={{
+                            color: '#5B9BD5',
+                            textDecoration: 'none',
+                            fontWeight: '500',
+                            marginTop: '4px',
+                            display: 'inline-block',
+                          }}
+                        >
+                          {loc.email}
+                        </a>
+                      </p>
+                    </div>
+                  </Popup>
+                </Marker>
+              ))
+          )}
 
           {userLocation && (
             <Marker position={userLocation} icon={userPulseIcon}>

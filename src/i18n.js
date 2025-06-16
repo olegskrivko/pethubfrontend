@@ -17,14 +17,12 @@ import lvAboutPage from './locales/lv/aboutPage.json';
 import lvSelectOptions from './locales/lv/selectOptions.json';
 import lvChatbot from './locales/lv/chatbot.json';
 
-
 import ruCommon from './locales/ru/common.json';
 import ruNavbar from './locales/ru/navbar.json';
 import ruFooter from './locales/ru/footer.json';
 import ruAboutPage from './locales/ru/aboutPage.json';
 import ruSelectOptions from './locales/ru/selectOptions.json';
 import ruChatbot from './locales/ru/chatbot.json';
-
 
 i18n
   .use(LanguageDetector) // Detects user language
@@ -43,7 +41,6 @@ i18n
         aboutPage: enAboutPage,
         selectOptions: enSelectOptions,
         chatbot: enChatbot,
-
       },
       lv: {
         common: lvCommon,
@@ -52,7 +49,6 @@ i18n
         aboutPage: lvAboutPage,
         selectOptions: lvSelectOptions,
         chatbot: lvChatbot,
-
       },
       ru: {
         common: ruCommon,
@@ -61,21 +57,13 @@ i18n
         aboutPage: ruAboutPage,
         selectOptions: ruSelectOptions,
         chatbot: ruChatbot,
-
       },
     },
     detection: {
       order: ['queryString', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
       caches: ['localStorage', 'cookie'],
     },
-    ns: [
-      'common',
-      'navbar',
-      'footer',
-      'aboutPage',
-      'selectOptions',
-      'chatbot',
-    ], // Namespaces to use
+    ns: ['common', 'navbar', 'footer', 'aboutPage', 'selectOptions', 'chatbot'], // Namespaces to use
     defaultNS: 'common', // Default namespace
   });
 

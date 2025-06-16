@@ -14,7 +14,8 @@ import {
   Dialog,
   DialogContent,
   IconButton,
-  Drawer, Pagination
+  Drawer,
+  Pagination,
 } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import FilterListIcon from '@mui/icons-material/FilterList';
@@ -25,7 +26,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import LeafletSheltersMap from '../../../shared/maps/LeafletSheltersMap';
 import logo from '../../../assets/images/shelters/animal_shelter.png';
-import Sidebar from "../components/ShelterSidebar"
+import Sidebar from '../components/ShelterSidebar';
 import ShelterCard from '../components/ShelterCard';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -35,7 +36,7 @@ const SheltersList = () => {
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
   const location = useLocation();
   const navigate = useNavigate();
- const [centerCoords, setCenterCoords] = useState([56.946285, 24.105078]);
+  const [centerCoords, setCenterCoords] = useState([56.946285, 24.105078]);
   const [shelters, setShelters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -56,13 +57,14 @@ const SheltersList = () => {
   useEffect(() => {
     const fetchShelters = async () => {
       // const accessToken = localStorage.getItem('access_token');
-    
+
       try {
-        const response = await axios.get(`${API_BASE_URL}/api/shelters/`, 
-        //   {
-        //   headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
-        // }
-      );
+        const response = await axios.get(
+          `${API_BASE_URL}/api/shelters/`
+          //   {
+          //   headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+          // }
+        );
         setShelters(response.data);
         setLoading(false);
       } catch (error) {
@@ -73,9 +75,7 @@ const SheltersList = () => {
     };
 
     fetchShelters();
-
   }, []);
-
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -84,7 +84,7 @@ const SheltersList = () => {
     const page = parseInt(queryParams.get('page')) || 1;
 
     setFilters({ category, search });
-    setPagination({page, totalPages: pagination.totalPages });
+    setPagination({ page, totalPages: pagination.totalPages });
 
     fetchShelters({ category, search, page });
   }, [location.search]);
@@ -128,7 +128,9 @@ const SheltersList = () => {
     setPagination((prev) => ({ ...prev, page }));
     const queryParams = new URLSearchParams(location.search);
     queryParams.set('page', page);
-    navigate(`${window.location.pathname}?${queryParams.toString()}`, { replace: true });
+    navigate(`${window.location.pathname}?${queryParams.toString()}`, {
+      replace: true,
+    });
   };
 
   const handleResetFilters = () => {
@@ -140,10 +142,10 @@ const SheltersList = () => {
   const handleFilterChange = (newFilters) => {
     // Ensure each filter only has one value
     if (newFilters.category) {
-      newFilters.category = newFilters.category;  // One value only
+      newFilters.category = newFilters.category; // One value only
     }
     if (newFilters.search) {
-      newFilters.search = newFilters.search;  // One value only
+      newFilters.search = newFilters.search; // One value only
     }
 
     setFilters(newFilters);
@@ -159,9 +161,10 @@ const SheltersList = () => {
     queryParams.append('page', 1);
 
     // Update the URL with the new query params
-    navigate(`${window.location.pathname}?${queryParams.toString()}`, { replace: true });
+    navigate(`${window.location.pathname}?${queryParams.toString()}`, {
+      replace: true,
+    });
   };
-
 
   if (loading) {
     return (
@@ -172,9 +175,9 @@ const SheltersList = () => {
   }
 
   return (
-      <Container maxWidth="lg" >
-          <Grid container spacing={3}>
-  {!isMobile && (
+    <Container maxWidth="lg">
+      <Grid container spacing={3}>
+        {!isMobile && (
           <Grid size={{ xs: 12, sm: 12, md: 3, lg: 3 }}>
             <Sidebar
               filters={filters}
@@ -184,107 +187,98 @@ const SheltersList = () => {
             />
           </Grid>
         )}
-              <Grid size={{ xs: 12, sm: 12, md: 9, lg: 9 }} md={isMobile ? 12 : 9}>
-                           <Box
-                         
-                                 sx={{
-                                   marginBottom: { xs: 'none', md: '1rem' },
-                                   justifyContent: 'flex-end',
-                                 }}
-                               >
-                           
-                                 <LeafletSheltersMap shelters={shelters} centerCoords={centerCoords} />
-                               </Box>
-                               <Box
-                                 py={2}
-                                 sx={{
-                                   display: { xs: 'flex', md: 'none' },
-                                   justifyContent: 'flex-end',
-                                 }}
-                               >
-                                 <Button
-                                   variant="contained"
-                                   color="primary"
-                                   size="small"
-                                   onClick={() => setDrawerOpen(true)}
-                                   startIcon={<FilterListIcon />}
-                                 >
-                                   Filter
-                                 </Button>
-                               </Box>
-           
-                     {/* Drawer for mobile */}
-                     <Drawer
-                       anchor="left"
-                       open={drawerOpen}
-                       onClose={() => setDrawerOpen(false)}
-                     >
-                       <Box sx={{ width: 300, p: 2 }}>
-                         <Sidebar
-                           filters={filters}
-                           setFilters={setFilters}
-                           onFilterChange={handleFilterChange}
-                           onReset={handleResetFilters}
-                         />
-                       </Box>
-                     </Drawer>
-           
-                     {loading ? (
-                       <Grid container spacing={2}>
-                         {[...Array(8)].map((_, index) => (
-                           <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4 }} key={index}>
-                             <ShelterCardSkeleton />
-                           </Grid>
-                         ))}
-                       </Grid>
-                     ) : error ? (
-                       <Alert severity="error">{error}</Alert>
-                     ) : (
-                       <>
-                         <Grid container spacing={2}>
-                           {shelters && shelters.length > 0 && shelters.map((shelter) => (
-                             <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4 }} key={shelter.id}>
-                               <ShelterCard shelter={shelter}  
-                               filters={filters}
-                                   pagination={pagination}
-                                    />
-                             </Grid>
-                           ))}
-                         </Grid>
-                         
-                         <Pagination
-                           color="primary"
-                           sx={{ mt: '2rem' }}
-                           page={pagination.page}
-                           count={pagination.totalPages}
-                           onChange={handlePaginationChange}
-                         />
-                       </>
-                     )}
-                   </Grid>
- 
-
-
-
-   {/* Pop-up alert as Dialog */}
-      <Dialog open={showPopup} onClose={() => setShowPopup(false)}>
-        <DialogContent sx={{ position: 'relative', p: 4 }}>
-          <IconButton
-            aria-label="close"
-            onClick={() => setShowPopup(false)}
-            sx={{ position: 'absolute', right: 8, top: 8 }}
+        <Grid size={{ xs: 12, sm: 12, md: 9, lg: 9 }} md={isMobile ? 12 : 9}>
+          <Box
+            sx={{
+              marginBottom: { xs: 'none', md: '1rem' },
+              justifyContent: 'flex-end',
+            }}
           >
-            <CloseIcon />
-          </IconButton>
-          <Alert severity="info">
-            <AlertTitle>Piezīme patversmēm</AlertTitle>
-            Ja jūs pārstāvat patversmi un vēlaties, lai tā tiktu parādīta mūsu lietotnē, lūdzu, sazinieties ar mums.
-            Mēs ar prieku sadarbosimies ar jums, lai izceltu jūsu organizāciju un palīdzētu vairāk dzīvniekiem atrast savas mūžīgās mājas.
-          </Alert>
-        </DialogContent>
-      </Dialog>
-    </Grid>
-       </Container>
+            <LeafletSheltersMap shelters={shelters} centerCoords={centerCoords} />
+          </Box>
+          <Box
+            py={2}
+            sx={{
+              display: { xs: 'flex', md: 'none' },
+              justifyContent: 'flex-end',
+            }}
+          >
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              onClick={() => setDrawerOpen(true)}
+              startIcon={<FilterListIcon />}
+            >
+              Filter
+            </Button>
+          </Box>
+
+          {/* Drawer for mobile */}
+          <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+            <Box sx={{ width: 300, p: 2 }}>
+              <Sidebar
+                filters={filters}
+                setFilters={setFilters}
+                onFilterChange={handleFilterChange}
+                onReset={handleResetFilters}
+              />
+            </Box>
+          </Drawer>
+
+          {loading ? (
+            <Grid container spacing={2}>
+              {[...Array(8)].map((_, index) => (
+                <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4 }} key={index}>
+                  <ShelterCardSkeleton />
+                </Grid>
+              ))}
+            </Grid>
+          ) : error ? (
+            <Alert severity="error">{error}</Alert>
+          ) : (
+            <>
+              <Grid container spacing={2}>
+                {shelters &&
+                  shelters.length > 0 &&
+                  shelters.map((shelter) => (
+                    <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4 }} key={shelter.id}>
+                      <ShelterCard shelter={shelter} filters={filters} pagination={pagination} />
+                    </Grid>
+                  ))}
+              </Grid>
+
+              <Pagination
+                color="primary"
+                sx={{ mt: '2rem' }}
+                page={pagination.page}
+                count={pagination.totalPages}
+                onChange={handlePaginationChange}
+              />
+            </>
+          )}
+        </Grid>
+
+        {/* Pop-up alert as Dialog */}
+        <Dialog open={showPopup} onClose={() => setShowPopup(false)}>
+          <DialogContent sx={{ position: 'relative', p: 4 }}>
+            <IconButton
+              aria-label="close"
+              onClick={() => setShowPopup(false)}
+              sx={{ position: 'absolute', right: 8, top: 8 }}
+            >
+              <CloseIcon />
+            </IconButton>
+            <Alert severity="info">
+              <AlertTitle>Piezīme patversmēm</AlertTitle>
+              Ja jūs pārstāvat patversmi un vēlaties, lai tā tiktu parādīta mūsu lietotnē, lūdzu, sazinieties ar mums.
+              Mēs ar prieku sadarbosimies ar jums, lai izceltu jūsu organizāciju un palīdzētu vairāk dzīvniekiem atrast
+              savas mūžīgās mājas.
+            </Alert>
+          </DialogContent>
+        </Dialog>
+      </Grid>
+    </Container>
   );
 };
 

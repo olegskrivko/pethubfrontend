@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom'; // to extract the pet ID from the URL
-import { CircularProgress, Alert,Grid, Typography, Card,CardMedia,Box,Tooltip,  IconButton   } from '@mui/material';
+import { useParams, Link } from 'react-router-dom';
+import { CircularProgress, Alert, Grid, Typography, Card, CardMedia, Box, Tooltip, IconButton } from '@mui/material';
 import Chip from '@mui/material/Chip';
 import TagIcon from '@mui/icons-material/Tag';
 import HeightIcon from '@mui/icons-material/Height';
@@ -16,16 +16,8 @@ import moment from 'moment';
 
 import 'moment/locale/lv'; // Import Latvian locale
 
-
-  
 const PetPhoto = ({ pet }) => {
-
-  return (
-    <Box>
-
-  </Box>
-   
-  );
+  return <Box></Box>;
 };
 
 export default PetPhoto;

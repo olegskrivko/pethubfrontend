@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tabs, Tab, Box,IconButton, Typography, Avatar, Card, CardContent, Grid,  } from '@mui/material';
+import { Tabs, Tab, Box, IconButton, Typography, Avatar, Card, CardContent, Grid } from '@mui/material';
 import PropTypes from 'prop-types';
 import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
@@ -44,13 +44,7 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-// const TabPanel = ({ children, value, index }) => (
-//   <Box role="tabpanel" hidden={value !== index} id={`tabpanel-${index}`}>
-//     {value === index && <Box sx={{ padding: '1rem 0' }}>{children}</Box>}
-//   </Box>
-// );
-
-function IconLabelTabs({pet,sightings, onZoomMap}) {
+function IconLabelTabs({ pet, sightings, onZoomMap }) {
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -59,67 +53,24 @@ function IconLabelTabs({pet,sightings, onZoomMap}) {
 
   // Define the function to zoom to a location
   const handleZoomMap = (lat, lng) => {
-    // if (!lat || !lng) {
-    //   console.warn("Invalid coordinates");
-    //   return;
-    // }
-    onZoomMap(lat, lng)
+    onZoomMap(lat, lng);
     console.log(`Zooming to: ${lat}, ${lng}`);
   };
-  
 
   return (
-    <Box sx={{ margin: '0rem !important', padding: "0rem !important" }}>
-      {/* <Tabs value={value} centered onChange={handleChange} variant="fullWidth">
-        <Tab icon={<MessageIcon />} label="Messages" />
-        <Tab icon={<AirlineStopsIcon />} label="History" />
-        <Tab icon={<NotesIcon />} label="Notes" />
-        <Tab icon={<ContactPageIcon />} label="Contact" />
-      </Tabs> */}
-
+    <Box sx={{ margin: '0rem !important', padding: '0rem !important' }}>
       <div style={{ margin: '1rem 0' }}>
-        <Tabs
-          value={value}
-          centered
-          onChange={handleChange}
-          variant="fullWidth"
-          aria-label="basic tabs example"
-        >
-          <Tab
-            icon={<ForumIcon />}
-            label="Ziņas"
-            sx={{ fontSize: '0.7rem' }}
-        
-            {...a11yProps(0)}
-          />
-          {/* <Tab
-            icon={<AirlineStopsIcon />}
-            label="Vēsture"
-            sx={{ fontSize: '0.7rem' }}
-            {...a11yProps(1)}
-          /> */}
-          <Tab
-            icon={<DescriptionIcon />}
-            label="Piezīmes"
-            sx={{ fontSize: '0.7rem' }}
-            {...a11yProps(1)}
-          />
+        <Tabs value={value} centered onChange={handleChange} variant="fullWidth" aria-label="basic tabs example">
+          <Tab icon={<ForumIcon />} label="Ziņas" sx={{ fontSize: '0.7rem' }} {...a11yProps(0)} />
+          <Tab icon={<DescriptionIcon />} label="Piezīmes" sx={{ fontSize: '0.7rem' }} {...a11yProps(1)} />
 
-          <Tab
-            icon={<ContactPageIcon />}
-            label="Kontakti"
-            sx={{ fontSize: '0.7rem' }}
-            {...a11yProps(2)}
-          />
+          <Tab icon={<ContactPageIcon />} label="Kontakti" sx={{ fontSize: '0.7rem' }} {...a11yProps(2)} />
         </Tabs>
       </div>
 
       <TabPanel value={value} index={0}>
-        <TabMessages pet={pet} sightings={sightings} onZoomMap={handleZoomMap}   />
+        <TabMessages pet={pet} sightings={sightings} onZoomMap={handleZoomMap} />
       </TabPanel>
-      {/* <TabPanel value={value} index={1}>
-        <TabLocationHistory pet={pet} sightings={sightings} />
-      </TabPanel> */}
       <TabPanel value={value} index={1}>
         <TabNotes pet={pet} />
       </TabPanel>

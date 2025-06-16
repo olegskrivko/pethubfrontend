@@ -14,7 +14,7 @@ const Loader = () => {
       }}
     >
       {/* <CircularProgress color="secondary" /> */}
-        {/* <Box sx={{ width: 180, height: 180 }}>
+      {/* <Box sx={{ width: 180, height: 180 }}>
           <Lottie animationData={spinnerAnimation} loop autoplay />
         </Box> */}
     </Box>

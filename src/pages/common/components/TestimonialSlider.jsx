@@ -1,28 +1,27 @@
-
 import { Box, Typography, Container } from '@mui/material';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
-import dogimg from "../../../assets/images/home/banner_dog.jpg"
+import dogimg from '../../../assets/images/home/banner_dog.jpg';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 const testimonials = [
   {
-    quote: "Personally, I am always impressed by the intuitive usability of the tool.",
-    name: "Nadja Möller",
-    role: "Business Process Consultant, LEONI"
+    quote: 'Personally, I am always impressed by the intuitive usability of the tool.',
+    name: 'Nadja Möller',
+    role: 'Business Process Consultant, LEONI',
   },
   {
-    quote: "PawClick helped me find my dog in just 48 hours. Amazing!",
-    name: "Anna L.",
-    role: "Pet Owner"
+    quote: 'PawClick helped me find my dog in just 48 hours. Amazing!',
+    name: 'Anna L.',
+    role: 'Pet Owner',
   },
   {
-    quote: "I recommend this service to every shelter I work with.",
-    name: "Tom S.",
-    role: "Volunteer Coordinator"
-  }
+    quote: 'I recommend this service to every shelter I work with.',
+    name: 'Tom S.',
+    role: 'Volunteer Coordinator',
+  },
 ];
 
 export default function TestimonialSlider({ dotsPosition = 'center' }) {
@@ -34,7 +33,7 @@ export default function TestimonialSlider({ dotsPosition = 'center' }) {
       bottom: '16px',
       left: 0,
       right: 0,
-      zIndex: 2
+      zIndex: 2,
     },
     left: {
       display: 'flex',
@@ -42,8 +41,8 @@ export default function TestimonialSlider({ dotsPosition = 'center' }) {
       position: 'absolute',
       bottom: '16px',
       left: '24px',
-      zIndex: 2
-    }
+      zIndex: 2,
+    },
   };
 
   return (
@@ -51,19 +50,18 @@ export default function TestimonialSlider({ dotsPosition = 'center' }) {
       sx={{
         position: 'relative',
         height: { xs: 350, md: 400 },
-        backgroundImage: `url(${dogimg})`, // Replace with your own image
+        backgroundImage: `url(${dogimg})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center'
+        backgroundPosition: 'center',
       }}
     >
-      {/* Gradient Overlay */}
       <Box
         sx={{
           position: 'absolute',
           inset: 0,
-        //   background: 'linear-gradient(to right, rgba(0,150,136,0.8), rgba(63,81,181,0.8))',
-        background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
-          zIndex: 1
+          //   background: 'linear-gradient(to right, rgba(0,150,136,0.8), rgba(63,81,181,0.8))',
+          background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
+          zIndex: 1,
         }}
       />
 
@@ -76,7 +74,7 @@ export default function TestimonialSlider({ dotsPosition = 'center' }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'flex-start',
-          color: '#fff'
+          color: '#fff',
         }}
       >
         <Swiper
@@ -88,8 +86,7 @@ export default function TestimonialSlider({ dotsPosition = 'center' }) {
         >
           {testimonials.map((t, i) => (
             <SwiperSlide key={i}>
-              <Box display="flex" alignItems="center" gap={4} >
-                {/* Quote Bubble with Tail */}
+              <Box display="flex" alignItems="center" gap={4}>
                 <Box
                   sx={{
                     position: 'relative',
@@ -105,7 +102,6 @@ export default function TestimonialSlider({ dotsPosition = 'center' }) {
                   <FormatQuoteIcon sx={{ fontSize: 40, color: '#00897B', opacity: 0.8 }} />
                 </Box>
 
-                {/* Text Block */}
                 <Box>
                   <Typography variant="h5" fontStyle="italic" gutterBottom>
                     {t.quote}
@@ -120,29 +116,28 @@ export default function TestimonialSlider({ dotsPosition = 'center' }) {
           ))}
         </Swiper>
 
-        {/* Pagination Dots */}
-        <Box mb={1}
-  className="custom-swiper-pagination"
-  sx={{
-    ...paginationPosition[dotsPosition],
-    '& .swiper-pagination-bullet': {
-      width: 14,
-      height: 14,
-      backgroundColor: '#fff',
-      opacity: 0.7,
-      marginRight: '8px', // Add horizontal space between dots
-    },
-    // Remove right margin from the last bullet so it doesn't add extra space on the right
-    '& .swiper-pagination-bullet:last-child': {
-      marginRight: 0,
-    },
-    '& .swiper-pagination-bullet-active': {
-      opacity: 1,
-      backgroundColor: '#fff',
-    }
-  }}
-/>
+        <Box
+          mb={1}
+          className="custom-swiper-pagination"
+          sx={{
+            ...paginationPosition[dotsPosition],
+            '& .swiper-pagination-bullet': {
+              width: 14,
+              height: 14,
+              backgroundColor: '#fff',
+              opacity: 0.7,
+              marginRight: '8px',
+            },
 
+            '& .swiper-pagination-bullet:last-child': {
+              marginRight: 0,
+            },
+            '& .swiper-pagination-bullet-active': {
+              opacity: 1,
+              backgroundColor: '#fff',
+            },
+          }}
+        />
       </Container>
     </Box>
   );

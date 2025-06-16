@@ -11,16 +11,16 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import SendMessage from '../../pages/pets/components/SendMessage';
 
-import { format } from "date-fns";
+import { format } from 'date-fns';
 import { lv } from 'date-fns/locale';
 import 'moment/locale/lv'; // Import Latvian locale
 import { MaptilerLayer } from '@maptiler/leaflet-maptilersdk'; // MapTiler integration
 
 // Define different search radius distances
-const getSearchRadii = (petType) => 
-  petType === 'Suns' 
-    ? [10000, 5000, 2000, 500]  // Dogs: Large to Small
-    : [3000, 1000, 500, 100];   // Cats: Large to Small
+const getSearchRadii = (petType) =>
+  petType === 'Suns'
+    ? [10000, 5000, 2000, 500] // Dogs: Large to Small
+    : [3000, 1000, 500, 100]; // Cats: Large to Small
 
 const SearchCircles = ({ center, petType }) => {
   const map = useMap(); // Get map instance
@@ -43,7 +43,8 @@ const SearchCircles = ({ center, petType }) => {
             click: (e) => {
               L.popup()
                 .setLatLng(e.latlng)
-                .setContent(`
+                .setContent(
+                  `
                   <div style="
                     background: #22badf; 
                     color: white; 
@@ -55,7 +56,8 @@ const SearchCircles = ({ center, petType }) => {
                     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
                   ">Attālums: ${radius / 1000} km
                   </div>
-                `)
+                `
+                )
                 .openOn(map);
             },
           }}
@@ -121,7 +123,7 @@ const MapTilerLayerComponent = () => {
   return null;
 };
 
-function LeafletPetDetailsMapNew({ 
+function LeafletPetDetailsMapNew({
   pet,
   sightings,
   markerPosition,
@@ -133,13 +135,13 @@ function LeafletPetDetailsMapNew({
   handleAddLocation,
   sendDataToParent,
   handleZoomMap,
-  onAddLocation, 
+  onAddLocation,
 }) {
   const mainIcon = createCustomMainIcon('#0077B6');
   const historyIcon = createCustomIcon('crimson');
   const newMarkerIcon = createCustomAddNewIcon('#dc004e');
   const mapRef = useRef();
-  
+
   // Handle click function that sends coordinates to parent
   const handleClick = (lat, lng) => {
     sendDataToParent([lat, lng]); // Sending lat and lng as an array
@@ -191,9 +193,9 @@ function LeafletPetDetailsMapNew({
         <MapTilerLayerComponent />
 
         {markerPosition && (
-          <Marker 
-            position={markerPosition} 
-            draggable={true} 
+          <Marker
+            position={markerPosition}
+            draggable={true}
             icon={newMarkerIcon}
             eventHandlers={{
               dragend: (e) => {
@@ -204,11 +206,7 @@ function LeafletPetDetailsMapNew({
             }}
           >
             <Popup offset={[0, 5]}>
-              <Chip
-                size="small"
-                label="Jauna lokācija"
-                style={{ backgroundColor: '#fff1f1', color: '#6d0202' }}
-              />
+              <Chip size="small" label="Jauna lokācija" style={{ backgroundColor: '#fff1f1', color: '#6d0202' }} />
             </Popup>
           </Marker>
         )}
@@ -218,60 +216,52 @@ function LeafletPetDetailsMapNew({
             parseFloat(sighting.latitude),
             parseFloat(sighting.longitude)
           ]; */}
-{sightings && sightings.map((sighting, index) => {
-  const lat = parseFloat(sighting.latitude);
-  const lng = parseFloat(sighting.longitude);
+        {sightings &&
+          sightings.map((sighting, index) => {
+            const lat = parseFloat(sighting.latitude);
+            const lng = parseFloat(sighting.longitude);
 
-  // Skip rendering if coordinates are missing or invalid
-  if (
-    !sighting.latitude ||
-    !sighting.longitude ||
-    isNaN(lat) ||
-    isNaN(lng)
-  ) {
-    return null;
-  }
+            // Skip rendering if coordinates are missing or invalid
+            if (!sighting.latitude || !sighting.longitude || isNaN(lat) || isNaN(lng)) {
+              return null;
+            }
 
-  const petPosition = [lat, lng];
-          return (
-            <Marker
-              key={index}
-              position={petPosition}
-              icon={historyIcon}
-            >
-              <Popup offset={[0, 5]}>
-                <div style={{ textAlign: 'center' }}>
-                  {sighting.pet_image && (
-                    <img
-                      src={sighting.pet_image}
-                      alt={sighting.id}
-                      style={{
-                        width: '120px',
-                        height: '120px',
-                        borderRadius: '50%',
-                        border: '3px solid white',
-                        objectFit: 'cover',
-                      }}
-                    />
-                  )}
-                </div>
-                <div
-                  style={{
-                    textAlign: 'center',
-                    backgroundColor: '#5B9BD5',
-                    padding: '0.3rem 0.6rem',
-                    borderRadius: '1rem',
-                    color: 'white',
-                    fontWeight: '500',
-                  }}
-                >
-                  {sighting.status_display}
-                  {/* {sighting.status_display} {format(sighting.event_occurred_at, "d. MMMM yyyy", { locale: lv })} */}
-                </div>
-              </Popup>
-            </Marker>
-          );
-        })}
+            const petPosition = [lat, lng];
+            return (
+              <Marker key={index} position={petPosition} icon={historyIcon}>
+                <Popup offset={[0, 5]}>
+                  <div style={{ textAlign: 'center' }}>
+                    {sighting.pet_image && (
+                      <img
+                        src={sighting.pet_image}
+                        alt={sighting.id}
+                        style={{
+                          width: '120px',
+                          height: '120px',
+                          borderRadius: '50%',
+                          border: '3px solid white',
+                          objectFit: 'cover',
+                        }}
+                      />
+                    )}
+                  </div>
+                  <div
+                    style={{
+                      textAlign: 'center',
+                      backgroundColor: '#5B9BD5',
+                      padding: '0.3rem 0.6rem',
+                      borderRadius: '1rem',
+                      color: 'white',
+                      fontWeight: '500',
+                    }}
+                  >
+                    {sighting.status_display}
+                    {/* {sighting.status_display} {format(sighting.event_occurred_at, "d. MMMM yyyy", { locale: lv })} */}
+                  </div>
+                </Popup>
+              </Marker>
+            );
+          })}
 
         <Marker position={[parseFloat(pet.latitude), parseFloat(pet.longitude)]} icon={mainIcon}>
           <Popup offset={[0, 5]}>

@@ -14,7 +14,6 @@ const LanguageSelector = () => {
       value={selectedLanguage}
       onChange={handleChangeLanguage}
       size="small"
-      
       sx={{
         color: '#fff',
         fontWeight: 500,
@@ -36,9 +35,15 @@ const LanguageSelector = () => {
       }}
       variant="outlined"
     >
-      <MenuItem style={{ fontSize: 'small' }} value="en">EN</MenuItem>
-      <MenuItem style={{ fontSize: 'small' }} value="lv">LV</MenuItem>
-      <MenuItem style={{ fontSize: 'small' }} value="ru">RU</MenuItem>
+      <MenuItem style={{ fontSize: 'small' }} value="en">
+        EN
+      </MenuItem>
+      <MenuItem style={{ fontSize: 'small' }} value="lv">
+        LV
+      </MenuItem>
+      <MenuItem style={{ fontSize: 'small' }} value="ru">
+        RU
+      </MenuItem>
     </Select>
   );
 };

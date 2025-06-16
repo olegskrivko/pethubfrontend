@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Typography,
-  Container,
-  TextField,
-  Button,
-  Box,
-  CircularProgress,
-} from '@mui/material';
+import { Typography, Container, TextField, Button, Box, CircularProgress } from '@mui/material';
 import { useNavigate, Link } from 'react-router-dom';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -54,37 +47,21 @@ const ForgotPassword = () => {
           alignItems: 'center',
         }}
       >
-   
-   <Typography component="h1" variant="h5" align="center" sx={{color:"#16477c"}}>
-           Aizmirsi paroli?
+        <Typography component="h1" variant="h5" align="center" sx={{ color: '#16477c' }}>
+          Aizmirsi paroli?
         </Typography>
         {message && (
-          <Typography
-            variant="body2"
-            color="success"
-            align="center"
-            sx={{ mb: 2 }}
-          >
+          <Typography variant="body2" color="success" align="center" sx={{ mb: 2 }}>
             {message}
           </Typography>
         )}
         {error && (
-          <Typography
-            variant="body2"
-            color="error"
-            align="center"
-            sx={{ mb: 2 }}
-          >
+          <Typography variant="body2" color="error" align="center" sx={{ mb: 2 }}>
             {error}
           </Typography>
         )}
 
-        <Box
-          component="form"
-          onSubmit={handleForgotPassword}
-          noValidate
-          sx={{ width: '100%' }}
-        >
+        <Box component="form" onSubmit={handleForgotPassword} noValidate sx={{ width: '100%' }}>
           <TextField
             margin="normal"
             required
@@ -102,24 +79,29 @@ const ForgotPassword = () => {
             type="submit"
             fullWidth
             variant="contained"
-             sx={{ mt: 2, mb: 2, background: "linear-gradient(0deg, #0994ba 30%, #02b4c4 90%)" }}
+            sx={{
+              mt: 2,
+              mb: 2,
+              background: 'linear-gradient(0deg, #0994ba 30%, #02b4c4 90%)',
+            }}
             disabled={loading}
           >
-            {loading ? (
-              <CircularProgress size={24} sx={{ color: 'white' }} />
-            ) : (
-              'Saņemt paroles atiestatīšanas saiti'
-            )}
+            {loading ? <CircularProgress size={24} sx={{ color: 'white' }} /> : 'Saņemt paroles atiestatīšanas saiti'}
           </Button>
 
           <Typography variant="body2" align="center">
-            <Link to="/login" style={{
-                        color: '#00b5ad',
-                        textDecoration: 'none',
-                        '&:hover': {
-                          textDecoration: 'underline',
-                        },
-                      }}>Atpakaļ uz pieteikšanās lapu!</Link>
+            <Link
+              to="/login"
+              style={{
+                color: '#00b5ad',
+                textDecoration: 'none',
+                '&:hover': {
+                  textDecoration: 'underline',
+                },
+              }}
+            >
+              Atpakaļ uz pieteikšanās lapu!
+            </Link>
           </Typography>
         </Box>
       </Box>

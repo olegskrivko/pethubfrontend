@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
@@ -75,21 +74,17 @@ function ShelterDetails() {
   };
 
   return (
-      <Container component="main" maxWidth="lg" >
-      <Button
-        startIcon={<ArrowBackIcon />}
-        onClick={() => navigate('/shelters')}
-        sx={{ mb: 3 }}
-      >
+    <Container component="main" maxWidth="lg">
+      <Button startIcon={<ArrowBackIcon />} onClick={() => navigate('/shelters')} sx={{ mb: 3 }}>
         Atpakaļ uz patversmēm
       </Button>
 
-      <Typography variant="h3" align="center"  sx={{mt: 4,  mb: 5, fontWeight: 500 }}>
+      <Typography variant="h3" align="center" sx={{ mt: 4, mb: 5, fontWeight: 500 }}>
         {shelter.name}
       </Typography>
 
-      <Grid  spacing={3} >
-        <Grid size={{ xs: 12, sm: 5, md: 5, lg: 5}}>
+      <Grid spacing={3}>
+        <Grid size={{ xs: 12, sm: 5, md: 5, lg: 5 }}>
           <Box display="flex" flexDirection="column" alignItems="center">
             <CardMedia
               component="img"
@@ -122,12 +117,11 @@ function ShelterDetails() {
           </Box>
         </Grid>
 
-        <Grid  size={{ xs: 12, sm: 7, md: 7, lg: 7}}>
+        <Grid size={{ xs: 12, sm: 7, md: 7, lg: 7 }}>
           <Card
             sx={{
               backgroundColor: 'transparent',
               boxShadow: 'none',
-           
             }}
             elevation={0}
           >
@@ -145,12 +139,7 @@ function ShelterDetails() {
                   <PublicIcon sx={{ color: '#6E6E6E' }} />
                 </ListItemIcon>
                 <ListItemText sx={{ ml: -2 }}>
-                  <MuiLink
-                    href={shelter.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    underline="none"
-                  >
+                  <MuiLink href={shelter.website} target="_blank" rel="noopener noreferrer" underline="none">
                     {shelter.website}
                   </MuiLink>
                 </ListItemText>
@@ -233,12 +222,7 @@ function ShelterDetails() {
                       <IconComponent sx={{ color: '#6E6E6E' }} />
                     </ListItemIcon>
                     <ListItemText sx={{ ml: -2 }}>
-                      <MuiLink
-                        href={profile.profile_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        underline="none"
-                      >
+                      <MuiLink href={profile.profile_url} target="_blank" rel="noopener noreferrer" underline="none">
                         {profile.platform}
                       </MuiLink>
                     </ListItemText>
@@ -255,7 +239,12 @@ function ShelterDetails() {
                 </Typography>
                 <Box display="flex" flexWrap="wrap" gap={1}>
                   {shelter.animal_types.map((type) => (
-                    <Chip key={type.id} label={type.name} size="small" sx={{backgroundColor: "#00b5ad", color: "#fff"}} />
+                    <Chip
+                      key={type.id}
+                      label={type.name}
+                      size="small"
+                      sx={{ backgroundColor: '#00b5ad', color: '#fff' }}
+                    />
                   ))}
                 </Box>
               </Box>

@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Grid, Button, CircularProgress, Box, Container,
-  Alert, Pagination, Drawer, useTheme, useMediaQuery
+  Grid,
+  Button,
+  CircularProgress,
+  Box,
+  Container,
+  Alert,
+  Pagination,
+  Drawer,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
 import PetCardSkeleton from '../components/PetCardSkeleton';
 import Sidebar from '../components/Sidebar';
@@ -17,9 +25,18 @@ const PetsList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [pagination, setPagination] = useState({ page: 1, totalPages: 1 });
-  const [filters, setFilters] = useState({ status: '', species: '', gender: '', size: '', pattern: '', date: '', search: '', color: '', });
+  const [filters, setFilters] = useState({
+    status: '',
+    species: '',
+    gender: '',
+    size: '',
+    pattern: '',
+    date: '',
+    search: '',
+    color: '',
+  });
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [centerCoords, setCenterCoords] = useState([56.946285, 24.105078]); 
+  const [centerCoords, setCenterCoords] = useState([56.946285, 24.105078]);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -30,24 +47,33 @@ const PetsList = () => {
     console.log('lat, lng', lat, lng);
     setCenterCoords([lat, lng]);
   };
- 
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    const status = queryParams.get('status') || '';  // One value only
-    const species = queryParams.get('species') || '';  // One value only
-    const gender = queryParams.get('gender') || '';  // One value only
-    const size = queryParams.get('size') || '';  // One value only
-    const pattern = queryParams.get('pattern') || '';  // One value only
+    const status = queryParams.get('status') || ''; // One value only
+    const species = queryParams.get('species') || ''; // One value only
+    const gender = queryParams.get('gender') || ''; // One value only
+    const size = queryParams.get('size') || ''; // One value only
+    const pattern = queryParams.get('pattern') || ''; // One value only
     const date = queryParams.get('date') || '';
-    const search = queryParams.get('search') || ''; 
-    const color = queryParams.get('color') || '';     
+    const search = queryParams.get('search') || '';
+    const color = queryParams.get('color') || '';
     const page = parseInt(queryParams.get('page')) || 1;
 
     setFilters({ status, species, gender, size, pattern, date, search, color });
     setPagination({ page, totalPages: pagination.totalPages });
 
-    fetchPets({ status, species, gender, size, pattern, date, search, color, page });
+    fetchPets({
+      status,
+      species,
+      gender,
+      size,
+      pattern,
+      date,
+      search,
+      color,
+      page,
+    });
   }, [location.search]);
 
   const fetchPets = async ({ status, species, gender, size, pattern, date, search, color, page }) => {
@@ -56,14 +82,14 @@ const PetsList = () => {
       setError(null);
 
       const queryParams = new URLSearchParams();
-      if (status) queryParams.append('status', status);  // One status only
-      if (species) queryParams.append('species', species);  // One species only
-      if (gender) queryParams.append('gender', gender);  // One gender only
-      if (size) queryParams.append('size', size);  // One size only
-      if (pattern) queryParams.append('pattern', pattern);  // One pattern only
-      if (date) queryParams.append('date', date);  // One pattern only
-      if (search) queryParams.append('search', search);  // One pattern only
-      if (color) queryParams.append('color', color);  // One pattern only
+      if (status) queryParams.append('status', status); // One status only
+      if (species) queryParams.append('species', species); // One species only
+      if (gender) queryParams.append('gender', gender); // One gender only
+      if (size) queryParams.append('size', size); // One size only
+      if (pattern) queryParams.append('pattern', pattern); // One pattern only
+      if (date) queryParams.append('date', date); // One pattern only
+      if (search) queryParams.append('search', search); // One pattern only
+      if (color) queryParams.append('color', color); // One pattern only
       queryParams.append('page', page);
 
       const newUrl = `${window.location.pathname}?${queryParams.toString()}`;
@@ -89,11 +115,22 @@ const PetsList = () => {
     setPagination((prev) => ({ ...prev, page }));
     const queryParams = new URLSearchParams(location.search);
     queryParams.set('page', page);
-    navigate(`${window.location.pathname}?${queryParams.toString()}`, { replace: true });
+    navigate(`${window.location.pathname}?${queryParams.toString()}`, {
+      replace: true,
+    });
   };
 
   const handleResetFilters = () => {
-    setFilters({ status: '', species: '', gender: '', size: '', pattern: '', date: '', search: '', color: '', }); // Reset to empty values
+    setFilters({
+      status: '',
+      species: '',
+      gender: '',
+      size: '',
+      pattern: '',
+      date: '',
+      search: '',
+      color: '',
+    }); // Reset to empty values
     setPagination((prev) => ({ ...prev, page: 1 }));
     navigate(`${window.location.pathname}?page=1`, { replace: true });
   };
@@ -101,32 +138,30 @@ const PetsList = () => {
   const handleFilterChange = (newFilters) => {
     // Ensure each filter only has one value
     if (newFilters.species) {
-      newFilters.species = newFilters.species;  // One value only
+      newFilters.species = newFilters.species; // One value only
     }
     if (newFilters.gender) {
-      newFilters.gender = newFilters.gender;  // One value only
+      newFilters.gender = newFilters.gender; // One value only
     }
     if (newFilters.status) {
-      newFilters.status = newFilters.status;  // One value only
+      newFilters.status = newFilters.status; // One value only
     }
     if (newFilters.size) {
-      newFilters.size = newFilters.size;  // One value only
+      newFilters.size = newFilters.size; // One value only
     }
     if (newFilters.pattern) {
-      newFilters.pattern = newFilters.pattern;  // One value only
+      newFilters.pattern = newFilters.pattern; // One value only
     }
     if (newFilters.date) {
-      newFilters.date = newFilters.date;  // One value only
+      newFilters.date = newFilters.date; // One value only
     }
     if (newFilters.search) {
-      newFilters.search = newFilters.search;  // One value only
+      newFilters.search = newFilters.search; // One value only
     }
     if (newFilters.color) {
-      newFilters.color = newFilters.color;  // One value only
+      newFilters.color = newFilters.color; // One value only
     }
 
-
-    
     setFilters(newFilters);
     setPagination((prev) => ({ ...prev, page: 1 }));
 
@@ -146,7 +181,9 @@ const PetsList = () => {
     queryParams.append('page', 1);
 
     // Update the URL with the new query params
-    navigate(`${window.location.pathname}?${queryParams.toString()}`, { replace: true });
+    navigate(`${window.location.pathname}?${queryParams.toString()}`, {
+      replace: true,
+    });
   };
 
   return (
@@ -164,14 +201,13 @@ const PetsList = () => {
         )}
 
         <Grid size={{ xs: 12, sm: 12, md: 9, lg: 9 }} md={isMobile ? 12 : 9}>
-        <Box
-    
+          <Box
             sx={{
               marginBottom: { xs: 'none', md: '1rem' },
               justifyContent: 'flex-end',
             }}
           >
-          <LeafletClusterMap pets={pets} centerCoords={centerCoords} />
+            <LeafletClusterMap pets={pets} centerCoords={centerCoords} />
           </Box>
           <Box
             py={2}
@@ -192,11 +228,7 @@ const PetsList = () => {
           </Box>
 
           {/* Drawer for mobile */}
-          <Drawer
-            anchor="left"
-            open={drawerOpen}
-            onClose={() => setDrawerOpen(false)}
-          >
+          <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
             <Box sx={{ width: 300, p: 2 }}>
               <Sidebar
                 filters={filters}

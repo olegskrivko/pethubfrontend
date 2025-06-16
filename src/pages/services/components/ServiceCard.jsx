@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, Typography, CardMedia, Box, Chip } from '@mui/material';
 import { Link } from 'react-router-dom';
-// import logo from '../../images/paw.png'; 
+// import logo from '../../images/paw.png';
 
 const ServiceCard = ({ service }) => {
   const isNew = () => {
@@ -14,14 +14,14 @@ const ServiceCard = ({ service }) => {
   return (
     <Card>
       <Link to={`/services/${service.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-      <Box position="relative">
-        <CardMedia
-          component="img"
-          image={service.service_image_1 || logo}
-          alt={service.title}
-          sx={{ width: '100%', height: 'auto' }}
-        />
-    {isNew() && (
+        <Box position="relative">
+          <CardMedia
+            component="img"
+            image={service.service_image_1 || logo}
+            alt={service.title}
+            sx={{ width: '100%', height: 'auto' }}
+          />
+          {isNew() && (
             <Chip
               label="Jauns"
               variant="contained"
@@ -36,17 +36,12 @@ const ServiceCard = ({ service }) => {
             />
           )}
         </Box>
-      </Link> 
+      </Link>
       <CardContent sx={{ flexGrow: 1, paddingBottom: '1rem !important' }}>
-      <Typography variant="b1">
-  {service.title?.length > 20
-    ? `${service.title.slice(0, 20)}...`
-    : service.title}
-</Typography>
-
-
+        <Typography variant="b1">
+          {service.title?.length > 20 ? `${service.title.slice(0, 20)}...` : service.title}
+        </Typography>
       </CardContent>
-
     </Card>
   );
 };

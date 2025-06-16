@@ -20,7 +20,7 @@ import defaultAvatar from '../../../assets/images/profile/default.svg';
 const AvatarWithAnimal = ({ user }) => {
   // Assuming user.animal_name is a field that stores the random animal name
   const avatarAnimal = user.avatar_animal || '../../../assets/images/profile/Owl.svg'; // Convert to lowercase for consistency
-  ["Fox", "Dog", "Cat", "Bear", "Horse", "Alligator", "Penguin", "Pig", "Lion", "Owl"]
+  ['Fox', 'Dog', 'Cat', 'Bear', 'Horse', 'Alligator', 'Penguin', 'Pig', 'Lion', 'Owl'];
   // Map animal name to the appropriate image
   const animalAvatars = {
     Alligator: alligatorAvatar,
@@ -35,20 +35,18 @@ const AvatarWithAnimal = ({ user }) => {
     Pig: pigAvatar,
   };
   // Map animal name to the appropriate image (path relative to public folder)
-//   const animalAvatars = {
-//     lion: '/images/avatars/lion.svg',
-//     tiger: '/images/avatars/tiger.svg',
-//     dog: '/images/avatars/dog.svg',
-//     cat: '/images/avatars/cat.svg',
-//     // Add other animals here
-//   };
-
+  //   const animalAvatars = {
+  //     lion: '/images/avatars/lion.svg',
+  //     tiger: '/images/avatars/tiger.svg',
+  //     dog: '/images/avatars/dog.svg',
+  //     cat: '/images/avatars/cat.svg',
+  //     // Add other animals here
+  //   };
 
   // Set default avatar if animal is not found
   const avatarSrc = animalAvatars[avatarAnimal] || defaultAvatar;
 
   return (
-
     <img
       alt={user.username}
       src={avatarSrc}

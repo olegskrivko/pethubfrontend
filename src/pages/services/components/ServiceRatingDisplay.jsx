@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Box,
-  Typography,
-  Rating,
-  Paper,
-  Avatar,
-} from '@mui/material';
+import { Box, Typography, Rating, Paper, Avatar } from '@mui/material';
 import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -35,7 +29,7 @@ const ServiceRatingDisplay = ({ serviceId, rating, reviewCount }) => {
         const response = await axios.get(`${API_BASE_URL}/api/services/${serviceId}/reviews/`);
         setReviews(response.data);
       } catch (error) {
-        setError("Neizdevās ielādēt atsauksmes.");
+        setError('Neizdevās ielādēt atsauksmes.');
       } finally {
         setLoading(false);
       }
@@ -63,19 +57,16 @@ const ServiceRatingDisplay = ({ serviceId, rating, reviewCount }) => {
         reviews.map((review, idx) => (
           <Paper key={idx} elevation={1} sx={{ p: 2, mb: 2 }}>
             <Box display="flex" alignItems="center" gap={2} mb={1}>
-              <Avatar>
-                {review.user_name?.charAt(0).toUpperCase() || '?'}
-              </Avatar>
+              <Avatar>{review.user_name?.charAt(0).toUpperCase() || '?'}</Avatar>
               <Box>
-          
-              <Box display="flex" alignItems="center" gap={2} mb={1}>
-                <Typography variant="subtitle2" fontWeight={500}>
-                  {review.user_name}
-                </Typography>
+                <Box display="flex" alignItems="center" gap={2} mb={1}>
+                  <Typography variant="subtitle2" fontWeight={500}>
+                    {review.user_name}
+                  </Typography>
 
-                <Typography variant="caption" color="text.secondary">
-                  {formatDate(review.created_at)}
-                </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    {formatDate(review.created_at)}
+                  </Typography>
                 </Box>
                 <Rating value={review.rating} readOnly size="small" precision={0.5} />
               </Box>

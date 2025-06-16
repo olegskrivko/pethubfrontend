@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
 import {
-  Grid, Button, CircularProgress, Box, Container,
-  Alert, Drawer, useTheme, useMediaQuery, Pagination
+  Grid,
+  Button,
+  CircularProgress,
+  Box,
+  Container,
+  Alert,
+  Drawer,
+  useTheme,
+  useMediaQuery,
+  Pagination,
 } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -34,8 +42,6 @@ const ServicesList = () => {
   //   setCenterCoords([lat, lng]);
   // };
 
-
-
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const category = queryParams.get('category') || ''; // One value only
@@ -43,7 +49,7 @@ const ServicesList = () => {
     const page = parseInt(queryParams.get('page')) || 1;
 
     setFilters({ category, search });
-    setPagination({page, totalPages: pagination.totalPages });
+    setPagination({ page, totalPages: pagination.totalPages });
 
     fetchServices({ category, search, page });
   }, [location.search]);
@@ -87,7 +93,9 @@ const ServicesList = () => {
     setPagination((prev) => ({ ...prev, page }));
     const queryParams = new URLSearchParams(location.search);
     queryParams.set('page', page);
-    navigate(`${window.location.pathname}?${queryParams.toString()}`, { replace: true });
+    navigate(`${window.location.pathname}?${queryParams.toString()}`, {
+      replace: true,
+    });
   };
 
   const handleResetFilters = () => {
@@ -99,10 +107,10 @@ const ServicesList = () => {
   const handleFilterChange = (newFilters) => {
     // Ensure each filter only has one value
     if (newFilters.category) {
-      newFilters.category = newFilters.category;  // One value only
+      newFilters.category = newFilters.category; // One value only
     }
     if (newFilters.search) {
-      newFilters.search = newFilters.search;  // One value only
+      newFilters.search = newFilters.search; // One value only
     }
 
     setFilters(newFilters);
@@ -118,11 +126,13 @@ const ServicesList = () => {
     queryParams.append('page', 1);
 
     // Update the URL with the new query params
-    navigate(`${window.location.pathname}?${queryParams.toString()}`, { replace: true });
+    navigate(`${window.location.pathname}?${queryParams.toString()}`, {
+      replace: true,
+    });
   };
 
   return (
-    <Container maxWidth="lg" >
+    <Container maxWidth="lg">
       <Grid container spacing={3}>
         {!isMobile && (
           <Grid size={{ xs: 12, sm: 12, md: 3, lg: 3 }}>
@@ -136,39 +146,34 @@ const ServicesList = () => {
         )}
 
         <Grid size={{ xs: 12, sm: 12, md: 9, lg: 9 }} md={isMobile ? 12 : 9}>
-                <Box
-              
-                      sx={{
-                        marginBottom: { xs: 'none', md: '1rem' },
-                        justifyContent: 'flex-end',
-                      }}
-                    >
-                      <LeafletServicesMap services={services} centerCoords={centerCoords} />
-                    </Box>
-                    <Box
-                      py={2}
-                      sx={{
-                        display: { xs: 'flex', md: 'none' },
-                        justifyContent: 'flex-end',
-                      }}
-                    >
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        size="small"
-                        onClick={() => setDrawerOpen(true)}
-                        startIcon={<FilterListIcon />}
-                      >
-                        Filter
-                      </Button>
-                    </Box>
+          <Box
+            sx={{
+              marginBottom: { xs: 'none', md: '1rem' },
+              justifyContent: 'flex-end',
+            }}
+          >
+            <LeafletServicesMap services={services} centerCoords={centerCoords} />
+          </Box>
+          <Box
+            py={2}
+            sx={{
+              display: { xs: 'flex', md: 'none' },
+              justifyContent: 'flex-end',
+            }}
+          >
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              onClick={() => setDrawerOpen(true)}
+              startIcon={<FilterListIcon />}
+            >
+              Filter
+            </Button>
+          </Box>
 
           {/* Drawer for mobile */}
-          <Drawer
-            anchor="left"
-            open={drawerOpen}
-            onClose={() => setDrawerOpen(false)}
-          >
+          <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
             <Box sx={{ width: 300, p: 2 }}>
               <Sidebar
                 filters={filters}
@@ -192,16 +197,15 @@ const ServicesList = () => {
           ) : (
             <>
               <Grid container spacing={2}>
-                {services && services.length > 0 && services.map((service) => (
-                  <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4 }} key={service.id}>
-                    <ServiceCard service={service}  
-                    filters={filters}
-                        pagination={pagination}
-                         />
-                  </Grid>
-                ))}
+                {services &&
+                  services.length > 0 &&
+                  services.map((service) => (
+                    <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4 }} key={service.id}>
+                      <ServiceCard service={service} filters={filters} pagination={pagination} />
+                    </Grid>
+                  ))}
               </Grid>
-              
+
               <Pagination
                 color="primary"
                 sx={{ mt: '2rem' }}

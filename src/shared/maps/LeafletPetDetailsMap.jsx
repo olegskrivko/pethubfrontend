@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { MapContainer, Marker, TileLayer, Popup, useMap, Circle  } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer, Popup, useMap, Circle } from 'react-leaflet';
 import Chip from '@mui/material/Chip';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -12,12 +12,11 @@ import moment from 'moment';
 
 // import { useTranslation } from 'react-i18next';
 
-
 const calculateDistance = (lostDate, petType, petSize) => {
   const averageSpeeds = {
     cat: 30, // km/day
     dog: 5, // km/day
-    bird: 5,  // km/day
+    bird: 5, // km/day
   };
 
   const sizeMultipliers = {
@@ -30,15 +29,14 @@ const calculateDistance = (lostDate, petType, petSize) => {
   const lostDateObj = new Date(lostDate);
   const daysLost = Math.max(1, Math.floor((currentDate - lostDateObj) / (1000 * 60 * 60 * 24))); // Minimum 1 day
 
-  const baseSpeed = averageSpeeds[petType] || averageSpeeds['dog'];  // Default to dog if unknown
-  const sizeMultiplier = sizeMultipliers[petSize] || sizeMultipliers['medium'];  // Default to medium if unknown
+  const baseSpeed = averageSpeeds[petType] || averageSpeeds['dog']; // Default to dog if unknown
+  const sizeMultiplier = sizeMultipliers[petSize] || sizeMultipliers['medium']; // Default to medium if unknown
 
   const distanceKm = baseSpeed * sizeMultiplier * daysLost;
 
-  const cappedDistanceKm = Math.min(distanceKm, 100);  // Cap the distance at 100 km
-  return cappedDistanceKm * 1000;  // Convert to meters for Leaflet's circle radius
+  const cappedDistanceKm = Math.min(distanceKm, 100); // Cap the distance at 100 km
+  return cappedDistanceKm * 1000; // Convert to meters for Leaflet's circle radius
 };
-
 
 const createCustomIcon = (color) =>
   new L.DivIcon({
@@ -104,8 +102,8 @@ function LeafletPetDetailsMap({
     }
   }, [zoomPosition]);
 
-   // Calculate the dynamic radius based on the lost date, type, and size
-   const radius = calculateDistance(pet.date, pet.category, pet.size); // Assuming pet.type and pet.size are available
+  // Calculate the dynamic radius based on the lost date, type, and size
+  const radius = calculateDistance(pet.date, pet.category, pet.size); // Assuming pet.type and pet.size are available
   // Component to update the map center and zoom level
   // const MapUpdater = ({ zoomPosition }) => {
   //   const map = useMap();
@@ -131,22 +129,21 @@ function LeafletPetDetailsMap({
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-  {/* Circle overlay centered around the pet's location */}
-  <Circle
+      {/* Circle overlay centered around the pet's location */}
+      <Circle
         center={[pet.location.coordinates[1], pet.location.coordinates[0]]}
         radius={radius} // Use the calculated radius
-        pathOptions={{ color: '#87CEEB', fillColor: '#87CEEB', fillOpacity: 0.2 }}
+        pathOptions={{
+          color: '#87CEEB',
+          fillColor: '#87CEEB',
+          fillOpacity: 0.2,
+        }}
       />
       {/* <MapUpdater centerCoords={zoomPosition} /> */}
-    
-      <Marker
-        key={pet.id}
-        position={[pet.location.coordinates[1], pet.location.coordinates[0]]}
-        icon={mainIcon}
-      >
+
+      <Marker key={pet.id} position={[pet.location.coordinates[1], pet.location.coordinates[0]]} icon={mainIcon}>
         <Popup offset={[0, 5]}>
           <div style={{ textAlign: 'center' }}>
-       
             <a href={`/pets/${pet.id}`}>
               <img
                 src={pet.mainImage}
@@ -224,7 +221,7 @@ function LeafletPetDetailsMap({
               const newPosition = [marker.getLatLng().lat, marker.getLatLng().lng];
               setMarkerPosition(newPosition); // Update marker position in parent component
             },
-          }} 
+          }}
         >
           <Popup offset={[0, 5]}>
             {/* <div style={{ textAlign: 'center' }}>

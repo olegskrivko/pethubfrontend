@@ -155,8 +155,6 @@
 //   iconAnchor: [15, 15], // Centers the marker properly
 // });
 
-
-
 // // Custom cluster icon
 // const createClusterCustomIcon = (cluster) => {
 //   return new L.DivIcon({
@@ -354,7 +352,6 @@ const MapTilerLayer = () => {
   return null;
 };
 
-
 function LeafletClusterMap({ pets, centerCoords }) {
   const [userLocation, setUserLocation] = useState(null);
 
@@ -376,13 +373,7 @@ function LeafletClusterMap({ pets, centerCoords }) {
 
   return (
     <div>
-      <MapContainer
-        style={{ height: '400px' }}
-        center={[56.946285, 24.105078]}
-        zoom={7}
-        scrollWheelZoom
-        maxZoom={18}
-      >
+      <MapContainer style={{ height: '400px' }} center={[56.946285, 24.105078]} zoom={7} scrollWheelZoom maxZoom={18}>
         <MapTilerLayer />
         <MapUpdater centerCoords={centerCoords} />
 
@@ -447,4 +438,3 @@ function LeafletClusterMap({ pets, centerCoords }) {
 }
 
 export default LeafletClusterMap;
-

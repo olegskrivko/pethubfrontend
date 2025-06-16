@@ -1,33 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Box,
-  Button,
-  Container,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
-import StepLocation from "../components/StepLocation";
-import StepCharacteristics from "../components/StepCharacteristics";
-import StepLostTime from "../components/StepLostTime";
-import StepImages from "../components/StepImages";
-import StepContact from "../components/StepContact";
-import StepAppearance from "../components/StepAppearance";
+import StepLocation from '../components/StepLocation';
+import StepCharacteristics from '../components/StepCharacteristics';
+import StepLostTime from '../components/StepLostTime';
+import StepImages from '../components/StepImages';
+import StepContact from '../components/StepContact';
+import StepAppearance from '../components/StepAppearance';
 
 import { getCurrentDate, getCurrentTime } from '../../../utils/formHelpers';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-const steps = [
-  "Dzīvnieka raksturojums",
-  "Atrašanās vieta",
-  "Attēli",
-  "Izskats",
-  "Kontakta informācija",
-];
+const steps = ['Dzīvnieka raksturojums', 'Atrašanās vieta', 'Attēli', 'Izskats', 'Kontakta informācija'];
 
 const EditPet = () => {
   const { id } = useParams();
@@ -36,19 +25,33 @@ const EditPet = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [formErrors, setFormErrors] = useState({});
   const [formState, setFormState] = useState({
-    location: { lat: 56.946285, lng: 24.105078, date: getCurrentDate(), time: getCurrentTime() },
+    location: {
+      lat: 56.946285,
+      lng: 24.105078,
+      date: getCurrentDate(),
+      time: getCurrentTime(),
+    },
     characteristics: {
-      status: "", species: "", breed: "", identifier: "", gender: "", age: "",
+      status: '',
+      species: '',
+      breed: '',
+      identifier: '',
+      gender: '',
+      age: '',
     },
     images: {
-      pet_image_1: "", pet_image_2: "", pet_image_3: "", pet_image_4: ""
+      pet_image_1: '',
+      pet_image_2: '',
+      pet_image_3: '',
+      pet_image_4: '',
     },
     appearance: {
-      primary_color: { hex: "", label: "", value: "" },
-      secondary_color: { hex: "", label: "", value: "" },
-      size: "", pattern: "",
+      primary_color: { hex: '', label: '', value: '' },
+      secondary_color: { hex: '', label: '', value: '' },
+      size: '',
+      pattern: '',
     },
-    contact: { contact_phone: "", phone_code: "371", notes: "" },
+    contact: { contact_phone: '', phone_code: '371', notes: '' },
   });
 
   useEffect(() => {
@@ -69,18 +72,18 @@ const EditPet = () => {
             time: data.time,
           },
           characteristics: {
-            status: data.status || "",
-            species: data.species || "",
-            breed: data.breed || "",
-            identifier: data.identifier || "",
-            gender: data.gender || "",
-            age: data.age || "",
+            status: data.status || '',
+            species: data.species || '',
+            breed: data.breed || '',
+            identifier: data.identifier || '',
+            gender: data.gender || '',
+            age: data.age || '',
           },
           images: {
-            pet_image_1: data.pet_image_1 || "",
-            pet_image_2: data.pet_image_2 || "",
-            pet_image_3: data.pet_image_3 || "",
-            pet_image_4: data.pet_image_4 || "",
+            pet_image_1: data.pet_image_1 || '',
+            pet_image_2: data.pet_image_2 || '',
+            pet_image_3: data.pet_image_3 || '',
+            pet_image_4: data.pet_image_4 || '',
           },
           appearance: {
             primary_color: {
@@ -93,18 +96,17 @@ const EditPet = () => {
               label: data.secondary_color,
               hex: data.secondary_color,
             },
-            size: data.size || "",
-            pattern: data.pattern || "",
+            size: data.size || '',
+            pattern: data.pattern || '',
           },
           contact: {
-            phone_code: data.phone_code || "371",
-            contact_phone: data.contact_phone || "",
-            notes: data.notes || "",
+            phone_code: data.phone_code || '371',
+            contact_phone: data.contact_phone || '',
+            notes: data.notes || '',
           },
         });
-
       } catch (err) {
-        console.error("❌ Failed to load pet data", err);
+        console.error('❌ Failed to load pet data', err);
       }
     };
 
@@ -145,7 +147,7 @@ const EditPet = () => {
       const longitude = parseFloat(formState.location.lng).toFixed(6);
 
       if (isNaN(latitude) || isNaN(longitude)) {
-        console.error("❌ Invalid latitude or longitude");
+        console.error('❌ Invalid latitude or longitude');
         return;
       }
 
@@ -220,10 +222,10 @@ const EditPet = () => {
             value={progress}
             text={`${activeStep + 1}/${steps.length}`}
             styles={buildStyles({
-              textSize: "18px",
-              pathColor: "#1976d2",
-              textColor: "#333",
-              trailColor: "#ddd",
+              textSize: '18px',
+              pathColor: '#1976d2',
+              textColor: '#333',
+              trailColor: '#ddd',
             })}
           />
         </Box>
@@ -237,9 +239,7 @@ const EditPet = () => {
         </Box>
       </Box>
 
-      <Box sx={{ flexGrow: 1, mb: 3 }}>
-        {getStepContent(activeStep)}
-      </Box>
+      <Box sx={{ flexGrow: 1, mb: 3 }}>{getStepContent(activeStep)}</Box>
 
       <Box
         sx={{
@@ -247,23 +247,14 @@ const EditPet = () => {
           justifyContent: 'space-between',
           px: 2,
           pt: 2,
-          padding: "0 !important"
+          padding: '0 !important',
         }}
       >
-        <Button
-          variant="outlined"
-          disabled={activeStep === 0}
-          onClick={handleBack}
-          sx={{ flex: 1, mr: 1 }}
-        >
+        <Button variant="outlined" disabled={activeStep === 0} onClick={handleBack} sx={{ flex: 1, mr: 1 }}>
           Back
         </Button>
-        <Button
-          variant="contained"
-          onClick={handleNext}
-          sx={{ flex: 1, ml: 1 }}
-        >
-          {activeStep === steps.length - 1 ? "Save Changes" : "Next"}
+        <Button variant="contained" onClick={handleNext} sx={{ flex: 1, ml: 1 }}>
+          {activeStep === steps.length - 1 ? 'Save Changes' : 'Next'}
         </Button>
       </Box>
     </Container>
@@ -271,4 +262,3 @@ const EditPet = () => {
 };
 
 export default EditPet;
-

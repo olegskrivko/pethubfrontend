@@ -8,8 +8,8 @@ const InstallPWAButton = () => {
 
   useEffect(() => {
     const beforeInstallPromptHandler = (event) => {
-      console.log("✅ PWA Install Prompt is available!");
-      event.preventDefault();  // Prevent the default install prompt
+      console.log('✅ PWA Install Prompt is available!');
+      event.preventDefault(); // Prevent the default install prompt
       setDeferredPrompt(event); // Save the event to prompt later
       setShowInstallButton(true); // Show the install button
     };
@@ -17,13 +17,13 @@ const InstallPWAButton = () => {
     window.addEventListener('beforeinstallprompt', beforeInstallPromptHandler);
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', beforeInstallPromptHandler);  // Properly clean up
+      window.removeEventListener('beforeinstallprompt', beforeInstallPromptHandler); // Properly clean up
     };
   }, []);
 
   const installApp = () => {
     if (deferredPrompt) {
-      deferredPrompt.prompt();  // Trigger the install prompt
+      deferredPrompt.prompt(); // Trigger the install prompt
       deferredPrompt.userChoice.then((choiceResult) => {
         if (choiceResult.outcome === 'accepted') {
           console.log('User accepted PWA install');
@@ -41,11 +41,18 @@ const InstallPWAButton = () => {
       <Button
         variant="contained"
         fullWidth
-        style={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 1000, backgroundColor: "#00b3a4" }}
+        style={{
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          backgroundColor: '#00b3a4',
+        }}
         onClick={installApp}
         startIcon={<InstallMobileIcon />}
       >
-      Instalēt Lietotni
+        Instalēt Lietotni
       </Button>
     )
   );

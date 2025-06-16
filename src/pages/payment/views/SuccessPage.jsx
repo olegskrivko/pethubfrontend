@@ -1,9 +1,9 @@
-import { Container, Typography, Paper } from "@mui/material";
+import { Container, Typography, Paper } from '@mui/material';
 
 const SuccessPage = () => {
   return (
     <Container maxWidth="sm">
-      <Paper elevation={3} sx={{ p: 4, mt: 5, textAlign: "center", borderRadius: 3 }}>
+      <Paper elevation={3} sx={{ p: 4, mt: 5, textAlign: 'center', borderRadius: 3 }}>
         <Typography variant="h4" color="success.main" fontWeight="bold">
           Payment Successful! 🎉
         </Typography>

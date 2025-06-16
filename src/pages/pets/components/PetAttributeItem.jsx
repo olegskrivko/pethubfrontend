@@ -1,5 +1,5 @@
 // PetAttributeItem.jsx
-import { Box, Typography, IconButton } from "@mui/material";
+import { Box, Typography, IconButton } from '@mui/material';
 
 const PetAttributeItem = ({ icon, label, value, background = '#f7f9fd', isStatic = false }) => (
   <Box
@@ -17,11 +17,8 @@ const PetAttributeItem = ({ icon, label, value, background = '#f7f9fd', isStatic
       disableFocusRipple
       disableTouchRipple
       sx={{
-            cursor: 'default',
-    pointerEvents: 'none',
-        // backgroundColor: background,
-        // cursor: isStatic ? 'default' : 'pointer',
-        // pointerEvents: isStatic ? 'none' : 'auto',
+        cursor: 'default',
+        pointerEvents: 'none',
         color: '#16477c',
       }}
     >

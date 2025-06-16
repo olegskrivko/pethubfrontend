@@ -197,20 +197,20 @@
 //   return (
 //     <div style={{ position: 'relative' }}>
 //       {/* Floating Button */}
-      // <IconButton
-      //   onClick={handleUseMyLocation}
-      //   sx={{
-      //     position: 'absolute',
-      //     top: 10,
-      //     right: 10,
-      //     backgroundColor: 'white',
-      //     zIndex: 1000,
-      //     boxShadow: 3,
-      //     '&:hover': { backgroundColor: '#f0f0f0' },
-      //   }}
-      // >
-      //   <MyLocationIcon sx={{ color: '#007bff' }} />
-      // </IconButton>
+// <IconButton
+//   onClick={handleUseMyLocation}
+//   sx={{
+//     position: 'absolute',
+//     top: 10,
+//     right: 10,
+//     backgroundColor: 'white',
+//     zIndex: 1000,
+//     boxShadow: 3,
+//     '&:hover': { backgroundColor: '#f0f0f0' },
+//   }}
+// >
+//   <MyLocationIcon sx={{ color: '#007bff' }} />
+// </IconButton>
 
 //       {/* Map */}
 //       <MapContainer center={position} zoom={10} style={{ height: '500px', width: '100%' }}>
@@ -242,7 +242,6 @@
 // import MyLocationIcon from '@mui/icons-material/MyLocation'; // GPS icon
 // import { renderToStaticMarkup } from 'react-dom/server';
 // import { IconButton, Tooltip } from '@mui/material';
-
 
 // const LocationMarker = ({ position, onLocationChange }) => {
 //   const map = useMapEvents({
@@ -396,12 +395,10 @@
 //           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 //         />
 
-    
 //         <MapController position={position} />
 
 //         <LocationMarker position={position} onLocationChange={setPosition} />
 
-    
 //         <Tooltip title="Izmantot esošo atrašanās vietu">
 //           <IconButton
 //             onClick={handleUseMyLocation}
@@ -453,9 +450,7 @@ const LocationMarker = ({ position, onLocationChange, isEditable }) => {
     },
   });
 
-  const iconMarkup = renderToStaticMarkup(
-    <LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />,
-  );
+  const iconMarkup = renderToStaticMarkup(<LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />);
   const customIcon = L.divIcon({ html: iconMarkup, className: 'custom-icon' });
 
   return (
@@ -490,7 +485,7 @@ const LeafletEditPetMap = ({ onLocationChange, location, isEditable = false }) =
       },
       () => {
         alert("Couldn't get location. Please enable GPS.");
-      },
+      }
     );
   };
 
@@ -503,7 +498,7 @@ const LeafletEditPetMap = ({ onLocationChange, location, isEditable = false }) =
         />
 
         <MapController position={position} />
-        
+
         <LocationMarker position={position} onLocationChange={setPosition} isEditable={isEditable} />
 
         {/* <Tooltip title="Izmantot esošo atrašanās vietu">

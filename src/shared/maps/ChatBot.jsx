@@ -241,7 +241,7 @@
 // // //   const sendMessageToBackend = async (message) => {
 // // //     try {
 // // //         const accessToken = localStorage.getItem("access_token");
-  
+
 // // //         if (!accessToken) {
 // // //           console.error("No access token found");
 // // //           return;
@@ -863,10 +863,7 @@
 // // //             }}
 // // //           > <Box
 // // //           style={{
-       
 
-          
-  
 // // //             display: 'flex',
 // // //             alignItems: 'center',
 // // //             justifyContent: 'space-between',
@@ -1290,7 +1287,7 @@
 //     'Ko darīt, ja esmu pazaudējis savu mājdzīvnieku?',
 //     'Kā pareizi rūpēties par mājdzīvnieku?',
 //   ];
- 
+
 //   const handleChipClick = (question) => {
 //     if (loading) return;
 //     setMessages((prev) => [...prev, { text: question, isUser: true }]);
@@ -1342,8 +1339,6 @@
 
 //   const toggleChat = () => setChatOpen(!chatOpen);
 
-  
-
 //   useEffect(() => {
 //     const style = document.createElement('style');
 //     style.innerHTML = `
@@ -1383,7 +1378,6 @@
 //         </Typography>
 //       )} */}
 
-       
 //       {!chatOpen && showSpeechBubble && (
 //         <Typography
 //           variant="caption"
@@ -1882,16 +1876,14 @@
 
 // // export default ChatBot;
 import React, { useState, useEffect } from 'react';
-import {
-  Box, Chip, Button, Typography, Paper, Avatar, TextField, CircularProgress
-} from '@mui/material';
+import { Box, Chip, Button, Typography, Paper, Avatar, TextField, CircularProgress } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 
-import catAvatar from "../pages/images/avatars/avatars/Animation-1747321325950.gif";
-import dogAvatar from "../pages/images/avatars/avatars/Animation-1747321325950.gif";
+import catAvatar from '../pages/images/avatars/avatars/Animation-1747321325950.gif';
+import dogAvatar from '../pages/images/avatars/avatars/Animation-1747321325950.gif';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -1933,7 +1925,7 @@ const ChatBot = () => {
   const sendMessageToBackend = async (message) => {
     try {
       setLoading(true);
-      const accessToken = localStorage.getItem("access_token");
+      const accessToken = localStorage.getItem('access_token');
       if (!accessToken) {
         setNotLoggedIn(true);
         setLoading(false);
@@ -1953,12 +1945,12 @@ const ChatBot = () => {
       setMessages((prev) => [
         ...prev,
         {
-          text: data.response || "Atvainojiet, nesapratu jautājumu.",
+          text: data.response || 'Atvainojiet, nesapratu jautājumu.',
           isUser: false,
         },
       ]);
     } catch (error) {
-      console.error("Error:", error);
+      console.error('Error:', error);
     } finally {
       setLoading(false);
     }
@@ -2025,7 +2017,7 @@ const ChatBot = () => {
             zIndex: 9999,
           }}
         >
-          <Avatar src={avatar} alt="Pet Avatar" style={{ width: '60px', height: "60px" }} />
+          <Avatar src={avatar} alt="Pet Avatar" style={{ width: '60px', height: '60px' }} />
         </Button>
       )}
 
@@ -2056,15 +2048,17 @@ const ChatBot = () => {
               justifyContent: 'space-between',
               borderTopLeftRadius: isFullscreen ? 0 : '12px',
               borderTopRightRadius: isFullscreen ? 0 : '12px',
-                background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
+              background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
             }}
           >
             <Box style={{ display: 'flex', alignItems: 'center' }}>
               <Avatar src={avatar} alt="Pet Avatar" />
-              <Typography marginLeft={1} variant="h6">AI ChatBot</Typography>
+              <Typography marginLeft={1} variant="h6">
+                AI ChatBot
+              </Typography>
             </Box>
             <Box>
-              <Button onClick={() => setIsFullscreen(prev => !prev)} style={{ color: '#fff' }}>
+              <Button onClick={() => setIsFullscreen((prev) => !prev)} style={{ color: '#fff' }}>
                 {isFullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
               </Button>
               <Button onClick={toggleChat} style={{ color: '#fff' }}>
@@ -2093,11 +2087,7 @@ const ChatBot = () => {
                 }}
               >
                 {!message.isUser && (
-                  <Avatar
-                    style={{ width: 30, height: 30, marginRight: 10 }}
-                    src={avatar}
-                    alt="Pet Avatar"
-                  />
+                  <Avatar style={{ width: 30, height: 30, marginRight: 10 }} src={avatar} alt="Pet Avatar" />
                 )}
                 <Paper
                   style={{

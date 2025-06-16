@@ -69,27 +69,26 @@ const MapTilerLayerComponent = () => {
 };
 
 function LeafletServiceDetailsMap({ shelters, centerCoords }) {
-      const [userLocation, setUserLocation] = useState(null);
-  
-      useEffect(() => {
-        navigator.geolocation.getCurrentPosition(
-          (pos) => {
-            const { latitude, longitude } = pos.coords;
-            setUserLocation([latitude, longitude]);
-          },
-          (err) => console.error('Location error:', err)
-        );
-      }, []);
+  const [userLocation, setUserLocation] = useState(null);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords;
+        setUserLocation([latitude, longitude]);
+      },
+      (err) => console.error('Location error:', err)
+    );
+  }, []);
   return (
-    <div    style={{  marginBottom: "2rem"}}>
+    <div style={{ marginBottom: '2rem' }}>
       <MapContainer
         style={{ height: '500px' }}
         center={[56.946285, 24.105078]} // Default center (Lat, Long)
-   
         zoom={13}
         scrollWheelZoom
-        maxZoom={18}  // Add maxZoom
-        minZoom={3}   // Optional, set a minZoom if needed
+        maxZoom={18} // Add maxZoom
+        minZoom={3} // Optional, set a minZoom if needed
       >
         {/* MapTiler Layer */}
         <MapTilerLayerComponent />
@@ -103,111 +102,104 @@ function LeafletServiceDetailsMap({ shelters, centerCoords }) {
           spiderfyOnMaxZoom={false}
           showCoverageOnHover={false}
         >
-       {(shelters || []).map((shelter) =>
-  shelter?.latitude && shelter?.longitude ? (
-
+          {(shelters || []).map((shelter) =>
+            shelter?.latitude && shelter?.longitude ? (
               <Marker
                 key={shelter.id}
                 icon={defaultIcon}
                 position={[parseFloat(shelter.latitude), parseFloat(shelter.longitude)]}
               >
-             <Popup offset={[0, 5]}>
-  <div
-    style={{
-      background: 'white',
-      color: '#333',
-      padding: '16px',
-      borderRadius: '16px',
-      fontSize: '14px',
-      fontWeight: 500,
-      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
-      minWidth: '220px',
-    }}
-  >
-    {shelter.working_hours && (
-      <Box>
-        <Typography
-          variant="subtitle2"
-          fontWeight={600}
-          sx={{ mb: 1,   px: 1, color: '#1976d2' }}
-        >
-          Darba laiks:
-        </Typography>
+                <Popup offset={[0, 5]}>
+                  <div
+                    style={{
+                      background: 'white',
+                      color: '#333',
+                      padding: '16px',
+                      borderRadius: '16px',
+                      fontSize: '14px',
+                      fontWeight: 500,
+                      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
+                      minWidth: '220px',
+                    }}
+                  >
+                    {shelter.working_hours && (
+                      <Box>
+                        <Typography variant="subtitle2" fontWeight={600} sx={{ mb: 1, px: 1, color: '#1976d2' }}>
+                          Darba laiks:
+                        </Typography>
 
-        <Box component="ul" sx={{ listStyle: 'none', pl: 0, m: 0 }}>
-          {[
-            { id: 0, label: 'Pirmdiena' },
-            { id: 1, label: 'Otrdiena' },
-            { id: 2, label: 'Trešdiena' },
-            { id: 3, label: 'Ceturtdiena' },
-            { id: 4, label: 'Piektdiena' },
-            { id: 5, label: 'Sestdiena' },
-            { id: 6, label: 'Svētdiena' },
-          ].map((day) => {
-            const entry = Array.isArray(shelter.working_hours)
-  ? shelter.working_hours.find((time) => time.day === day.id)
-  : null;
-            // const entry = shelter.working_hours.find((time) => time.day === day.id);
-            const isToday = new Date().getDay() === (day.id === 0 ? 1 : day.id + 1) % 7;
+                        <Box component="ul" sx={{ listStyle: 'none', pl: 0, m: 0 }}>
+                          {[
+                            { id: 0, label: 'Pirmdiena' },
+                            { id: 1, label: 'Otrdiena' },
+                            { id: 2, label: 'Trešdiena' },
+                            { id: 3, label: 'Ceturtdiena' },
+                            { id: 4, label: 'Piektdiena' },
+                            { id: 5, label: 'Sestdiena' },
+                            { id: 6, label: 'Svētdiena' },
+                          ].map((day) => {
+                            const entry = Array.isArray(shelter.working_hours)
+                              ? shelter.working_hours.find((time) => time.day === day.id)
+                              : null;
+                            // const entry = shelter.working_hours.find((time) => time.day === day.id);
+                            const isToday = new Date().getDay() === (day.id === 0 ? 1 : day.id + 1) % 7;
 
-            return (
-              <Box
-                key={day.id}
-                component="li"
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  fontFamily: 'monospace',
-                  fontSize: '0.875rem',
-                  fontWeight: isToday ? 700 : 400,
-                  color: isToday ? '#d32f2f' : 'text.secondary',
-                  backgroundColor: isToday ? '#fff3e0' : 'transparent',
-                  borderRadius: '6px',
-                  px: 1,
-                  py: 0.5,
-                  mb: 0.5,
-                }}
-              >
-                <span style={{marginRight: '1rem'}}>{day.label}</span>
-                <span>
-                  {entry && entry.from_hour && entry.to_hour
-                    ? `${entry.from_hour.slice(0, 5)} - ${entry.to_hour.slice(0, 5)}`
-                    : 'Brīvdiena'}
-                </span>
-              </Box>
-            );
-          })}
-        </Box>
-      </Box>
-    )}
-  </div>
-</Popup>
-
+                            return (
+                              <Box
+                                key={day.id}
+                                component="li"
+                                sx={{
+                                  display: 'flex',
+                                  justifyContent: 'space-between',
+                                  alignItems: 'center',
+                                  fontFamily: 'monospace',
+                                  fontSize: '0.875rem',
+                                  fontWeight: isToday ? 700 : 400,
+                                  color: isToday ? '#d32f2f' : 'text.secondary',
+                                  backgroundColor: isToday ? '#fff3e0' : 'transparent',
+                                  borderRadius: '6px',
+                                  px: 1,
+                                  py: 0.5,
+                                  mb: 0.5,
+                                }}
+                              >
+                                <span style={{ marginRight: '1rem' }}>{day.label}</span>
+                                <span>
+                                  {entry && entry.from_hour && entry.to_hour
+                                    ? `${entry.from_hour.slice(0, 5)} - ${entry.to_hour.slice(0, 5)}`
+                                    : 'Brīvdiena'}
+                                </span>
+                              </Box>
+                            );
+                          })}
+                        </Box>
+                      </Box>
+                    )}
+                  </div>
+                </Popup>
               </Marker>
             ) : null
           )}
 
-
-                    {userLocation && (
-                      <Marker position={userLocation} icon={userPulseIcon}>
-                        <Popup offset={[0, 5]}>
-                          <div
-                            style={{
-                              background: '#5B9BD5',
-                              color: 'white',
-                              padding: '6px 12px',
-                              borderRadius: '12px',
-                              fontSize: '14px',
-                              fontWeight: 500,
-                              whiteSpace: 'nowrap',
-                            }}
-                          >
-                            Tava atrašanās vieta
-                          </div>
-                        </Popup>
-                      </Marker>
-                    )}
+          {userLocation && (
+            <Marker position={userLocation} icon={userPulseIcon}>
+              <Popup offset={[0, 5]}>
+                <div
+                  style={{
+                    background: '#5B9BD5',
+                    color: 'white',
+                    padding: '6px 12px',
+                    borderRadius: '12px',
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  Tava atrašanās vieta
+                </div>
+              </Popup>
+            </Marker>
+          )}
         </MarkerClusterGroup>
       </MapContainer>
     </div>
@@ -215,4 +207,3 @@ function LeafletServiceDetailsMap({ shelters, centerCoords }) {
 }
 
 export default LeafletServiceDetailsMap;
-

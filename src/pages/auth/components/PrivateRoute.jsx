@@ -7,7 +7,6 @@ import { useAuth } from '../../../contexts/AuthContext';
 const PrivateRoute = () => {
   const { user, isAuthLoading } = useAuth();
 
-  // Show full-page spinner while auth is loading
   if (isAuthLoading) {
     return (
       <Box
@@ -23,12 +22,10 @@ const PrivateRoute = () => {
     );
   }
 
-  // Redirect if not authenticated
   if (!user) {
     return <Navigate to="/login" replace />;
   }
 
-  // Render nested protected route
   return <Outlet />;
 };
 

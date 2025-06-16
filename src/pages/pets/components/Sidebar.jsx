@@ -1,21 +1,12 @@
-
 import React from 'react';
-import {
-  Chip,
-  Box,
-  List,
-  TextField,
-  InputLabel,
-  ListItem,
-  Button
-} from '@mui/material';
+import { Chip, Box, List, TextField, InputLabel, ListItem, Button } from '@mui/material';
 import {
   STATUS_CHOICES,
   PATTERN_CHOICES,
   SIZE_CHOICES,
   SPECIES_CHOICES,
   GENDER_CHOICES,
-  COLOR_CHOICES
+  COLOR_CHOICES,
 } from '../../../constants/Choices';
 import SearchAutocomplete from './SearchAutocomplete';
 
@@ -23,7 +14,7 @@ const Sidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
   const handleChipClick = (type, value) => {
     const newFilters = {
       ...filters,
-      [type]: filters[type] === value ? '' : value, // toggle selection
+      [type]: filters[type] === value ? '' : value,
     };
 
     setFilters(newFilters);
@@ -38,14 +29,6 @@ const Sidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
     setFilters(newFilters);
     onFilterChange?.(newFilters);
   };
-  // const handleSearchSelect = (identifier) => {
-  //   const newFilters = {
-  //     ...filters,
-  //     search: identifier,
-  //   };
-  //   setFilters(newFilters);
-  //   if (onFilterChange) onFilterChange(newFilters);
-  // };
 
   const handleSearchSelect = (searchTerm) => {
     const newFilters = {
@@ -143,8 +126,8 @@ const Sidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
           </Box>
         </ListItem>
 
-          {/* Color Filter */}
-          <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
+        {/* Color Filter */}
+        <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box>
             <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>Krāsa</InputLabel>
             {COLOR_CHOICES.map((color) => (
@@ -164,22 +147,8 @@ const Sidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box sx={{ width: '100%' }}>
             <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>Datums</InputLabel>
-            {/* <TextField
-              type="date"
-              variant="outlined"
-              size="small"
-              fullWidth
-              value={filters.date || ''}
-              onChange={(e) => {
-                const newFilters = {
-                  ...filters,
-                  date: e.target.value,
-                };
-                setFilters(newFilters);
-                if (onFilterChange) onFilterChange(newFilters);
-              }}
-            /> */}
-             <TextField
+
+            <TextField
               type="date"
               variant="outlined"
               size="small"
@@ -191,50 +160,35 @@ const Sidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
         </ListItem>
 
         {/* Search Filter */}
-        {/* <SearchAutocomplete onSearchSelect={handleSearchSelect} /> */}
-        <SearchAutocomplete
-        filters={filters}
-  searchValue={filters.search} // ✅ pass down current search from filters
-  onSearchSelect={handleSearchSelect}
-/>
 
+        <SearchAutocomplete filters={filters} searchValue={filters.search} onSearchSelect={handleSearchSelect} />
 
         {/* Reset Filters */}
-        <ListItem sx={{ padding: '0 !important', paddingTop: '2rem !important', paddingBottom: '0.8rem !important' }}>
-          {/* <Button
-            variant="outlined"
-            sx={{ width: '100%' }}
-            color="primary"
+        <ListItem
+          sx={{
+            padding: '0 !important',
+            paddingTop: '2rem !important',
+            paddingBottom: '0.8rem !important',
+          }}
+        >
+          <Button
+            style={{
+              background: 'linear-gradient(0deg, #0994ba 30%, #02b4c4 90%)',
+              width: '100%',
+              color: 'white',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+            }}
             onClick={onReset}
+            onMouseOver={(e) => {
+              e.currentTarget.style.backgroundColor = '#e5faff';
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent';
+            }}
           >
             Atiestatīt filtrus
-          </Button> */}
-          
-           <Button
-      style={{
-        // padding: '12px 28px',
-        // fontSize: '1rem',
-        // fontWeight: 'bold',
-        // backgroundColor: 'transparent',
-          background: "linear-gradient(0deg, #0994ba 30%, #02b4c4 90%)",
-         width: '100%',
-        color: 'white',
-        // border: '2px solid #0EB9F0',
-        // border: "2px solid  #0994ba ",
-        // borderRadius: '8px',
-        cursor: 'pointer',
-        transition: 'all 0.3s ease',
-      }}
-         onClick={onReset}
-      onMouseOver={(e) => {
-        e.currentTarget.style.backgroundColor = '#e5faff';
-      }}
-      onMouseOut={(e) => {
-        e.currentTarget.style.backgroundColor = 'transparent';
-      }}
-    >
-      Atiestatīt filtrus
-    </Button>
+          </Button>
         </ListItem>
       </List>
     </form>

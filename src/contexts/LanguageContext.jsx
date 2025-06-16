@@ -28,9 +28,7 @@ const LanguageProvider = ({ children }) => {
   }, [selectedLanguage]);
 
   return (
-    <LanguageContext.Provider value={{ selectedLanguage, setSelectedLanguage }}>
-      {children}
-    </LanguageContext.Provider>
+    <LanguageContext.Provider value={{ selectedLanguage, setSelectedLanguage }}>{children}</LanguageContext.Provider>
   );
 };
 

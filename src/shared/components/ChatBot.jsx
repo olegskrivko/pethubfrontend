@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import {
-  Box, Chip, Button, Typography, Paper, Avatar, TextField, CircularProgress
-} from '@mui/material';
+import { Box, Chip, Button, Typography, Paper, Avatar, TextField, CircularProgress } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 import Lottie from 'lottie-react';
-import AIRobot from "../../assets/Animation-1749072232400.json";
+import AIRobot from '../../assets/Animation-1749072232400.json';
 import { useTranslation } from 'react-i18next';
 import { LanguageContext } from '../../contexts/LanguageContext';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -25,7 +23,7 @@ const ChatBot = () => {
   const [notLoggedIn, setNotLoggedIn] = useState(false); // NEW
   const avatar = AIRobot;
 
-const predefinedQuestions = [t("q1"), t("q2"), t("q3")];
+  const predefinedQuestions = [t('q1'), t('q2'), t('q3')];
   const handleChipClick = (question) => {
     if (loading) return;
     setNotLoggedIn(false); // reset
@@ -46,7 +44,7 @@ const predefinedQuestions = [t("q1"), t("q2"), t("q3")];
   const sendMessageToBackend = async (message) => {
     try {
       setLoading(true);
-      const accessToken = localStorage.getItem("access_token");
+      const accessToken = localStorage.getItem('access_token');
       if (!accessToken) {
         setNotLoggedIn(true);
         setLoading(false);
@@ -66,12 +64,12 @@ const predefinedQuestions = [t("q1"), t("q2"), t("q3")];
       setMessages((prev) => [
         ...prev,
         {
-          text: data.response || "Atvainojiet, nesapratu jautājumu.",
+          text: data.response || 'Atvainojiet, nesapratu jautājumu.',
           isUser: false,
         },
       ]);
     } catch (error) {
-      console.error("Error:", error);
+      console.error('Error:', error);
     } finally {
       setLoading(false);
     }
@@ -114,7 +112,7 @@ const predefinedQuestions = [t("q1"), t("q2"), t("q3")];
             zIndex: 9999,
           }}
         >
-        {t("hello")}
+          {t('hello')}
         </Typography>
       )}
 
@@ -138,13 +136,12 @@ const predefinedQuestions = [t("q1"), t("q2"), t("q3")];
             zIndex: 9999,
           }}
         >
-
-       <Box sx={{ width: 180, height: 180, marginRight: "30px",  }}>
-          <Lottie animationData={avatar} loop autoplay style={{width: '90px', height: "90px"}} />
-               </Box>
+          <Box sx={{ width: 180, height: 180, marginRight: '30px' }}>
+            <Lottie animationData={avatar} loop autoplay style={{ width: '90px', height: '90px' }} />
+          </Box>
         </Button>
       )}
-      
+
       {chatOpen && (
         <Box
           style={{
@@ -172,17 +169,19 @@ const predefinedQuestions = [t("q1"), t("q2"), t("q3")];
               justifyContent: 'space-between',
               borderTopLeftRadius: isFullscreen ? 0 : '12px',
               borderTopRightRadius: isFullscreen ? 0 : '12px',
-                background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
+              background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
             }}
           >
             <Box style={{ display: 'flex', alignItems: 'center' }}>
-               <Box style={{width: "50px", height: "50px",  }}>
-                    <Lottie animationData={avatar} loop autoplay />
-                  </Box>
-              <Typography marginLeft={1} variant="body1">AI ChatBot</Typography>
+              <Box style={{ width: '50px', height: '50px' }}>
+                <Lottie animationData={avatar} loop autoplay />
+              </Box>
+              <Typography marginLeft={1} variant="body1">
+                AI ChatBot
+              </Typography>
             </Box>
             <Box>
-              <Button onClick={() => setIsFullscreen(prev => !prev)} style={{ color: '#fff' }}>
+              <Button onClick={() => setIsFullscreen((prev) => !prev)} style={{ color: '#fff' }}>
                 {isFullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
               </Button>
               <Button onClick={toggleChat} style={{ color: '#fff' }}>
@@ -211,7 +210,7 @@ const predefinedQuestions = [t("q1"), t("q2"), t("q3")];
                 }}
               >
                 {!message.isUser && (
-                  <Box style={{width: "60px", height: "60px", marginRight: 10}}>
+                  <Box style={{ width: '60px', height: '60px', marginRight: 10 }}>
                     <Lottie animationData={avatar} loop autoplay />
                   </Box>
                 )}
@@ -243,7 +242,10 @@ const predefinedQuestions = [t("q1"), t("q2"), t("q3")];
                   label={question}
                   onClick={() => handleChipClick(question)}
                   // color="primary"
-                  style={{ cursor: loading ? 'not-allowed' : 'pointer', background: '#e3f2fd' }}
+                  style={{
+                    cursor: loading ? 'not-allowed' : 'pointer',
+                    background: '#e3f2fd',
+                  }}
                   disabled={loading}
                 />
               ))}

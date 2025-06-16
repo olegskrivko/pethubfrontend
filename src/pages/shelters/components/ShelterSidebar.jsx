@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Box, Typography, TextField, Button, Chip, InputLabel, List, ListItem
-} from '@mui/material'; 
+import { Box, Typography, TextField, Button, Chip, InputLabel, List, ListItem } from '@mui/material';
 import SearchAutocomplete from './ShelterSearchAutocomplete';
 import { SHELTER_CATEGORIES } from '../../../constants/petOptions';
 
@@ -24,7 +22,7 @@ import { SHELTER_CATEGORIES } from '../../../constants/petOptions';
 // };
 
 const ServiceSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
-//   const [localFilters, setLocalFilters] = useState(filters);
+  //   const [localFilters, setLocalFilters] = useState(filters);
 
   const handleChipClick = (type, value) => {
     const newFilters = {
@@ -36,12 +34,12 @@ const ServiceSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
     if (onFilterChange) onFilterChange(newFilters);
   };
 
-//   const handleChipClick = (field, value) => {
-//     setLocalFilters((prev) => ({
-//       ...prev,
-//       [field]: prev[field] === value ? '' : value, // toggle on click
-//     }));
-//   };
+  //   const handleChipClick = (field, value) => {
+  //     setLocalFilters((prev) => ({
+  //       ...prev,
+  //       [field]: prev[field] === value ? '' : value, // toggle on click
+  //     }));
+  //   };
 
   const handleSearchSelect = (searchTerm) => {
     const newFilters = {
@@ -54,9 +52,9 @@ const ServiceSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
 
   return (
     <form>
-        <List sx={{ paddingTop: '0' }}>
-            {/* Category Filter */}
-             <ListItem sx={{ padding: '0 !important' }}>
+      <List sx={{ paddingTop: '0' }}>
+        {/* Category Filter */}
+        <ListItem sx={{ padding: '0 !important' }}>
           <Box>
             <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>Kategorija</InputLabel>
             {SHELTER_CATEGORIES.map((category) => (
@@ -70,30 +68,25 @@ const ServiceSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
               />
             ))}
           </Box>
+        </ListItem>
 
-             </ListItem>
+        {/* Search Filter */}
 
+        <SearchAutocomplete filters={filters} searchValue={filters.search} onSearchSelect={handleSearchSelect} />
 
-            {/* Search Filter */}
-
-            <SearchAutocomplete
-            filters={filters}
-      searchValue={filters.search}
-      onSearchSelect={handleSearchSelect}
-    />
-
-          {/* Reset Filters */}
-            <ListItem sx={{ padding: '0 !important', paddingTop: '2rem !important', paddingBottom: '0.8rem !important' }}>
-              <Button
-                variant="outlined"
-                sx={{ width: '100%' }}
-                color="primary"
-                onClick={onReset}
-              >
-                Atiestatīt filtrus
-              </Button>
-            </ListItem>
-    </List>
+        {/* Reset Filters */}
+        <ListItem
+          sx={{
+            padding: '0 !important',
+            paddingTop: '2rem !important',
+            paddingBottom: '0.8rem !important',
+          }}
+        >
+          <Button variant="outlined" sx={{ width: '100%' }} color="primary" onClick={onReset}>
+            Atiestatīt filtrus
+          </Button>
+        </ListItem>
+      </List>
     </form>
   );
 };

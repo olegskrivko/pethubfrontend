@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, Typography, CardMedia, Box, Chip } from '@mui/material';
 import { Link } from 'react-router-dom';
-import logo from '../../../assets/react.svg'; 
+import logo from '../../../assets/react.svg';
 
 const ShelterCard = ({ shelter }) => {
   const isNew = () => {
@@ -14,15 +14,15 @@ const ShelterCard = ({ shelter }) => {
   return (
     <Card>
       <Link to={`/shelters/${shelter.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-      <Box position="relative">
-        <CardMedia
-          component="img"
-          image={'https://picsum.photos/600/400'}
-          // image={shelter.shelter_image_1 || logo}
-          alt={shelter.title}
-          sx={{ width: '100%', height: 'auto' }}
-        />
-    {isNew() && (
+        <Box position="relative">
+          <CardMedia
+            component="img"
+            image={'https://picsum.photos/600/400'}
+            // image={shelter.shelter_image_1 || logo}
+            alt={shelter.title}
+            sx={{ width: '100%', height: 'auto' }}
+          />
+          {isNew() && (
             <Chip
               label="Jauns"
               variant="contained"
@@ -37,17 +37,12 @@ const ShelterCard = ({ shelter }) => {
             />
           )}
         </Box>
-      </Link> 
+      </Link>
       <CardContent sx={{ flexGrow: 1, paddingBottom: '1rem !important' }}>
-      <Typography variant="h6">
-  {shelter.title?.length > 20
-    ? `${shelter.title.slice(0, 20)}...`
-    : shelter.title}
-</Typography>
-
-
+        <Typography variant="h6">
+          {shelter.title?.length > 20 ? `${shelter.title.slice(0, 20)}...` : shelter.title}
+        </Typography>
       </CardContent>
-
     </Card>
   );
 };

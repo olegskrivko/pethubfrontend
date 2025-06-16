@@ -17,7 +17,6 @@ const pets = [
 
 const PetPath = () => {
   return (
-   
     <Box
       sx={{
         position: 'relative',
@@ -26,7 +25,7 @@ const PetPath = () => {
         overflow: 'hidden',
       }}
     >
-          <Typography variant="h4" fontWeight={600} gutterBottom style={{color: "#16477c"}}>
+      <Typography variant="h4" fontWeight={600} gutterBottom style={{ color: '#16477c' }}>
         Vieda un ērta sludinājumu pārvaldība
       </Typography>
       <Typography
@@ -37,31 +36,31 @@ const PetPath = () => {
           color: '#555',
         }}
       >
-        Pateicoties ērtam dizainam un filtriem, meklēšana starp sludinājumiem kļūst vienkārša un patīkama. Saglabā sludinājumus savā profilā, lai jebkurā laikā varētu viegli sekot līdzi to statusam.
+        Pateicoties ērtam dizainam un filtriem, meklēšana starp sludinājumiem kļūst vienkārša un patīkama. Saglabā
+        sludinājumus savā profilā, lai jebkurā laikā varētu viegli sekot līdzi to statusam.
       </Typography>
-    <Box
-  sx={{
-    position: 'relative',
-    width: '100%',
-    height: '300px',
-    marginTop: '40px',
-  }}
->
-  
-<svg
-  viewBox="0 0 1000 200"
-  preserveAspectRatio="none"
-  style={{
-    width: '100%',
-    height: '200px',
-    position: 'absolute',
-    top: 20, // adjust for alignment with avatars
-    left: 0,
-    zIndex: 1,
-  }}
->
-  <path
-    d="
+      <Box
+        sx={{
+          position: 'relative',
+          width: '100%',
+          height: '300px',
+          marginTop: '40px',
+        }}
+      >
+        <svg
+          viewBox="0 0 1000 200"
+          preserveAspectRatio="none"
+          style={{
+            width: '100%',
+            height: '200px',
+            position: 'absolute',
+            top: 20, // adjust for alignment with avatars
+            left: 0,
+            zIndex: 1,
+          }}
+        >
+          <path
+            d="
       M 0 30
       C 100 0, 150 60, 200 50
       S 300 90, 400 70
@@ -69,13 +68,13 @@ const PetPath = () => {
       S 750 140, 800 120
       S 950 180, 1000 190
     "
-    fill="none"
-    stroke="#ccc"
-    strokeDasharray="10 10"
-    strokeWidth="2"
-  />
-</svg>
-{/* <svg
+            fill="none"
+            stroke="#ccc"
+            strokeDasharray="10 10"
+            strokeWidth="2"
+          />
+        </svg>
+        {/* <svg
   viewBox="0 0 1000 200"
   preserveAspectRatio="none"
   style={{
@@ -112,28 +111,27 @@ const PetPath = () => {
   />
 </svg> */}
 
-
-  {/* Pet Avatars with Custom Sizes */}
-  {pets.map((pet, index) => (
-    <Avatar
-      key={index}
-      src={pet.src}
-      alt={`Pet ${index}`}
-      sx={{
-        position: 'absolute',
-        width: pet.size,
-        height: pet.size,
-        border: '4px solid white',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-        objectFit: 'cover',
-        left: pet.x,
-        top: `calc(${pet.y} - ${pet.size / 1}px)`, // 🔧 offsets Y upward based on size
-        zIndex: 2,
-      }}
-    />
-  ))}
-</Box>
-</Box>
+        {/* Pet Avatars with Custom Sizes */}
+        {pets.map((pet, index) => (
+          <Avatar
+            key={index}
+            src={pet.src}
+            alt={`Pet ${index}`}
+            sx={{
+              position: 'absolute',
+              width: pet.size,
+              height: pet.size,
+              border: '4px solid white',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              objectFit: 'cover',
+              left: pet.x,
+              top: `calc(${pet.y} - ${pet.size / 1}px)`, // 🔧 offsets Y upward based on size
+              zIndex: 2,
+            }}
+          />
+        ))}
+      </Box>
+    </Box>
   );
 };
 

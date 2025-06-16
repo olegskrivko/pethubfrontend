@@ -22,30 +22,24 @@ import PetsIcon from '@mui/icons-material/Pets';
 import { useTranslation } from 'react-i18next';
 import LanguageSelector from '../LanguageSelector';
 import { LanguageContext } from '../../contexts/LanguageContext';
-// import Logout from './Logout'; 
-
-
-
+// import Logout from './Logout';
 
 import { useAuth } from '../../contexts/AuthContext';
 
 const drawerWidth = 240;
-
 
 const navItems = {
   '/pets': 'pets',
   '/shelters': 'shelters',
   '/services': 'services',
   '/articles': 'guides',
-
 };
 
 function DrawerAppBar(props) {
-  const { t } = useTranslation('navbar'); 
-
+  const { t } = useTranslation('navbar');
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const { user, logout } = useAuth(); // Get user and logout from AuthContext
+  const { user, logout } = useAuth();
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
 
   const navigate = useNavigate();
@@ -57,13 +51,12 @@ function DrawerAppBar(props) {
     console.log('Logging out...');
     logout();
     console.log('Logout successful');
-    navigate('/login'); // Redirect to login page after logout
+    navigate('/login');
   };
 
-  
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center',   }}>
-      <Box 
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+      <Box
         style={{
           width: '100%',
           height: '3.5rem',
@@ -71,57 +64,49 @@ function DrawerAppBar(props) {
           background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
           // backgroundColor: '#03a9f4',
           // backgroundColor: '#4B5AED', cool violet
-        
+
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'left',
         }}
       >
-       
-        <Typography variant="body1"  ml={2} >
-          <Link 
+        <Typography variant="body1" ml={2}>
+          <Link
             to="/"
             style={{
               color: '#16477c',
               textDecoration: 'none',
               display: 'flex',
               alignItems: 'center',
-              
-        
             }}
           >
             <PetsIcon sx={{ marginRight: '0.4rem', color: '#16477c' }} /> PawClix
           </Link>
         </Typography>
-      
       </Box>
 
       <Divider />
       <List>
-      {/* {Object.entries(navItems).map(([path, itemName]) => (
-          <ListItem  key={path} disablePadding>
+        {Object.entries(navItems).map(([path, key]) => (
+          <ListItem key={path} disablePadding>
             <ListItemButton sx={{ textAlign: 'left' }}>
-              <Link to={path} style={{ textDecoration: 'none', width: '100%' }}>
-                <ListItemText primary={itemName} />
-            
+              <Link key={path} to={path} style={{ textDecoration: 'none', color: '#16477c' }}>
+                <ListItemText primary={t(key)} />
               </Link>
             </ListItemButton>
           </ListItem>
-        ))} */}
-        {Object.entries(navItems).map(([path, key]) => (
-           <ListItem  key={path} disablePadding>
-            <ListItemButton sx={{ textAlign: 'left' }}>
-  <Link key={path} to={path} style={{textDecoration: 'none', color: "#16477c"}}>
-    <ListItemText primary={t(key)}  />
-  </Link>
-  </ListItemButton>
-  </ListItem>
-))}
+        ))}
 
-      
         <ListItem disablePadding>
           <ListItemButton sx={{ textAlign: 'left' }}>
-            <Link to={user ? "/user-profile" : "/login"} style={{ textDecoration: 'none',color: "#16477c", width: '100%' }}>
+            <Link
+              to={user ? '/user-profile' : '/login'}
+              style={{
+                textDecoration: 'none',
+                color: '#16477c',
+                width: '100%',
+              }}
+            >
               <ListItemText primary={user ? t('profile') : t('login')} />
             </Link>
           </ListItemButton>
@@ -131,12 +116,14 @@ function DrawerAppBar(props) {
   );
 
   return (
-    <Box         sx={{ flexGrow: 1,  zIndex: "99"  }}>
-      <AppBar  component="nav" position="static" 
+    <Box sx={{ flexGrow: 1, zIndex: '99' }}>
+      <AppBar
+        component="nav"
+        position="static"
         sx={{
-          // background: '#5B9BD5' ,   
-                background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
-                // background: "linear-gradient(190deg, #16477c 0%, #00b5ad 100%)",
+          // background: '#5B9BD5' ,
+          background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
+          // background: "linear-gradient(190deg, #16477c 0%, #00b5ad 100%)",
         }}
       >
         <Container disableGutters>
@@ -156,7 +143,7 @@ function DrawerAppBar(props) {
             >
               <MenuIcon />
             </IconButton>
-     
+
             <Typography variant="h6" component="div">
               <Link
                 to="/"
@@ -171,28 +158,20 @@ function DrawerAppBar(props) {
                 PawClix
               </Link>
             </Typography>
-          
-            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {/* {Object.entries(navItems).map(([path, itemName]) => (
-              <Link key={path} to={path}>
-                <Button size='small' sx={{ color: '#fff', fontWeight: '400' }}>{itemName}</Button>
-              </Link>
-            ))} */}
-          {Object.entries(navItems).map(([path, key]) => (
-          //  <ListItem  key={path} >
-          //   <ListItemButton sx={{ textAlign: 'left' }}>
-  <Link key={path} to={path} style={{textDecoration: 'none', color: "#fff"}}>
-    {/* <ListItemText primary={t(key)}  /> */}
-    <Button size='small' sx={{ color: '#fff', fontWeight: '400' }}>{t(key)}</Button>
-  </Link>
-  // </ListItemButton>
-  // </ListItem>
-))}
 
-             {/* Show Profile or Login Button */}
-             <Link to={user ? "/user-profile" : "/login"}>
-                <Button size='small' sx={{ color: '#fff', backgroundColor: "#16477c" }}>
-                  {user ? t("profile") : t("login")}
+            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+              {Object.entries(navItems).map(([path, key]) => (
+                <Link key={path} to={path} style={{ textDecoration: 'none', color: '#fff' }}>
+                  <Button size="small" sx={{ color: '#fff', fontWeight: '400' }}>
+                    {t(key)}
+                  </Button>
+                </Link>
+              ))}
+
+              {/* Show Profile or Login Button */}
+              <Link to={user ? '/user-profile' : '/login'}>
+                <Button size="small" sx={{ color: '#fff', backgroundColor: '#16477c' }}>
+                  {user ? t('profile') : t('login')}
                 </Button>
               </Link>
             </Box>
@@ -206,7 +185,6 @@ function DrawerAppBar(props) {
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
-  
           ModalProps={{
             keepMounted: true,
           }}
@@ -215,7 +193,6 @@ function DrawerAppBar(props) {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
-           
             },
           }}
         >

@@ -96,10 +96,10 @@
 //   return (
 //     <div style={{ position: 'relative' }}>
 //       {error && (
-//         <div style={{ 
-//           position: 'absolute', 
-//           top: 10, 
-//           left: 10, 
+//         <div style={{
+//           position: 'absolute',
+//           top: 10,
+//           left: 10,
 //           zIndex: 1000,
 //           backgroundColor: 'white',
 //           padding: '8px',
@@ -127,9 +127,9 @@
 //         </IconButton>
 //       </Tooltip>
 
-//       <MapContainer 
-//         center={position} 
-//         zoom={13} 
+//       <MapContainer
+//         center={position}
+//         zoom={13}
 //         style={{ height: '500px', width: '100%' }}
 //         whenCreated={(map) => {
 //           map.on('click', (e) => {
@@ -165,9 +165,7 @@ const LocationMarker = ({ position, onLocationChange }) => {
     },
   });
 
-  const iconMarkup = renderToStaticMarkup(
-    <LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />
-  );
+  const iconMarkup = renderToStaticMarkup(<LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />);
 
   const customIcon = L.divIcon({
     html: iconMarkup,
@@ -206,7 +204,7 @@ const LeafletAddNotificationMap = ({ onLocationChange, location }) => {
 
   const handleUseMyLocation = () => {
     if (!navigator.geolocation) {
-      setError("Geolocation is not supported by your browser");
+      setError('Geolocation is not supported by your browser');
       return;
     }
 
@@ -218,7 +216,7 @@ const LeafletAddNotificationMap = ({ onLocationChange, location }) => {
       },
       (err) => {
         setError("Couldn't get your location. Please enable GPS and try again.");
-        console.error("Geolocation error:", err);
+        console.error('Geolocation error:', err);
       },
       {
         enableHighAccuracy: true,
@@ -271,11 +269,7 @@ const LeafletAddNotificationMap = ({ onLocationChange, location }) => {
         </IconButton>
       </Tooltip>
 
-      <MapContainer
-        center={[location.lat, location.lng]}
-        zoom={13}
-        style={{ height: '400px', width: '100%' }}
-      >
+      <MapContainer center={[location.lat, location.lng]} zoom={13} style={{ height: '400px', width: '100%' }}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

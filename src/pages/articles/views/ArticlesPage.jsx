@@ -10,19 +10,16 @@ import {
   Container,
   Dialog,
   DialogContent,
-  IconButton
+  IconButton,
 } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-// import { BASE_URL } from './config/config';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import CloseIcon from '@mui/icons-material/Close';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-  
-
 
 const ArticlesList = () => {
   const theme = useTheme();
@@ -50,17 +47,9 @@ const ArticlesList = () => {
   }, []);
   useEffect(() => {
     const fetchArticles = async () => {
-      // const accessToken = localStorage.getItem('access_token');
-  
       try {
-        const response = await axios.get(`${API_BASE_URL}/api/articles/`, 
-        //   {
-        //   headers: accessToken
-        //     ? { Authorization: `Bearer ${accessToken}` }
-        //     : {}, // no auth header if not logged in
-        // }
-      );
-  
+        const response = await axios.get(`${API_BASE_URL}/api/articles/`);
+
         setArticles(response.data);
         setLoading(false);
       } catch (error) {
@@ -69,10 +58,9 @@ const ArticlesList = () => {
         setLoading(false);
       }
     };
-  
+
     fetchArticles();
   }, []);
-  
 
   if (loading) {
     return (
@@ -83,16 +71,22 @@ const ArticlesList = () => {
   }
 
   return (
+    <Container component="main" maxWidth="lg">
+      <Typography
+        variant="h4"
+        align="center"
+        sx={{
+          mb: 5,
+          fontWeight: 800,
+          color: '#16477c',
 
-  
-          <Container component="main" maxWidth="lg" >
-              <Typography variant="h4" align="center" sx={{ mb: 5, fontWeight: 800,
-                       color: '#16477c',
-                            
-                            background: "linear-gradient(60deg, #16477c 0%, #00b5ad 100%)",
-                            WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent"
-                 }}>Padomi</Typography>
+          background: 'linear-gradient(60deg, #16477c 0%, #00b5ad 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}
+      >
+        Padomi
+      </Typography>
       <Grid container spacing={3}>
         {articles.map((article) => (
           <Grid key={article.id} size={{ xs: 12, sm: 6, md: 3, lg: 3 }}>
@@ -104,18 +98,17 @@ const ArticlesList = () => {
                 style={{ textDecoration: 'none' }}
               >
                 {article.paragraphs && article.paragraphs.length > 0 && (
-                  // Combine Cloudinary base URL with the relative image path
                   <CardMedia
                     component="img"
                     //image={`https://res.cloudinary.com/dymne7cde/${article.paragraphs[0].image}`} // Updated image URL
-                      image={`https://picsum.photos/600/400`}
+                    image={`https://picsum.photos/600/400`}
                     alt={article.title}
                   />
                 )}
-                <CardContent sx={{paddingBottom: "1rem !important"}}>
-                  <Typography variant="body2" color="textSecondary" sx={{ textAlign: "justify" }}>
-  {article.title?.length > 30 ? `${article.title.slice(0, 30)}...` : article.title}
-</Typography>
+                <CardContent sx={{ paddingBottom: '1rem !important' }}>
+                  <Typography variant="body2" color="textSecondary" sx={{ textAlign: 'justify' }}>
+                    {article.title?.length > 30 ? `${article.title.slice(0, 30)}...` : article.title}
+                  </Typography>
                 </CardContent>
               </Link>
             </Card>
@@ -123,23 +116,21 @@ const ArticlesList = () => {
         ))}
       </Grid>
 
-
-            {/* Pop-up alert as Dialog */}
-            <Dialog open={showPopup} onClose={() => setShowPopup(false)}>
-              <DialogContent sx={{ position: 'relative', p: 4 }}>
-                <IconButton
-                  aria-label="close"
-                  onClick={() => setShowPopup(false)}
-                  sx={{ position: 'absolute', right: 8, top: 8 }}
-                >
-                  <CloseIcon />
-                </IconButton>
-                <Alert severity="info">
-                  <AlertTitle>Piezīme</AlertTitle>
-                  Ja jums ir kādi ieteikumi vai atsauksmes par šiem rakstiem, droši sazinieties ar mums!
-                </Alert>
-              </DialogContent>
-            </Dialog>
+      <Dialog open={showPopup} onClose={() => setShowPopup(false)}>
+        <DialogContent sx={{ position: 'relative', p: 4 }}>
+          <IconButton
+            aria-label="close"
+            onClick={() => setShowPopup(false)}
+            sx={{ position: 'absolute', right: 8, top: 8 }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <Alert severity="info">
+            <AlertTitle>Piezīme</AlertTitle>
+            Ja jums ir kādi ieteikumi vai atsauksmes par šiem rakstiem, droši sazinieties ar mums!
+          </Alert>
+        </DialogContent>
+      </Dialog>
     </Container>
   );
 };

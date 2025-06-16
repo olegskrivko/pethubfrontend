@@ -2,13 +2,13 @@ import { Suspense, lazy, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate, Link } from 'react-router-dom';
 // import { DrawerProvider } from './contexts/DrawerContext'
 import { LanguageProvider } from './contexts/LanguageContext';
-import { CssBaseline, Box  } from '@mui/material';
+import { CssBaseline, Box } from '@mui/material';
 import Layout from './pages/layout/Layout';
 import FullLayout from './pages/layout/FullLayout';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { HelmetProvider } from 'react-helmet-async';
 import Loader from './shared/components/Loader';
-import './App.css'
+import './App.css';
 
 // PAGES
 import Contact from './pages/common/views/Contact';
@@ -32,24 +32,23 @@ import ServicesListPage from './pages/services/views/ServicesPage';
 import ServiceDetailsPage from './pages/services/views/ServiceDetailsPage';
 
 import Profile from './pages/profile/views/Profile';
-import UserSettings from './pages/profile/views/UserSettings'
-import UserPets from './pages/profile/views/UserPets'
-import UserServices from './pages/profile/views/UserServices'
-import BookmarksIndexPage from './pages/profile/views/BookmarksIndexPage'
-import UserPetBookmarks from './pages/profile/views/UserPetBookmarks'
-import UserServiceBookmarks from './pages/profile/views/UserServiceBookmarks'
+import UserSettings from './pages/profile/views/UserSettings';
+import UserPets from './pages/profile/views/UserPets';
+import UserServices from './pages/profile/views/UserServices';
+import BookmarksIndexPage from './pages/profile/views/BookmarksIndexPage';
+import UserPetBookmarks from './pages/profile/views/UserPetBookmarks';
+import UserServiceBookmarks from './pages/profile/views/UserServiceBookmarks';
 
 import PetsListPage from './pages/pets/views/PetsPage';
 import PetDetailsPage from './pages/pets/views/PetDetailsPage';
 import Poster from './pages/pets/views/Poster';
-import PetAddStepper from "./pages/pets/views/PetAddStepper"
-import EditPetPage from "./pages/pets/views/EditPetPage"
-
+import PetAddStepper from './pages/pets/views/PetAddStepper';
+import EditPetPage from './pages/pets/views/EditPetPage';
 
 import Login from './pages/auth/views/Login';
 import Register from './pages/auth/views/Register';
 import ForgotPassword from './pages/auth/views/ForgotPassword';
-import ResetPassword from "./pages/auth/views/ResetPassword";
+import ResetPassword from './pages/auth/views/ResetPassword';
 import Logout from './pages/auth/views/Logout';
 import AccountDeleted from './pages/auth/views/AccountDeleted';
 
@@ -58,8 +57,8 @@ import PageNotFound from './pages/PageNotFound';
 import CookieConsent from 'react-cookie-consent';
 import { AuthProvider } from './contexts/AuthContext'; // Path to AuthContext
 import { useAuth } from './contexts/AuthContext'; // Adjust the path as needed
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import PrivateRoute from './pages/auth/components/PrivateRoute';
 import cookieIcon from './assets/react.svg';
 
@@ -69,11 +68,11 @@ const About = lazy(() => import('./pages/About'));
 
 const theme = createTheme({
   palette: {
-  primary: {
+    primary: {
       main: '#00b3a4',
       contrastText: '#ffffff',
     },
-  secondary: {
+    secondary: {
       main: '#FF5733',
       contrastText: '#ffffff',
     },
@@ -98,10 +97,11 @@ const theme = createTheme({
   },
 });
 
-const stripePromise = loadStripe("pk_test_51MsAlCBnYVUZPzgiEPtA6hevdWCEOymSzerTmiA2mWpkutsMBMyo8aAuryBXQGXt7rqAk7pgkWCwCmPQddSCXoHQ00gJEKTAS3");
+const stripePromise = loadStripe(
+  'pk_test_51MsAlCBnYVUZPzgiEPtA6hevdWCEOymSzerTmiA2mWpkutsMBMyo8aAuryBXQGXt7rqAk7pgkWCwCmPQddSCXoHQ00gJEKTAS3'
+);
 
 function App() {
-  
   const [hasAcceptedCookies, setHasAcceptedCookies] = useState(false);
 
   const handleAcceptCookies = () => {
@@ -111,84 +111,77 @@ function App() {
     // You can also perform other actions here, such as updating a global state or sending the acceptance to an analytics service
   };
 
-
   return (
     <HelmetProvider>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Elements stripe={stripePromise}>
-      <Router>
-        <AuthProvider>
-          <LanguageProvider>
-          <Suspense fallback={<Loader />}>
-          <Routes>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Elements stripe={stripePromise}>
+          <Router>
+            <AuthProvider>
+              <LanguageProvider>
+                <Suspense fallback={<Loader />}>
+                  <Routes>
+                    {/* Routes with FullLayout (no container) */}
+                    <Route path="/" element={<FullLayout />}>
+                      <Route index element={<Home />} />
+                    </Route>
 
-            {/* Routes with FullLayout (no container) */}
-            <Route path="/" element={<FullLayout />}>
-                <Route index element={<Home />} />
-            </Route>
+                    {/* Routes with main Layout (container) */}
+                    <Route element={<Layout />}>
+                      <Route path="about" element={<About />} />
+                      <Route path="contact" element={<Contact />} />
+                      <Route path="support" element={<Support />} />
+                      <Route path="collaborate" element={<Collaborate />} />
+                      <Route path="frequently-asked-questions" element={<FrequentlyAskedQuestions />} />
+                      <Route path="virtual-pet-training-classes" element={<PetTraining />} />
+                      <Route path="policies" element={<PolicyPage />} />
+                      <Route path="pet-matching-quiz" element={<PetQuiz />} />
+                      <Route path="shelters" element={<SheltersListPage />} />
+                      <Route path="shelters/:id" element={<ShelterDetailsPage />} />
+                      <Route path="pets" element={<PetsListPage />} />
+                      <Route path="pets/:id" element={<PetDetailsPage />} />
+                      <Route path="pets/:id/poster" element={<Poster />} />
+                      <Route path="user-profile/edit-pet/:id" element={<EditPetPage />} />
 
-            {/* Routes with main Layout (container) */}
-            <Route element={<Layout />}>
-            <Route path="about" element={<About />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="support" element={<Support />} />
-            <Route path="collaborate" element={<Collaborate />} />
-            <Route path="frequently-asked-questions" element={<FrequentlyAskedQuestions />} />
-            <Route path="virtual-pet-training-classes" element={<PetTraining />} />
-            <Route path="policies" element={<PolicyPage />} />
-            <Route path="pet-matching-quiz" element={<PetQuiz />} />
-            <Route path="shelters" element={<SheltersListPage />} />
-            <Route path="shelters/:id" element={<ShelterDetailsPage />} />
-            <Route path="pets" element={<PetsListPage />} />
-            <Route path="pets/:id" element={<PetDetailsPage />} />
-            <Route path="pets/:id/poster" element={<Poster />} />
-            <Route path="user-profile/edit-pet/:id" element={<EditPetPage />} />
+                      <Route path="services" element={<ServicesListPage />} />
+                      <Route path="services/:id" element={<ServiceDetailsPage />} />
+                      <Route path="articles" element={<ArticlesListPage />} />
+                      <Route path="articles/:slug" element={<ArticleDetailsPage />} />
 
-            
-            <Route path="services" element={<ServicesListPage />} />
-            <Route path="services/:id" element={<ServiceDetailsPage />} />
-            <Route path="articles" element={<ArticlesListPage />} />
-            <Route path="articles/:slug" element={<ArticleDetailsPage />} />
+                      <Route path="pricing" element={<Pricing />} />
+                      <Route path="checkout" element={<CheckoutPage />} />
+                      <Route path="success" element={<SuccessPage />} />
+                      <Route path="subscription-success" element={<SuccessPage />} />
+                      {/* <Route path="cancel" element={<CancelPage />} /> */}
+                      <Route path="subscription-cancel" element={<CancelPage />} />
+                      <Route path="login" element={<Login />} />
+                      <Route path="register" element={<Register />} />
+                      <Route path="logout" element={<Logout />} />
+                      <Route path="forgot-password" element={<ForgotPassword />} />
+                      <Route path="account-deleted" element={<AccountDeleted />} />
 
-            <Route path="pricing" element={<Pricing />} />
-            <Route path="checkout" element={<CheckoutPage />} />
-            <Route path="success" element={<SuccessPage />} />
-            <Route path="subscription-success" element={<SuccessPage />} />
-            {/* <Route path="cancel" element={<CancelPage />} /> */}
-            <Route path="subscription-cancel" element={<CancelPage />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-            <Route path="logout" element={<Logout />} />
-            <Route path="forgot-password" element={<ForgotPassword />} />
-            <Route path="account-deleted" element={<AccountDeleted />} />
+                      {/* Protected routes */}
+                      <Route element={<PrivateRoute />}>
+                        <Route path="add-pet" element={<PetAddStepper />} />
+                        <Route path="user-profile" element={<Profile />} />
 
-            {/* Protected routes */}
-            <Route element={<PrivateRoute />}>
-            <Route path="add-pet" element={<PetAddStepper />} />
-            <Route path="user-profile" element={<Profile />} />
-            
-
-            
-            <Route path="user-profile/settings" element={<UserSettings />} />
-           <Route path="user-profile/bookmarks/pets" element={<UserPetBookmarks />} />
-            <Route path="user-profile/bookmarks/services" element={<UserServiceBookmarks />} />
-            <Route path="user-profile/bookmarks" element={<BookmarksIndexPage />} />
-            <Route path="user-profile/pets" element={<UserPets />} />
-            <Route path="user-profile/services" element={<UserServices />} />
-{/* 
+                        <Route path="user-profile/settings" element={<UserSettings />} />
+                        <Route path="user-profile/bookmarks/pets" element={<UserPetBookmarks />} />
+                        <Route path="user-profile/bookmarks/services" element={<UserServiceBookmarks />} />
+                        <Route path="user-profile/bookmarks" element={<BookmarksIndexPage />} />
+                        <Route path="user-profile/pets" element={<UserPets />} />
+                        <Route path="user-profile/services" element={<UserServices />} />
+                        {/* 
               <Route path="test-one/new" element={<About />} />
               <Route path="test-two/:id/edit" element={<About />} /> */}
-            </Route>
+                      </Route>
 
-
-            {/* Catch-all for 404 */}
-            <Route path="*" element={<PageNotFound />} />
-            </Route>
-          </Routes>
-
-          </Suspense>
-           {/* <CookieConsent
+                      {/* Catch-all for 404 */}
+                      <Route path="*" element={<PageNotFound />} />
+                    </Route>
+                  </Routes>
+                </Suspense>
+                {/* <CookieConsent
   location="bottom"
   cookieName="userAcceptedCookies"
   enableDeclineButton
@@ -268,13 +261,13 @@ function App() {
     </span>
   </Box>
 </CookieConsent> */}
-          </LanguageProvider>
-        </AuthProvider>
-      </Router>
-      </Elements>
-    </ThemeProvider>
+              </LanguageProvider>
+            </AuthProvider>
+          </Router>
+        </Elements>
+      </ThemeProvider>
     </HelmetProvider>
-  )
+  );
 }
 
-export default App
+export default App;

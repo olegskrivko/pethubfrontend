@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { TextField, Slider, Box, Button, Typography } from "@mui/material";
+import React, { useState, useEffect } from 'react';
+import { TextField, Slider, Box, Button, Typography } from '@mui/material';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const urlBase64ToUint8Array = (base64String) => {
-  const padding = "=".repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding).replace(/-/g, "+").replace(/_/g, "/");
+  const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+  const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
 
   const rawData = window.atob(base64);
   const outputArray = new Uint8Array(rawData.length);
@@ -18,63 +18,65 @@ const urlBase64ToUint8Array = (base64String) => {
 const arrayBufferToBase64 = (buffer) => {
   const uint8Array = new Uint8Array(buffer);
   let binary = '';
-  uint8Array.forEach(byte => {
+  uint8Array.forEach((byte) => {
     binary += String.fromCharCode(byte);
   });
   return window.btoa(binary);
 };
- 
+
 const NotificationsPage = () => {
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [subscription, setSubscription] = useState(null);
-  const [lat, setLat] = useState(56.946);     // Default to Riga
-  const [lon, setLon] = useState(24.1059);    // Default to Riga
+  const [lat, setLat] = useState(56.946); // Default to Riga
+  const [lon, setLon] = useState(24.1059); // Default to Riga
   const [distance, setDistance] = useState(5); // Default 5 km
 
   const askForNotificationPermission = async () => {
     try {
       const permission = await Notification.requestPermission();
-      if (permission === "granted") {
+      if (permission === 'granted') {
         await subscribeUserToPush();
       }
     } catch (error) {
-      console.error("Permission request failed", error);
+      console.error('Permission request failed', error);
     }
   };
 
   const subscribeUserToPush = async () => {
     try {
-      const registration = await navigator.serviceWorker.register("/service-worker.js");
+      const registration = await navigator.serviceWorker.register('/service-worker.js');
 
       const subscription = await registration.pushManager.subscribe({
         userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array("BOZTcqsdJXUbELTV3ax5lK3X3Wh4S33MuJAZ75MVWCxjtrcn7nVr2Xp-JPiPlVJCE9gqmLv23_PR_f-7uKgU8iU"),
+        applicationServerKey: urlBase64ToUint8Array(
+          'BOZTcqsdJXUbELTV3ax5lK3X3Wh4S33MuJAZ75MVWCxjtrcn7nVr2Xp-JPiPlVJCE9gqmLv23_PR_f-7uKgU8iU'
+        ),
       });
 
       setSubscription(subscription);
       setIsSubscribed(true);
       await saveSubscriptionToBackend(subscription);
     } catch (error) {
-      console.error("Subscription error:", error);
+      console.error('Subscription error:', error);
     }
   };
 
   const saveSubscriptionToBackend = async (subscription) => {
     try {
-      const accessToken = localStorage.getItem("access_token");
+      const accessToken = localStorage.getItem('access_token');
       const subscriptionData = {
         endpoint: subscription.endpoint,
-        p256dh: arrayBufferToBase64(subscription.getKey("p256dh")),
-        auth: arrayBufferToBase64(subscription.getKey("auth")),
+        p256dh: arrayBufferToBase64(subscription.getKey('p256dh')),
+        auth: arrayBufferToBase64(subscription.getKey('auth')),
         lat,
         lon,
         distance,
       };
 
       const response = await fetch(`${API_BASE_URL}/notifications/subscribe/`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify(subscriptionData),
@@ -82,10 +84,10 @@ const NotificationsPage = () => {
 
       if (!response.ok) {
         const error = await response.text();
-        console.error("Subscription error:", error);
+        console.error('Subscription error:', error);
       }
     } catch (error) {
-      console.error("Error saving subscription:", error);
+      console.error('Error saving subscription:', error);
     }
   };
 
@@ -98,7 +100,7 @@ const NotificationsPage = () => {
 
       setSubscription(existingSubscription);
 
-      const accessToken = localStorage.getItem("access_token");
+      const accessToken = localStorage.getItem('access_token');
       const response = await fetch(
         `${API_BASE_URL}/notifications/is_subscribed/?endpoint=${encodeURIComponent(existingSubscription.endpoint)}`,
         {
@@ -113,7 +115,7 @@ const NotificationsPage = () => {
         await saveSubscriptionToBackend(existingSubscription);
       }
     } catch (error) {
-      console.error("Subscription check failed:", error);
+      console.error('Subscription check failed:', error);
     }
   };
 
@@ -121,14 +123,14 @@ const NotificationsPage = () => {
     try {
       const registration = await navigator.serviceWorker.getRegistration();
       const subscription = await registration.pushManager.getSubscription();
-      const accessToken = localStorage.getItem("access_token");
+      const accessToken = localStorage.getItem('access_token');
 
       if (subscription) {
         await subscription.unsubscribe();
         await fetch(`${API_BASE_URL}/notifications/unsubscribe/`, {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${accessToken}`,
           },
           body: JSON.stringify({ endpoint: subscription.endpoint }),
@@ -138,27 +140,27 @@ const NotificationsPage = () => {
         setSubscription(null);
       }
     } catch (error) {
-      console.error("Unsubscribe failed:", error);
+      console.error('Unsubscribe failed:', error);
     }
   };
 
   const sendTestNotification = async () => {
     try {
-      const accessToken = localStorage.getItem("access_token");
+      const accessToken = localStorage.getItem('access_token');
       await fetch(`${API_BASE_URL}/notifications/send_notification/`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify({
-          title: "Test Notification",
-          body: "This is a test notification.",
-          url: "https://example.com",
+          title: 'Test Notification',
+          body: 'This is a test notification.',
+          url: 'https://example.com',
         }),
       });
     } catch (error) {
-      console.error("Send notification failed:", error);
+      console.error('Send notification failed:', error);
     }
   };
 

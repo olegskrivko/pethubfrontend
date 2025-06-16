@@ -1,16 +1,15 @@
-
 // export default HolidayCard;
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent, Typography, CircularProgress, Alert } from '@mui/material';
 import axios from 'axios';
 
 const translations = {
-  "Independence Day": "Latvijas Neatkarības diena",
-  "Christmas Day": "Ziemassvētki",
-  "Good Friday": "Lielā Piektdiena",
-  "Easter Sunday": "Lieldienas",
-  "May Day": "Darba svētki",
-  "Lielā Sestdiena": "Lielā Sestdiena ir diena pirms Lieldienām."
+  'Independence Day': 'Latvijas Neatkarības diena',
+  'Christmas Day': 'Ziemassvētki',
+  'Good Friday': 'Lielā Piektdiena',
+  'Easter Sunday': 'Lieldienas',
+  'May Day': 'Darba svētki',
+  'Lielā Sestdiena': 'Lielā Sestdiena ir diena pirms Lieldienām.',
   // add more as needed
 };
 
@@ -65,16 +64,10 @@ const HolidayCard = () => {
   return (
     <Card sx={{ maxWidth: 400, mx: 'auto', mt: 3, backgroundColor: '#fff3e0' }}>
       <CardContent>
-        <Typography
-          variant="subtitle2"
-          sx={{ fontWeight: 'bold', color: 'orange', mb: 1 }}
-        >
+        <Typography variant="subtitle2" sx={{ fontWeight: 'bold', color: 'orange', mb: 1 }}>
           📅 {date}
         </Typography>
-        <Typography
-          variant="h6"
-          sx={{ fontWeight: 'bold', color: 'red', mb: 1 }}
-        >
+        <Typography variant="h6" sx={{ fontWeight: 'bold', color: 'red', mb: 1 }}>
           {translatedName}
         </Typography>
         <Typography variant="body2" color="text.secondary">

@@ -176,9 +176,7 @@ const LocationMarker = ({ position, onLocationChange }) => {
     },
   });
 
-  const iconMarkup = renderToStaticMarkup(
-    <LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />,
-  );
+  const iconMarkup = renderToStaticMarkup(<LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />);
   const customIcon = L.divIcon({
     html: iconMarkup,
     className: 'custom-icon',
@@ -189,7 +187,7 @@ const LocationMarker = ({ position, onLocationChange }) => {
       const newPos = event.target.getLatLng();
       onLocationChange(newPos);
     },
-    [onLocationChange],
+    [onLocationChange]
   );
 
   return (
@@ -207,7 +205,6 @@ const LocationMarker = ({ position, onLocationChange }) => {
 };
 
 const LeafletSubscribeMap = ({ onLocationChange }) => {
- 
   const [position, setPosition] = useState([56.946285, 24.105078]);
   const [errorMessage, setErrorMessage] = useState(null);
   const [solutionMessage, setSolutionMessage] = useState(null);
@@ -223,9 +220,7 @@ const LeafletSubscribeMap = ({ onLocationChange }) => {
         switch (error.code) {
           case error.PERMISSION_DENIED:
             setErrorMessage('Geolocation Permission Denied');
-            setSolutionMessage(
-              'Please enable GPS and allow location access in your browser settings.',
-            );
+            setSolutionMessage('Please enable GPS and allow location access in your browser settings.');
             break;
           case error.POSITION_UNAVAILABLE:
             setErrorMessage('Location Information Unavailable');
@@ -237,9 +232,7 @@ const LeafletSubscribeMap = ({ onLocationChange }) => {
             break;
           case error.UNKNOWN_ERROR:
             setErrorMessage('Unknown Error Occurred');
-            setSolutionMessage(
-              'An unknown error occurred while retrieving your location. Please try again.',
-            );
+            setSolutionMessage('An unknown error occurred while retrieving your location. Please try again.');
             break;
           default:
             setErrorMessage('An Error Occurred');
@@ -248,8 +241,11 @@ const LeafletSubscribeMap = ({ onLocationChange }) => {
         // Fallback to hardcoded initial value
         const fallbackPosition = [56.946285, 24.105078];
         setPosition(fallbackPosition);
-        onLocationChange({ lat: fallbackPosition[0], lng: fallbackPosition[1] });
-      },
+        onLocationChange({
+          lat: fallbackPosition[0],
+          lng: fallbackPosition[1],
+        });
+      }
     );
   };
 
@@ -258,7 +254,7 @@ const LeafletSubscribeMap = ({ onLocationChange }) => {
       setPosition([newPosition.lat, newPosition.lng]);
       onLocationChange(newPosition);
     },
-    [onLocationChange],
+    [onLocationChange]
   );
 
   return (
@@ -270,7 +266,7 @@ const LeafletSubscribeMap = ({ onLocationChange }) => {
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12}>
           <Button variant="contained" onClick={handleUseMyLocation} fullWidth>
-          getCurrentLocation
+            getCurrentLocation
           </Button>
         </Grid>
       </Grid>

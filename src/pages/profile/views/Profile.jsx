@@ -1,10 +1,19 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Grid, Box, Typography, Avatar, TextField, Paper, Button,   Dialog,
+import {
+  Grid,
+  Box,
+  Typography,
+  Avatar,
+  TextField,
+  Paper,
+  Button,
+  Dialog,
   DialogTitle,
   DialogContent,
   IconButton,
   Container,
-  DialogActions, } from '@mui/material';
+  DialogActions,
+} from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import SettingsIcon from '@mui/icons-material/Settings';
 import TryIcon from '@mui/icons-material/Try';
@@ -17,121 +26,121 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 // import user_avatar from './images/account_amico_blue.svg'
 // import user_avatar from './images/ava/Asset 9.svg'
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-import AvatarWithAnimal from "../components/AvatarWithAnimal"
+import AvatarWithAnimal from '../components/AvatarWithAnimal';
 // import AvatarImg from '../images/beaver.avif'; // Use a valid image
 // import OneSignal from 'react-onesignal';
 const Profile = () => {
-      const { user, logout } = useAuth();
-        const navigate = useNavigate();
-        const [openDialog, setOpenDialog] = useState(false);
-//   const { user, logout } = useContext(AuthContext);
-//   console.log('user', user);
-//   const [location, setLocation] = useState({
-//     latitude: localStorage.getItem('latitude') || '',
-//     longitude: localStorage.getItem('longitude') || '',
-//   });
-//   const [distance, setDistance] = useState(localStorage.getItem('distance') || '');
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const [openDialog, setOpenDialog] = useState(false);
+  //   const { user, logout } = useContext(AuthContext);
+  //   console.log('user', user);
+  //   const [location, setLocation] = useState({
+  //     latitude: localStorage.getItem('latitude') || '',
+  //     longitude: localStorage.getItem('longitude') || '',
+  //   });
+  //   const [distance, setDistance] = useState(localStorage.getItem('distance') || '');
 
   // Function to initialize OneSignal
-//   const initOneSignal = async () => {
-//     await OneSignal.init({
-//       appId: '07831676-ef12-409c-895e-3352642c136d',
-//     });
+  //   const initOneSignal = async () => {
+  //     await OneSignal.init({
+  //       appId: '07831676-ef12-409c-895e-3352642c136d',
+  //     });
 
-//     console.log('OneSignal initialized');
-//     OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
-//   };
+  //     console.log('OneSignal initialized');
+  //     OneSignal.Slidedown.promptPush(); // Show subscription prompt after initialization
+  //   };
 
-//   const getLocation = () => {
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(
-//         (position) => {
-//           const { latitude, longitude } = position.coords;
-//           setLocation({
-//             latitude: latitude.toString(),
-//             longitude: longitude.toString(),
-//           });
-//           localStorage.setItem('latitude', latitude.toString());
-//           localStorage.setItem('longitude', longitude.toString());
-//         },
-//         (error) => {
-//           console.error('Error getting geolocation: ', error);
-//         },
-//       );
-//     } else {
-//       console.error('Geolocation is not supported by this browser.');
-//     }
-//   };
+  //   const getLocation = () => {
+  //     if (navigator.geolocation) {
+  //       navigator.geolocation.getCurrentPosition(
+  //         (position) => {
+  //           const { latitude, longitude } = position.coords;
+  //           setLocation({
+  //             latitude: latitude.toString(),
+  //             longitude: longitude.toString(),
+  //           });
+  //           localStorage.setItem('latitude', latitude.toString());
+  //           localStorage.setItem('longitude', longitude.toString());
+  //         },
+  //         (error) => {
+  //           console.error('Error getting geolocation: ', error);
+  //         },
+  //       );
+  //     } else {
+  //       console.error('Geolocation is not supported by this browser.');
+  //     }
+  //   };
 
-//   const addLocationTags = () => {
-//     OneSignal.User.addTags({ ...location, distance });
-//     console.log('Tags added successfully');
-//   };
+  //   const addLocationTags = () => {
+  //     OneSignal.User.addTags({ ...location, distance });
+  //     console.log('Tags added successfully');
+  //   };
 
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setLocation((prevLocation) => ({
-//       ...prevLocation,
-//       [name]: value,
-//     }));
-//     localStorage.setItem(name, value);
-//   };
+  //   const handleChange = (e) => {
+  //     const { name, value } = e.target;
+  //     setLocation((prevLocation) => ({
+  //       ...prevLocation,
+  //       [name]: value,
+  //     }));
+  //     localStorage.setItem(name, value);
+  //   };
 
-//   const handleDistanceChange = (e) => {
-//     setDistance(e.target.value);
-//     localStorage.setItem('distance', e.target.value);
-//   };
+  //   const handleDistanceChange = (e) => {
+  //     setDistance(e.target.value);
+  //     localStorage.setItem('distance', e.target.value);
+  //   };
 
-//   useEffect(() => {
-//     // Retrieve location from localStorage on component mount
-//     const storedLatitude = localStorage.getItem('latitude');
-//     const storedLongitude = localStorage.getItem('longitude');
-//     const storedDistance = localStorage.getItem('distance');
+  //   useEffect(() => {
+  //     // Retrieve location from localStorage on component mount
+  //     const storedLatitude = localStorage.getItem('latitude');
+  //     const storedLongitude = localStorage.getItem('longitude');
+  //     const storedDistance = localStorage.getItem('distance');
 
-//     if (storedLatitude && storedLongitude) {
-//       setLocation({
-//         latitude: storedLatitude,
-//         longitude: storedLongitude,
-//       });
-//     }
+  //     if (storedLatitude && storedLongitude) {
+  //       setLocation({
+  //         latitude: storedLatitude,
+  //         longitude: storedLongitude,
+  //       });
+  //     }
 
-//     if (storedDistance) {
-//       setDistance(storedDistance);
-//     }
-//   }, []);
+  //     if (storedDistance) {
+  //       setDistance(storedDistance);
+  //     }
+  //   }, []);
 
-const handleDeleteAccount = async () => {
-  const token = localStorage.getItem('token');
-  try {
-    const response = await fetch(`${BASE_URL}/api/auth/delete`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    if (!response.ok) {
-      throw new Error('Failed to delete user account');
+  const handleDeleteAccount = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(`${BASE_URL}/api/auth/delete`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to delete user account');
+      }
+      const deletedMessage = await response.json();
+      console.log('Account deleted:', deletedMessage);
+      setUser(null); // Clear user data after deletion
+      navigate('/'); // Navigate to the home page after successful deletion
+    } catch (error) {
+      console.error('Error deleting account:', error.message);
+      // Handle error gracefully
     }
-    const deletedMessage = await response.json();
-    console.log('Account deleted:', deletedMessage);
-    setUser(null); // Clear user data after deletion
-    navigate('/'); // Navigate to the home page after successful deletion
-  } catch (error) {
-    console.error('Error deleting account:', error.message);
-    // Handle error gracefully
-  }
-  setOpenDialog(false); // Close the dialog after account deletion
-};
+    setOpenDialog(false); // Close the dialog after account deletion
+  };
 
-const handleOpenDialog = () => {
-  setOpenDialog(true);
-};
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
 
-const handleCloseDialog = () => {
-  setOpenDialog(false);
-};
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
 
-const handleLogout = () => {
+  const handleLogout = () => {
     console.log('Logging out...');
     logout();
     console.log('Logout successful');
@@ -139,129 +148,151 @@ const handleLogout = () => {
   };
 
   if (!user) return <Typography>Loading...</Typography>;
-{/* <a href="https://storyset.com/user">User illustrations by Storyset</a> */}
+  {
+    /* <a href="https://storyset.com/user">User illustrations by Storyset</a> */
+  }
   return (
-    <Container component="main" maxWidth="lg" >
+    <Container component="main" maxWidth="lg">
+      <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+        <Box sx={{ textAlign: 'center', position: 'relative' }}>
+          <Box
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <AvatarWithAnimal user={user} />
 
-    <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-      <Box sx={{ textAlign: 'center', position: 'relative' }}>
-<Box style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: 'center'}}>
-        <AvatarWithAnimal user={user} />
+            <Typography variant="body1" color="primary" mt={1} style={{ fontWeight: 'bold' }}>
+              {user.username}
+            </Typography>
+          </Box>
 
-        <Typography variant="body1" color="primary" mt={1} style={{ fontWeight: 'bold' }}>
-          {user.username}
-        </Typography>
-     </Box>
-      
-        <Grid container spacing={2} sx={{ mt: 1, mb: 5 }} justifyContent="center">
-  <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} >
-    <Link to="/user-profile/bookmarks/pets" style={{ textDecoration: 'none' }}>
-    {/* style={{ background: "linear-gradient(135deg, #0f4c81, #00b3a4)"}} */}
-      <Paper sx={{
-            p: 2,
-            
-            borderRadius: 3,
-            background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
-            // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease-in-out',
-            '&:hover': {
-              // boxShadow: '0px 6px 20px rgba(0,0,0,0.1)',
-              // transform: 'scale(1.01)',
-              background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
-            },
-          }} >
-        <Box display="flex" alignItems="center">
-          <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
-          <BookmarkIcon fontSize="large" />
-          </IconButton>
-          <Typography variant="body1" color="textSecondary" sx={{  ml: 2, }} >Saglabātie dzīvnieku sludinājumi</Typography>
-        </Box>
-      </Paper>
-    </Link>
-  </Grid>
+          <Grid container spacing={2} sx={{ mt: 1, mb: 5 }} justifyContent="center">
+            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+              <Link to="/user-profile/bookmarks/pets" style={{ textDecoration: 'none' }}>
+                {/* style={{ background: "linear-gradient(135deg, #0f4c81, #00b3a4)"}} */}
+                <Paper
+                  sx={{
+                    p: 2,
 
+                    borderRadius: 3,
+                    background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+                    // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease-in-out',
+                    '&:hover': {
+                      // boxShadow: '0px 6px 20px rgba(0,0,0,0.1)',
+                      // transform: 'scale(1.01)',
+                      background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
+                    },
+                  }}
+                >
+                  <Box display="flex" alignItems="center">
+                    <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                      <BookmarkIcon fontSize="large" />
+                    </IconButton>
+                    <Typography variant="body1" color="textSecondary" sx={{ ml: 2 }}>
+                      Saglabātie dzīvnieku sludinājumi
+                    </Typography>
+                  </Box>
+                </Paper>
+              </Link>
+            </Grid>
 
+            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+              <Link to="/user-profile/pets" style={{ textDecoration: 'none' }}>
+                <Paper
+                  sx={{
+                    p: 2,
 
-  <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-    <Link to="/user-profile/pets" style={{ textDecoration: 'none' }}>
-      <Paper sx={{
-            p: 2,
-            
-            borderRadius: 3,
-            background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
-            // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease-in-out',
-            '&:hover': {
-              // boxShadow: '0px 6px 20px rgba(0,0,0,0.1)',
-              // transform: 'scale(1.01)',
-              background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
-            },
-          }}>
-        <Box display="flex" alignItems="center">
-             <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
-          <PetsIcon fontSize="large"  />
-          </IconButton>
-          <Typography variant="body1" color="textSecondary"   sx={{  ml: 2,  }}>Mani mājdzīvnieki</Typography>
-        </Box>
-      </Paper>
-    </Link>
-  </Grid>
+                    borderRadius: 3,
+                    background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+                    // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease-in-out',
+                    '&:hover': {
+                      // boxShadow: '0px 6px 20px rgba(0,0,0,0.1)',
+                      // transform: 'scale(1.01)',
+                      background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
+                    },
+                  }}
+                >
+                  <Box display="flex" alignItems="center">
+                    <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                      <PetsIcon fontSize="large" />
+                    </IconButton>
+                    <Typography variant="body1" color="textSecondary" sx={{ ml: 2 }}>
+                      Mani mājdzīvnieki
+                    </Typography>
+                  </Box>
+                </Paper>
+              </Link>
+            </Grid>
 
-  <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-    <Link to="/user-profile/services" style={{ textDecoration: 'none' }}>
-      <Paper sx={{
-            p: 2,
-            
-            borderRadius: 3,
-            background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
-            // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease-in-out',
-            '&:hover': {
-              // boxShadow: '0px 6px 20px rgba(0,0,0,0.1)',
-              // transform: 'scale(1.01)',
-              background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
-            },
-          }}>
-        <Box display="flex" alignItems="center">
-            <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
-          <WorkIcon fontSize="large"  />
-          </IconButton>
-          <Typography variant="body1" color="textSecondary"  sx={{  ml: 2,  }}>Mani pakalpojumi</Typography>
-        </Box>
-      </Paper>
-    </Link>
-  </Grid>
+            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+              <Link to="/user-profile/services" style={{ textDecoration: 'none' }}>
+                <Paper
+                  sx={{
+                    p: 2,
 
-  <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-    <Link to="/user-profile/bookmarks/services" style={{ textDecoration: 'none' }}>
-      <Paper sx={{
-            p: 2,
-            
-            borderRadius: 3,
-            background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
-            // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease-in-out',
-            '&:hover': {
-              // boxShadow: '0px 6px 20px rgba(0,0,0,0.1)',
-              // transform: 'scale(1.01)',
-              background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
-            },
-          }}>
-        <Box display="flex" alignItems="center">
-              <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
-          <FavoriteIcon fontSize="large"  />
-          </IconButton>
-          <Typography variant="body1" color="textSecondary"   sx={{  ml: 2,  }}>Saglabātie pakalpojumi</Typography>
-        </Box>
-      </Paper>
-    </Link>
-  </Grid>
+                    borderRadius: 3,
+                    background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+                    // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease-in-out',
+                    '&:hover': {
+                      // boxShadow: '0px 6px 20px rgba(0,0,0,0.1)',
+                      // transform: 'scale(1.01)',
+                      background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
+                    },
+                  }}
+                >
+                  <Box display="flex" alignItems="center">
+                    <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                      <WorkIcon fontSize="large" />
+                    </IconButton>
+                    <Typography variant="body1" color="textSecondary" sx={{ ml: 2 }}>
+                      Mani pakalpojumi
+                    </Typography>
+                  </Box>
+                </Paper>
+              </Link>
+            </Grid>
 
-  {/* <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+              <Link to="/user-profile/bookmarks/services" style={{ textDecoration: 'none' }}>
+                <Paper
+                  sx={{
+                    p: 2,
+
+                    borderRadius: 3,
+                    background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+                    // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease-in-out',
+                    '&:hover': {
+                      // boxShadow: '0px 6px 20px rgba(0,0,0,0.1)',
+                      // transform: 'scale(1.01)',
+                      background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
+                    },
+                  }}
+                >
+                  <Box display="flex" alignItems="center">
+                    <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                      <FavoriteIcon fontSize="large" />
+                    </IconButton>
+                    <Typography variant="body1" color="textSecondary" sx={{ ml: 2 }}>
+                      Saglabātie pakalpojumi
+                    </Typography>
+                  </Box>
+                </Paper>
+              </Link>
+            </Grid>
+
+            {/* <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
     <Link to="/user-profile/notifications" style={{ textDecoration: 'none' }}>
       <Paper sx={{ padding: '1rem', backgroundColor: '#f7f9fd' }}>
         <Box display="flex" alignItems="center">
@@ -272,30 +303,34 @@ const handleLogout = () => {
     </Link>
   </Grid> */}
 
-  <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-    <Link to="/user-profile/settings" style={{ textDecoration: 'none' }}>
-      <Paper sx={{
-            p: 2,
-            borderRadius: 3,
-            background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease-in-out',
-            '&:hover': {
-              background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
-            },
-          }}>
-        <Box display="flex" alignItems="center">
-                 <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
-          <SettingsIcon fontSize="large"  />
-          </IconButton>
-          <Typography variant="body1" color="textSecondary"   sx={{  ml: 2,  }}>Iestatījumi</Typography>
-        </Box>
-      </Paper>
-    </Link>
-  </Grid>
-</Grid>
+            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+              <Link to="/user-profile/settings" style={{ textDecoration: 'none' }}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    borderRadius: 3,
+                    background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease-in-out',
+                    '&:hover': {
+                      background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
+                    },
+                  }}
+                >
+                  <Box display="flex" alignItems="center">
+                    <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                      <SettingsIcon fontSize="large" />
+                    </IconButton>
+                    <Typography variant="body1" color="textSecondary" sx={{ ml: 2 }}>
+                      Iestatījumi
+                    </Typography>
+                  </Box>
+                </Paper>
+              </Link>
+            </Grid>
+          </Grid>
 
-        {/* <Grid container>
+          {/* <Grid container>
         <div>
     <svg
           height="160%"
@@ -310,7 +345,7 @@ const handleLogout = () => {
         </svg>
     </div>
     </Grid> */}
-        {/* <Grid container spacing={2} sx={{ mt: 1, mb: 5 }} justifyContent="center">
+          {/* <Grid container spacing={2} sx={{ mt: 1, mb: 5 }} justifyContent="center">
           <Grid item xs={12}>
             <Box p={2} bgcolor="lightgray">
               <Grid container spacing={1} alignItems="center">
@@ -377,13 +412,13 @@ const handleLogout = () => {
           </Grid>
         </Grid> */}
 
-        {/* <Link to="/">
+          {/* <Link to="/">
           <Button onClick={handleLogout} variant="contained" sx={{ fontWeight: '400' }}>
             Logout
           </Button>
         </Link> */}
 
-        {/* <Box sx={{backgroundColor: "pink"}}>
+          {/* <Box sx={{backgroundColor: "pink"}}>
         <div>
           <Typography variant="body1" sx={{ fontWeight: '500' }} gutterBottom>
             Danger Zone
@@ -414,8 +449,8 @@ const handleLogout = () => {
         </div>
 
       </Box> */}
-      </Box>
-    </Grid>
+        </Box>
+      </Grid>
     </Container>
   );
 };

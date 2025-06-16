@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import {
-  Grid, Button, CircularProgress, Box, Container,
-  Alert, Pagination, Drawer, useTheme, useMediaQuery
+  Grid,
+  Button,
+  CircularProgress,
+  Box,
+  Container,
+  Alert,
+  Pagination,
+  Drawer,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -18,7 +26,12 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Separate component for the map section
 const MapSection = React.memo(({ pets, centerCoords }) => (
-  <Box sx={{ marginBottom: { xs: 'none', md: '1rem' }, justifyContent: 'flex-end' }}>
+  <Box
+    sx={{
+      marginBottom: { xs: 'none', md: '1rem' },
+      justifyContent: 'flex-end',
+    }}
+  >
     <LeafletClusterMap pets={pets} centerCoords={centerCoords} />
   </Box>
 ));
@@ -26,13 +39,7 @@ const MapSection = React.memo(({ pets, centerCoords }) => (
 // Separate component for the mobile filter button
 const MobileFilterButton = React.memo(({ onClick }) => (
   <Box py={2} sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: 'flex-end' }}>
-    <Button
-      variant="contained"
-      color="primary"
-      size="small"
-      onClick={onClick}
-      startIcon={<FilterListIcon />}
-    >
+    <Button variant="contained" color="primary" size="small" onClick={onClick} startIcon={<FilterListIcon />}>
       Filter
     </Button>
   </Box>
@@ -43,12 +50,7 @@ const PetsGrid = React.memo(({ pets, filters, pagination, onPanToLocation }) => 
   <Grid container spacing={2}>
     {pets.map((pet) => (
       <Grid item xs={12} sm={6} md={4} lg={4} key={pet.id}>
-        <PetCard
-          pet={pet}
-          filters={filters}
-          pagination={pagination}
-          onPanToLocation={onPanToLocation}
-        />
+        <PetCard pet={pet} filters={filters} pagination={pagination} onPanToLocation={onPanToLocation} />
       </Grid>
     ))}
   </Grid>
@@ -61,58 +63,67 @@ const PetsPage = () => {
   const [pagination, setPagination] = useState({ page: 1, totalPages: 1 });
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [centerCoords, setCenterCoords] = useState(DEFAULT_CENTER_COORDS);
-  
+
   const location = useLocation();
   const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  
+
   const { queryParams, updateQueryParams } = useQueryParams();
 
   const handlePanToLocation = useCallback((lat, lng) => {
     setCenterCoords([lat, lng]);
   }, []);
 
-  const fetchPets = useCallback(async (params) => {
-    try {
-      setLoading(true);
-      setError(null);
+  const fetchPets = useCallback(
+    async (params) => {
+      try {
+        setLoading(true);
+        setError(null);
 
-      const queryString = new URLSearchParams(params).toString();
-      const newUrl = `${window.location.pathname}?${queryString}`;
-      navigate(newUrl, { replace: true });
+        const queryString = new URLSearchParams(params).toString();
+        const newUrl = `${window.location.pathname}?${queryString}`;
+        navigate(newUrl, { replace: true });
 
-      const response = await fetch(`${API_BASE_URL}/api/pets/?${queryString}`);
-      if (!response.ok) throw new Error('Failed to fetch pets');
+        const response = await fetch(`${API_BASE_URL}/api/pets/?${queryString}`);
+        if (!response.ok) throw new Error('Failed to fetch pets');
 
-      const data = await response.json();
-      setPets(data.results);
-      setPagination(prev => ({
-        ...prev,
-        totalPages: Math.ceil(data.count / ITEMS_PER_PAGE),
-      }));
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  }, [navigate]);
+        const data = await response.json();
+        setPets(data.results);
+        setPagination((prev) => ({
+          ...prev,
+          totalPages: Math.ceil(data.count / ITEMS_PER_PAGE),
+        }));
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [navigate]
+  );
 
   useEffect(() => {
     fetchPets(queryParams);
   }, [queryParams, fetchPets]);
 
-  const handlePaginationChange = useCallback((_, page) => {
-    updateQueryParams({ page });
-  }, [updateQueryParams]);
+  const handlePaginationChange = useCallback(
+    (_, page) => {
+      updateQueryParams({ page });
+    },
+    [updateQueryParams]
+  );
 
   const handleResetFilters = useCallback(() => {
     updateQueryParams({ page: 1 });
   }, [updateQueryParams]);
 
-  const handleFilterChange = useCallback((newFilters) => {
-    updateQueryParams({ ...newFilters, page: 1 });
-  }, [updateQueryParams]);
+  const handleFilterChange = useCallback(
+    (newFilters) => {
+      updateQueryParams({ ...newFilters, page: 1 });
+    },
+    [updateQueryParams]
+  );
 
   const renderContent = useMemo(() => {
     if (loading) {
@@ -133,12 +144,7 @@ const PetsPage = () => {
 
     return (
       <>
-        <PetsGrid
-          pets={pets}
-          filters={queryParams}
-          pagination={pagination}
-          onPanToLocation={handlePanToLocation}
-        />
+        <PetsGrid pets={pets} filters={queryParams} pagination={pagination} onPanToLocation={handlePanToLocation} />
         <Pagination
           color="primary"
           sx={{ mt: '2rem' }}
@@ -156,11 +162,7 @@ const PetsPage = () => {
         <Grid container spacing={3}>
           {!isMobile && (
             <Grid item xs={12} sm={12} md={3} lg={3}>
-              <Sidebar
-                filters={queryParams}
-                onFilterChange={handleFilterChange}
-                onReset={handleResetFilters}
-              />
+              <Sidebar filters={queryParams} onFilterChange={handleFilterChange} onReset={handleResetFilters} />
             </Grid>
           )}
 
@@ -168,17 +170,9 @@ const PetsPage = () => {
             <MapSection pets={pets} centerCoords={centerCoords} />
             <MobileFilterButton onClick={() => setDrawerOpen(true)} />
 
-            <Drawer
-              anchor="left"
-              open={drawerOpen}
-              onClose={() => setDrawerOpen(false)}
-            >
+            <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
               <Box sx={{ width: 300, p: 2 }}>
-                <Sidebar
-                  filters={queryParams}
-                  onFilterChange={handleFilterChange}
-                  onReset={handleResetFilters}
-                />
+                <Sidebar filters={queryParams} onFilterChange={handleFilterChange} onReset={handleResetFilters} />
               </Box>
             </Drawer>
 

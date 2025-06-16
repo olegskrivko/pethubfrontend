@@ -71,40 +71,40 @@ const CookieConsent = ({ onAccept, onDecline }) => {
     <StyledCookieConsent>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <CookieIcon src={cookieIcon} alt="Cookie Icon" />
-        <Typography variant="body2" sx={{ 
-          fontSize: '14px',
-          lineHeight: 1.5,
-          '& a': {
-            color: '#fff',
-            textDecoration: 'underline',
-            '&:hover': {
-              color: '#21ABCD',
+        <Typography
+          variant="body2"
+          sx={{
+            fontSize: '14px',
+            lineHeight: 1.5,
+            '& a': {
+              color: '#fff',
+              textDecoration: 'underline',
+              '&:hover': {
+                color: '#21ABCD',
+              },
             },
-          },
-        }}>
+          }}
+        >
           We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.{' '}
-          <Link href="/policies" sx={{ 
-            color: 'inherit',
-            textDecoration: 'underline',
-            '&:hover': {
-              color: '#21ABCD',
-            },
-          }}>
+          <Link
+            href="/policies"
+            sx={{
+              color: 'inherit',
+              textDecoration: 'underline',
+              '&:hover': {
+                color: '#21ABCD',
+              },
+            }}
+          >
             Learn more
           </Link>
         </Typography>
       </Box>
       <ButtonGroup>
-        <StyledButton
-          variant="outlined"
-          onClick={onDecline}
-        >
+        <StyledButton variant="outlined" onClick={onDecline}>
           Decline
         </StyledButton>
-        <StyledButton
-          variant="contained"
-          onClick={onAccept}
-        >
+        <StyledButton variant="contained" onClick={onAccept}>
           Accept
         </StyledButton>
       </ButtonGroup>
@@ -112,4 +112,4 @@ const CookieConsent = ({ onAccept, onDecline }) => {
   );
 };
 
-export default CookieConsent; 
+export default CookieConsent;

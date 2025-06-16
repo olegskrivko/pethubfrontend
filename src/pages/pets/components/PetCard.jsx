@@ -39,17 +39,14 @@ const PetCard = ({ pet, onPanToLocation }) => {
 
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(toRadians(lat1)) *
-        Math.cos(toRadians(lat2)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
+      Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distance = R * c; // Distance in kilometers
     return distance.toFixed(2); // Round to two decimal places
   };
 
-    const handleLocationClick = () => {
+  const handleLocationClick = () => {
     console.log('Pet coords from pet card:', petLatitude, petLongitude);
     onPanToLocation(petLatitude, petLongitude);
   };
@@ -61,19 +58,14 @@ const PetCard = ({ pet, onPanToLocation }) => {
     <Card>
       <Link to={petDetailUrl} style={{ textDecoration: 'none', color: 'inherit' }}>
         <Box position="relative">
-          <CardMedia
-            component="img"
-            src={pet.pet_image_1}
-            alt=""
-            sx={{ width: '100%', height: 'auto' }}
-          />
+          <CardMedia component="img" src={pet.pet_image_1} alt="" sx={{ width: '100%', height: 'auto' }} />
           <Chip
             label={pet.status_display}
             // size="small"
             variant="contained"
             sx={{
               // backgroundColor: 'rgba(0, 0, 0, 0.6)',
-               backgroundColor: 'rgba(0, 179, 164, 0.6)' ,
+              backgroundColor: 'rgba(0, 179, 164, 0.6)',
 
               color: 'white',
               position: 'absolute',
@@ -84,15 +76,14 @@ const PetCard = ({ pet, onPanToLocation }) => {
           />
         </Box>
       </Link>
-      <CardActions disableSpacing style={{ justifyContent: 'start',  }}>
-        <Box style={{ display: 'flex', alignItems: 'center', color: '#343a40',}}>
-           <IconButton onClick={handleLocationClick} color="primary" style={{ backgroundColor: '#f7f9fd' }}>
-    <LocationOnIcon />
-  </IconButton>
-  <Typography variant="body1" style={{ marginLeft: '4px' }}>
-    {distance !== null ? `${distance} km` : 'Calculating...'}
-  </Typography>
-          
+      <CardActions disableSpacing style={{ justifyContent: 'start' }}>
+        <Box style={{ display: 'flex', alignItems: 'center', color: '#343a40' }}>
+          <IconButton onClick={handleLocationClick} color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+            <LocationOnIcon />
+          </IconButton>
+          <Typography variant="body1" style={{ marginLeft: '4px' }}>
+            {distance !== null ? `${distance} km` : 'Calculating...'}
+          </Typography>
         </Box>
       </CardActions>
     </Card>

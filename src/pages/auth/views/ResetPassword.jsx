@@ -1,54 +1,61 @@
-import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Container, Typography, TextField, Button, Box } from "@mui/material";
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; 
+import React, { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Container, Typography, TextField, Button, Box } from '@mui/material';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const ResetPassword = () => {
-  const { token } = useParams(); // ✅ Get token from URL params
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
+  const { token } = useParams();
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
 
-    // 🔥 Handle case when token is missing
     if (!token) {
-      setError("Invalid reset link.");
+      setError('Invalid reset link.');
       return;
     }
 
-    // 🔥 Ensure passwords match before sending request
     if (password !== confirmPassword) {
-      setError("Passwords do not match.");
+      setError('Passwords do not match.');
       return;
     }
 
     try {
       const response = await fetch(`${API_BASE_URL}/api/auth/reset-password/${token}/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        setMessage("Password reset successfully! Redirecting to login...");
-        setTimeout(() => navigate("/login"), 3000); // ✅ Redirect after 3 seconds
+        setMessage('Password reset successfully! Redirecting to login...');
+        setTimeout(() => navigate('/login'), 3000);
       } else {
-        setError(data.error || "Something went wrong.");
+        setError(data.error || 'Something went wrong.');
       }
     } catch (err) {
-      setError("An error occurred. Please try again.");
+      setError('An error occurred. Please try again.');
     }
   };
 
   return (
     <Container maxWidth="xs">
-      <Box sx={{ marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center" }}>
-        <Typography component="h1" variant="h5">Reset Password</Typography>
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography component="h1" variant="h5">
+          Reset Password
+        </Typography>
         {message && <Typography color="success.main">{message}</Typography>}
         {error && <Typography color="error.main">{error}</Typography>}
         <Box component="form" onSubmit={handleResetPassword} sx={{ mt: 1 }}>

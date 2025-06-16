@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 import {
   Box,
   Grid,
@@ -104,108 +104,116 @@ const PetTraining = () => {
 
   return (
     <>
-    {/* <Helmet>
-  <title>Virtuālās mājdzīvnieku apmācības nodarbības</title>
-  <meta
-    name="description"
-    content="Apgūsti mājdzīvnieku apmācību ar video pamācībām un svarīgiem padomiem no ekspertiem. Uzlabo sava mājdzīvnieka uzvedību pozitīvā un jautrā veidā."
-  />
-  <meta
-    name="keywords"
-    content="mājdzīvnieku apmācība, suņu apmācība, kaķu apmācība, mājdzīvnieku uzvedība, pozitīva apmācība, mājdzīvnieku padomi, video pamācības, dzīvnieku uzvedība, suņu komandas, mājdzīvnieku socializācija"
-  />
+      <Helmet>
+        <title>Virtuālās mājdzīvnieku apmācības nodarbības</title>
+        <meta
+          name="description"
+          content="Apgūsti mājdzīvnieku apmācību ar video pamācībām un svarīgiem padomiem no ekspertiem. Uzlabo sava mājdzīvnieka uzvedību pozitīvā un jautrā veidā."
+        />
+        <meta
+          name="keywords"
+          content="mājdzīvnieku apmācība, suņu apmācība, kaķu apmācība, mājdzīvnieku uzvedība, pozitīva apmācība, mājdzīvnieku padomi, video pamācības, dzīvnieku uzvedība, suņu komandas, mājdzīvnieku socializācija"
+        />
         <meta property="og:title" content="Virtuālās mājdzīvnieku apmācības nodarbības" />
-      <meta property="og:description" content="Apgūsti mājdzīvnieku apmācību ar video pamācībām un svarīgiem padomiem no ekspertiem. Uzlabo sava mājdzīvnieka uzvedību pozitīvā un jautrā veidā." />
-      <meta property="og:type" content="website" />
-</Helmet> */}
+        <meta
+          property="og:description"
+          content="Apgūsti mājdzīvnieku apmācību ar video pamācībām un svarīgiem padomiem no ekspertiem. Uzlabo sava mājdzīvnieka uzvedību pozitīvā un jautrā veidā."
+        />
+        <meta property="og:type" content="website" />
+      </Helmet>
 
-      <Container component="main" maxWidth="lg" > 
-            <Typography variant="h4" align="center" sx={{ mb: 5, fontWeight: 800,
-                                         
-                                                
-                                                        
-                                                        background: "linear-gradient(60deg, #16477c 0%, #00b5ad 100%)",
-                                                        WebkitBackgroundClip: "text",
-                                              WebkitTextFillColor: "transparent"
-                                             }}>Virtuālās mājdzīvnieku apmācības nodarbības</Typography>
-      {/* Intro Text */}
-      <Grid container spacing={3}>
-        <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-          <Typography variant="body1" sx={{ mb: 3 }} gutterBottom>
-            Laipni lūdzam mūsu visaptverošajā ceļvedī par mājdzīvnieku apmācību ar rūpīgi atlasītām video pamācībām! Šeit jūs atradīsiet noderīgus resursus, lai apgūtu svarīgas prasmes efektīvai mājdzīvnieka uzvedības veidošanai.
-          </Typography>
-          <Typography variant="body1" sx={{ mb: 3 }} gutterBottom>
-            Neatkarīgi no tā, vai esat jauns mājdzīvnieka īpašnieks vai vēlaties papildināt esošās zināšanas, šie video aptver visu — no pamata komandām līdz sarežģītākām apmācības metodēm.
-          </Typography>
-          <Typography variant="body1" sx={{ mb: 3 }} gutterBottom>
-            Iedziļinieties šajās pamācībās un sāciet vērtīgu ceļojumu, lai labāk izprastu un attīstītu sava mājdzīvnieka uzvedību.
-          </Typography>
-        </Grid>
-      </Grid>
+      <Container component="main" maxWidth="lg">
+        <Typography
+          variant="h4"
+          align="center"
+          sx={{
+            mb: 5,
+            fontWeight: 800,
 
-      <Grid container spacing={4}>
-        {videos.map((video, index) => (
-          <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4 }} key={index}>
-            <Card sx={{ boxShadow: 4, borderRadius: 2 }}>
-              <CardMedia component="div" sx={{ position: 'relative', pt: '56.25%' }}>
-                <iframe
-                  src={video.src}
-                  title={video.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    border: 0,
-                  }}
-                />
-              </CardMedia>
-              <CardContent>
-                <Typography variant="h6">{video.title}</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Avots: RSPCA South Australia
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-
-
-      <Typography variant="h4" align="center" sx={{ fontWeight: 500, color: "#16477c",mt: 8, mb: 4 }}>
-             Būtiski padomi efektīvai mājdzīvnieku apmācībai
+            background: 'linear-gradient(60deg, #16477c 0%, #00b5ad 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}
+        >
+          Virtuālās mājdzīvnieku apmācības nodarbības
         </Typography>
-      <Grid container spacing={3}>
-        {trainingTips.map((tip, index) => (
-          <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} key={index}>
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls={`panel-${index}-content`}
-                id={`panel-${index}-header`}
-              >
-                <Box display="flex" alignItems="center">
-                  <IconButton
-                    color="primary"
-                    size="small"
-                    sx={{ mr: 2, backgroundColor: '#f7f9fd' }}
-                  >
-                    <TipsAndUpdatesIcon />
-                  </IconButton>
-                  <Typography variant="h6">{tip.title}</Typography>
-                </Box>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography variant="body1">{tip.description}</Typography>
-              </AccordionDetails>
-            </Accordion>
+
+        <Grid container spacing={3}>
+          <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+            <Typography variant="body1" sx={{ mb: 3 }} gutterBottom>
+              Laipni lūdzam mūsu visaptverošajā ceļvedī par mājdzīvnieku apmācību ar rūpīgi atlasītām video pamācībām!
+              Šeit jūs atradīsiet noderīgus resursus, lai apgūtu svarīgas prasmes efektīvai mājdzīvnieka uzvedības
+              veidošanai.
+            </Typography>
+            <Typography variant="body1" sx={{ mb: 3 }} gutterBottom>
+              Neatkarīgi no tā, vai esat jauns mājdzīvnieka īpašnieks vai vēlaties papildināt esošās zināšanas, šie
+              video aptver visu — no pamata komandām līdz sarežģītākām apmācības metodēm.
+            </Typography>
+            <Typography variant="body1" sx={{ mb: 3 }} gutterBottom>
+              Iedziļinieties šajās pamācībās un sāciet vērtīgu ceļojumu, lai labāk izprastu un attīstītu sava
+              mājdzīvnieka uzvedību.
+            </Typography>
           </Grid>
-        ))}
-      </Grid>
-    </Container>
+        </Grid>
+
+        <Grid container spacing={4}>
+          {videos.map((video, index) => (
+            <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4 }} key={index}>
+              <Card sx={{ boxShadow: 4, borderRadius: 2 }}>
+                <CardMedia component="div" sx={{ position: 'relative', pt: '56.25%' }}>
+                  <iframe
+                    src={video.src}
+                    title={video.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      border: 0,
+                    }}
+                  />
+                </CardMedia>
+                <CardContent>
+                  <Typography variant="h6">{video.title}</Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Avots: RSPCA South Australia
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+
+        <Typography variant="h4" align="center" sx={{ fontWeight: 500, color: '#16477c', mt: 8, mb: 4 }}>
+          Būtiski padomi efektīvai mājdzīvnieku apmācībai
+        </Typography>
+        <Grid container spacing={3}>
+          {trainingTips.map((tip, index) => (
+            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} key={index}>
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls={`panel-${index}-content`}
+                  id={`panel-${index}-header`}
+                >
+                  <Box display="flex" alignItems="center">
+                    <IconButton color="primary" size="small" sx={{ mr: 2, backgroundColor: '#f7f9fd' }}>
+                      <TipsAndUpdatesIcon />
+                    </IconButton>
+                    <Typography variant="h6">{tip.title}</Typography>
+                  </Box>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography variant="body1">{tip.description}</Typography>
+                </AccordionDetails>
+              </Accordion>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
     </>
   );
 };
