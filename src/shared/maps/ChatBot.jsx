@@ -1,11 +1,9 @@
 // // // import React, { useState } from 'react';
 // // // import { Box, Chip, Button, Typography, Paper, Avatar, TextField } from '@mui/material';
-
 // // // const ChatBot = () => {
 // // //   const [chatOpen, setChatOpen] = useState(false);
 // // //   const [messages, setMessages] = useState([]);
 // // //   const [inputText, setInputText] = useState('');
-
 // // //   // Predefined questions (chips)
 // // //   const predefinedQuestions = [
 // // //     'What pet to choose?',
@@ -14,7 +12,6 @@
 // // //     'How can I adopt a pet?',
 // // //     'How to care for my pet?',
 // // //   ];
-
 // // //   // Handle chip click (add a message to the chat)
 // // //   const handleChipClick = (question) => {
 // // //     setMessages((prevMessages) => [
@@ -22,7 +19,6 @@
 // // //       { text: question, isUser: false },
 // // //     ]);
 // // //   };
-
 // // //   // Handle message send (user input)
 // // //   const handleMessageSend = () => {
 // // //     if (inputText.trim()) {
@@ -33,10 +29,8 @@
 // // //       setInputText('');
 // // //     }
 // // //   };
-
 // // //   // Toggle chat visibility
 // // //   const toggleChat = () => setChatOpen(!chatOpen);
-
 // // //   return (
 // // //     <Box>
 // // //       {/* Chatbot icon to open chat */}
@@ -65,7 +59,6 @@
 // // //           />
 // // //         </Button>
 // // //       )}
-
 // // //       {/* Chatbot UI when chat is open */}
 // // //       {chatOpen && (
 // // //         <Box
@@ -100,7 +93,6 @@
 // // //               Close
 // // //             </Button>
 // // //           </Box>
-
 // // //           <Box
 // // //             style={{
 // // //               padding: '10px',
@@ -142,7 +134,6 @@
 // // //                 </Paper>
 // // //               </Box>
 // // //             ))}
-
 // // //             {/* Predefined question chips */}
 // // //             <Box
 // // //               style={{
@@ -165,7 +156,6 @@
 // // //               ))}
 // // //             </Box>
 // // //           </Box>
-
 // // //           <Box
 // // //             style={{
 // // //               display: 'flex',
@@ -196,7 +186,6 @@
 // // //     </Box>
 // // //   );
 // // // };
-
 // // // export default ChatBot;
 // // // import React, { useState } from 'react';
 // // // import { Box, Chip, Button, Typography, Paper, Avatar, TextField } from '@mui/material';
@@ -206,7 +195,6 @@
 // // //   const [chatOpen, setChatOpen] = useState(false);
 // // //   const [messages, setMessages] = useState([]);
 // // //   const [inputText, setInputText] = useState('');
-
 // // //   // Predefined questions (chips)
 // // //   const predefinedQuestions = [
 // // //     'What pet to choose?',
@@ -215,7 +203,6 @@
 // // //     'How can I adopt a pet?',
 // // //     'How to care for my pet?',
 // // //   ];
-
 // // //   // Handle chip click (add a message to the chat)
 // // //   const handleChipClick = (question) => {
 // // //     setMessages((prevMessages) => [
@@ -224,7 +211,6 @@
 // // //     ]);
 // // //     sendMessageToBackend(question);
 // // //   };
-
 // // //   // Handle message send (user input)
 // // //   const handleMessageSend = async () => {
 // // //     if (inputText.trim()) {
@@ -236,12 +222,10 @@
 // // //       await sendMessageToBackend(inputText);
 // // //     }
 // // //   };
-
 // // //   // Send the message to the backend and get a response
 // // //   const sendMessageToBackend = async (message) => {
 // // //     try {
 // // //         const accessToken = localStorage.getItem("access_token");
-
 // // //         if (!accessToken) {
 // // //           console.error("No access token found");
 // // //           return;
@@ -254,9 +238,7 @@
 // // //         },
 // // //         body: JSON.stringify({ message }), // Send message to backend
 // // //       });
-
 // // //       const data = await response.json();
-
 // // //       if (data.reply) {
 // // //         setMessages((prevMessages) => [
 // // //           ...prevMessages,
@@ -272,10 +254,8 @@
 // // //       console.error('Error sending message to backend:', error);
 // // //     }
 // // //   };
-
 // // //   // Toggle chat visibility
 // // //   const toggleChat = () => setChatOpen(!chatOpen);
-
 // // //   return (
 // // //     <Box>
 // // //       {/* Chatbot icon to open chat */}
@@ -304,7 +284,6 @@
 // // //           />
 // // //         </Button>
 // // //       )}
-
 // // //       {/* Chatbot UI when chat is open */}
 // // //       {chatOpen && (
 // // //         <Box
@@ -339,7 +318,6 @@
 // // //               Close
 // // //             </Button>
 // // //           </Box>
-
 // // //           <Box
 // // //             style={{
 // // //               padding: '10px',
@@ -381,7 +359,6 @@
 // // //                 </Paper>
 // // //               </Box>
 // // //             ))}
-
 // // //             {/* Predefined question chips */}
 // // //             <Box
 // // //               style={{
@@ -404,7 +381,6 @@
 // // //               ))}
 // // //             </Box>
 // // //           </Box>
-
 // // //           <Box
 // // //             style={{
 // // //               display: 'flex',
@@ -435,19 +411,15 @@
 // // //     </Box>
 // // //   );
 // // // };
-
 // // // export default ChatBot;
 // // // import React, { useState } from 'react';
 // // // import { Box, Chip, Button, Typography, Paper, Avatar, TextField } from '@mui/material';
 // // // import chatlogo from "../pages/images/avatars/avatars/Dog.svg"
-
 // // // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
 // // // const ChatBot = () => {
 // // //   const [chatOpen, setChatOpen] = useState(false);
 // // //   const [messages, setMessages] = useState([]);
 // // //   const [inputText, setInputText] = useState('');
-
 // // //   // Predefined questions (chips)
 // // //   const predefinedQuestions = [
 // // //     'What pet to choose?',
@@ -456,7 +428,6 @@
 // // //     'How can I adopt a pet?',
 // // //     'How to care for my pet?',
 // // //   ];
-
 // // //   // Handle chip click (add a message to the chat)
 // // //   const handleChipClick = (question) => {
 // // //     setMessages((prevMessages) => [
@@ -465,7 +436,6 @@
 // // //     ]);
 // // //     sendMessageToBackend(question);
 // // //   };
-
 // // //   // Handle message send (user input)
 // // //   const handleMessageSend = async () => {
 // // //     if (inputText.trim()) {
@@ -477,20 +447,16 @@
 // // //       await sendMessageToBackend(inputText);
 // // //     }
 // // //   };
-
 // // //   // Send the message to the backend and get a response
 // // //   const sendMessageToBackend = async (message) => {
 // // //     try {
 // // //       const accessToken = localStorage.getItem("access_token");
-
 // // //       if (!accessToken) {
 // // //         console.error("No access token found");
 // // //         return;
 // // //       }
-
 // // //       // Logging request for debugging
 // // //       console.log("Sending message to backend:", message);
-
 // // //       const response = await fetch(`${API_BASE_URL}/chat/`, {
 // // //         method: 'POST',
 // // //         headers: {
@@ -499,12 +465,9 @@
 // // //         },
 // // //         body: JSON.stringify({ message }), // Send message to backend
 // // //       });
-
 // // //       const data = await response.json();
-
 // // //       // Logging response for debugging
 // // //       console.log("Received response from backend:", data);
-
 // // //       if (data.response) {
 // // //         // If reply exists in the response, add it to the messages
 // // //         setMessages((prevMessages) => [
@@ -522,10 +485,8 @@
 // // //       console.error('Error sending message to backend:', error);
 // // //     }
 // // //   };
-
 // // //   // Toggle chat visibility
 // // //   const toggleChat = () => setChatOpen(!chatOpen);
-
 // // //   return (
 // // //     <Box>
 // // //       {/* Chatbot icon to open chat */}
@@ -554,7 +515,6 @@
 // // //           />
 // // //         </Button>
 // // //       )}
-
 // // //       {/* Chatbot UI when chat is open */}
 // // //       {chatOpen && (
 // // //         <Box
@@ -589,7 +549,6 @@
 // // //               Close
 // // //             </Button>
 // // //           </Box>
-
 // // //           <Box
 // // //             style={{
 // // //               padding: '10px',
@@ -631,7 +590,6 @@
 // // //                 </Paper>
 // // //               </Box>
 // // //             ))}
-
 // // //             {/* Predefined question chips */}
 // // //             <Box
 // // //               style={{
@@ -654,7 +612,6 @@
 // // //               ))}
 // // //             </Box>
 // // //           </Box>
-
 // // //           <Box
 // // //             style={{
 // // //               display: 'flex',
@@ -685,31 +642,25 @@
 // // //     </Box>
 // // //   );
 // // // };
-
 // // // export default ChatBot;
 // // // import React, { useState, useEffect } from 'react';
 // // // import { Box, Chip, Button, Typography, Paper, Avatar, TextField } from '@mui/material';
 // // // import dogAvatar from "../pages/images/avatars/avatars/Dog.svg";
 // // // import catAvatar from "../pages/images/avatars/avatars/Cat.svg";
-
 // // // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
 // // // const ChatBot = () => {
 // // //   const [chatOpen, setChatOpen] = useState(false);
 // // //   const [messages, setMessages] = useState([]);
 // // //   const [inputText, setInputText] = useState('');
 // // //   const [petType] = useState(Math.random() > 0.5 ? 'dog' : 'cat'); // Random on load
 // // //   const [showSpeechBubble, setShowSpeechBubble] = useState(true); // Speech bubble toggle
-
 // // //   const avatar = petType === 'dog' ? dogAvatar : catAvatar;
-
 // // //   const predefinedQuestions = [
 // // //     'Kā pareizi izvēlēties mājdzīvnieku?',
 // // //     'Pastāsti par haskija šķirni',
 // // //     'Ko darīt, ja esmu pazaudējis savu mājdzīvnieku?',
 // // //     'Kā pareizi rūpēties par mājdzīvnieku?',
 // // //   ];
-
 // // //   const handleChipClick = (question) => {
 // // //     setMessages((prevMessages) => [
 // // //       ...prevMessages,
@@ -717,7 +668,6 @@
 // // //     ]);
 // // //     sendMessageToBackend(question);
 // // //   };
-
 // // //   const handleMessageSend = async () => {
 // // //     if (inputText.trim()) {
 // // //       setMessages((prevMessages) => [
@@ -728,7 +678,6 @@
 // // //       await sendMessageToBackend(inputText);
 // // //     }
 // // //   };
-
 // // //   const sendMessageToBackend = async (message) => {
 // // //     try {
 // // //       const accessToken = localStorage.getItem("access_token");
@@ -736,7 +685,6 @@
 // // //         console.error("No access token found");
 // // //         return;
 // // //       }
-
 // // //       const response = await fetch(`${API_BASE_URL}/chat/`, {
 // // //         method: 'POST',
 // // //         headers: {
@@ -745,7 +693,6 @@
 // // //         },
 // // //         body: JSON.stringify({ message }),
 // // //       });
-
 // // //       const data = await response.json();
 // // //       if (data.response) {
 // // //         setMessages((prevMessages) => [
@@ -762,9 +709,7 @@
 // // //       console.error('Error sending message to backend:', error);
 // // //     }
 // // //   };
-
 // // //   const toggleChat = () => setChatOpen(!chatOpen);
-
 // // //   useEffect(() => {
 // // //     // Add shake keyframe
 // // //     const style = document.createElement('style');
@@ -776,15 +721,12 @@
 // // //       }
 // // //     `;
 // // //     document.head.appendChild(style);
-
 // // //     // Auto-hide speech bubble
 // // //     const timer = setTimeout(() => {
 // // //       setShowSpeechBubble(false);
 // // //     }, 4000); // Hide after 4 seconds
-
 // // //     return () => clearTimeout(timer);
 // // //   }, []);
-
 // // //   return (
 // // //     <Box>
 // // //       {/* Chat bubble speech */}
@@ -807,7 +749,6 @@
 // // //           {petType === 'dog' ? 'Woof!' : 'Meow!'}
 // // //         </Typography>
 // // //       )}
-
 // // //       {/* Chatbot toggle button */}
 // // //       {!chatOpen && (
 // // //         <Button
@@ -832,7 +773,6 @@
 // // //           <Avatar src={avatar} alt="Pet Avatar" />
 // // //         </Button>
 // // //       )}
-
 // // //       {/* Chat window */}
 // // //       {chatOpen && (
 // // //         <Box
@@ -863,7 +803,6 @@
 // // //             }}
 // // //           > <Box
 // // //           style={{
-
 // // //             display: 'flex',
 // // //             alignItems: 'center',
 // // //             justifyContent: 'space-between',
@@ -875,7 +814,6 @@
 // // //               Aizvērt
 // // //             </Button>
 // // //           </Box>
-
 // // //           <Box
 // // //             style={{
 // // //               padding: '10px',
@@ -916,7 +854,6 @@
 // // //                 </Paper>
 // // //               </Box>
 // // //             ))}
-
 // // //             <Box
 // // //               style={{
 // // //                 display: 'flex',
@@ -936,7 +873,6 @@
 // // //               ))}
 // // //             </Box>
 // // //           </Box>
-
 // // //           <Box
 // // //             style={{
 // // //               display: 'flex',
@@ -967,7 +903,6 @@
 // // //     </Box>
 // // //   );
 // // // };
-
 // // // export default ChatBot;
 // // import React, { useState, useEffect } from 'react';
 // // import {
@@ -975,9 +910,7 @@
 // // } from '@mui/material';
 // // import dogAvatar from "../pages/images/avatars/avatars/Dog.svg";
 // // import catAvatar from "../pages/images/avatars/avatars/Cat.svg";
-
 // // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
 // // const ChatBot = () => {
 // //   const [chatOpen, setChatOpen] = useState(false);
 // //   const [messages, setMessages] = useState([]);
@@ -985,22 +918,18 @@
 // //   const [petType] = useState(Math.random() > 0.5 ? 'dog' : 'cat');
 // //   const [showSpeechBubble, setShowSpeechBubble] = useState(true);
 // //   const [loading, setLoading] = useState(false); // NEW
-
 // //   const avatar = petType === 'dog' ? dogAvatar : catAvatar;
-
 // //   const predefinedQuestions = [
 // //     'Kā pareizi izvēlēties mājdzīvnieku?',
 // //     'Pastāsti par haskija šķirni',
 // //     'Ko darīt, ja esmu pazaudējis savu mājdzīvnieku?',
 // //     'Kā pareizi rūpēties par mājdzīvnieku?',
 // //   ];
-
 // //   const handleChipClick = (question) => {
 // //     if (loading) return; // Prevent sending if waiting
 // //     setMessages((prev) => [...prev, { text: question, isUser: true }]);
 // //     sendMessageToBackend(question);
 // //   };
-
 // //   const handleMessageSend = async () => {
 // //     if (inputText.trim() && !loading) {
 // //       setMessages((prev) => [...prev, { text: inputText, isUser: true }]);
@@ -1009,7 +938,6 @@
 // //       await sendMessageToBackend(messageToSend);
 // //     }
 // //   };
-
 // //   const sendMessageToBackend = async (message) => {
 // //     try {
 // //       setLoading(true); // Start loading
@@ -1019,7 +947,6 @@
 // //         setLoading(false);
 // //         return;
 // //       }
-
 // //       const response = await fetch(`${API_BASE_URL}/chat/`, {
 // //         method: 'POST',
 // //         headers: {
@@ -1028,7 +955,6 @@
 // //         },
 // //         body: JSON.stringify({ message }),
 // //       });
-
 // //       const data = await response.json();
 // //       setMessages((prev) => [
 // //         ...prev,
@@ -1043,9 +969,7 @@
 // //       setLoading(false); // End loading
 // //     }
 // //   };
-
 // //   const toggleChat = () => setChatOpen(!chatOpen);
-
 // //   useEffect(() => {
 // //     const style = document.createElement('style');
 // //     style.innerHTML = `
@@ -1056,14 +980,11 @@
 // //       }
 // //     `;
 // //     document.head.appendChild(style);
-
 // //     const timer = setTimeout(() => {
 // //       setShowSpeechBubble(false);
 // //     }, 4000);
-
 // //     return () => clearTimeout(timer);
 // //   }, []);
-
 // //   return (
 // //     <Box>
 // //       {!chatOpen && showSpeechBubble && (
@@ -1084,7 +1005,6 @@
 // //           {petType === 'dog' ? 'Vau!' : 'Mjau!'}
 // //         </Typography>
 // //       )}
-
 // //       {!chatOpen && (
 // //         <Button
 // //           onClick={toggleChat}
@@ -1107,7 +1027,6 @@
 // //           <Avatar src={avatar} alt="Pet Avatar" />
 // //         </Button>
 // //       )}
-
 // //       {chatOpen && (
 // //         <Box
 // //           style={{
@@ -1144,7 +1063,6 @@
 // //               Aizvērt
 // //             </Button>
 // //           </Box>
-
 // //           <Box
 // //             style={{
 // //               padding: '10px',
@@ -1184,7 +1102,6 @@
 // //                 </Paper>
 // //               </Box>
 // //             ))}
-
 // //             <Box
 // //               style={{
 // //                 display: 'flex',
@@ -1205,7 +1122,6 @@
 // //               ))}
 // //             </Box>
 // //           </Box>
-
 // //           <Box
 // //             style={{
 // //               display: 'flex',
@@ -1238,12 +1154,9 @@
 // //     </Box>
 // //   );
 // // };
-
 // // export default ChatBot;
-
 // // import React from 'react';
 // // import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-
 // // const App = () => {
 // //   return (
 // //     <DotLottieReact
@@ -1253,7 +1166,6 @@
 // //     />
 // //   );
 // // };
-
 // import React, { useState, useEffect } from 'react';
 // import {
 //   Box, Chip, Button, Typography, Paper, Avatar, TextField, CircularProgress
@@ -1262,15 +1174,11 @@
 // import SendIcon from '@mui/icons-material/Send';
 // import FullscreenIcon from '@mui/icons-material/Fullscreen';
 // import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
-
 // // import dogAvatar from "../pages/images/avatars/avatars/Dog.svg";
 // // import catAvatar from "../pages/images/avatars/avatars/Cat.svg";
-
 // import catAvatar from "../pages/images/avatars/avatars/Animation-1747321325950.gif";
 // import dogAvatar from "../pages/images/avatars/avatars/Animation-1747321325950.gif";
-
 // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
 // const ChatBot = () => {
 //   const [chatOpen, setChatOpen] = useState(false);
 //   const [messages, setMessages] = useState([]);
@@ -1279,21 +1187,17 @@
 //   const [showSpeechBubble, setShowSpeechBubble] = useState(true);
 //   const [loading, setLoading] = useState(false);
 //   const [isFullscreen, setIsFullscreen] = useState(false);
-
 //   const avatar = petType === 'dog' ? dogAvatar : catAvatar;
-
 //   const predefinedQuestions = [
 //     'Kā pareizi izvēlēties mājdzīvnieku?',
 //     'Ko darīt, ja esmu pazaudējis savu mājdzīvnieku?',
 //     'Kā pareizi rūpēties par mājdzīvnieku?',
 //   ];
-
 //   const handleChipClick = (question) => {
 //     if (loading) return;
 //     setMessages((prev) => [...prev, { text: question, isUser: true }]);
 //     sendMessageToBackend(question);
 //   };
-
 //   const handleMessageSend = async () => {
 //     if (inputText.trim() && !loading) {
 //       setMessages((prev) => [...prev, { text: inputText, isUser: true }]);
@@ -1302,7 +1206,6 @@
 //       await sendMessageToBackend(messageToSend);
 //     }
 //   };
-
 //   const sendMessageToBackend = async (message) => {
 //     try {
 //       setLoading(true);
@@ -1312,7 +1215,6 @@
 //         setLoading(false);
 //         return;
 //       }
-
 //       const response = await fetch(`${API_BASE_URL}/chat/`, {
 //         method: 'POST',
 //         headers: {
@@ -1321,7 +1223,6 @@
 //         },
 //         body: JSON.stringify({ message }),
 //       });
-
 //       const data = await response.json();
 //       setMessages((prev) => [
 //         ...prev,
@@ -1336,9 +1237,7 @@
 //       setLoading(false);
 //     }
 //   };
-
 //   const toggleChat = () => setChatOpen(!chatOpen);
-
 //   useEffect(() => {
 //     const style = document.createElement('style');
 //     style.innerHTML = `
@@ -1349,14 +1248,11 @@
 //       }
 //     `;
 //     document.head.appendChild(style);
-
 //     const timer = setTimeout(() => {
 //       setShowSpeechBubble(false);
 //     }, 4000);
-
 //     return () => clearTimeout(timer);
 //   }, []);
-
 //   return (
 //     <Box>
 //       {/* {!chatOpen && showSpeechBubble && (
@@ -1377,7 +1273,6 @@
 //           {petType === 'dog' ? 'Vau!' : 'Mjau!'}
 //         </Typography>
 //       )} */}
-
 //       {!chatOpen && showSpeechBubble && (
 //         <Typography
 //           variant="caption"
@@ -1396,7 +1291,6 @@
 //           Sveiki!
 //         </Typography>
 //       )}
-
 //       {!chatOpen && (
 //         <Button
 //           onClick={toggleChat}
@@ -1423,7 +1317,6 @@
 //           <Avatar src={avatar} alt="Pet Avatar" style={{width: '60px', height: "60px"}} />
 //         </Button>
 //       )}
-
 //       {chatOpen && (
 //         <Box
 //           style={{
@@ -1466,7 +1359,6 @@
 //               </Button>
 //             </Box>
 //           </Box>
-
 //           <Box
 //             style={{
 //               padding: '10px',
@@ -1506,7 +1398,6 @@
 //                 </Paper>
 //               </Box>
 //             ))}
-
 //             <Box
 //               style={{
 //                 display: 'flex',
@@ -1527,7 +1418,6 @@
 //               ))}
 //             </Box>
 //           </Box>
-
 //           <Box
 //             style={{
 //               display: 'flex',
@@ -1566,7 +1456,6 @@
 //     </Box>
 //   );
 // };
-
 // export default ChatBot;
 // // import React, { useState, useEffect } from 'react';
 // // import {
@@ -1576,14 +1465,11 @@
 // // import SendIcon from '@mui/icons-material/Send';
 // // import FullscreenIcon from '@mui/icons-material/Fullscreen';
 // // import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
-
 // // import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 // // import robotAnimation from '../pages/images/avatars/Animation-1747321325950.lottie'; // Update this path as needed
 // // //import robotAnimation from '../pages/images/avatars/Animation-1747323429445.lottie';
 // // //import robotAnimation from '../pages/images/avatars/Animation-1747323887708.lottie';
-
 // // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
 // // const ChatBot = () => {
 // //   const [chatOpen, setChatOpen] = useState(false);
 // //   const [messages, setMessages] = useState([]);
@@ -1591,20 +1477,16 @@
 // //   const [showSpeechBubble, setShowSpeechBubble] = useState(true);
 // //   const [loading, setLoading] = useState(false);
 // //   const [isFullscreen, setIsFullscreen] = useState(false);
-
 //   // const predefinedQuestions = [
 //   //   'Kā izvēlēties mājdzīvnieku?',
 //   //   'Pastāsti par haskija šķirni',
 //   //   'Ko darīt, ja pazūd dzīvnieks?',
-
 //   // ];
-
 // //   const handleChipClick = (question) => {
 // //     if (loading) return;
 // //     setMessages((prev) => [...prev, { text: question, isUser: true }]);
 // //     sendMessageToBackend(question);
 // //   };
-
 // //   const handleMessageSend = async () => {
 // //     if (inputText.trim() && !loading) {
 // //       setMessages((prev) => [...prev, { text: inputText, isUser: true }]);
@@ -1613,7 +1495,6 @@
 // //       await sendMessageToBackend(messageToSend);
 // //     }
 // //   };
-
 // //   const sendMessageToBackend = async (message) => {
 // //     try {
 // //       setLoading(true);
@@ -1623,7 +1504,6 @@
 // //         setLoading(false);
 // //         return;
 // //       }
-
 // //       const response = await fetch(`${API_BASE_URL}/chat/`, {
 // //         method: 'POST',
 // //         headers: {
@@ -1632,7 +1512,6 @@
 // //         },
 // //         body: JSON.stringify({ message }),
 // //       });
-
 // //       const data = await response.json();
 // //       setMessages((prev) => [
 // //         ...prev,
@@ -1647,9 +1526,7 @@
 // //       setLoading(false);
 // //     }
 // //   };
-
 // //   const toggleChat = () => setChatOpen(!chatOpen);
-
 // //   useEffect(() => {
 // //     const style = document.createElement('style');
 // //     style.innerHTML = `
@@ -1660,14 +1537,11 @@
 // //       }
 // //     `;
 // //     document.head.appendChild(style);
-
 // //     const timer = setTimeout(() => {
 // //       setShowSpeechBubble(false);
 // //     }, 4000);
-
 // //     return () => clearTimeout(timer);
 // //   }, []);
-
 // //   return (
 //     // <Box>
 //     //   {!chatOpen && showSpeechBubble && (
@@ -1688,7 +1562,6 @@
 //     //       Sveiki!
 //     //     </Typography>
 //     //   )}
-
 // //       {!chatOpen && (
 // //         <Button
 // //           onClick={toggleChat}
@@ -1699,7 +1572,6 @@
 // //             // backgroundColor: '#0EB9F0',
 // //             backgroundColor: 'transparent',
 // // boxShadow: 'none',
-
 // //             borderRadius: '50%',
 // //             width: '60px',
 // //             height: '60px',
@@ -1719,7 +1591,6 @@
 // //           />
 // //         </Button>
 // //       )}
-
 // //       {chatOpen && (
 // //         <Box
 // //           style={{
@@ -1742,7 +1613,6 @@
 // //               backgroundColor: '#0EB9F0',
 // // //               backgroundColor: 'transparent',
 // // // boxShadow: 'none',
-
 // //               color: '#fff',
 // //               padding: '10px',
 // //               display: 'flex',
@@ -1770,7 +1640,6 @@
 // //               </Button>
 // //             </Box>
 // //           </Box>
-
 // //           <Box
 // //             style={{
 // //               padding: '10px',
@@ -1813,7 +1682,6 @@
 // //                 </Paper>
 // //               </Box>
 // //             ))}
-
 // //             <Box
 // //               style={{
 // //                 display: 'flex',
@@ -1834,7 +1702,6 @@
 // //               ))}
 // //             </Box>
 // //           </Box>
-
 // //           <Box
 // //             style={{
 // //               display: 'flex',
@@ -1873,14 +1740,14 @@
 // //     </Box>
 // //   );
 // // };
-
 // // export default ChatBot;
-import React, { useState, useEffect } from 'react';
-import { Box, Chip, Button, Typography, Paper, Avatar, TextField, CircularProgress } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+
 import CloseIcon from '@mui/icons-material/Close';
-import SendIcon from '@mui/icons-material/Send';
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
+import SendIcon from '@mui/icons-material/Send';
+import { Avatar, Box, Button, Chip, CircularProgress, Paper, TextField, Typography } from '@mui/material';
 
 import catAvatar from '../pages/images/avatars/avatars/Animation-1747321325950.gif';
 import dogAvatar from '../pages/images/avatars/avatars/Animation-1747321325950.gif';

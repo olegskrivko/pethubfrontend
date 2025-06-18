@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Button, Container, Typography } from '@mui/material';
-import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import StepLocation from '../components/StepLocation';
-import StepCharacteristics from '../components/StepCharacteristics';
-import StepLostTime from '../components/StepLostTime';
-import StepImages from '../components/StepImages';
-import StepContact from '../components/StepContact';
-import StepAppearance from '../components/StepAppearance';
+import { Box, Button, Container, Typography } from '@mui/material';
+import axios from 'axios';
 
 import { getCurrentDate, getCurrentTime } from '../../../utils/formHelpers';
+import StepAppearance from '../components/StepAppearance';
+import StepCharacteristics from '../components/StepCharacteristics';
+import StepContact from '../components/StepContact';
+import StepImages from '../components/StepImages';
+import StepLocation from '../components/StepLocation';
+import StepLostTime from '../components/StepLostTime';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 

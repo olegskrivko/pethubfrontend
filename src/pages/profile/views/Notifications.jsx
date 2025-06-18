@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { TextField, Slider, Box, Button, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+
+import { Box, Button, Slider, TextField, Typography } from '@mui/material';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -49,7 +50,7 @@ const NotificationsPage = () => {
       const subscription = await registration.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(
-          'BOZTcqsdJXUbELTV3ax5lK3X3Wh4S33MuJAZ75MVWCxjtrcn7nVr2Xp-JPiPlVJCE9gqmLv23_PR_f-7uKgU8iU'
+          'BOZTcqsdJXUbELTV3ax5lK3X3Wh4S33MuJAZ75MVWCxjtrcn7nVr2Xp-JPiPlVJCE9gqmLv23_PR_f-7uKgU8iU',
         ),
       });
 
@@ -105,7 +106,7 @@ const NotificationsPage = () => {
         `${API_BASE_URL}/notifications/is_subscribed/?endpoint=${encodeURIComponent(existingSubscription.endpoint)}`,
         {
           headers: { Authorization: `Bearer ${accessToken}` },
-        }
+        },
       );
 
       const result = await response.json();

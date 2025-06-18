@@ -1,30 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { AddCircle, Delete } from '@mui/icons-material';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import CloseIcon from '@mui/icons-material/Close';
 import {
   Box,
+  Button,
   Card,
   CardContent,
-  TextField,
-  Typography,
-  Button,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Checkbox,
+  FormControl,
   FormControlLabel,
   Grid,
   IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
 } from '@mui/material';
-import { AddCircle, Delete } from '@mui/icons-material';
 import axios from 'axios';
-import CloseIcon from '@mui/icons-material/Close';
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+
 import {
-  SERVICE_CATEGORIES,
-  PROVIDER_TYPES,
-  PRICE_TYPE_CHOICES,
   PHONE_CODE_CHOICES,
+  PRICE_TYPE_CHOICES,
+  PROVIDER_TYPES,
+  SERVICE_CATEGORIES,
 } from '../../../constants/petOptions';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -204,7 +206,7 @@ export default function AddServicePage() {
             callback(resizedFile);
           },
           mimeType,
-          quality
+          quality,
         );
       };
       img.src = event.target.result;

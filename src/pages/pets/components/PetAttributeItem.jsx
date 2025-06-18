@@ -1,5 +1,5 @@
 // PetAttributeItem.jsx
-import { Box, Typography, IconButton } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 
 const PetAttributeItem = ({ icon, label, value, background = '#f7f9fd', isStatic = false }) => (
   <Box

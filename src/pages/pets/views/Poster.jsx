@@ -1,41 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-
-import {
-  Box,
-  Typography,
-  Grid,
-  Button,
-  CircularProgress,
-  TextField,
-  Input,
-  Stack,
-  Container,
-  IconButton,
-} from '@mui/material';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import React, { useEffect, useState } from 'react';
 import QRCode from 'react-qr-code';
-import html2PDF from 'html2pdf.js';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import PersonIcon from '@mui/icons-material/Person';
-import CakeIcon from '@mui/icons-material/Cake';
-import HeightIcon from '@mui/icons-material/Height';
-import PetsIcon from '@mui/icons-material/Pets'; // Optional: to represent species or other info
+import { Link, useParams } from 'react-router-dom';
+
+import { CheckBox } from '@mui/icons-material';
+// Optional: to represent species or other info
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import FemaleIcon from '@mui/icons-material/Female';
-import TagIcon from '@mui/icons-material/Tag';
-import MoodIcon from '@mui/icons-material/Mood';
-import MaleIcon from '@mui/icons-material/Male';
-import TextureIcon from '@mui/icons-material/Texture';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import CakeIcon from '@mui/icons-material/Cake';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
 import DescriptionIcon from '@mui/icons-material/Description';
+import FemaleIcon from '@mui/icons-material/Female';
+import HeightIcon from '@mui/icons-material/Height';
+import MaleIcon from '@mui/icons-material/Male';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
-import { CheckBox } from '@mui/icons-material';
+import MoodIcon from '@mui/icons-material/Mood';
+import PersonIcon from '@mui/icons-material/Person';
+import PetsIcon from '@mui/icons-material/Pets';
+import TagIcon from '@mui/icons-material/Tag';
+import TextureIcon from '@mui/icons-material/Texture';
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Container,
+  Grid,
+  IconButton,
+  Input,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
+import html2PDF from 'html2pdf.js';
+
+import { APP_NAME, DOMAIN_URL } from '../../../constants/config';
 import { useAuth } from '../../../contexts/AuthContext';
-import { DOMAIN_URL, APP_NAME } from '../../../constants/config';
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const Poster = () => {
   const { user } = useAuth();
@@ -81,7 +84,7 @@ const Poster = () => {
         setLoading(true);
         setError(null);
         const response = await fetch(
-          `${API_BASE_URL}/api/pets/${id}/?format=json`
+          `${API_BASE_URL}/api/pets/${id}/?format=json`,
           // {
           //       headers: accessToken
           //         ? { Authorization: `Bearer ${accessToken}` }

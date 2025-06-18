@@ -1,11 +1,13 @@
 // SendMessage.jsx
 import React from 'react';
-import { Avatar, Card, CardContent, Grid, Typography, Box, TextField, Tooltip, IconButton } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
-import WrongLocationIcon from '@mui/icons-material/WrongLocation';
+
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import EventIcon from '@mui/icons-material/Event';
+import SendIcon from '@mui/icons-material/Send';
+import WrongLocationIcon from '@mui/icons-material/WrongLocation';
+import { Avatar, Box, Card, CardContent, Grid, IconButton, TextField, Tooltip, Typography } from '@mui/material';
+
 import { useAuth } from '../../../contexts/AuthContext';
 
 const SendMessage = ({

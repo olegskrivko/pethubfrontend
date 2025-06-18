@@ -1,6 +1,8 @@
 import React from 'react';
-import { Card, CardContent, Typography, CardMedia, Box, Chip } from '@mui/material';
 import { Link } from 'react-router-dom';
+
+import { Box, Card, CardContent, CardMedia, Chip, Typography } from '@mui/material';
+
 import logo from '../../../assets/react.svg';
 
 const ShelterCard = ({ shelter }) => {

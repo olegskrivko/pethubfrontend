@@ -1,5 +1,6 @@
 import { Box, CircularProgress } from '@mui/material';
 import Lottie from 'lottie-react';
+
 // import spinnerAnimation from '../../assets/Animation-1748807031338.json';
 // import spinnerAnimation from '../../assets/Animation-1747323887708.json';
 

@@ -1,23 +1,28 @@
 import React from 'react';
-import { Card, CardContent, Skeleton } from '@mui/material';
+
+import { Box, Card, CardContent, Skeleton } from '@mui/material';
 
 const ServiceCardSkeleton = () => {
   return (
-    <Card
-      sx={{
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        borderRadius: 1,
-      }}
-    >
-      <Skeleton variant="rectangular" height={160} />
-      <CardContent>
-        <Skeleton variant="text" height={30} width="60%" />
-        <Skeleton variant="text" height={20} width="80%" />
-        <Skeleton variant="text" height={20} width="40%" />
-      </CardContent>
-    </Card>
+    <Box>
+      {/* Main image placeholder with consistent 4:3 aspect ratio */}
+      <Box sx={{ position: 'relative', width: '100%', aspectRatio: '4 / 3' }}>
+        <Skeleton
+          variant="rectangular"
+          sx={{
+            width: '100%',
+            height: '100%',
+            borderRadius: 1,
+          }}
+        />
+      </Box>
+
+      {/* Circle + line in one row */}
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 2, px: 1 }}>
+        <Skeleton variant="circular" width={40} height={40} />
+        <Skeleton height={30} width="60%" />
+      </Box>
+    </Box>
   );
 };
 

@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card, CardContent, Typography, Box, Grid, Tooltip, IconButton } from '@mui/material';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
+
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+import { Box, Card, CardContent, Grid, IconButton, Tooltip, Typography } from '@mui/material';
 
 const testCard = {
   name: 'JANIS KALNINS',

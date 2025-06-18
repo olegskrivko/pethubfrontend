@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Container, Typography, TextField, Button, Box } from '@mui/material';
+
+import { Box, Button, Container, TextField, Typography } from '@mui/material';
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const ResetPassword = () => {
   const { token } = useParams();

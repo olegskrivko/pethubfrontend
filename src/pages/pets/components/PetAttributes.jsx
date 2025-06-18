@@ -1,17 +1,17 @@
 import React from 'react';
-import { Grid, Box } from '@mui/material';
+
 import {
-  Tag as TagIcon,
+  Cake as CakeIcon,
+  ColorLens as ColorLensIcon,
+  Event as EventIcon,
   Height as HeightIcon,
   Male as MaleIcon,
-  ColorLens as ColorLensIcon,
   MergeType as MergeTypeIcon,
-  Cake as CakeIcon,
-  Event as EventIcon,
-  Texture as TextureIcon,
   Pets as PetsIcon,
+  Tag as TagIcon,
+  Texture as TextureIcon,
 } from '@mui/icons-material';
-
+import { Box, Grid } from '@mui/material';
 import { format } from 'date-fns';
 import { lv } from 'date-fns/locale';
 

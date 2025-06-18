@@ -1,6 +1,8 @@
 import React from 'react';
-import { Box, Button, Typography, Link } from '@mui/material';
+
+import { Box, Button, Link, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+
 import cookieIcon from '../assets/cookie-icon.png';
 
 const StyledCookieConsent = styled('div')(({ theme }) => ({

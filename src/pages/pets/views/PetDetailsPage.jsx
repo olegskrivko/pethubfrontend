@@ -1,42 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom'; // to extract the pet ID from the URL
-import {
-  CircularProgress,
-  Button,
-  Alert,
-  Grid,
-  Container,
-  Typography,
-  Card,
-  CardMedia,
-  Box,
-  Tooltip,
-  IconButton,
-} from '@mui/material';
-import Chip from '@mui/material/Chip';
-import ShareIcon from '@mui/icons-material/Share';
-import DownloadIcon from '@mui/icons-material/Download';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
-import { useSnackbar } from 'notistack';
-import moment from 'moment';
-import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import PetsIcon from '@mui/icons-material/Pets';
-import WifiTetheringErrorIcon from '@mui/icons-material/WifiTetheringError';
+// Import Latvian locale
+import { ContactSupportOutlined } from '@mui/icons-material';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import 'moment/locale/lv'; // Import Latvian locale
-import { ContactSupportOutlined } from '@mui/icons-material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+import DownloadIcon from '@mui/icons-material/Download';
+import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
+import PetsIcon from '@mui/icons-material/Pets';
+import ShareIcon from '@mui/icons-material/Share';
+import WifiTetheringErrorIcon from '@mui/icons-material/WifiTetheringError';
+// to extract the pet ID from the URL
+import {
+  Alert,
+  Box,
+  Button,
+  Card,
+  CardMedia,
+  CircularProgress,
+  Container,
+  Grid,
+  IconButton,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import Chip from '@mui/material/Chip';
+import Lottie from 'lottie-react';
+import moment from 'moment';
+import 'moment/locale/lv';
+import { useSnackbar } from 'notistack';
+
+import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
 import { useAuth } from '../../../contexts/AuthContext';
-import PetAttributes from '../components/PetAttributes';
-import SendMessage from '../components/SendMessage';
-import IconLabelTabs from '../components/IconLabelTabs';
-import ImageCarousel from '../components/ImageCarousel';
 // import LeafletPetDetailsMap from '../../../components/LeafletPetDetailsMap'
 import LeafletPetDetailsMapNew from '../../../shared/maps/LeafletPetDetailsMapNew';
-import Lottie from 'lottie-react';
-import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
-import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+import IconLabelTabs from '../components/IconLabelTabs';
+import ImageCarousel from '../components/ImageCarousel';
+import PetAttributes from '../components/PetAttributes';
+import SendMessage from '../components/SendMessage';
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const PetDetailsPage = () => {

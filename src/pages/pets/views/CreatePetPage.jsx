@@ -1,49 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
-import {
-  Grid,
-  Box,
-  Stack,
-  FormControlLabel,
-  FormControl,
-  FormGroup,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  RadioGroup,
-  Radio,
-  InputLabel,
-  Select,
-  MenuItem,
-  Typography,
-  Button,
-  IconButton,
-  Container,
-  TextField,
-} from '@mui/material';
-import { useAuth } from '../../../contexts/AuthContext';
-import {
-  STATUS_CHOICES,
-  SPECIES_CHOICES,
-  AGE_CHOICES_BY_SPECIES,
-  SIZE_CHOICES,
-  GENDER_CHOICES,
-  BEHAVIOR_CHOICES,
-  AGE_CHOICES,
-  PHONE_CODE_CHOICES,
-  COLOR_CHOICES,
-  PATTERN_CHOICES,
-} from '../../../constants/petOptions';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 // import { getCurrentDate, getCurrentTime } from '../../../utils/formHelpers';
 // import LeafletAddPetMap from '../../../components/LeafletAddPetMap';
 // React MUI Icons
 import CloseIcon from '@mui/icons-material/Close';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import {
+  Box,
+  Button,
+  Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  Grid,
+  IconButton,
+  InputLabel,
+  MenuItem,
+  Radio,
+  RadioGroup,
+  Select,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material';
+import axios from 'axios';
+
+import {
+  AGE_CHOICES,
+  AGE_CHOICES_BY_SPECIES,
+  BEHAVIOR_CHOICES,
+  COLOR_CHOICES,
+  GENDER_CHOICES,
+  PATTERN_CHOICES,
+  PHONE_CODE_CHOICES,
+  SIZE_CHOICES,
+  SPECIES_CHOICES,
+  STATUS_CHOICES,
+} from '../../../constants/petOptions';
+import { useAuth } from '../../../contexts/AuthContext';
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function PetsAdd() {
@@ -231,7 +234,7 @@ function PetsAdd() {
             callback(resizedFile);
           },
           mimeType,
-          quality
+          quality,
         );
       };
       img.src = event.target.result;

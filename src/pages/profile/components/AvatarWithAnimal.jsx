@@ -1,20 +1,20 @@
 import React from 'react';
 
+import alligatorAvatar from '../../../assets/images/profile/alligator.svg';
+import bearAvatar from '../../../assets/images/profile/bear.svg';
+import catAvatar from '../../../assets/images/profile/cat.svg';
+import defaultAvatar from '../../../assets/images/profile/default.svg';
+import dogAvatar from '../../../assets/images/profile/dog.svg';
 // import lionAvatar from '../pages/images/avatars/lion.svg';
 // import tigerAvatar from '../pages/images/avatars/tiger.svg';
 // import dogAvatar from '../pages/images/avatars/dog.svg';
 // import catAvatar from '../pages/images/avatars/cat.svg';
 import foxAvatar from '../../../assets/images/profile/fox.svg';
-import dogAvatar from '../../../assets/images/profile/dog.svg';
-import catAvatar from '../../../assets/images/profile/cat.svg';
-import bearAvatar from '../../../assets/images/profile/bear.svg';
 import horseAvatar from '../../../assets/images/profile/horse.svg';
-import alligatorAvatar from '../../../assets/images/profile/alligator.svg';
-import penguinAvatar from '../../../assets/images/profile/penguin.svg';
-import pigAvatar from '../../../assets/images/profile/pig.svg';
 import lionAvatar from '../../../assets/images/profile/lion.svg';
 import owlAvatar from '../../../assets/images/profile/owl.svg';
-import defaultAvatar from '../../../assets/images/profile/default.svg';
+import penguinAvatar from '../../../assets/images/profile/penguin.svg';
+import pigAvatar from '../../../assets/images/profile/pig.svg';
 
 // You can import images directly or reference them from public directory
 const AvatarWithAnimal = ({ user }) => {

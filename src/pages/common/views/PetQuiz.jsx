@@ -3,9 +3,7 @@
 // //   Container, Typography, Box, Card, CardContent, Grid, Button, LinearProgress
 // // } from '@mui/material';
 // // import axios from 'axios';
-
 // // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
 // // const questions = [
 // //   {
 // //     question: "Cik daudz vietas tev ir mājdzīvniekam?",
@@ -79,14 +77,12 @@
 // //     ],
 // //   },
 // // ];
-
 // // const PetQuiz = () => {
 // //   const [currentQuestion, setCurrentQuestion] = useState(0);
 // //   const [selectedAnswers, setSelectedAnswers] = useState([]);
 // //   const [aiRecommendation, setAiRecommendation] = useState(null);
 // //   const [isLoading, setIsLoading] = useState(false);
 // //   const [error, setError] = useState(null);
-
 // //   const handleAnswer = (selectedOption) => {
 // //     setSelectedAnswers([...selectedAnswers, selectedOption.answer]);
 // //     if (currentQuestion < questions.length - 1) {
@@ -95,20 +91,16 @@
 // //       sendAnswersToAPI();
 // //     }
 // //   };
-
 // //   const sendAnswersToAPI = async () => {
 // //     // const token = localStorage.getItem('token');
 // //     const accessToken = localStorage.getItem('access_token');
 // //    // console.log('Token:', token); // Debug log
-
 // //     if (!accessToken) {
 // //       setError("Please log in to get pet recommendations");
 // //       return;
 // //     }
-
 // //     setIsLoading(true);
 // //     setError(null);
-
 // //     try {
 // //       const response = await axios.post(
 // //         `${API_BASE_URL}/api/chatbot/pet-recommendation/`,
@@ -132,14 +124,12 @@
 // //       setIsLoading(false);
 // //     }
 // //   };
-
 // //   const resetQuiz = () => {
 // //     setSelectedAnswers([]);
 // //     setCurrentQuestion(0);
 // //     setAiRecommendation(null);
 // //     setError(null);
 // //   };
-
 // //   if (isLoading) {
 // //     return (
 // //       <Container component="main" maxWidth="lg" sx={{ textAlign: 'center', mt: 4 }}>
@@ -147,19 +137,16 @@
 // //       </Container>
 // //     );
 // //   }
-
 // //   return (
 // //     <Container component="main" maxWidth="lg">
 // //       <Typography variant="h4" align="center" sx={{ mb: 5, fontWeight: 800 }}>
 // //         Dzīvnieka izvēles tests
 // //       </Typography>
-
 // //       {error && (
 // //         <Box sx={{ mb: 2, p: 2, bgcolor: 'error.light', color: 'error.contrastText', borderRadius: 1 }}>
 // //           {error}
 // //         </Box>
 // //       )}
-
 // //       {!aiRecommendation ? (
 // //         <Box>
 // //           <LinearProgress
@@ -218,7 +205,6 @@
 // //     </Container>
 // //   );
 // // };
-
 // // export default PetQuiz;
 // import React, { useState } from 'react';
 // import {
@@ -226,7 +212,6 @@
 //   Paper, Divider
 // } from '@mui/material';
 // import axios from 'axios';
-
 // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 // const questions = [
 //   {
@@ -307,7 +292,6 @@
 //   const [aiRecommendation, setAiRecommendation] = useState(null);
 //   const [isLoading, setIsLoading] = useState(false);
 //   const [error, setError] = useState(null);
-
 //   const handleAnswer = (selectedOption) => {
 //     console.log('Selected answer:', selectedOption.answer);
 //     setSelectedAnswers([...selectedAnswers, selectedOption.answer]);
@@ -319,10 +303,8 @@
 //       sendAnswersToAPI();
 //     }
 //   };
-
 //   const formatRecommendation = (data) => {
 //     if (!data || !data.pet) return null;
-
 //     const { pet } = data;
 //     return {
 //       type: pet.type,
@@ -337,25 +319,20 @@
 //       whyThisPet: pet.whyThisPet
 //     };
 //   };
-
 //   const sendAnswersToAPI = async () => {
 //     console.log('Starting API call...');
 //     const token = localStorage.getItem('access_token');
 //     console.log('Token:', token);
-
 //     if (!token) {
 //       console.log('No token found');
 //       setError("Please log in to get pet recommendations");
 //       return;
 //     }
-
 //     setIsLoading(true);
 //     setError(null);
-
 //     try {
 //       console.log('Making API request to:', `${API_BASE_URL}/api/chatbot/pet-recommendation/`);
 //       console.log('Request payload:', { answers: selectedAnswers });
-
 //       const response = await axios.post(
 //         `${API_BASE_URL}/api/chatbot/pet-recommendation/`,
 //         { answers: selectedAnswers },
@@ -366,7 +343,6 @@
 //           }
 //         }
 //       );
-
 //       console.log('=== Debug Frontend Response ===');
 //       console.log('Full response:', response);
 //       console.log('Response data:', response.data);
@@ -374,13 +350,11 @@
 //       console.log('Response data keys:', Object.keys(response.data));
 //       console.log('Pet data:', response.data.pet);
 //       console.log('=============================');
-
 //       if (!response.data || !response.data.pet) {
 //         console.error('Invalid response format:', response.data);
 //         setError("Received invalid response from server");
 //         return;
 //       }
-
 //       setAiRecommendation(response.data.pet);
 //       console.log('AI recommendation set to state:', response.data.pet);
 //     } catch (error) {
@@ -390,7 +364,6 @@
 //       console.error("Error message:", error.message);
 //       console.error("Error details:", error.response?.data);
 //       console.error("===================");
-
 //       if (error.response?.status === 401) {
 //         setError("Your session has expired. Please log in again.");
 //       } else {
@@ -400,14 +373,12 @@
 //       setIsLoading(false);
 //     }
 //   };
-
 //   const resetQuiz = () => {
 //     setSelectedAnswers([]);
 //     setCurrentQuestion(0);
 //     setAiRecommendation(null);
 //     setError(null);
 //   };
-
 //   if (isLoading) {
 //     return (
 //       <Container component="main" maxWidth="lg" sx={{ textAlign: 'center', mt: 4 }}>
@@ -415,19 +386,16 @@
 //       </Container>
 //     );
 //   }
-
 //   return (
 //     <Container component="main" maxWidth="lg">
 //       <Typography variant="h4" align="center" sx={{ mb: 5, fontWeight: 800 }}>
 //         Dzīvnieka izvēles tests
 //       </Typography>
-
 //       {error && (
 //         <Box sx={{ mb: 2, p: 2, bgcolor: 'error.light', color: 'error.contrastText', borderRadius: 1 }}>
 //           {error}
 //         </Box>
 //       )}
-
 //       {!aiRecommendation ? (
 //         <Box>
 //           <LinearProgress
@@ -472,13 +440,10 @@
 //             <Typography variant="h4" gutterBottom align="center" sx={{ color: 'primary.main' }}>
 //               {aiRecommendation.type.charAt(0).toUpperCase() + aiRecommendation.type.slice(1)}
 //             </Typography>
-
 //             <Typography variant="body1" paragraph sx={{ mt: 3 }}>
 //               {aiRecommendation.description}
 //             </Typography>
-
 //             <Divider sx={{ my: 3 }} />
-
 //             <Typography variant="h6" gutterBottom sx={{ color: 'primary.main' }}>
 //               Characteristics
 //             </Typography>
@@ -496,9 +461,7 @@
 //                 <Typography variant="body1">{aiRecommendation.characteristics.socialBehavior}</Typography>
 //               </Grid>
 //             </Grid>
-
 //             <Divider sx={{ my: 3 }} />
-
 //             <Grid container spacing={3}>
 //               <Grid item xs={12} md={6}>
 //                 <Typography variant="h6" gutterBottom sx={{ color: 'primary.main' }}>
@@ -513,16 +476,13 @@
 //                 <Typography variant="body1">{aiRecommendation.dislikes}</Typography>
 //               </Grid>
 //             </Grid>
-
 //             <Divider sx={{ my: 3 }} />
-
 //             <Typography variant="h6" gutterBottom sx={{ color: 'primary.main' }}>
 //               Why This Pet?
 //             </Typography>
 //             <Typography variant="body1" paragraph>
 //               {aiRecommendation.whyThisPet}
 //             </Typography>
-
 //             <Box sx={{ mt: 4, textAlign: 'center' }}>
 //               <Button
 //                 onClick={resetQuiz}
@@ -542,23 +502,23 @@
 //     </Container>
 //   );
 // };
-
 // export default PetQuiz;
-
 import React, { useState } from 'react';
+
+import PetsIcon from '@mui/icons-material/Pets';
 import {
-  Container,
-  Typography,
   Box,
+  Button,
   Card,
   CardContent,
+  Container,
+  Divider,
   Grid,
-  Button,
   LinearProgress,
   Paper,
-  Divider,
+  Typography,
 } from '@mui/material';
-import PetsIcon from '@mui/icons-material/Pets'; // You can change this to any icon you like
+// You can change this to any icon you like
 
 import axios from 'axios';
 
@@ -708,7 +668,7 @@ const PetQuiz = () => {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
-        }
+        },
       );
 
       console.log('=== Debug Frontend Response ===');

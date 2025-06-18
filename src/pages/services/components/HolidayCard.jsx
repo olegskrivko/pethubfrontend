@@ -1,6 +1,7 @@
 // export default HolidayCard;
 import React, { useEffect, useState } from 'react';
-import { Card, CardContent, Typography, CircularProgress, Alert } from '@mui/material';
+
+import { Alert, Card, CardContent, CircularProgress, Typography } from '@mui/material';
 import axios from 'axios';
 
 const translations = {

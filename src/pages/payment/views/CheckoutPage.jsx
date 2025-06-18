@@ -1,6 +1,8 @@
-import { Container, Typography, Paper, Box } from '@mui/material';
-import CheckoutButton from '../components/CheckoutButton';
 import { useLocation } from 'react-router-dom';
+
+import { Box, Container, Paper, Typography } from '@mui/material';
+
+import CheckoutButton from '../components/CheckoutButton';
 import TestVisaCard from '../components/TestVisaCard';
 
 const CheckoutPage = () => {

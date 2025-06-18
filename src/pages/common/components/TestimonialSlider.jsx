@@ -1,10 +1,11 @@
-import { Box, Typography, Container } from '@mui/material';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper/modules';
-import dogimg from '../../../assets/images/home/banner_dog.jpg';
+import { Box, Container, Typography } from '@mui/material';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { Autoplay, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import dogimg from '../../../assets/images/home/banner_dog.jpg';
 
 const testimonials = [
   {

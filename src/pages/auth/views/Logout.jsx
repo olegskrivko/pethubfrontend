@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Typography, Button, Box } from '@mui/material';
+
+import { Box, Button, Container, Typography } from '@mui/material';
 
 const Logout = () => {
   return (

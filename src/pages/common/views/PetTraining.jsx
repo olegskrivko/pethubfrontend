@@ -1,22 +1,23 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Box,
-  Grid,
-  Container,
-  Typography,
   Card,
   CardContent,
   CardMedia,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
+  Container,
+  Grid,
   IconButton,
+  Typography,
   useMediaQuery,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
 
 const trainingTips = [
   {
@@ -105,7 +106,7 @@ const PetTraining = () => {
   return (
     <>
       <Helmet>
-        <title>Virtuālās mājdzīvnieku apmācības nodarbības</title>
+        <title>Mājdzīvnieku apmācības nodarbības</title>
         <meta
           name="description"
           content="Apgūsti mājdzīvnieku apmācību ar video pamācībām un svarīgiem padomiem no ekspertiem. Uzlabo sava mājdzīvnieka uzvedību pozitīvā un jautrā veidā."
@@ -135,23 +136,18 @@ const PetTraining = () => {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Virtuālās mājdzīvnieku apmācības nodarbības
+          Suņu skola
         </Typography>
 
         <Grid container spacing={3}>
           <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-            <Typography variant="body1" sx={{ mb: 3 }} gutterBottom>
-              Laipni lūdzam mūsu visaptverošajā ceļvedī par mājdzīvnieku apmācību ar rūpīgi atlasītām video pamācībām!
-              Šeit jūs atradīsiet noderīgus resursus, lai apgūtu svarīgas prasmes efektīvai mājdzīvnieka uzvedības
-              veidošanai.
+            <Typography variant="body1" component="p" sx={{ mb: 3 }} gutterBottom>
+              Šis visaptverošais ceļvedis piedāvā rūpīgi izvēlētus video materiālus efektīvai suņu apmācībai. Tajā
+              atradīsiet praktiskus resursus, kas palīdzēs apgūt būtiskas prasmes suņa uzvedības veidošanā.
             </Typography>
-            <Typography variant="body1" sx={{ mb: 3 }} gutterBottom>
-              Neatkarīgi no tā, vai esat jauns mājdzīvnieka īpašnieks vai vēlaties papildināt esošās zināšanas, šie
-              video aptver visu — no pamata komandām līdz sarežģītākām apmācības metodēm.
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 3 }} gutterBottom>
-              Iedziļinieties šajās pamācībās un sāciet vērtīgu ceļojumu, lai labāk izprastu un attīstītu sava
-              mājdzīvnieka uzvedību.
+            <Typography variant="body1" component="p" sx={{ mb: 3 }} gutterBottom>
+              Neatkarīgi no tā, vai esat jauns suņa īpašnieks vai vēlaties papildināt savas zināšanas, šie video aptver
+              visu — sākot no pamata komandām līdz progresīvākām apmācības metodēm.
             </Typography>
           </Grid>
         </Grid>
@@ -177,7 +173,19 @@ const PetTraining = () => {
                   />
                 </CardMedia>
                 <CardContent>
-                  <Typography variant="h6">{video.title}</Typography>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontSize: {
+                        xs: '1rem',
+                        sm: '1rem',
+                        md: '1rem',
+                        lg: '1.2rem',
+                      },
+                    }}
+                  >
+                    {video.title}
+                  </Typography>
                   <Typography variant="body2" color="text.secondary">
                     Avots: RSPCA South Australia
                   </Typography>
@@ -187,27 +195,61 @@ const PetTraining = () => {
           ))}
         </Grid>
 
-        <Typography variant="h4" align="center" sx={{ fontWeight: 500, color: '#16477c', mt: 8, mb: 4 }}>
+        <Typography
+          variant="h4"
+          align="center"
+          sx={{
+            fontWeight: 500,
+            color: '#16477c',
+            mt: 8,
+            mb: 5,
+            fontSize: { xs: '1.8rem', sm: '2rem' },
+          }}
+        >
           Būtiski padomi efektīvai mājdzīvnieku apmācībai
         </Typography>
         <Grid container spacing={3}>
           {trainingTips.map((tip, index) => (
             <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} key={index}>
-              <Accordion>
+              <Accordion
+                sx={{
+                  p: 1,
+                  borderRadius: 3,
+                  background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease-in-out',
+                  '&:hover': {
+                    boxShadow: '0px 3px 10px rgba(0,0,0,0.1)',
+                    transform: 'scale(1.01)',
+                    background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
+                  },
+                }}
+              >
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls={`panel-${index}-content`}
                   id={`panel-${index}-header`}
+                  // sx={{ px: 2, py: 1.5 }}
                 >
                   <Box display="flex" alignItems="center">
                     <IconButton color="primary" size="small" sx={{ mr: 2, backgroundColor: '#f7f9fd' }}>
                       <TipsAndUpdatesIcon />
                     </IconButton>
-                    <Typography variant="h6">{tip.title}</Typography>
+                    <Typography
+                      variant="h6"
+                      sx={{ fontWeight: 600, color: '#16477c', fontSize: { xs: '1rem', sm: '1.125rem' } }}
+                    >
+                      {tip.title}
+                    </Typography>
                   </Box>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography variant="body1">{tip.description}</Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{ color: '#444', fontSize: { xs: '0.9rem', sm: '1rem' }, lineHeight: 1.6 }}
+                  >
+                    {tip.description}
+                  </Typography>
                 </AccordionDetails>
               </Accordion>
             </Grid>

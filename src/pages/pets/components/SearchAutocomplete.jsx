@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Autocomplete, InputLabel, Box, ListItem, TextField, CircularProgress } from '@mui/material';
+import { useEffect, useState } from 'react';
+
+import { Autocomplete, Box, CircularProgress, InputLabel, ListItem, TextField } from '@mui/material';
 import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const SearchAutocomplete = ({ filters, searchValue, onSearchSelect }) => {
   const [inputValue, setInputValue] = useState('');
-  console.log('filtersfilters', filters);
   useEffect(() => {
     // Whenever searchValue from parent changes, update the input
     setInputValue(searchValue || '');
@@ -22,10 +22,10 @@ const SearchAutocomplete = ({ filters, searchValue, onSearchSelect }) => {
         try {
           // added part after ?search=${inputValue} so it would suggest based on already filtered pets
           const res = await axios.get(
-            `${API_BASE_URL}/api/pets/?search=${inputValue}&status=${filters.status}&species=${filters.species}&gender=${filters.gender}&size=${filters.size}&pattern=${filters.pattern}&date=${filters.date}&color=${filters.color}`
+            `${API_BASE_URL}/api/pets/?search=${inputValue}&status=${filters.status}&species=${filters.species}&gender=${filters.gender}&size=${filters.size}&pattern=${filters.pattern}&date=${filters.date}&color=${filters.color}`,
           );
           const suggestions = res.data.results.map((pet) => ({
-            label: `${pet.identifier || ''} ${pet.notes || ''}`.trim(),
+            label: pet.notes || '',
             value: pet.identifier || '',
           }));
           setOptions(suggestions);

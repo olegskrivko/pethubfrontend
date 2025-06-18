@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Autocomplete, InputLabel, Box, ListItem, TextField, CircularProgress } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+
+import { Autocomplete, Box, CircularProgress, InputLabel, ListItem, TextField } from '@mui/material';
 import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -22,7 +23,7 @@ const ServiceSearchAutocomplete = ({ filters, searchValue, onSearchSelect }) => 
         try {
           // added part after ?search=${inputValue} so it would suggest based on already filtered pets
           const res = await axios.get(
-            `${API_BASE_URL}/api/shelters/?search=${inputValue}&category=${filters.category}`
+            `${API_BASE_URL}/api/shelters/?search=${inputValue}&category=${filters.category}`,
           );
           const suggestions = res.data.results.map((shelter) => ({
             label: `${shelter.name || ''} ${shelter.description || ''}`.trim(),
@@ -45,7 +46,7 @@ const ServiceSearchAutocomplete = ({ filters, searchValue, onSearchSelect }) => 
   return (
     <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
       <Box sx={{ width: '100%' }}>
-        <InputLabel sx={{ fontWeight: '500', color: '#000' }}>Meklēt</InputLabel>
+        <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>Meklēt</InputLabel>
         <Autocomplete
           freeSolo
           options={options}

@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
+
 import { MenuItem, Select } from '@mui/material';
+
 import { LanguageContext } from '../contexts/LanguageContext';
 
 const LanguageSelector = () => {

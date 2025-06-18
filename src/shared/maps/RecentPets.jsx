@@ -3,7 +3,6 @@
 // import { useAuth } from '../contexts/AuthContext';
 // import PetCard from './PetCard';  // Assuming PetCard is in the same directory or adjust the path
 // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
 // const RecentPets = () => {
 //   const { user } = useAuth();
 //   const [pets, setPets] = useState([]);
@@ -30,11 +29,9 @@
 //         setLoading(false);
 //       });
 //   }, []);
-
 //   if (loading) {
 //     return <div>Loading...</div>;
 //   }
-
 //   return (
 //     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
 //       {pets.map((pet) => (
@@ -43,16 +40,20 @@
 //     </div>
 //   );
 // };
-
 // export default RecentPets;
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useAuth } from '../contexts/AuthContext';
-import PetCard from '../pages/pets/components/PetCard'; // Assuming PetCard is in the same directory or adjust the path
-import { Grid, Typography, CircularProgress, Button } from '@mui/material'; // Import MUI components
+import React, { useEffect, useState } from 'react';
+// Import MUI components
 import { Link } from 'react-router-dom';
-import useMediaQuery from '@mui/material/useMediaQuery';
+
+// Assuming PetCard is in the same directory or adjust the path
+import { Button, CircularProgress, Grid, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import axios from 'axios';
+
+import { useAuth } from '../contexts/AuthContext';
+import PetCard from '../pages/pets/components/PetCard';
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const RecentPets = () => {

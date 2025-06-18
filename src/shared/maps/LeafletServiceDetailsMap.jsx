@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MapContainer, Marker, Popup, useMap } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
+
+import '@maptiler/leaflet-maptilersdk';
+// MapTiler plugin
+import { MaptilerLayer } from '@maptiler/leaflet-maptilersdk';
 import { Box, Typography } from '@mui/material';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import '@maptiler/leaflet-maptilersdk'; // MapTiler plugin
-import { MaptilerLayer } from '@maptiler/leaflet-maptilersdk';
-import shelterIcon from '../../shared/maps/suitcase.png'; // Replace this with your icon if needed
+
+import shelterIcon from '../../shared/maps/suitcase.png';
+
+// Replace this with your icon if needed
 
 // Icons for shelters
 const defaultIcon = new L.Icon({
@@ -77,7 +82,7 @@ function LeafletServiceDetailsMap({ shelters, centerCoords }) {
         const { latitude, longitude } = pos.coords;
         setUserLocation([latitude, longitude]);
       },
-      (err) => console.error('Location error:', err)
+      (err) => console.error('Location error:', err),
     );
   }, []);
   return (
@@ -178,7 +183,7 @@ function LeafletServiceDetailsMap({ shelters, centerCoords }) {
                   </div>
                 </Popup>
               </Marker>
-            ) : null
+            ) : null,
           )}
 
           {userLocation && (

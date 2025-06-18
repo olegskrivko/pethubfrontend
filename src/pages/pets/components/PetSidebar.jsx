@@ -1,16 +1,16 @@
-import React from 'react';
-import { Chip, Box, List, TextField, InputLabel, ListItem, Button } from '@mui/material';
+import { Box, Button, Chip, InputLabel, List, ListItem, TextField } from '@mui/material';
+
 import {
-  STATUS_CHOICES,
+  COLOR_CHOICES,
+  GENDER_CHOICES,
   PATTERN_CHOICES,
   SIZE_CHOICES,
   SPECIES_CHOICES,
-  GENDER_CHOICES,
-  COLOR_CHOICES,
+  STATUS_CHOICES,
 } from '../../../constants/Choices';
 import SearchAutocomplete from './SearchAutocomplete';
 
-const Sidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
+const PetSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
   const handleChipClick = (type, value) => {
     const newFilters = {
       ...filters,
@@ -38,13 +38,14 @@ const Sidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
     setFilters(newFilters);
     onFilterChange?.(newFilters);
   };
+
   return (
     <form>
       <List sx={{ paddingTop: '0' }}>
         {/* Status Filter */}
         <ListItem sx={{ padding: '0 !important' }}>
           <Box>
-            <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>Status</InputLabel>
+            <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>Statuss</InputLabel>
             {STATUS_CHOICES.map((status) => (
               <Chip
                 key={status.value}
@@ -160,31 +161,18 @@ const Sidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
         </ListItem>
 
         {/* Search Filter */}
-
         <SearchAutocomplete filters={filters} searchValue={filters.search} onSearchSelect={handleSearchSelect} />
 
         {/* Reset Filters */}
-        <ListItem
-          sx={{
-            padding: '0 !important',
-            paddingTop: '2rem !important',
-            paddingBottom: '0.8rem !important',
-          }}
-        >
+        <ListItem sx={{ p: 0 }}>
           <Button
-            style={{
-              background: 'linear-gradient(0deg, #0994ba 30%, #02b4c4 90%)',
-              width: '100%',
-              color: 'white',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-            }}
+            variant="contained"
+            fullWidth
             onClick={onReset}
-            onMouseOver={(e) => {
-              e.currentTarget.style.backgroundColor = '#e5faff';
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent';
+            sx={{
+              mt: 4,
+              py: 1,
+              background: 'linear-gradient(0deg, #0994ba 30%, #02b4c4 90%)',
             }}
           >
             Atiestatīt filtrus
@@ -195,4 +183,4 @@ const Sidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
   );
 };
 
-export default Sidebar;
+export default PetSidebar;

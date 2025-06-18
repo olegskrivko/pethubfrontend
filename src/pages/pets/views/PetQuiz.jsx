@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+
 import {
-  Container,
-  Typography,
   Box,
+  Button,
   Card,
   CardContent,
+  Container,
+  Divider,
   Grid,
-  Button,
   LinearProgress,
   Paper,
-  Divider,
+  Typography,
 } from '@mui/material';
 import axios from 'axios';
 
@@ -78,7 +79,7 @@ const PetQuiz = () => {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
-        }
+        },
       );
 
       console.log('=== Debug Frontend Response ===');

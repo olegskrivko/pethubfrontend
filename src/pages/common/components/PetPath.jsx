@@ -1,8 +1,9 @@
-import { Box, Typography, Avatar } from '@mui/material';
+import { Avatar, Box, Typography } from '@mui/material';
+
+import petIcon4 from '../../../assets/images/home/cat_icon2.jpg';
 import petIcon1 from '../../../assets/images/home/dog_icon1.jpg';
 import petIcon2 from '../../../assets/images/home/dog_icon2.jpg';
 import petIcon3 from '../../../assets/images/home/dog_icon3.jpg';
-import petIcon4 from '../../../assets/images/home/cat_icon2.jpg';
 import petIcon5 from '../../../assets/images/home/pet_icon_1.jpg';
 import petIcon6 from '../../../assets/images/home/pet_icon_2.jpg';
 

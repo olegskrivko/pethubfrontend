@@ -1,7 +1,9 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import CircularProgress from '@mui/material/CircularProgress';
+
 import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
+
 import { useAuth } from '../../../contexts/AuthContext';
 
 const PrivateRoute = () => {

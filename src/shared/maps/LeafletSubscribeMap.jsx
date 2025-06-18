@@ -5,7 +5,6 @@
 // import LocationOnIcon from '@mui/icons-material/LocationOn';
 // import { renderToStaticMarkup } from 'react-dom/server';
 // import CustomAlert from '../alert/CustomAlert';
-
 // // Custom hook to handle map events and marker placement
 // const LocationMarker = ({ position, onLocationChange }) => {
 //   //   const map = useMapEvents({
@@ -18,13 +17,11 @@
 //   //       onLocationChange(newPos);
 //   //     },
 //   //   });
-
 //   const map = useMapEvents({
 //     click(e) {
 //       onLocationChange(e.latlng);
 //     },
 //   });
-
 //   const iconMarkup = renderToStaticMarkup(
 //     <LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />,
 //   );
@@ -32,7 +29,6 @@
 //     html: iconMarkup,
 //     className: 'custom-icon',
 //   });
-
 //   return (
 //     position && (
 //       <Marker
@@ -50,12 +46,10 @@
 //     )
 //   );
 // };
-
 // const LeafletSubscribeMap = ({ onLocationChange }) => {
 //   const [position, setPosition] = useState([56.946285, 24.105078]);
 //   const [errorMessage, setErrorMessage] = useState(null);
 //   const [solutionMessage, setSolutionMessage] = useState(null);
-
 //   const handleUseMyLocation = () => {
 //     navigator.geolocation.getCurrentPosition(
 //       (position) => {
@@ -96,7 +90,6 @@
 //       },
 //     );
 //   };
-
 //   // Memoize the setPosition callback to avoid unnecessary re-renders
 //   const handleLocationChange = useCallback(
 //     (newPosition) => {
@@ -105,7 +98,6 @@
 //     },
 //     [onLocationChange],
 //   );
-
 //   return (
 //     <div>
 //       {errorMessage && (
@@ -122,16 +114,16 @@
 //     </div>
 //   );
 // };
-
 // export default LeafletSubscribeMap;
-import React, { useState, useCallback } from 'react';
-import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
+import React, { useCallback, useState } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
+
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+//import CustomAlert from '../alert/CustomAlert'; // Ensure correct path
+import { Avatar, Box, Button, Grid, Paper, TextField, Typography } from '@mui/material';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { renderToStaticMarkup } from 'react-dom/server';
-//import CustomAlert from '../alert/CustomAlert'; // Ensure correct path
-import { Grid, Box, Typography, Avatar, TextField, Paper, Button } from '@mui/material';
 
 // const LocationMarker = ({ position, onLocationChange }) => {
 //   const map = useMapEvents({
@@ -187,7 +179,7 @@ const LocationMarker = ({ position, onLocationChange }) => {
       const newPos = event.target.getLatLng();
       onLocationChange(newPos);
     },
-    [onLocationChange]
+    [onLocationChange],
   );
 
   return (
@@ -245,7 +237,7 @@ const LeafletSubscribeMap = ({ onLocationChange }) => {
           lat: fallbackPosition[0],
           lng: fallbackPosition[1],
         });
-      }
+      },
     );
   };
 
@@ -254,7 +246,7 @@ const LeafletSubscribeMap = ({ onLocationChange }) => {
       setPosition([newPosition.lat, newPosition.lng]);
       onLocationChange(newPosition);
     },
-    [onLocationChange]
+    [onLocationChange],
   );
 
   return (

@@ -1,13 +1,16 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Box, Chip, Button, Typography, Paper, Avatar, TextField, CircularProgress } from '@mui/material';
+import React, { useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import CloseIcon from '@mui/icons-material/Close';
-import SendIcon from '@mui/icons-material/Send';
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
+import SendIcon from '@mui/icons-material/Send';
+import { Avatar, Box, Button, Chip, CircularProgress, Paper, TextField, Typography } from '@mui/material';
 import Lottie from 'lottie-react';
+
 import AIRobot from '../../assets/Animation-1749072232400.json';
-import { useTranslation } from 'react-i18next';
 import { LanguageContext } from '../../contexts/LanguageContext';
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const ChatBot = () => {

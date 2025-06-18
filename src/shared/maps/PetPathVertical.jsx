@@ -1,9 +1,11 @@
 import React from 'react';
-import { Box, Typography, Avatar } from '@mui/material';
+
+import { Avatar, Box, Typography } from '@mui/material';
+
+import petIcon4 from '../pages/images/cat_icon2.jpg';
 import petIcon1 from '../pages/images/dog_icon1.jpg';
 import petIcon2 from '../pages/images/dog_icon2.jpg';
 import petIcon3 from '../pages/images/dog_icon3.jpg';
-import petIcon4 from '../pages/images/cat_icon2.jpg';
 
 const pets = [
   { src: petIcon1, x: '5%', y: '60%', size: 50 },

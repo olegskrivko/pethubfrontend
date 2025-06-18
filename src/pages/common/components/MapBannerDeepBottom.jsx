@@ -1,13 +1,15 @@
 import React from 'react';
+//import illustration from '../pages/images/navigation_cuate.svg';
+import { useNavigate } from 'react-router-dom';
+
 import { useMediaQuery } from '@mui/material';
+import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
+
 //import illustration from '../pages/images/innovation_amico_blue.svg'; // replace with your own SVG
 
 import illustration from '../../../assets/images/home/innovation_animate.svg';
 
-//import illustration from '../pages/images/navigation_cuate.svg';
-import { useNavigate } from 'react-router-dom';
-import Container from '@mui/material/Container';
 {
   /* <a href="https://storyset.com/city">City illustrations by Storyset</a> */
 }

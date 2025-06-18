@@ -1,6 +1,7 @@
 // components/layout/ImageTextSection.jsx
 import React from 'react';
-import { Grid, Box, Typography, CardMedia } from '@mui/material';
+
+import { Box, CardMedia, Grid, Typography } from '@mui/material';
 
 const ImageTextSection = ({ image, imageAlt, imagePosition = 'left', title, text }) => {
   const isImageLeft = imagePosition === 'left';

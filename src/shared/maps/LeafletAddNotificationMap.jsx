@@ -6,14 +6,12 @@
 // import MyLocationIcon from '@mui/icons-material/MyLocation';
 // import { renderToStaticMarkup } from 'react-dom/server';
 // import { IconButton, Tooltip } from '@mui/material';
-
 // const LocationMarker = ({ position, onLocationChange }) => {
 //   const map = useMapEvents({
 //     click(e) {
 //       onLocationChange(e.latlng);
 //     },
 //   });
-
 //   const iconMarkup = renderToStaticMarkup(
 //     <LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />,
 //   );
@@ -21,7 +19,6 @@
 //     html: iconMarkup,
 //     className: 'custom-icon',
 //   });
-
 //   return (
 //     position && (
 //       <Marker
@@ -38,7 +35,6 @@
 //     )
 //   );
 // };
-
 // const MapController = ({ position }) => {
 //   const map = useMapEvents({});
 //   useEffect(() => {
@@ -48,23 +44,19 @@
 //   }, [position, map]);
 //   return null;
 // };
-
 // const LeafletAddNotificationMap = ({ onLocationChange, location }) => {
 //   const [position, setPosition] = useState([location.lat, location.lng]);
 //   const [error, setError] = useState(null);
-
 //   useEffect(() => {
 //     if (location) {
 //       setPosition([location.lat, location.lng]);
 //     }
 //   }, [location]);
-
 //   const handleUseMyLocation = () => {
 //     if (!navigator.geolocation) {
 //       setError("Geolocation is not supported by your browser");
 //       return;
 //     }
-
 //     navigator.geolocation.getCurrentPosition(
 //       (pos) => {
 //         const { latitude, longitude } = pos.coords;
@@ -84,7 +76,6 @@
 //       }
 //     );
 //   };
-
 //   const handleLocationChange = useCallback(
 //     (newPosition) => {
 //       setPosition([newPosition.lat, newPosition.lng]);
@@ -92,7 +83,6 @@
 //     },
 //     [onLocationChange],
 //   );
-
 //   return (
 //     <div style={{ position: 'relative' }}>
 //       {error && (
@@ -109,7 +99,6 @@
 //           {error}
 //         </div>
 //       )}
-
 //       <Tooltip title="Use my current location">
 //         <IconButton
 //           onClick={handleUseMyLocation}
@@ -126,7 +115,6 @@
 //           <MyLocationIcon sx={{ color: '#007bff' }} />
 //         </IconButton>
 //       </Tooltip>
-
 //       <MapContainer
 //         center={position}
 //         zoom={13}
@@ -147,16 +135,16 @@
 //     </div>
 //   );
 // };
-
 // export default LeafletAddNotificationMap;
 import React, { useCallback, useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
+
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
-import { renderToStaticMarkup } from 'react-dom/server';
 import { IconButton, Tooltip } from '@mui/material';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 const LocationMarker = ({ position, onLocationChange }) => {
   const map = useMapEvents({
@@ -222,7 +210,7 @@ const LeafletAddNotificationMap = ({ onLocationChange, location }) => {
         enableHighAccuracy: true,
         timeout: 5000,
         maximumAge: 0,
-      }
+      },
     );
   };
 
@@ -230,7 +218,7 @@ const LeafletAddNotificationMap = ({ onLocationChange, location }) => {
     (newPosition) => {
       onLocationChange({ lat: newPosition.lat, lng: newPosition.lng });
     },
-    [onLocationChange]
+    [onLocationChange],
   );
 
   return (

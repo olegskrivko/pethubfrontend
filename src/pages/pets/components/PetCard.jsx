@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import Typography from '@mui/material/Typography';
-import CardMedia from '@mui/material/CardMedia';
-import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
-import CardActions from '@mui/material/CardActions';
-import Card from '@mui/material/Card';
-import { IconButton } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { IconButton } from '@mui/material';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardMedia from '@mui/material/CardMedia';
+import Chip from '@mui/material/Chip';
+// Import Link from react-router-dom
+import Typography from '@mui/material/Typography';
 
 const PetCard = ({ pet, onPanToLocation }) => {
   const [userCoords, setUserCoords] = useState(null);
@@ -52,21 +54,27 @@ const PetCard = ({ pet, onPanToLocation }) => {
   };
 
   // Construct the URL for the pet detail page using only the pet's ID
-  const petDetailUrl = `/pets/${pet.id}`;
+  // const petDetailUrl = `/pets/${pet.id}`;
 
   return (
     <Card>
-      <Link to={petDetailUrl} style={{ textDecoration: 'none', color: 'inherit' }}>
-        <Box position="relative">
-          <CardMedia component="img" src={pet.pet_image_1} alt="" sx={{ width: '100%', height: 'auto' }} />
+      <Link to={`/pets/${pet.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Box position="relative" sx={{ width: '100%', aspectRatio: '4 / 3', overflow: 'hidden' }}>
+          <CardMedia
+            component="img"
+            src={pet.pet_image_1}
+            alt={pet.species_display}
+            sx={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          />
           <Chip
             label={pet.status_display}
-            // size="small"
             variant="contained"
             sx={{
-              // backgroundColor: 'rgba(0, 0, 0, 0.6)',
               backgroundColor: 'rgba(0, 179, 164, 0.6)',
-
               color: 'white',
               position: 'absolute',
               top: '8px',
@@ -77,13 +85,11 @@ const PetCard = ({ pet, onPanToLocation }) => {
         </Box>
       </Link>
       <CardActions disableSpacing style={{ justifyContent: 'start' }}>
-        <Box style={{ display: 'flex', alignItems: 'center', color: '#343a40' }}>
+        <Box sx={{ gap: 1 }} style={{ display: 'flex', alignItems: 'center', color: '#343a40' }}>
           <IconButton onClick={handleLocationClick} color="primary" style={{ backgroundColor: '#f7f9fd' }}>
             <LocationOnIcon />
           </IconButton>
-          <Typography variant="body1" style={{ marginLeft: '4px' }}>
-            {distance !== null ? `${distance} km` : 'Calculating...'}
-          </Typography>
+          <Typography variant="body1">{distance !== null ? `${distance} km` : 'Calculating...'}</Typography>
         </Box>
       </CardActions>
     </Card>

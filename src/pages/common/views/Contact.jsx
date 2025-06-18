@@ -1,54 +1,55 @@
-import React, { useState, useEffect } from 'react';
-// import { Helmet } from 'react-helmet-async';
-import axios from 'axios';
-import {
-  Box,
-  Typography,
-  Container,
-  Grid,
-  Paper,
-  Link as MuiLink,
-  Button,
-  CardMedia,
-  CardContent,
-  TextField,
-  Checkbox,
-  CircularProgress,
-  MenuItem,
-  Select,
-  FormControl,
-  InputLabel,
-  Alert,
-} from '@mui/material';
-import {
-  Phone as PhoneIcon,
-  Mail as MailIcon,
-  LocationOn as LocationOnIcon,
-  Facebook as FacebookIcon,
-  Instagram as InstagramIcon,
-  YouTube as YouTubeIcon,
-  X as XIcon,
-} from '@mui/icons-material';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useAuth } from '../../../contexts/AuthContext';
-import contactImage from '../../../assets/images/contact/mobile_marketing_cuate_blue.svg';
-import ImageTextSection from '../../layout/ImageTextSection';
-import feedbackImage from '../../../assets/images/feedback/customer_feedback_amico_blue.svg';
-import { useNavigate } from 'react-router-dom';
 
 import {
-  EMAIL,
-  PHONE_CODE,
-  PHONE_NUMBER,
-  COUNTRY,
+  Facebook as FacebookIcon,
+  Instagram as InstagramIcon,
+  LocationOn as LocationOnIcon,
+  Mail as MailIcon,
+  Phone as PhoneIcon,
+  X as XIcon,
+  YouTube as YouTubeIcon,
+} from '@mui/icons-material';
+import {
+  Alert,
+  Box,
+  Button,
+  CardContent,
+  CardMedia,
+  Checkbox,
+  CircularProgress,
+  Container,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Link as MuiLink,
+  Paper,
+  Select,
+  TextField,
+  Typography,
+} from '@mui/material';
+// import { Helmet } from 'react-helmet-async';
+import axios from 'axios';
+
+import contactImage from '../../../assets/images/contact/mobile_marketing_cuate_blue.svg';
+import feedbackImage from '../../../assets/images/feedback/customer_feedback_amico_blue.svg';
+import { SUBJECT_CHOICES } from '../../../constants/Choices';
+import {
   CITY,
+  COUNTRY,
+  EMAIL,
   FACEBOOK,
   INSTAGRAM,
-  YOUTUBE,
+  PHONE_CODE,
+  PHONE_NUMBER,
   X,
+  YOUTUBE,
 } from '../../../constants/config';
-import { SUBJECT_CHOICES } from '../../../constants/Choices';
+import { useAuth } from '../../../contexts/AuthContext';
+import ImageTextSection from '../../layout/ImageTextSection';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -136,7 +137,7 @@ const Contact = () => {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${accessToken}`,
           },
-        }
+        },
       );
 
       if (response.status === 201) {
@@ -153,7 +154,7 @@ const Contact = () => {
       if (error.response?.status === 429) {
         showAlert(
           'Lūdzu, uzgaidiet pirms nākamās ziņas nosūtīšanas. Jūs varat nosūtīt ziņu vēlreiz pēc 1 minūtes.',
-          'error'
+          'error',
         );
       } else if (error.response?.status === 401) {
         showAlert('Lūdzu, ielogojieties, lai nosūtītu ziņu.', 'error');
@@ -184,7 +185,7 @@ const Contact = () => {
 
   const handleLocationClick = () => {
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-      `${COUNTRY}, ${CITY}`
+      `${COUNTRY}, ${CITY}`,
     )}`;
     window.open(googleMapsUrl, '_blank');
   };
@@ -242,7 +243,11 @@ const Contact = () => {
 
           <Grid size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', mb: 2 }}>
-              <Typography variant="h4" align="left" sx={{ fontWeight: 500, color: '#16477c', mb: 2 }}>
+              <Typography
+                variant="h4"
+                align="left"
+                sx={{ fontWeight: 500, color: '#16477c', mb: 2, fontSize: { xs: '1.8rem', sm: '2rem' } }}
+              >
                 Kādi jautājumi?
               </Typography>
               <Typography gutterBottom variant="body1" sx={{ mb: 2 }}>
@@ -451,7 +456,11 @@ const Contact = () => {
           </Grid>
         </Grid>
 
-        <Typography variant="h4" align="center" sx={{ fontWeight: 500, color: '#16477c', mt: 8, mb: 4 }}>
+        <Typography
+          variant="h4"
+          align="center"
+          sx={{ fontWeight: 500, color: '#16477c', mt: 8, mb: 4, mb: 5, fontSize: { xs: '1.8rem', sm: '2rem' } }}
+        >
           Kontaktinformācija
         </Typography>
         <Grid container spacing={3} style={{ marginTop: '1rem', marginBottom: '3rem' }}>
@@ -583,7 +592,11 @@ const Contact = () => {
 
         <Grid container spacing={3} justifyContent="center">
           <Grid item xs={12}>
-            <Typography variant="h4" align="center" sx={{ fontWeight: 500, color: '#16477c', mt: 8, mb: 4 }}>
+            <Typography
+              variant="h4"
+              align="center"
+              sx={{ fontWeight: 500, color: '#16477c', mt: 8, mb: 4, fontSize: { xs: '1.8rem', sm: '2rem' } }}
+            >
               Sekojiet mums sociālajos tīklos
             </Typography>
 

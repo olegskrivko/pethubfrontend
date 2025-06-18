@@ -1,13 +1,15 @@
-import { useContext } from 'react';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LanguageContext } from '../../contexts/LanguageContext';
-import { APP_NAME } from '../../constants/config';
+import { Link } from 'react-router-dom';
+
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+
 import InstallPWAButton from '../../InstallPWAButton';
+import { APP_NAME } from '../../constants/config';
+import { LanguageContext } from '../../contexts/LanguageContext';
 
 const Footer = () => {
   const YEAR = new Date().getFullYear();
@@ -51,9 +53,9 @@ const Footer = () => {
     {
       path: '/virtual-pet-training-classes',
       label: {
-        lv: 'Virtuālās dresūras nodarbības',
-        en: 'Virtual training classes',
-        ru: 'Виртуальные тренировки',
+        lv: 'Suņu skola',
+        en: 'Dog school',
+        ru: 'Школа для собак',
       },
     },
   ];
@@ -106,155 +108,157 @@ const Footer = () => {
   ];
 
   return (
-    <Box
-      component="footer"
-      sx={{
-        padding: '20px 0',
-        textAlign: 'center',
-        marginTop: 'auto',
-        // paddingBottom: '2rem',
-        width: '100%',
-        margin: 0,
-
-        // background: '#5B9BD5 !important',
-        background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
-      }}
-    >
-      <Container
-        component="main"
+    <React.Fragment>
+      <Box
+        component="footer"
         sx={{
-          flexGrow: 1,
-          paddingTop: '2rem',
-          paddingBottom: '2rem',
+          padding: '20px 0',
+          textAlign: 'center',
+          marginTop: 'auto',
+          // paddingBottom: '2rem',
           width: '100%',
-          overflowX: 'hidden',
+          margin: 0,
+
+          // background: '#5B9BD5 !important',
+          background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
         }}
       >
-        <Grid container spacing={2}>
-          <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
-            <Typography variant="h6" color="#ffcb56" style={{ fontWeight: '500' }}>
-              {t('getStarted')}
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              {appLinks.map((link) => (
-                <Typography
-                  key={link.path}
-                  variant="body1"
-                  style={{
-                    fontWeight: '400',
-                    color: '#fff',
-                    pointerEvents: 'auto',
-                  }}
-                >
-                  <Link key={link.path} to={link.path} style={{ color: '#fff', textDecoration: 'none' }}>
-                    {link.label[selectedLanguage] || link.label.en}
-                  </Link>
-                </Typography>
-              ))}
-            </Box>
-          </Grid>
+        <Container
+          component="main"
+          sx={{
+            flexGrow: 1,
+            paddingTop: '2rem',
+            paddingBottom: '2rem',
+            width: '100%',
+            overflowX: 'hidden',
+          }}
+        >
+          <Grid container spacing={2}>
+            <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
+              <Typography variant="h6" color="#ffcb56" style={{ fontWeight: '500' }}>
+                {t('getStarted')}
+              </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                {appLinks.map((link) => (
+                  <Typography
+                    key={link.path}
+                    variant="body1"
+                    style={{
+                      fontWeight: '400',
+                      color: '#fff',
+                      pointerEvents: 'auto',
+                    }}
+                  >
+                    <Link key={link.path} to={link.path} style={{ color: '#fff', textDecoration: 'none' }}>
+                      {link.label[selectedLanguage] || link.label.en}
+                    </Link>
+                  </Typography>
+                ))}
+              </Box>
+            </Grid>
 
-          <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
-            <Typography variant="h6" color="#ffcb56" style={{ fontWeight: '500' }}>
-              {t('resources')}
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              {exploreLinks.map((link) => (
-                <Typography
-                  key={link.path}
-                  variant="body1"
-                  style={{
-                    fontWeight: '400',
-                    color: '#fff',
-                    pointerEvents: 'auto',
-                  }}
-                >
-                  <Link key={link.path} to={link.path} style={{ color: '#fff', textDecoration: 'none' }}>
-                    {link.label[selectedLanguage] || link.label.en}
-                  </Link>
-                </Typography>
-              ))}
-            </Box>
-          </Grid>
+            <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
+              <Typography variant="h6" color="#ffcb56" style={{ fontWeight: '500' }}>
+                {t('resources')}
+              </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                {exploreLinks.map((link) => (
+                  <Typography
+                    key={link.path}
+                    variant="body1"
+                    style={{
+                      fontWeight: '400',
+                      color: '#fff',
+                      pointerEvents: 'auto',
+                    }}
+                  >
+                    <Link key={link.path} to={link.path} style={{ color: '#fff', textDecoration: 'none' }}>
+                      {link.label[selectedLanguage] || link.label.en}
+                    </Link>
+                  </Typography>
+                ))}
+              </Box>
+            </Grid>
 
-          <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
-            <Typography variant="h6" color="#ffcb56" style={{ fontWeight: '500' }}>
-              {t('learnMore')}
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              {policyLinks.map((link) => (
-                <Typography
-                  key={link.path}
-                  variant="body1"
-                  style={{
-                    fontWeight: '400',
-                    color: '#fff',
-                    pointerEvents: 'auto',
-                  }}
-                >
-                  <Link key={link.path} to={link.path} style={{ color: '#fff', textDecoration: 'none' }}>
-                    {link.label[selectedLanguage] || link.label.en}
-                  </Link>
-                </Typography>
-              ))}
-            </Box>
-          </Grid>
+            <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
+              <Typography variant="h6" color="#ffcb56" style={{ fontWeight: '500' }}>
+                {t('learnMore')}
+              </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                {policyLinks.map((link) => (
+                  <Typography
+                    key={link.path}
+                    variant="body1"
+                    style={{
+                      fontWeight: '400',
+                      color: '#fff',
+                      pointerEvents: 'auto',
+                    }}
+                  >
+                    <Link key={link.path} to={link.path} style={{ color: '#fff', textDecoration: 'none' }}>
+                      {link.label[selectedLanguage] || link.label.en}
+                    </Link>
+                  </Typography>
+                ))}
+              </Box>
+            </Grid>
 
-          <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
-            <Typography variant="h6" color="#ffcb56" style={{ fontWeight: '500' }}>
-              {t('info')}
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              {infoLinks.map((link) => (
-                <Typography
-                  key={link.path}
-                  variant="body1"
+            <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
+              <Typography variant="h6" color="#ffcb56" style={{ fontWeight: '500' }}>
+                {t('info')}
+              </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                {infoLinks.map((link) => (
+                  <Typography
+                    key={link.path}
+                    variant="body1"
+                    style={{
+                      fontWeight: '400',
+                      color: '#fff',
+                      pointerEvents: 'auto',
+                    }}
+                  >
+                    <Link key={link.path} to={link.path} style={{ color: '#fff', textDecoration: 'none' }}>
+                      {link.label[selectedLanguage] || link.label.en}
+                    </Link>
+                  </Typography>
+                ))}
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+
+        <Container>
+          <Grid container>
+            {/* SUPPORT */}
+            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} textAlign="center">
+              <Typography gutterBottom variant="body2" sx={{ color: '#fff' }}>
+                {t('supportMessage')} -{' '}
+                <Link
+                  to="/support"
                   style={{
-                    fontWeight: '400',
                     color: '#fff',
-                    pointerEvents: 'auto',
+                    textDecoration: 'none',
+                    textTransform: 'uppercase',
                   }}
                 >
-                  <Link key={link.path} to={link.path} style={{ color: '#fff', textDecoration: 'none' }}>
-                    {link.label[selectedLanguage] || link.label.en}
-                  </Link>
-                </Typography>
-              ))}
-            </Box>
+                  {t('support')}
+                </Link>
+              </Typography>
+            </Grid>
+
+            {/* COPYRIGHT */}
+            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} textAlign="center">
+              <Typography gutterBottom variant="body2" color="#fff">
+                &copy; {YEAR} {APP_NAME}. {t('copyright')}
+              </Typography>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </Box>
       {/* Install PWA Button Section */}
-
       <InstallPWAButton />
-      <Container>
-        <Grid container>
-          {/* SUPPORT */}
-          <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} textAlign="center">
-            <Typography gutterBottom variant="body2" sx={{ color: '#fff' }}>
-              {t('supportMessage')} -{' '}
-              <Link
-                to="/support"
-                style={{
-                  color: '#fff',
-                  textDecoration: 'none',
-                  textTransform: 'uppercase',
-                }}
-              >
-                {t('support')}
-              </Link>
-            </Typography>
-          </Grid>
-
-          {/* COPYRIGHT */}
-          <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} textAlign="center">
-            <Typography gutterBottom variant="body2" color="#fff">
-              &copy; {YEAR} {APP_NAME}. {t('copyright')}
-            </Typography>
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
+    </React.Fragment>
   );
 };
 

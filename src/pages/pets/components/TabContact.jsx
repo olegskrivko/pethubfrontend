@@ -1,7 +1,7 @@
 import React from 'react';
-import { Typography, Card, CardContent, IconButton, Box, Link, Avatar } from '@mui/material';
 
 import PhoneIcon from '@mui/icons-material/Phone';
+import { Avatar, Box, Card, CardContent, IconButton, Link, Typography } from '@mui/material';
 import moment from 'moment';
 
 const TabContact = ({ pet }) => {

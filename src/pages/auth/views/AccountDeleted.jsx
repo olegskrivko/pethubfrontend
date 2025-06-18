@@ -1,6 +1,7 @@
 import React from 'react';
-import { Container, Typography, Button, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+
+import { Box, Button, Container, Typography } from '@mui/material';
 
 const AccountDeleted = () => {
   const navigate = useNavigate();

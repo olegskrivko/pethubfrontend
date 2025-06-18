@@ -1,7 +1,6 @@
 // import React from 'react';
 // import { Box, Typography, Avatar } from '@mui/material';
 // import petImage from '../pages/images/avatars/avatars/Koala.svg'
-
 // const pets = [
 //   { src: petImage, x: '10%', y: '60%' },
 //   { src: petImage, x: '20%', y: '40%' },
@@ -10,7 +9,6 @@
 //   { src: petImage, x: '70%', y: '65%' },
 //   { src: petImage, x: '85%', y: '45%' },
 // ];
-
 // const PetPath = () => {
 //   return (
 //     <Box
@@ -36,7 +34,6 @@
 //         Helping you reunite with your furry friends through smart search,
 //         community reports and more. Stay connected and never lose hope.
 //       </Typography>
-
 //       <Box
 //         sx={{
 //           position: 'relative',
@@ -113,7 +110,6 @@
 //     strokeWidth="2"
 //   />
 // </svg>
-
 // {/* <svg
 //   viewBox="0 0 1000 200"
 //   preserveAspectRatio="none"
@@ -134,7 +130,6 @@
 //     strokeWidth="2"
 //   />
 // </svg> */}
-
 //         {/* Pet Avatars */}
 //         {pets.map((pet, index) => (
 //           <Avatar
@@ -158,14 +153,15 @@
 //     </Box>
 //   );
 // };
-
 // export default PetPath;
 import React from 'react';
-import { Box, Typography, Avatar } from '@mui/material';
+
+import { Avatar, Box, Typography } from '@mui/material';
+
+import petIcon4 from '../pages/images/cat_icon2.jpg';
 import petIcon1 from '../pages/images/dog_icon1.jpg';
 import petIcon2 from '../pages/images/dog_icon2.jpg';
 import petIcon3 from '../pages/images/dog_icon3.jpg';
-import petIcon4 from '../pages/images/cat_icon2.jpg';
 import petIcon5 from '../pages/images/pet_icon_1.jpg';
 import petIcon6 from '../pages/images/pet_icon_2.jpg';
 

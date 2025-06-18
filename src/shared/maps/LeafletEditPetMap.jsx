@@ -7,7 +7,6 @@
 // import { renderToStaticMarkup } from 'react-dom/server';
 // // import CustomAlert from '../alert/CustomAlert';
 // import { Grid, Box, Typography, Avatar, TextField, Paper, Button } from '@mui/material';
-
 // // Custom hook to handle map events and marker placement
 // const LocationMarker = ({ position, onLocationChange }) => {
 //   //   const map = useMapEvents({
@@ -20,13 +19,11 @@
 //   //       onLocationChange(newPos);
 //   //     },
 //   //   });
-
 //   const map = useMapEvents({
 //     click(e) {
 //       onLocationChange(e.latlng);
 //     },
 //   });
-
 //   const iconMarkup = renderToStaticMarkup(
 //     <LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />,
 //   );
@@ -34,7 +31,6 @@
 //     html: iconMarkup,
 //     className: 'custom-icon',
 //   });
-
 //   return (
 //     position && (
 //       <Marker
@@ -52,9 +48,7 @@
 //     )
 //   );
 // };
-
 // const LeafletAddPetMap = ({ onLocationChange, location }) => {
-
 //   //const [position, setPosition] = useState([56.9496, 24.1052]);
 //   // const [location, setLocation] = useState([56.9496, 24.1052]);
 //   // console.log("location", location)
@@ -102,7 +96,6 @@
 //       },
 //     );
 //   };
-
 //   // Memoize the setPosition callback to avoid unnecessary re-renders
 //   const handleLocationChange = useCallback(
 //     (newPosition) => {
@@ -111,7 +104,6 @@
 //     },
 //     [onLocationChange],
 //   );
-
 //   return (
 //     <div>
 //       {errorMessage && (
@@ -119,7 +111,6 @@
 //         <div>Error</div>
 //       )}
 //       {/* <button onClick={handleUseMyLocation}>Use My Location</button> */}
-
 //       <MapContainer center={position} zoom={10} style={{ height: '500px', width: '100%' }}>
 //         <TileLayer
 //           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -137,7 +128,6 @@
 //     </div>
 //   );
 // };
-
 // export default LeafletAddPetMap;
 // import React, { useState, useCallback } from 'react';
 // import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
@@ -147,7 +137,6 @@
 // import MyLocationIcon from '@mui/icons-material/MyLocation'; // Import Location Icon
 // import { renderToStaticMarkup } from 'react-dom/server';
 // import { Grid, Button, IconButton } from '@mui/material';
-
 // // Custom hook for marker placement
 // const LocationMarker = ({ position, onLocationChange }) => {
 //   const map = useMapEvents({
@@ -155,12 +144,10 @@
 //       onLocationChange(e.latlng);
 //     },
 //   });
-
 //   const iconMarkup = renderToStaticMarkup(
 //     <LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />,
 //   );
 //   const customIcon = L.divIcon({ html: iconMarkup, className: 'custom-icon' });
-
 //   return (
 //     position && (
 //       <Marker
@@ -177,10 +164,8 @@
 //     )
 //   );
 // };
-
 // const LeafletAddPetMap = ({ onLocationChange, location }) => {
 //   const [position, setPosition] = useState([location.lat, location.lng]);
-
 //   const handleUseMyLocation = () => {
 //     navigator.geolocation.getCurrentPosition(
 //       (pos) => {
@@ -193,7 +178,6 @@
 //       },
 //     );
 //   };
-
 //   return (
 //     <div style={{ position: 'relative' }}>
 //       {/* Floating Button */}
@@ -211,7 +195,6 @@
 // >
 //   <MyLocationIcon sx={{ color: '#007bff' }} />
 // </IconButton>
-
 //       {/* Map */}
 //       <MapContainer center={position} zoom={10} style={{ height: '500px', width: '100%' }}>
 //         <TileLayer
@@ -220,7 +203,6 @@
 //         />
 //         <LocationMarker position={position} onLocationChange={setPosition} />
 //       </MapContainer>
-
 //       {/* Alternative Button */}
 //       <Grid container spacing={2} justifyContent="center">
 //         <Grid item xs={12}>
@@ -232,7 +214,6 @@
 //     </div>
 //   );
 // };
-
 // export default LeafletAddPetMap;
 // import React, { useState, useCallback, useEffect  } from 'react';
 // import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
@@ -242,19 +223,16 @@
 // import MyLocationIcon from '@mui/icons-material/MyLocation'; // GPS icon
 // import { renderToStaticMarkup } from 'react-dom/server';
 // import { IconButton, Tooltip } from '@mui/material';
-
 // const LocationMarker = ({ position, onLocationChange }) => {
 //   const map = useMapEvents({
 //     click(e) {
 //       onLocationChange(e.latlng);
 //     },
 //   });
-
 //   const iconMarkup = renderToStaticMarkup(
 //     <LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />,
 //   );
 //   const customIcon = L.divIcon({ html: iconMarkup, className: 'custom-icon' });
-
 //   return (
 //     position && (
 //       <Marker
@@ -271,10 +249,8 @@
 //     )
 //   );
 // };
-
 // const LeafletAddPetMap = ({ onLocationChange, location }) => {
 //   const [position, setPosition] = useState([location.lat, location.lng]);
-
 //   const handleUseMyLocation = () => {
 //     navigator.geolocation.getCurrentPosition(
 //       (pos) => {
@@ -287,7 +263,6 @@
 //       },
 //     );
 //   };
-
 //   return (
 //     <div style={{ position: 'relative' }}>
 //       <MapContainer center={position} zoom={10} style={{ height: '500px', width: '100%' }}>
@@ -296,7 +271,6 @@
 //           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 //         />
 //         <LocationMarker position={position} onLocationChange={setPosition} />
-
 //         {/* Floating GPS Button inside the map */}
 //           <Tooltip title="Izmantot esošo atrašanās vietu">
 //         <IconButton
@@ -318,7 +292,6 @@
 //     </div>
 //   );
 // };
-
 // export default LeafletAddPetMap;
 // import React, { useState, useEffect } from 'react';
 // import { MapContainer, TileLayer, Marker, useMap, useMapEvents } from 'react-leaflet';
@@ -328,7 +301,6 @@
 // import MyLocationIcon from '@mui/icons-material/MyLocation';
 // import { renderToStaticMarkup } from 'react-dom/server';
 // import { IconButton, Tooltip } from '@mui/material';
-
 // // Component to control the map center dynamically
 // const MapController = ({ position }) => {
 //   const map = useMap();
@@ -338,22 +310,18 @@
 //       map.setView(position, 14, { animate: true }); // Center map with animation
 //     }
 //   }, [position, map]);
-
 //   return null;
 // };
-
 // const LocationMarker = ({ position, onLocationChange }) => {
 //   useMapEvents({
 //     click(e) {
 //       onLocationChange(e.latlng);
 //     },
 //   });
-
 //   const iconMarkup = renderToStaticMarkup(
 //     <LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />,
 //   );
 //   const customIcon = L.divIcon({ html: iconMarkup, className: 'custom-icon' });
-
 //   return (
 //     position && (
 //       <Marker
@@ -370,10 +338,8 @@
 //     )
 //   );
 // };
-
 // const LeafletEditPetMap = ({ onLocationChange, location }) => {
 //   const [position, setPosition] = useState([location.lat, location.lng]);
-
 //   const handleUseMyLocation = () => {
 //     navigator.geolocation.getCurrentPosition(
 //       (pos) => {
@@ -386,7 +352,6 @@
 //       },
 //     );
 //   };
-
 //   return (
 //     <div style={{ position: 'relative' }}>
 //       <MapContainer center={position} zoom={10} style={{ height: '500px', width: '100%' }}>
@@ -394,11 +359,8 @@
 //           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 //           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 //         />
-
 //         <MapController position={position} />
-
 //         <LocationMarker position={position} onLocationChange={setPosition} />
-
 //         <Tooltip title="Izmantot esošo atrašanās vietu">
 //           <IconButton
 //             onClick={handleUseMyLocation}
@@ -419,16 +381,16 @@
 //     </div>
 //   );
 // };
-
 // export default LeafletEditPetMap;
-import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, useMap, useMapEvents } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import React, { useEffect, useState } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { MapContainer, Marker, TileLayer, useMap, useMapEvents } from 'react-leaflet';
+
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
-import { renderToStaticMarkup } from 'react-dom/server';
 import { IconButton, Tooltip } from '@mui/material';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 // Component to control the map center dynamically
 const MapController = ({ position }) => {
@@ -485,7 +447,7 @@ const LeafletEditPetMap = ({ onLocationChange, location, isEditable = false }) =
       },
       () => {
         alert("Couldn't get location. Please enable GPS.");
-      }
+      },
     );
   };
 

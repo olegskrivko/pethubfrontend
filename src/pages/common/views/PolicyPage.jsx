@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
-import { Grid, Container, Typography, Box, Stack, Link } from '@mui/material';
+
+import { Box, Container, Grid, Link, Stack, Typography } from '@mui/material';
 
 const PolicyPage = () => {
   const paragraphRefs = useRef([]);

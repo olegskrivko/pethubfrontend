@@ -1,19 +1,21 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+
+import { Pets } from '@mui/icons-material';
 import {
   Box,
-  Typography,
-  Container,
-  Grid,
   Button,
   CardMedia,
-  Link as MuiLink,
+  Container,
+  Grid,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
+  Link as MuiLink,
+  Typography,
 } from '@mui/material';
-import { Pets } from '@mui/icons-material';
+
 import collaborateImage from '../../../assets/images/collaboration/creative_team_amico_blue.svg';
 
 const collaborationPoints = [

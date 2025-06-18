@@ -1,8 +1,10 @@
 // Logout.js
 import React from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+
+import { Button } from '@mui/material';
+
+import { useAuth } from '../contexts/AuthContext';
 
 const Logout = () => {
   const { logout } = useAuth();

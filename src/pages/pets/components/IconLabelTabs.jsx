@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
-import { Tabs, Tab, Box, IconButton, Typography, Avatar, Card, CardContent, Grid } from '@mui/material';
-import PropTypes from 'prop-types';
+
 import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
-import VerifiedIcon from '@mui/icons-material/Verified';
+import DescriptionIcon from '@mui/icons-material/Description';
+import ForumIcon from '@mui/icons-material/Forum';
 import PhoneIcon from '@mui/icons-material/Phone';
+import VerifiedIcon from '@mui/icons-material/Verified';
+import { Avatar, Box, Card, CardContent, Grid, IconButton, Tab, Tabs, Typography } from '@mui/material';
+import { Link } from '@mui/material';
 import moment from 'moment';
+import PropTypes from 'prop-types';
+
+import TabContact from './TabContact';
 import TabLocationHistory from './TabLocationHistory';
 import TabMessages from './TabMessages';
 import TabNotes from './TabNotes';
-import TabContact from './TabContact';
-import { Link } from '@mui/material';
 
-import DescriptionIcon from '@mui/icons-material/Description';
-import ForumIcon from '@mui/icons-material/Forum';
 const a11yProps = (index) => {
   return {
     id: `simple-tab-${index}`,

@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Grid, TextField, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+
+import { FormControl, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+
 import {
-  STATUS_CHOICES,
-  SPECIES_CHOICES,
-  AGE_CHOICES_BY_SPECIES,
-  SIZE_CHOICES,
-  GENDER_CHOICES,
-  BEHAVIOR_CHOICES,
   AGE_CHOICES,
-  PHONE_CODE_CHOICES,
+  AGE_CHOICES_BY_SPECIES,
+  BEHAVIOR_CHOICES,
   COLOR_CHOICES,
+  GENDER_CHOICES,
   PATTERN_CHOICES,
+  PHONE_CODE_CHOICES,
+  SIZE_CHOICES,
+  SPECIES_CHOICES,
+  STATUS_CHOICES,
 } from '../../../constants/petOptions';
 import LeafletAddPetMap from '../../../shared/maps/LeafletAddPetMap';
 

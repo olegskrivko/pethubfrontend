@@ -1,7 +1,10 @@
 import React from 'react';
-import { Card, CardContent, Typography, CardMedia, Box, Chip } from '@mui/material';
 import { Link } from 'react-router-dom';
-// import logo from '../../images/paw.png';
+
+import WorkIcon from '@mui/icons-material/Work';
+import { Box, Card, CardActions, CardContent, CardMedia, Chip, IconButton, Typography } from '@mui/material';
+
+import logo from '../../../assets/react.svg';
 
 const ServiceCard = ({ service }) => {
   const isNew = () => {
@@ -14,19 +17,23 @@ const ServiceCard = ({ service }) => {
   return (
     <Card>
       <Link to={`/services/${service.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-        <Box position="relative">
+        <Box position="relative" sx={{ width: '100%', aspectRatio: '4 / 3', overflow: 'hidden' }}>
           <CardMedia
             component="img"
             image={service.service_image_1 || logo}
             alt={service.title}
-            sx={{ width: '100%', height: 'auto' }}
+            sx={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
           />
           {isNew() && (
             <Chip
               label="Jauns"
               variant="contained"
               sx={{
-                backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                backgroundColor: 'rgba(0, 179, 164, 0.6)',
                 color: 'white',
                 position: 'absolute',
                 top: '8px',
@@ -37,11 +44,16 @@ const ServiceCard = ({ service }) => {
           )}
         </Box>
       </Link>
-      <CardContent sx={{ flexGrow: 1, paddingBottom: '1rem !important' }}>
-        <Typography variant="b1">
-          {service.title?.length > 20 ? `${service.title.slice(0, 20)}...` : service.title}
-        </Typography>
-      </CardContent>
+      <CardActions disableSpacing style={{ justifyContent: 'start' }}>
+        <Box sx={{ gap: 1 }} style={{ display: 'flex', alignItems: 'center', color: '#343a40' }}>
+          <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+            <WorkIcon />
+          </IconButton>
+          <Typography variant="body1">
+            {service.title?.length > 20 ? `${service.title.slice(0, 20)}...` : service.title}
+          </Typography>
+        </Box>
+      </CardActions>
     </Card>
   );
 };

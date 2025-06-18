@@ -1,12 +1,10 @@
 // import React from 'react';
 // import { Box, Grid, Typography, Card, CardContent } from '@mui/material';
-
 // // const [statistics, setStatistics] = useState({
 // //     lostPets: 0,
 // //     foundPets: 0,
 // //     reunitedPets: 0,
 // //   });
-
 // //   useEffect(() => {
 // //     async function fetchData() {
 // //       const response = await axios.get('/api/statistics');
@@ -14,20 +12,17 @@
 // //     }
 // //     fetchData();
 // //   }, []);
-
 // //   const data = [
 // //     { label: 'Total Lost Pets', value: statistics.lostPets, color: '#FF7043' },
 // //     { label: 'Total Found Pets', value: statistics.foundPets, color: '#81C784' },
 // //     { label: 'Pets Reunited', value: statistics.reunitedPets, color: '#64B5F6' },
 // //   ];
-
 // const Statistics = () => {
 //   const data = [
 //     { label: 'Total Lost Pets', value: 125, color: '#FF7043' },  // Example count and color
 //     { label: 'Total Found Pets', value: 75, color: '#81C784' },  // Example count and color
 //     { label: 'Pets Reunited', value: 50, color: '#64B5F6' },     // Example count and color
 //   ];
-
 //   return (
 //     <Box sx={{ my: 4 }}>
 //       <Grid container spacing={3} justifyContent="center">
@@ -49,16 +44,13 @@
 //     </Box>
 //   );
 // };
-
 // export default Statistics;
 // import React, { useState } from 'react';
 // import CountUp from 'react-countup';
 // import { Box, Grid, Typography, Card, CardContent } from '@mui/material';
 // import { useInView } from 'react-intersection-observer';
-
 // const Statistics = () => {
 //   const [startCount, setStartCount] = useState(false);
-
 //   const { ref, inView } = useInView({
 //     triggerOnce: true,  // Trigger once when the component comes into view
 //     onChange: (inView) => {
@@ -67,7 +59,6 @@
 //       }
 //     },
 //   });
-
 //   const data = [
 //     // { label: 'Total Lost Pets', value: 125, color: '#FF7043' },
 //     // { label: 'Total Found Pets', value: 75, color: '#81C784' },
@@ -76,7 +67,6 @@
 //     { label: 'Kopējais atrasto mājdzīvnieku skaits', value: 75, color: '#81C784' },
 //     { label: 'Atgrieztie mājdzīvnieki', value: 50, color: '#64B5F6' },
 //   ];
-
 //   return (
 //     <Box sx={{ my: 4 }} ref={ref}>
 //           {/* Title above the counter */}
@@ -106,7 +96,6 @@
 //     </Box>
 //   );
 // };
-
 // export default Statistics;
 // import React, { useEffect, useState } from 'react';
 // import CountUp from 'react-countup';
@@ -117,7 +106,6 @@
 // const Statistics = () => {
 //   const [startCount, setStartCount] = useState(false);
 //   const [stats, setStats] = useState({ lost: 0, found: 0, seen: 0 });
-
 //   const { ref, inView } = useInView({
 //     triggerOnce: true,
 //     onChange: (inView) => {
@@ -126,7 +114,6 @@
 //       }
 //     },
 //   });
-
 //   useEffect(() => {
 //     const fetchStats = async () => {
 //       try {
@@ -136,16 +123,13 @@
 //         console.error('Failed to fetch stats:', error);
 //       }
 //     };
-
 //     fetchStats();
 //   }, []);
-
 //   const data = [
 //     { label: 'Kopējais pazudušo mājdzīvnieku skaits', value: stats.lost, color: '#FF7043' },
 //     { label: 'Kopējais atrasto mājdzīvnieku skaits', value: stats.found, color: '#81C784' },
 //     { label: 'Redzēto mājdzīvnieku skaits', value: stats.seen, color: '#64B5F6' },
 //   ];
-
 //   return (
 //     <Box sx={{ my: 4 }} ref={ref}>
 //       {/* <Typography variant="h5" sx={{ textAlign: 'center', mb: 4 }}>
@@ -206,22 +190,17 @@
 //     </Card>
 //   </Grid>
 // ))}
-
 //       </Grid>
 //     </Box>
 //   );
 // };
-
 // export default Statistics;
-
 // import React, { useState } from 'react';
 // import CountUp from 'react-countup';
 // import { Box, Grid, Typography, Card, CardContent } from '@mui/material';
 // import { useInView } from 'react-intersection-observer';
-
 // const Statistics = () => {
 //   const [startCount, setStartCount] = useState(false);
-
 //   const { ref, inView } = useInView({
 //     triggerOnce: true,  // Trigger once when the component comes into view
 //     onChange: (inView) => {
@@ -230,13 +209,11 @@
 //       }
 //     },
 //   });
-
 //   const data = [
 //     { label: 'Total Lost Pets', value: 125, color: '#FF7043' },
 //     { label: 'Total Found Pets', value: 75, color: '#81C784' },
 //     { label: 'Pets Reunited', value: 50, color: '#64B5F6' },
 //   ];
-
 //   return (
 //     <Box sx={{ my: 4 }} ref={ref}>
 //       <Grid container spacing={3} justifyContent="center">
@@ -274,27 +251,22 @@
 //     </Box>
 //   );
 // };
-
 // export default Statistics;
 // import React, { useEffect, useState } from 'react';
 // import CountUp from 'react-countup';
 // import { Box, Grid, Typography } from '@mui/material';
 // import { useInView } from 'react-intersection-observer';
 // import axios from 'axios';
-
 // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
 // const Statistics = () => {
 //   const [startCount, setStartCount] = useState(false);
 //   const [stats, setStats] = useState({ lost: 0, found: 0, seen: 0 });
-
 //   const { ref, inView } = useInView({
 //     triggerOnce: true,
 //     onChange: (inView) => {
 //       if (inView) setStartCount(true);
 //     },
 //   });
-
 //   useEffect(() => {
 //     const fetchStats = async () => {
 //       try {
@@ -306,7 +278,6 @@
 //     };
 //     fetchStats();
 //   }, []);
-
 //   const data = [
 //     {
 //       label: 'Kopējais pazudušo mājdzīvnieku skaits',
@@ -330,7 +301,6 @@
 //         'M45.7,-60.4C58.4,-49.3,67.8,-33.4,69.5,-17.3C71.3,-1.2,65.4,15.2,56.8,28.8C48.2,42.4,36.8,53.2,23.5,58.2C10.3,63.1,-5,62.1,-20.6,58.6C-36.1,55,-52,49,-60.8,37.2C-69.5,25.5,-71,8,-64.5,-7.1C-58,-22.2,-43.4,-34.9,-29.8,-46C-16.1,-57,-3.6,-66.6,11.3,-71.5C26.3,-76.5,52.9,-66.9,45.7,-60.4Z',
 //     },
 //   ];
-
 //   return (
 //     <Box sx={{ my: 6 }} ref={ref}>
 //       <Grid container spacing={3} sx={{ my: 4 }}>
@@ -340,7 +310,6 @@
 //           </Typography>
 //         </Grid>
 //       </Grid>
-
 //       <Grid container spacing={4} justifyContent="center">
 //         {data.map((item, index) => (
 //           <Grid item xs={12} sm={4} key={index}>
@@ -397,12 +366,12 @@
 //     </Box>
 //   );
 // };
-
 // export default Statistics;
 import React, { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
-import { Box, Grid, Typography } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
+
+import { Box, Grid, Typography } from '@mui/material';
 import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;

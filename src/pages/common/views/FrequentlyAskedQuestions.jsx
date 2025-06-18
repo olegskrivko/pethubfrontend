@@ -1,21 +1,22 @@
 import React from 'react';
+
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Box,
-  Grid,
-  Container,
-  Typography,
   Card,
   CardContent,
   CardMedia,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
+  Container,
+  Grid,
   IconButton,
+  Typography,
   useMediaQuery,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
 
 const steps = [
   {
@@ -87,7 +88,21 @@ const FrequentlyAskedQuestions = () => {
       <Grid container spacing={3}>
         {steps.map((step, index) => (
           <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} key={index}>
-            <Accordion>
+            <Accordion
+              sx={{
+                p: 1,
+                borderRadius: 3,
+                background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+                // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease-in-out',
+                '&:hover': {
+                  // boxShadow: '0px 6px 20px rgba(0,0,0,0.1)',
+                  // transform: 'scale(1.01)',
+                  background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
+                },
+              }}
+            >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls={`panel-${index}-content`}

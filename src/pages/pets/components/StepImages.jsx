@@ -1,22 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { Grid, Box, Typography, IconButton, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
-import {
-  STATUS_CHOICES,
-  SPECIES_CHOICES,
-  AGE_CHOICES_BY_SPECIES,
-  SIZE_CHOICES,
-  GENDER_CHOICES,
-  BEHAVIOR_CHOICES,
-  AGE_CHOICES,
-  PHONE_CODE_CHOICES,
-  COLOR_CHOICES,
-  PATTERN_CHOICES,
-} from '../../../constants/petOptions';
+import React, { useEffect, useState } from 'react';
+
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import CloseIcon from '@mui/icons-material/Close';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Box, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+
+import {
+  AGE_CHOICES,
+  AGE_CHOICES_BY_SPECIES,
+  BEHAVIOR_CHOICES,
+  COLOR_CHOICES,
+  GENDER_CHOICES,
+  PATTERN_CHOICES,
+  PHONE_CODE_CHOICES,
+  SIZE_CHOICES,
+  SPECIES_CHOICES,
+  STATUS_CHOICES,
+} from '../../../constants/petOptions';
 
 const StepImages = ({ formState, handleChange }) => {
   const [extraImagesPreview, setExtraImagesPreview] = useState({
@@ -120,7 +122,7 @@ const StepImages = ({ formState, handleChange }) => {
             callback(resizedFile);
           },
           mimeType,
-          quality
+          quality,
         );
       };
       img.src = event.target.result;

@@ -1,4 +1,4 @@
-import { Container, Typography, Paper } from '@mui/material';
+import { Container, Paper, Typography } from '@mui/material';
 
 const CancelPage = () => {
   return (

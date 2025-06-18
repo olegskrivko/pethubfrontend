@@ -1,21 +1,22 @@
 import React from 'react';
+
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import EventIcon from '@mui/icons-material/Event';
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import {
-  Grid,
-  Typography,
+  Avatar,
+  Box,
   Card,
   CardContent,
+  Grid,
   IconButton,
-  Box,
   List,
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Avatar,
   Tooltip,
+  Typography,
 } from '@mui/material';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import EventIcon from '@mui/icons-material/Event';
-import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import moment from 'moment';
 
 const TabNotes = ({ pet }) => {

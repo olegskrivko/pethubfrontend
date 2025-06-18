@@ -1,45 +1,18 @@
-import React, { useState } from 'react';
-import { Box, Typography, TextField, Button, Chip, InputLabel, List, ListItem } from '@mui/material';
+import { Box, Button, Chip, InputLabel, List, ListItem } from '@mui/material';
+
+import { SHELTER_CATEGORIES } from '../../../constants/Choices';
 import SearchAutocomplete from './ShelterSearchAutocomplete';
-import { SHELTER_CATEGORIES } from '../../../constants/petOptions';
 
-// const categoryLabelsLv = {
-//   1: "Dzīvnieku pieskatīšana",
-//   2: "Suņu pastaigas",
-//   3: "Kopšana",
-//   4: "Apmācība",
-//   5: "Izmitināšana",
-//   6: "Veterinārārsts",
-//   7: "Foto sesijas",
-//   8: "Glābšana un meklēšana",
-//   9: "Piederumi un aksesuāri",
-//   10: "Māksla",
-//   11: "Apbedīšana",
-//   12: "Transports",
-//   13: "Audzētavas",
-//   14: "Apdrošināšana",
-//   15: "Citi pakalpojumi"
-// };
-
-const ServiceSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
-  //   const [localFilters, setLocalFilters] = useState(filters);
-
+const ShelterSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
   const handleChipClick = (type, value) => {
     const newFilters = {
       ...filters,
-      [type]: filters[type] === value ? '' : value, // toggle selection
+      [type]: filters[type] === value ? '' : value,
     };
 
     setFilters(newFilters);
     if (onFilterChange) onFilterChange(newFilters);
   };
-
-  //   const handleChipClick = (field, value) => {
-  //     setLocalFilters((prev) => ({
-  //       ...prev,
-  //       [field]: prev[field] === value ? '' : value, // toggle on click
-  //     }));
-  //   };
 
   const handleSearchSelect = (searchTerm) => {
     const newFilters = {
@@ -71,18 +44,20 @@ const ServiceSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
         </ListItem>
 
         {/* Search Filter */}
-
         <SearchAutocomplete filters={filters} searchValue={filters.search} onSearchSelect={handleSearchSelect} />
 
         {/* Reset Filters */}
-        <ListItem
-          sx={{
-            padding: '0 !important',
-            paddingTop: '2rem !important',
-            paddingBottom: '0.8rem !important',
-          }}
-        >
-          <Button variant="outlined" sx={{ width: '100%' }} color="primary" onClick={onReset}>
+        <ListItem sx={{ p: 0 }}>
+          <Button
+            variant="contained"
+            fullWidth
+            onClick={onReset}
+            sx={{
+              mt: 4,
+              py: 1,
+              background: 'linear-gradient(0deg, #0994ba 30%, #02b4c4 90%)',
+            }}
+          >
             Atiestatīt filtrus
           </Button>
         </ListItem>
@@ -91,4 +66,4 @@ const ServiceSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
   );
 };
 
-export default ServiceSidebar;
+export default ShelterSidebar;

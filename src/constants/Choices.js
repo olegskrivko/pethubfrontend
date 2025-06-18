@@ -71,9 +71,17 @@ export const CATEGORY_CHOICES = [
   { label: 'Citi pakalpojumi', value: '15' },
 ];
 
+export const SHELTER_CATEGORIES = [
+  { value: '1', label: 'Pašvaldības patversme' },
+  { value: '2', label: 'Dzīvnieku glābšana' },
+  { value: '3', label: 'Patvērums (Sanctuary)' },
+  { value: '4', label: 'Privāta patversme' },
+  { value: '5', label: 'Cits' },
+];
+
 export const PROVIDER_TYPES = [
-  { value: 1, label: 'Fiziska persona' },
-  { value: 2, label: 'Juridiska persona' },
+  { value: '1', label: 'Fiziska persona' },
+  { value: '2', label: 'Juridiska persona' },
 ];
 
 export const PRICE_TYPE_CHOICES = [

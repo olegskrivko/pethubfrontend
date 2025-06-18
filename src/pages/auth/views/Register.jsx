@@ -1,16 +1,18 @@
-import React, { useState, useLayoutEffect, useRef } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useLayoutEffect, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
-  Container,
-  Typography,
-  TextField,
-  Button,
   Box,
+  Button,
+  CircularProgress,
+  Container,
   IconButton,
   InputAdornment,
-  CircularProgress,
+  TextField,
+  Typography,
 } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const Register = () => {
   const [email, setEmail] = useState('');

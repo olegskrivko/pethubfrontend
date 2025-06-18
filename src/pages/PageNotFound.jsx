@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Typography, Box, Button, Container, CardMedia, Link as MuiLink } from '@mui/material';
+
+import { Box, Button, CardMedia, Container, Link as MuiLink, Typography } from '@mui/material';
 
 import NotFoundImage from '../assets/images/pagenotfound/monster_404_error_rafiki.svg';
 

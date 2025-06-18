@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+
+import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
 import {
   Box,
-  Typography,
   CardMedia,
   CircularProgress,
   Container,
@@ -12,12 +13,12 @@ import {
   ListItem,
   ListItemButton,
   ListItemIcon,
+  Typography,
 } from '@mui/material';
-import { Helmet } from 'react-helmet-async';
-import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
-
+import axios from 'axios';
 import { format, parseISO } from 'date-fns';
 import { lv } from 'date-fns/locale';
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const ArticleDetails = () => {
   const { slug } = useParams();

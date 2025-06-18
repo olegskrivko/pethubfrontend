@@ -1,66 +1,62 @@
 import { Suspense, lazy, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate, Link } from 'react-router-dom';
-// import { DrawerProvider } from './contexts/DrawerContext'
-import { LanguageProvider } from './contexts/LanguageContext';
-import { CssBaseline, Box } from '@mui/material';
-import Layout from './pages/layout/Layout';
-import FullLayout from './pages/layout/FullLayout';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { HelmetProvider } from 'react-helmet-async';
-import Loader from './shared/components/Loader';
-import './App.css';
-
-// PAGES
-import Contact from './pages/common/views/Contact';
-import Support from './pages/common/views/Support';
-import Collaborate from './pages/common/views/Collaborate';
-import FrequentlyAskedQuestions from './pages/common/views/FrequentlyAskedQuestions';
-import PolicyPage from './pages/common/views/PolicyPage';
-import PetQuiz from './pages/common/views/PetQuiz';
-import PetTraining from './pages/common/views/PetTraining';
-
-import Pricing from './pages/payment/views/Pricing';
-import CheckoutPage from './pages/payment/views/CheckoutPage';
-import SuccessPage from './pages/payment/views/SuccessPage';
-import CancelPage from './pages/payment/views/CancelPage';
-
-import SheltersListPage from './pages/shelters/views/SheltersList';
-import ShelterDetailsPage from './pages/shelters/views/ShelterDetails';
-import ArticlesListPage from './pages/articles/views/ArticlesPage';
-import ArticleDetailsPage from './pages/articles/views/ArticleDetailsPage';
-import ServicesListPage from './pages/services/views/ServicesPage';
-import ServiceDetailsPage from './pages/services/views/ServiceDetailsPage';
-
-import Profile from './pages/profile/views/Profile';
-import UserSettings from './pages/profile/views/UserSettings';
-import UserPets from './pages/profile/views/UserPets';
-import UserServices from './pages/profile/views/UserServices';
-import BookmarksIndexPage from './pages/profile/views/BookmarksIndexPage';
-import UserPetBookmarks from './pages/profile/views/UserPetBookmarks';
-import UserServiceBookmarks from './pages/profile/views/UserServiceBookmarks';
-
-import PetsListPage from './pages/pets/views/PetsPage';
-import PetDetailsPage from './pages/pets/views/PetDetailsPage';
-import Poster from './pages/pets/views/Poster';
-import PetAddStepper from './pages/pets/views/PetAddStepper';
-import EditPetPage from './pages/pets/views/EditPetPage';
-
-import Login from './pages/auth/views/Login';
-import Register from './pages/auth/views/Register';
-import ForgotPassword from './pages/auth/views/ForgotPassword';
-import ResetPassword from './pages/auth/views/ResetPassword';
-import Logout from './pages/auth/views/Logout';
-import AccountDeleted from './pages/auth/views/AccountDeleted';
-
-import PageNotFound from './pages/PageNotFound';
-
 import CookieConsent from 'react-cookie-consent';
-import { AuthProvider } from './contexts/AuthContext'; // Path to AuthContext
-import { useAuth } from './contexts/AuthContext'; // Adjust the path as needed
+import { HelmetProvider } from 'react-helmet-async';
+import { Link, Route, BrowserRouter as Router, Routes, useNavigate } from 'react-router-dom';
+
+import { Box, CssBaseline } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+// Adjust the path as needed
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import PrivateRoute from './pages/auth/components/PrivateRoute';
+
+import './App.css';
 import cookieIcon from './assets/react.svg';
+import { AuthProvider } from './contexts/AuthContext';
+// Path to AuthContext
+import { useAuth } from './contexts/AuthContext';
+// import { DrawerProvider } from './contexts/DrawerContext'
+import { LanguageProvider } from './contexts/LanguageContext';
+import PageNotFound from './pages/PageNotFound';
+import ArticleDetailsPage from './pages/articles/views/ArticleDetailsPage';
+import ArticlesListPage from './pages/articles/views/ArticlesPage';
+import PrivateRoute from './pages/auth/components/PrivateRoute';
+import AccountDeleted from './pages/auth/views/AccountDeleted';
+import ForgotPassword from './pages/auth/views/ForgotPassword';
+import Login from './pages/auth/views/Login';
+import Logout from './pages/auth/views/Logout';
+import Register from './pages/auth/views/Register';
+import ResetPassword from './pages/auth/views/ResetPassword';
+import Collaborate from './pages/common/views/Collaborate';
+// PAGES
+import Contact from './pages/common/views/Contact';
+import FrequentlyAskedQuestions from './pages/common/views/FrequentlyAskedQuestions';
+import PetQuiz from './pages/common/views/PetQuiz';
+import PetTraining from './pages/common/views/PetTraining';
+import PolicyPage from './pages/common/views/PolicyPage';
+import Support from './pages/common/views/Support';
+import FullLayout from './pages/layout/FullLayout';
+import Layout from './pages/layout/Layout';
+import CancelPage from './pages/payment/views/CancelPage';
+import CheckoutPage from './pages/payment/views/CheckoutPage';
+import Pricing from './pages/payment/views/Pricing';
+import SuccessPage from './pages/payment/views/SuccessPage';
+import EditPetPage from './pages/pets/views/EditPetPage';
+import PetAddStepper from './pages/pets/views/PetAddStepper';
+import PetDetailsPage from './pages/pets/views/PetDetailsPage';
+import PetsListPage from './pages/pets/views/PetsPage';
+import Poster from './pages/pets/views/Poster';
+import BookmarksIndexPage from './pages/profile/views/BookmarksIndexPage';
+import Profile from './pages/profile/views/Profile';
+import UserPetBookmarks from './pages/profile/views/UserPetBookmarks';
+import UserPets from './pages/profile/views/UserPets';
+import UserServiceBookmarks from './pages/profile/views/UserServiceBookmarks';
+import UserServices from './pages/profile/views/UserServices';
+import UserSettings from './pages/profile/views/UserSettings';
+import ServiceDetailsPage from './pages/services/views/ServiceDetailsPage';
+import ServicesListPage from './pages/services/views/ServicesPage';
+import ShelterDetailsPage from './pages/shelters/views/ShelterDetails';
+import SheltersListPage from './pages/shelters/views/SheltersList';
+import Loader from './shared/components/Loader';
 
 // Lazy-loaded pages
 const Home = lazy(() => import('./pages/Home'));
@@ -98,7 +94,7 @@ const theme = createTheme({
 });
 
 const stripePromise = loadStripe(
-  'pk_test_51MsAlCBnYVUZPzgiEPtA6hevdWCEOymSzerTmiA2mWpkutsMBMyo8aAuryBXQGXt7rqAk7pgkWCwCmPQddSCXoHQ00gJEKTAS3'
+  'pk_test_51MsAlCBnYVUZPzgiEPtA6hevdWCEOymSzerTmiA2mWpkutsMBMyo8aAuryBXQGXt7rqAk7pgkWCwCmPQddSCXoHQ00gJEKTAS3',
 );
 
 function App() {

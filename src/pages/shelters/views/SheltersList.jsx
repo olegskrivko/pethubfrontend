@@ -1,33 +1,35 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import CloseIcon from '@mui/icons-material/Close';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import {
+  Alert,
+  AlertTitle,
   Box,
-  Typography,
+  Button,
   Card,
   CardContent,
   CardMedia,
-  Grid,
   CircularProgress,
   Container,
-  Alert,
-  Button,
-  AlertTitle,
   Dialog,
   DialogContent,
-  IconButton,
   Drawer,
+  Grid,
+  IconButton,
   Pagination,
+  Typography,
 } from '@mui/material';
-import { useLocation, useNavigate } from 'react-router-dom';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import CloseIcon from '@mui/icons-material/Close';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import LeafletSheltersMap from '../../../shared/maps/LeafletSheltersMap';
+
 import logo from '../../../assets/images/shelters/animal_shelter.png';
-import Sidebar from '../components/ShelterSidebar';
+import LeafletSheltersMap from '../../../shared/maps/LeafletSheltersMap';
 import ShelterCard from '../components/ShelterCard';
+import Sidebar from '../components/ShelterSidebar';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -60,7 +62,7 @@ const SheltersList = () => {
 
       try {
         const response = await axios.get(
-          `${API_BASE_URL}/api/shelters/`
+          `${API_BASE_URL}/api/shelters/`,
           //   {
           //   headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
           // }

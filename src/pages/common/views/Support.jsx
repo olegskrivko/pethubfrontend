@@ -1,27 +1,30 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { CopyAll, Pets } from '@mui/icons-material';
 import {
-  Container,
-  Typography,
-  Grid,
   Box,
-  CardMedia,
-  Link as MuiLink,
   Button,
+  CardMedia,
+  Container,
+  Grid,
   IconButton,
-  TextField,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
+  Link as MuiLink,
+  TextField,
+  Typography,
 } from '@mui/material';
-import { Pets, CopyAll } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import SupportImg from '../../../assets/images/support/cat_astronaut_cuate_blue.svg';
+
 import CollaborationtImg from '../../../assets/images/collaboration/creative_team_amico_blue.svg';
+import SupportImg from '../../../assets/images/support/cat_astronaut_cuate_blue.svg';
 import { DOMAIN_URL, PAYPAL_BUTTON_ID } from '../../../constants/config';
+
 const collaborationPoints = [
   'Dzīvnieku patversmēm un glābšanas organizācijām – lai palīdzētu ātrāk atrast mājas pazudušajiem mājdzīvniekiem.',
   'Veterinārajām klīnikām un speciālistiem – lai sniegtu vērtīgus padomus mājdzīvnieku īpašniekiem.',
@@ -42,7 +45,7 @@ const Support = () => {
   const handleCopyUrl = () => {
     navigator.clipboard.writeText(DOMAIN_URL).then(
       () => toast.success('URL nokopēta!'), // Success toast notification when URL is copied
-      () => toast.error('Neizdevās nokopēt URL') // Error toast notification when copying fails
+      () => toast.error('Neizdevās nokopēt URL'), // Error toast notification when copying fails
     );
   };
 

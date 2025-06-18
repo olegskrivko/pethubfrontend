@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { MapContainer, Marker, Popup, useMap } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+
 import '@maptiler/leaflet-maptilersdk';
 import { MaptilerLayer } from '@maptiler/leaflet-maptilersdk';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
+import catIconUrl from './catlocation.svg';
+import dogIconUrl from './dog-walking.png';
 // import locationIcon from './location.svg';
 import locationIcon from './suitcase.png';
-import dogIconUrl from './dog-walking.png';
-import catIconUrl from './catlocation.svg';
 
 const defaultIcon = new L.Icon({
   iconUrl: locationIcon,
@@ -95,7 +96,7 @@ function LeafletServicesMap({ services, centerCoords }) {
         const { latitude, longitude } = pos.coords;
         setUserLocation([latitude, longitude]);
       },
-      (err) => console.error('Location error:', err)
+      (err) => console.error('Location error:', err),
     );
   }, []);
 
@@ -193,7 +194,7 @@ function LeafletServicesMap({ services, centerCoords }) {
                     </div>
                   </Popup>
                 </Marker>
-              ))
+              )),
           )}
 
           {userLocation && (

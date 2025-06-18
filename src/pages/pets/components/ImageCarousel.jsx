@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { IconButton, CardMedia, Chip, Tooltip, Box } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ShareIcon from '@mui/icons-material/Share';
-import { useSnackbar } from 'notistack';
-import DownloadIcon from '@mui/icons-material/Download';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import DownloadIcon from '@mui/icons-material/Download';
+import ShareIcon from '@mui/icons-material/Share';
+import { Box, CardMedia, Chip, IconButton, Tooltip } from '@mui/material';
+import { useSnackbar } from 'notistack';
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const ImageCarousel = ({ pet, images = [] }) => {

@@ -1,32 +1,35 @@
-import React, { useContext, useState, useEffect } from 'react';
-import {
-  Grid,
-  Box,
-  Typography,
-  Avatar,
-  TextField,
-  Paper,
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  IconButton,
-  Container,
-  DialogActions,
-} from '@mui/material';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import SettingsIcon from '@mui/icons-material/Settings';
-import TryIcon from '@mui/icons-material/Try';
-import { useAuth } from '../../../contexts/AuthContext';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import PetsIcon from '@mui/icons-material/Pets';
-import WorkIcon from '@mui/icons-material/Work';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+
 // import user_avatar from './images/cathead-01.png'
 // import user_avatar from './images/account_amico_blue.svg'
 // import user_avatar from './images/ava/Asset 9.svg'
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import PetsIcon from '@mui/icons-material/Pets';
+import SettingsIcon from '@mui/icons-material/Settings';
+import TryIcon from '@mui/icons-material/Try';
+import WorkIcon from '@mui/icons-material/Work';
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  IconButton,
+  Paper,
+  TextField,
+  Typography,
+} from '@mui/material';
+
+import { useAuth } from '../../../contexts/AuthContext';
 import AvatarWithAnimal from '../components/AvatarWithAnimal';
+
 // import AvatarImg from '../images/beaver.avif'; // Use a valid image
 // import OneSignal from 'react-onesignal';
 const Profile = () => {

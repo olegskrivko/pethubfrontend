@@ -1,41 +1,42 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Box,
-  Typography,
-  Card,
-  CardContent,
-  CircularProgress,
-  Container,
-  Alert,
-  IconButton,
-  Chip,
-  Divider,
-  CardMedia,
-  Stack,
-} from '@mui/material';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import { LocationOn, AccessTime, Phone, Email, Euro } from '@mui/icons-material';
-import { Facebook, Instagram, Language, YouTube, Twitter, LinkedIn } from '@mui/icons-material';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import MapIcon from '@mui/icons-material/Map';
-import { Rating } from '@mui/material';
 
-import { Link as MuiLink } from '@mui/material';
+import { AccessTime, Email, Euro, LocationOn, Phone } from '@mui/icons-material';
+import { Facebook, Instagram, Language, LinkedIn, Twitter, YouTube } from '@mui/icons-material';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import LeafletServiceDetailsMap from '../../../shared/maps/LeafletServiceDetailsMap';
+import MapIcon from '@mui/icons-material/Map';
 // import HolidayCard from '../../HolidayCard';
 import PublicIcon from '@mui/icons-material/Public';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import {
+  Alert,
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Chip,
+  CircularProgress,
+  Container,
+  Divider,
+  IconButton,
+  Stack,
+  Typography,
+} from '@mui/material';
+import { Rating } from '@mui/material';
+import { Link as MuiLink } from '@mui/material';
+import axios from 'axios';
+import Lottie from 'lottie-react';
 import { useSnackbar } from 'notistack';
+
+import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
+import LeafletServiceDetailsMap from '../../../shared/maps/LeafletServiceDetailsMap';
 // import spinnerGif from '../../images/features/paws.gif';
 import RatingForm from '../components/RatingForm';
 import ServiceRatingDisplay from '../components/ServiceRatingDisplay';
-import Lottie from 'lottie-react';
-import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -64,7 +65,7 @@ const ServiceDetail = () => {
 
       if (service?.locations?.length) {
         const calculatedDistances = service.locations.map((loc) =>
-          calculateDistance(latitude, longitude, loc.latitude, loc.longitude)
+          calculateDistance(latitude, longitude, loc.latitude, loc.longitude),
         );
         setDistances(calculatedDistances);
       }
@@ -282,7 +283,7 @@ const ServiceDetail = () => {
                   <Typography variant="body1">
                     <a
                       href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                        `${location.street}, ${location.city}`
+                        `${location.street}, ${location.city}`,
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"

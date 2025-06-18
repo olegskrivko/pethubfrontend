@@ -1,26 +1,28 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import FilterListIcon from '@mui/icons-material/FilterList';
 import {
-  Grid,
+  Alert,
+  Box,
   Button,
   CircularProgress,
-  Box,
   Container,
-  Alert,
-  Pagination,
   Drawer,
-  useTheme,
+  Grid,
+  Pagination,
   useMediaQuery,
+  useTheme,
 } from '@mui/material';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import { useLocation, useNavigate } from 'react-router-dom';
-import PetCardSkeleton from '../components/PetCardSkeleton';
-import Sidebar from '../components/Sidebar';
-import PetCard from '../components/PetCard';
-import LeafletClusterMap from '../../../shared/maps/LeafletClusterMap';
-import { useQueryParams } from '../../../hooks/useQueryParams';
+
 import { ErrorBoundary } from '../../../components/ErrorBoundary';
 import { LoadingSpinner } from '../../../components/LoadingSpinner';
 import { DEFAULT_CENTER_COORDS, ITEMS_PER_PAGE } from '../../../constants/map';
+import { useQueryParams } from '../../../hooks/useQueryParams';
+import LeafletClusterMap from '../../../shared/maps/LeafletClusterMap';
+import PetCard from '../components/PetCard';
+import PetCardSkeleton from '../components/PetCardSkeleton';
+import Sidebar from '../components/Sidebar';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -100,7 +102,7 @@ const PetsPage = () => {
         setLoading(false);
       }
     },
-    [navigate]
+    [navigate],
   );
 
   useEffect(() => {
@@ -111,7 +113,7 @@ const PetsPage = () => {
     (_, page) => {
       updateQueryParams({ page });
     },
-    [updateQueryParams]
+    [updateQueryParams],
   );
 
   const handleResetFilters = useCallback(() => {
@@ -122,7 +124,7 @@ const PetsPage = () => {
     (newFilters) => {
       updateQueryParams({ ...newFilters, page: 1 });
     },
-    [updateQueryParams]
+    [updateQueryParams],
   );
 
   const renderContent = useMemo(() => {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, Rating, Paper, Avatar } from '@mui/material';
+
+import { Avatar, Box, Paper, Rating, Typography } from '@mui/material';
 import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;

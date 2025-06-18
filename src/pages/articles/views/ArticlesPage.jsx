@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import CloseIcon from '@mui/icons-material/Close';
 import {
   Box,
-  Typography,
   Card,
   CardContent,
   CardMedia,
-  Grid,
   CircularProgress,
   Container,
   Dialog,
   DialogContent,
+  Grid,
   IconButton,
+  Typography,
 } from '@mui/material';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-import CloseIcon from '@mui/icons-material/Close';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import axios from 'axios';
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const ArticlesList = () => {

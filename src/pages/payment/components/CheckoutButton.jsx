@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Button, CircularProgress, Snackbar, Alert } from '@mui/material';
+
+import { Alert, Button, CircularProgress, Snackbar } from '@mui/material';
+
 import { useAuth } from '../../../contexts/AuthContext';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;

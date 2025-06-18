@@ -1,26 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Grid,
-  Button,
-  CircularProgress,
-  Box,
-  Container,
-  Alert,
-  Pagination,
-  Drawer,
-  useTheme,
-  useMediaQuery,
-} from '@mui/material';
-import PetCardSkeleton from '../components/PetCardSkeleton';
-import Sidebar from '../components/Sidebar';
-import PetCard from '../components/PetCard';
+import React, { useEffect, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { useLocation, useNavigate } from 'react-router-dom';
+import {
+  Alert,
+  Box,
+  Button,
+  CircularProgress,
+  Container,
+  Drawer,
+  Grid,
+  Pagination,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
+
 import LeafletClusterMap from '../../../shared/maps/LeafletClusterMap';
+import PetCard from '../components/PetCard';
+import PetCardSkeleton from '../components/PetCardSkeleton';
+import PetSidebar from '../components/PetSidebar';
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const PetsList = () => {
+  const mapRef = useRef(null);
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -46,6 +50,13 @@ const PetsList = () => {
   const handlePanToLocation = (lat, lng) => {
     console.log('lat, lng', lat, lng);
     setCenterCoords([lat, lng]);
+
+    // Scroll to map smoothly
+    setTimeout(() => {
+      if (mapRef.current) {
+        mapRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100); // slight delay so state update doesn't block scroll
   };
 
   useEffect(() => {
@@ -191,7 +202,7 @@ const PetsList = () => {
       <Grid container spacing={3}>
         {!isMobile && (
           <Grid size={{ xs: 12, sm: 12, md: 3, lg: 3 }}>
-            <Sidebar
+            <PetSidebar
               filters={filters}
               setFilters={setFilters}
               onFilterChange={handleFilterChange}
@@ -207,7 +218,7 @@ const PetsList = () => {
               justifyContent: 'flex-end',
             }}
           >
-            <LeafletClusterMap pets={pets} centerCoords={centerCoords} />
+            <LeafletClusterMap pets={pets} centerCoords={centerCoords} mapRef={mapRef} />
           </Box>
           <Box
             py={2}
@@ -230,7 +241,7 @@ const PetsList = () => {
           {/* Drawer for mobile */}
           <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
             <Box sx={{ width: 300, p: 2 }}>
-              <Sidebar
+              <PetSidebar
                 filters={filters}
                 setFilters={setFilters}
                 onFilterChange={handleFilterChange}
@@ -250,31 +261,52 @@ const PetsList = () => {
           ) : error ? (
             <Alert severity="error">{error}</Alert>
           ) : (
-            <>
-              <Grid container spacing={2}>
-                {pets.map((pet) => {
-                  const petDetailUrl = `/pets/${pet.id}?status=${filters.status}&species=${filters.species}&gender=${filters.gender}&size=${filters.size}&pattern=${filters.pattern}&date=${filters.date}&search=${filters.search}&color=${filters.color}&page=${pagination.page}`;
-                  return (
-                    <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4 }} key={pet.id}>
-                      <PetCard
-                        pet={pet}
-                        filters={filters}
-                        pagination={pagination}
-                        petDetailUrl={petDetailUrl}
-                        onPanToLocation={handlePanToLocation}
-                      />
-                    </Grid>
-                  );
-                })}
-              </Grid>
+            <Grid container spacing={2}>
+              {Array.isArray(pets) && pets.length > 0 ? (
+                pets.map((pet) => (
+                  <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4 }} key={pet.id}>
+                    <PetCard
+                      pet={pet}
+                      filters={filters}
+                      pagination={pagination}
+                      onPanToLocation={handlePanToLocation}
+                    />
+                  </Grid>
+                ))
+              ) : (
+                <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+                  <Alert
+                    severity="info"
+                    variant="outlined"
+                    sx={{
+                      textAlign: 'center',
+                      backgroundColor: '#f5faff',
+                      borderColor: '#b6e0fe',
+                      color: '#0b3d91',
+                    }}
+                  >
+                    <Typography variant="h6">
+                      Šobrīd nav pieejamu dzīvnieku, kas atbilst jūsu meklēšanas kritērijiem.
+                    </Typography>
+                    <Typography variant="body2">
+                      Mēģiniet mainīt filtrus vai apmeklējiet mūs vēlāk – iespējams, drīzumā tiks pievienoti jauni
+                      dzīvnieki.
+                    </Typography>
+                  </Alert>
+                </Grid>
+              )}
+            </Grid>
+          )}
+          {/* Show pagination only when there are results */}
+          {!error && pets && pets.length > 0 && (
+            <Box sx={{ display: 'flex', justifyContent: 'center', mt: '2rem' }}>
               <Pagination
                 color="primary"
-                sx={{ mt: '2rem' }}
                 page={pagination.page}
                 count={pagination.totalPages}
                 onChange={handlePaginationChange}
               />
-            </>
+            </Box>
           )}
         </Grid>
       </Grid>

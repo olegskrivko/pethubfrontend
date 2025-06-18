@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import Button from '@mui/material/Button';
+import React, { useEffect, useState } from 'react';
+
 import InstallMobileIcon from '@mui/icons-material/InstallMobile';
+import Button from '@mui/material/Button';
 
 const InstallPWAButton = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -42,7 +43,7 @@ const InstallPWAButton = () => {
         variant="contained"
         fullWidth
         style={{
-          position: 'fixed',
+          position: 'sticky',
           bottom: 0,
           left: 0,
           right: 0,

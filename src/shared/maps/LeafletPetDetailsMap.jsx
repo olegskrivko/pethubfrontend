@@ -1,14 +1,15 @@
 import React, { useEffect, useRef } from 'react';
-import { MapContainer, Marker, TileLayer, Popup, useMap, Circle } from 'react-leaflet';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { Circle, MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
+
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import PetsIcon from '@mui/icons-material/Pets';
 import Chip from '@mui/material/Chip';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { renderToStaticMarkup } from 'react-dom/server';
-import PropTypes from 'prop-types';
-import PetsIcon from '@mui/icons-material/Pets';
-import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 // import { useTranslation } from 'react-i18next';
 

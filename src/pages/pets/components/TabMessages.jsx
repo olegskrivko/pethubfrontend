@@ -1,36 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Grid,
-  Typography,
-  Card,
-  CardContent,
-  Box,
-  Avatar,
-  IconButton,
-  Tooltip,
-  Button,
-  Modal,
-  Backdrop,
-  CardMedia,
-  Fade,
-} from '@mui/material';
+import React, { useEffect, useState } from 'react';
 
 import {
-  LocationOn as LocationOnIcon,
-  LocationOff as LocationOffIcon,
   Delete as DeleteIcon,
+  LocationOff as LocationOffIcon,
+  LocationOn as LocationOnIcon,
 } from '@mui/icons-material';
-import moment from 'moment';
 import CloseIcon from '@mui/icons-material/Close';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
-import { useAuth } from '../../../contexts/AuthContext';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import {
+  Avatar,
+  Backdrop,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Fade,
+  Grid,
+  IconButton,
+  Modal,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import dayjs from 'dayjs';
 import 'dayjs/locale/lv';
-import 'moment/locale/lv'; // Latvian locale
+// Latvian locale
 import relativeTime from 'dayjs/plugin/relativeTime';
+import moment from 'moment';
+import 'moment/locale/lv';
+
+import { useAuth } from '../../../contexts/AuthContext';
+
 dayjs.locale('lv');
 dayjs.extend(relativeTime);
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;

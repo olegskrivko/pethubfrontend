@@ -1,35 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Box,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Grid,
-  TextField,
-  Button,
-  Card,
-  IconButton,
-  Slider,
-  Tooltip,
-  CardContent,
-  Container,
-  Typography,
-  Alert,
-  CircularProgress,
-} from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import DeleteIcon from '@mui/icons-material/Delete';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../contexts/AuthContext';
-import axios from 'axios';
 
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import CancelIcon from '@mui/icons-material/Cancel';
+import CardMembershipIcon from '@mui/icons-material/CardMembership';
+import DeleteIcon from '@mui/icons-material/Delete';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import NotificationsOffIcon from '@mui/icons-material/NotificationsOff';
 import SendIcon from '@mui/icons-material/Send';
-import CardMembershipIcon from '@mui/icons-material/CardMembership';
-import CancelIcon from '@mui/icons-material/Cancel';
+import {
+  Alert,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CircularProgress,
+  Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  IconButton,
+  Slider,
+  TextField,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import axios from 'axios';
+
+import { useAuth } from '../../../contexts/AuthContext';
 import LeafletAddNotificationMap from '../../../shared/maps/LeafletAddNotificationMap';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -177,7 +178,7 @@ function UserSettings() {
       const subscription = await registration.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(
-          'BOZTcqsdJXUbELTV3ax5lK3X3Wh4S33MuJAZ75MVWCxjtrcn7nVr2Xp-JPiPlVJCE9gqmLv23_PR_f-7uKgU8iU'
+          'BOZTcqsdJXUbELTV3ax5lK3X3Wh4S33MuJAZ75MVWCxjtrcn7nVr2Xp-JPiPlVJCE9gqmLv23_PR_f-7uKgU8iU',
         ),
       });
 
@@ -234,7 +235,7 @@ function UserSettings() {
         `${API_BASE_URL}/api/notifications/is_subscribed/?endpoint=${encodeURIComponent(existingSubscription.endpoint)}`,
         {
           headers: { Authorization: `Bearer ${accessToken}` },
-        }
+        },
       );
 
       const result = await response.json();

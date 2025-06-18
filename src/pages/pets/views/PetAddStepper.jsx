@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
-import { Box, Button, Container, Typography } from '@mui/material';
-import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { Link, useNavigate } from 'react-router-dom';
+
 import CloseIcon from '@mui/icons-material/Close';
-import StepLocation from '../components/StepLocation';
-import StepCharacteristics from '../components/StepCharacteristics';
-import StepLostTime from '../components/StepLostTime';
-import StepImages from '../components/StepImages';
-import StepContact from '../components/StepContact';
-import StepAppearance from '../components/StepAppearance';
+import { Box, Button, Container, Typography } from '@mui/material';
+import axios from 'axios';
 
 import { getCurrentDate, getCurrentTime } from '../../../utils/formHelpers';
+import StepAppearance from '../components/StepAppearance';
+import StepCharacteristics from '../components/StepCharacteristics';
+import StepContact from '../components/StepContact';
+import StepImages from '../components/StepImages';
+import StepLocation from '../components/StepLocation';
+import StepLostTime from '../components/StepLostTime';
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const steps = ['Dzīvnieka raksturojums', 'Atrašanās vieta', 'Attēli', 'Izskats', 'Kontakta informācija'];
 

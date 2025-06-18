@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MapContainer, Marker, Popup, useMap } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
+
+import '@maptiler/leaflet-maptilersdk';
+// MapTiler plugin
+import { MaptilerLayer } from '@maptiler/leaflet-maptilersdk';
+// Replace this with your icon if needed
+import { useMediaQuery, useTheme } from '@mui/material';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import '@maptiler/leaflet-maptilersdk'; // MapTiler plugin
-import { MaptilerLayer } from '@maptiler/leaflet-maptilersdk';
-import shelterIcon from './pet_house.png'; // Replace this with your icon if needed
-import { useTheme, useMediaQuery } from '@mui/material'; // 🔥 Add these imports
+
+import shelterIcon from './pet_house.png';
+
+// 🔥 Add these imports
 // Icons for shelters
 const defaultIcon = new L.Icon({
   iconUrl: shelterIcon,
@@ -74,7 +80,7 @@ function LeafletSheltersMap({ shelters, centerCoords }) {
         const { latitude, longitude } = pos.coords;
         setUserLocation([latitude, longitude]);
       },
-      (err) => console.error('Location error:', err)
+      (err) => console.error('Location error:', err),
     );
   }, []);
   const theme = useTheme();
@@ -183,7 +189,7 @@ function LeafletSheltersMap({ shelters, centerCoords }) {
                   </a>
                 </Popup>
               </Marker>
-            ) : null
+            ) : null,
           )}
           {userLocation && (
             <Marker position={userLocation} icon={userPulseIcon}>

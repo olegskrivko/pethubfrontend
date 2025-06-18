@@ -1,11 +1,12 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 import Loader from '../../shared/components/Loader';
-import Footer from './Footer';
 import DrawerAppBar from './DrawerAppBar';
+import Footer from './Footer';
 
 const AuthLayout = () => {
   return (

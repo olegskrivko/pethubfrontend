@@ -1,28 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Select, MenuItem } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+import EditIcon from '@mui/icons-material/Edit';
+import PetsIcon from '@mui/icons-material/Pets';
+import { MenuItem, Modal, Select } from '@mui/material';
 import {
-  Typography,
-  Card,
-  Chip,
-  CardContent,
   Avatar,
-  Grid,
   Box,
   Button,
-  Tooltip,
-  Link as MuiLink,
+  Card,
+  CardContent,
+  Chip,
   Container,
+  Grid,
   IconButton,
+  Link as MuiLink,
+  Tooltip,
+  Typography,
 } from '@mui/material';
-import { useAuth } from '../../../contexts/AuthContext';
-import { useNavigate, Link } from 'react-router-dom';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import BookmarkIcon from '@mui/icons-material/Bookmark'; // ✅ Import missing icon
+// ✅ Import missing icon
 import axios from 'axios';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import PetsIcon from '@mui/icons-material/Pets';
-import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+
+import { useAuth } from '../../../contexts/AuthContext';
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 function UserPets() {
   const { user } = useAuth();
@@ -325,12 +329,12 @@ function UserPets() {
                       headers: {
                         Authorization: `Bearer ${accessToken}`,
                       },
-                    }
+                    },
                   );
 
                   // Update state
                   setOwnedPets((prev) =>
-                    prev.map((pet) => (pet.id === selectedPet.id ? { ...pet, final_status: newStatus } : pet))
+                    prev.map((pet) => (pet.id === selectedPet.id ? { ...pet, final_status: newStatus } : pet)),
                   );
 
                   setEditModalOpen(false);

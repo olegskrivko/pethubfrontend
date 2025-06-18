@@ -1,6 +1,5 @@
 // // import React from 'react';
 // // import mapimg from "../pages/images/map.png"
-
 // // const MapBanner = () => {
 // //   return (
 // //     <div
@@ -25,7 +24,6 @@
 // //           background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%)',
 // //         }}
 // //       />
-
 // //       {/* Text and CTA */}
 // //       <div
 // //         style={{
@@ -58,15 +56,12 @@
 // //     </div>
 // //   );
 // // };
-
 // // export default MapBanner;
 // import React from 'react';
 // import mapimg from '../pages/images/new-york-street-map-bw.jpg';
-
 // const MapBanner = () => {
 //   return (
 //     <div style={{ position: 'relative', width: '100%', height: '600px', overflow: 'hidden' }}>
-
 //       {/* Grayscale image */}
 //       <img
 //         src={mapimg}
@@ -79,7 +74,6 @@
 //           filter: 'grayscale(100%)',
 //         }}
 //       />
-
 //       {/* White gradient fade */}
 //       <div
 //         style={{
@@ -93,7 +87,6 @@
 //           zIndex: 1,
 //         }}
 //       />
-
 //       {/* CTA Text */}
 //       <div
 //         style={{
@@ -130,16 +123,17 @@
 //     </div>
 //   );
 // };
-
 // export default MapBanner;
 import React from 'react';
-import { useMediaQuery } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-//import illustration from '../pages/images/navigation_cuate_blue.svg'; // replace with your own SVG
-import illustration from '../pages/images/online_ads_animate.svg';
 //import illustration from '../pages/images/navigation_cuate.svg';
 import { useNavigate } from 'react-router-dom';
+
+import { useMediaQuery } from '@mui/material';
 import Container from '@mui/material/Container';
+import { useTheme } from '@mui/material/styles';
+
+//import illustration from '../pages/images/navigation_cuate_blue.svg'; // replace with your own SVG
+import illustration from '../pages/images/online_ads_animate.svg';
 
 {
   /* <a href="https://storyset.com/city">City illustrations by Storyset</a> */

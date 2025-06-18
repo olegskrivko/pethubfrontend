@@ -1,20 +1,24 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { MapContainer, Marker, Popup, useMap, Circle } from 'react-leaflet';
-import Chip from '@mui/material/Chip';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import PetsIcon from '@mui/icons-material/Pets';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import React, { useEffect, useRef, useState } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import PropTypes from 'prop-types';
-import moment from 'moment';
-import SendMessage from '../../pages/pets/components/SendMessage';
+import { Circle, MapContainer, Marker, Popup, useMap } from 'react-leaflet';
 
+// Import Latvian locale
+import { MaptilerLayer } from '@maptiler/leaflet-maptilersdk';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import PetsIcon from '@mui/icons-material/Pets';
+import Chip from '@mui/material/Chip';
 import { format } from 'date-fns';
 import { lv } from 'date-fns/locale';
-import 'moment/locale/lv'; // Import Latvian locale
-import { MaptilerLayer } from '@maptiler/leaflet-maptilersdk'; // MapTiler integration
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import moment from 'moment';
+import 'moment/locale/lv';
+import PropTypes from 'prop-types';
+
+import SendMessage from '../../pages/pets/components/SendMessage';
+
+// MapTiler integration
 
 // Define different search radius distances
 const getSearchRadii = (petType) =>
@@ -56,7 +60,7 @@ const SearchCircles = ({ center, petType }) => {
                     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
                   ">Attālums: ${radius / 1000} km
                   </div>
-                `
+                `,
                 )
                 .openOn(map);
             },

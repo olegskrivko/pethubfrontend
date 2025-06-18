@@ -1,36 +1,39 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-// React MUI components
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
+
+import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
+import ComputerIcon from '@mui/icons-material/Computer';
+import DevicesIcon from '@mui/icons-material/Devices';
+import GroupsIcon from '@mui/icons-material/Groups';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import MapIcon from '@mui/icons-material/Map';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import QrCodeIcon from '@mui/icons-material/QrCode';
+import SearchIcon from '@mui/icons-material/Search';
+import SimCardDownloadIcon from '@mui/icons-material/SimCardDownload';
+import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+// React MUI components
+import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
-import CardActionArea from '@mui/material/CardActionArea';
-import SearchIcon from '@mui/icons-material/Search';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import SimCardDownloadIcon from '@mui/icons-material/SimCardDownload';
-import MapIcon from '@mui/icons-material/Map';
-import ComputerIcon from '@mui/icons-material/Computer';
-import ChatBot from '../shared/components/ChatBot';
-import TestimonialSlider from './common/components/TestimonialSlider';
-import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
-import SmartphoneIcon from '@mui/icons-material/Smartphone';
-import QrCodeIcon from '@mui/icons-material/QrCode';
-import PetPath from '../pages/common/components/PetPath';
-import DevicesIcon from '@mui/icons-material/Devices';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 import MapBanner from '../pages/common/components/MapBanner';
 import MapBannerBottom from '../pages/common/components/MapBannerBottom';
 import MapBannerDeepBottom from '../pages/common/components/MapBannerDeepBottom';
-import GroupsIcon from '@mui/icons-material/Groups';
+import PetPath from '../pages/common/components/PetPath';
+import ChatBot from '../shared/components/ChatBot';
+import TestimonialSlider from './common/components/TestimonialSlider';
+
 // import PetPathVertical from "../components/PetPathVertical"
 
 function Home() {

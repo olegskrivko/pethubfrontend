@@ -1,30 +1,32 @@
 // DrawerAppBar.js
-import React, { useEffect, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
+
+import MenuIcon from '@mui/icons-material/Menu';
+import PetsIcon from '@mui/icons-material/Pets';
 // React MUI
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
+import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import PetsIcon from '@mui/icons-material/Pets';
-import { useTranslation } from 'react-i18next';
-import LanguageSelector from '../LanguageSelector';
-import { LanguageContext } from '../../contexts/LanguageContext';
+
 // import Logout from './Logout';
 
 import { useAuth } from '../../contexts/AuthContext';
+import { LanguageContext } from '../../contexts/LanguageContext';
+import LanguageSelector from '../LanguageSelector';
 
 const drawerWidth = 240;
 
@@ -60,7 +62,7 @@ function DrawerAppBar(props) {
         style={{
           width: '100%',
           height: '3.5rem',
-          // backgroundColor: '#5B9BD5',
+          // backgroundColor: '#5B9BD5', for icons good
           background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
           // backgroundColor: '#03a9f4',
           // backgroundColor: '#4B5AED', cool violet

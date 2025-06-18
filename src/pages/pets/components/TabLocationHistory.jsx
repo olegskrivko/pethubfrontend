@@ -1,28 +1,29 @@
 import React from 'react';
+
+import EditCalendarIcon from '@mui/icons-material/EditCalendar';
+import EventIcon from '@mui/icons-material/Event';
+import EventBusyIcon from '@mui/icons-material/EventBusy';
+import FlagIcon from '@mui/icons-material/Flag';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {
+  Avatar,
+  Box,
   Card,
   CardContent,
+  Grid,
   List,
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Avatar,
   Typography,
-  Box,
-  Grid,
 } from '@mui/material';
-import EventIcon from '@mui/icons-material/Event';
-import EditCalendarIcon from '@mui/icons-material/EditCalendar';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import EventBusyIcon from '@mui/icons-material/EventBusy';
-import FlagIcon from '@mui/icons-material/Flag';
 import { format } from 'date-fns';
 import { lv } from 'date-fns/locale';
 
 const StatusHistory = ({ pet, sightings }) => {
   // Filter sightings where both latitude and longitude are valid
   const validSightings = sightings.filter(
-    (sighting) => sighting.latitude && sighting.longitude && !isNaN(sighting.latitude) && !isNaN(sighting.longitude)
+    (sighting) => sighting.latitude && sighting.longitude && !isNaN(sighting.latitude) && !isNaN(sighting.longitude),
   );
 
   const eventDate = pet.event_occurred_at ? new Date(pet.event_occurred_at.replace(' ', 'T')) : null;

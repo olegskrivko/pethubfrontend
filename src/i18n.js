@@ -1,28 +1,27 @@
-import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+
+import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+import enAboutPage from './locales/en/aboutPage.json';
+import enChatbot from './locales/en/chatbot.json';
 // Import namespaces
 import enCommon from './locales/en/common.json';
-import enNavbar from './locales/en/navbar.json';
 import enFooter from './locales/en/footer.json';
-import enAboutPage from './locales/en/aboutPage.json';
+import enNavbar from './locales/en/navbar.json';
 import enSelectOptions from './locales/en/selectOptions.json';
-import enChatbot from './locales/en/chatbot.json';
-
-import lvCommon from './locales/lv/common.json';
-import lvNavbar from './locales/lv/navbar.json';
-import lvFooter from './locales/lv/footer.json';
 import lvAboutPage from './locales/lv/aboutPage.json';
-import lvSelectOptions from './locales/lv/selectOptions.json';
 import lvChatbot from './locales/lv/chatbot.json';
-
-import ruCommon from './locales/ru/common.json';
-import ruNavbar from './locales/ru/navbar.json';
-import ruFooter from './locales/ru/footer.json';
+import lvCommon from './locales/lv/common.json';
+import lvFooter from './locales/lv/footer.json';
+import lvNavbar from './locales/lv/navbar.json';
+import lvSelectOptions from './locales/lv/selectOptions.json';
 import ruAboutPage from './locales/ru/aboutPage.json';
-import ruSelectOptions from './locales/ru/selectOptions.json';
 import ruChatbot from './locales/ru/chatbot.json';
+import ruCommon from './locales/ru/common.json';
+import ruFooter from './locales/ru/footer.json';
+import ruNavbar from './locales/ru/navbar.json';
+import ruSelectOptions from './locales/ru/selectOptions.json';
 
 i18n
   .use(LanguageDetector) // Detects user language

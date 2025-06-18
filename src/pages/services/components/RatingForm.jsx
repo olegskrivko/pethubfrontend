@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Box, Typography, Rating, TextField, Button, Paper } from '@mui/material';
-import { useSnackbar } from 'notistack';
+
+import { Box, Button, Paper, Rating, TextField, Typography } from '@mui/material';
 import axios from 'axios';
+import { useSnackbar } from 'notistack';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -45,7 +46,7 @@ const RatingForm = ({ serviceId, onSuccess }) => {
             Authorization: `Bearer ${accessToken}`,
             'Content-Type': 'application/json',
           },
-        }
+        },
       );
       console.log('Review submitted successfully:', response.data);
       enqueueSnackbar('Atsauksme pievienota veiksmīgi!', {
