@@ -26,7 +26,8 @@ import Typography from '@mui/material/Typography';
 
 import { useAuth } from '../../contexts/AuthContext';
 import { LanguageContext } from '../../contexts/LanguageContext';
-import LanguageSelector from '../LanguageSelector';
+// import LanguageSelector from '../LanguageSelector';
+import LanguageSelectorTrigger from '../LanguageSelectorTrigger';
 
 const drawerWidth = 240;
 
@@ -177,7 +178,8 @@ function DrawerAppBar(props) {
                 </Button>
               </Link>
             </Box>
-            <LanguageSelector />
+            {/* <LanguageSelector /> */}
+            <LanguageSelectorTrigger />
           </Toolbar>
         </Container>
       </AppBar>
