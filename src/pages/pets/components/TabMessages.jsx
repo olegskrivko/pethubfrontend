@@ -108,7 +108,7 @@ const TabMessages = ({ pet, sightings, onZoomMap }) => {
 
           return (
             <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} key={index}>
-              <Card>
+              <Card sx={{ borderRadius: 3, background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)' }}>
                 <CardContent style={{ paddingBottom: '1rem' }}>
                   <Grid container spacing={2} sx={{ position: 'relative' }}>
                     <Grid item xs={12} sm={12} md={8} lg={8}>

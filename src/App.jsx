@@ -1,5 +1,4 @@
 import { Suspense, lazy, useEffect, useState } from 'react';
-import CookieConsent from 'react-cookie-consent';
 import { HelmetProvider } from 'react-helmet-async';
 import { Link, Route, BrowserRouter as Router, Routes, useNavigate } from 'react-router-dom';
 
@@ -56,6 +55,7 @@ import ServiceDetailsPage from './pages/services/views/ServiceDetailsPage';
 import ServicesListPage from './pages/services/views/ServicesPage';
 import ShelterDetailsPage from './pages/shelters/views/ShelterDetails';
 import SheltersListPage from './pages/shelters/views/SheltersList';
+import CookieConsent from './shared/components/CookieConsent';
 import Loader from './shared/components/Loader';
 
 // Lazy-loaded pages
@@ -177,86 +177,7 @@ function App() {
                     </Route>
                   </Routes>
                 </Suspense>
-                {/* <CookieConsent
-  location="bottom"
-  cookieName="userAcceptedCookies"
-  enableDeclineButton
-  buttonText="I Accept"
-  declineButtonText="Decline"
-  onAccept={handleAcceptCookies}
-  onDecline={() => console.log('User declined cookies')}
-  style={{
-    background: '#2474A3',
-    color: '#fff',
-    fontFamily: 'Arial, sans-serif',
-    borderTop: '1px solid #ddd',
-    padding: '15px 20px',
-    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-    zIndex: 9999,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '20px',
-    flexWrap: 'wrap'
-  }}
-  buttonStyle={{
-    background: '#00b3a4',
-    color: '#fff',
-    fontSize: '14px',
-    borderRadius: '30px',
-    padding: '10px 20px',
-    cursor: 'pointer',
-    border: 'none',
-    transition: 'background 0.3s ease',
-  }}
-  declineButtonStyle={{
-    background: '#FF5733',
-    color: '#fff',
-    fontSize: '14px',
-    borderRadius: '30px',
-    padding: '10px 20px',
-    cursor: 'pointer',
-    border: 'none',
-    transition: 'background 0.3s ease',
-  }}
-  buttonWrapperStyle={{
-    display: 'flex',
-    gap: '10px',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-  }}
-  expires={150}
->
-  <Box style={{ display: 'flex', alignItems: 'center' }}>
-    <img 
-      src={cookieIcon}
-      alt="Cookie Icon"
-      style={{
-        width: '30px',
-        height: 'auto',
-        marginRight: '12px',
-      }} 
-    />
-    <span style={{ fontSize: '14px', fontWeight: 500 }}>
-      This website uses cookies to enhance the user experience.{' '}
-      <span style={{ fontSize: '12px' }}>
-        Read our{' '}
-        <Link
-          to='/policies'
-          style={{
-            fontSize: '12px',
-            color: '#ffffff',
-            textDecoration: 'underline',
-          }}
-        >
-          Privacy Policy
-        </Link>
-        .
-      </span>
-    </span>
-  </Box>
-</CookieConsent> */}
+                <CookieConsent />
               </LanguageProvider>
             </AuthProvider>
           </Router>

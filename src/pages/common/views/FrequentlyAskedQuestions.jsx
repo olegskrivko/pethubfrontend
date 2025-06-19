@@ -90,20 +90,46 @@ const FrequentlyAskedQuestions = () => {
           <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} key={index}>
             <Accordion
               sx={{
-                p: 1,
+                py: 1,
                 borderRadius: 3,
                 background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
-                // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
                 cursor: 'pointer',
                 transition: 'all 0.3s ease-in-out',
                 '&:hover': {
-                  // boxShadow: '0px 6px 20px rgba(0,0,0,0.1)',
-                  // transform: 'scale(1.01)',
+                  boxShadow: '0px 3px 10px rgba(0,0,0,0.1)',
+                  transform: 'scale(1.01)',
                   background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
                 },
               }}
             >
               <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls={`panel-${index}-content`}
+                id={`panel-${index}-header`}
+                // sx={{ px: 2, py: 1.5 }}
+              >
+                <Box display="flex" alignItems="center">
+                  <IconButton color="primary" size="small" sx={{ mr: 2, backgroundColor: '#f7f9fd' }}>
+                    <TipsAndUpdatesIcon />
+                  </IconButton>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontWeight: 600, color: '#16477c', fontSize: { xs: '0.9rem', sm: '1rem' } }}
+                  >
+                    {step.question}
+                  </Typography>
+                </Box>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography
+                  variant="body1"
+                  sx={{ color: '#444', fontSize: { xs: '0.9rem', sm: '1rem' }, lineHeight: 1.6 }}
+                >
+                  {step.answer}
+                </Typography>
+              </AccordionDetails>
+
+              {/* <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls={`panel-${index}-content`}
                 id={`panel-${index}-header`}
@@ -127,10 +153,10 @@ const FrequentlyAskedQuestions = () => {
 
                   <Typography variant="h6">{step.question}</Typography>
                 </Box>
-              </AccordionSummary>
-              <AccordionDetails>
+              </AccordionSummary> */}
+              {/* <AccordionDetails>
                 <Typography variant="body1">{step.answer}</Typography>
-              </AccordionDetails>
+              </AccordionDetails> */}
             </Accordion>
           </Grid>
         ))}

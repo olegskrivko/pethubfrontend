@@ -213,7 +213,7 @@ const PetTraining = () => {
             <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} key={index}>
               <Accordion
                 sx={{
-                  p: 1,
+                  py: 1,
                   borderRadius: 3,
                   background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
                   cursor: 'pointer',
@@ -237,7 +237,7 @@ const PetTraining = () => {
                     </IconButton>
                     <Typography
                       variant="h6"
-                      sx={{ fontWeight: 600, color: '#16477c', fontSize: { xs: '1rem', sm: '1.125rem' } }}
+                      sx={{ fontWeight: 600, color: '#16477c', fontSize: { xs: '0.9rem', sm: '1rem' } }}
                     >
                       {tip.title}
                     </Typography>

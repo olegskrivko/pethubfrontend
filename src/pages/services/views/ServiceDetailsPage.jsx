@@ -200,7 +200,7 @@ const ServiceDetail = () => {
     <Container component="main" maxWidth="lg">
       {/* Service Image */}
       <Box mb={5}>
-        <Card elevation={4} sx={{ borderRadius: 4, overflow: 'hidden', position: 'relative' }}>
+        <Card elevation={4} sx={{ borderRadius: 3, overflow: 'hidden', position: 'relative' }}>
           <CardMedia
             component="img"
             // image={service.service_image}
@@ -264,15 +264,40 @@ const ServiceDetail = () => {
             key={index}
             elevation={3}
             sx={{
-              borderRadius: 4,
+              borderRadius: 3,
               mb: 4,
-              p: { xs: 2, md: 3 },
+              p: { xs: 2, md: 2 },
               backgroundColor: '#fafafa',
             }}
           >
             <Box display="flex" alignItems="center" gap={2} justifyContent="space-between">
               <Box display="flex" flexDirection="column" alignItems="flex-start" gap={2}>
-                <Box display="flex" alignItems="center" gap={1}>
+                <Box sx={{ gap: 1 }} style={{ display: 'flex', alignItems: 'center', color: '#343a40' }}>
+                  <IconButton
+                    onClick={() => handlePanToLocation(location.latitude, location.longitude)}
+                    color="primary"
+                    style={{ backgroundColor: '#f7f9fd' }}
+                  >
+                    <LocationOn />
+                  </IconButton>
+                  <Typography variant="body1">
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                        `${location.street}, ${location.city}`,
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        color: '#90caf9',
+                        textDecoration: 'underline',
+                        marginLeft: '0.3rem',
+                      }}
+                    >
+                      {location.city}, {location.street}
+                    </a>
+                  </Typography>
+                </Box>
+                {/* <Box display="flex" alignItems="center" gap={1}>
                   <IconButton
                     style={{ backgroundColor: '#555', color: '#fff' }}
                     onClick={() => handlePanToLocation(location.latitude, location.longitude)}
@@ -296,7 +321,7 @@ const ServiceDetail = () => {
                       {location.city}, {location.street}
                     </a>
                   </Typography>
-                </Box>
+                </Box> */}
               </Box>
 
               <Box display="flex" alignItems="center" gap={1}>

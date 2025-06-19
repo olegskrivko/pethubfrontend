@@ -63,14 +63,33 @@ const ChatBot = () => {
         body: JSON.stringify({ message }),
       });
 
+      // const data = await response.json();
+      // setMessages((prev) => [
+      //   ...prev,
+      //   {
+      //     text: data.response || 'Atvainojiet, nesapratu jautājumu.',
+      //     isUser: false,
+      //   },
+      // ]);
       const data = await response.json();
-      setMessages((prev) => [
-        ...prev,
+
+      // Always add the text response
+      const newMessages = [
         {
-          text: data.response || 'Atvainojiet, nesapratu jautājumu.',
+          text: data.reply || 'Atvainojiet, nesapratu jautājumu.',
           isUser: false,
         },
-      ]);
+      ];
+
+      // If pets exist, add a pet list message
+      if (data.pets && Array.isArray(data.pets)) {
+        newMessages.push({
+          isUser: false,
+          pets: data.pets,
+        });
+      }
+
+      setMessages((prev) => [...prev, ...newMessages]);
     } catch (error) {
       console.error('Error:', error);
     } finally {
@@ -217,7 +236,7 @@ const ChatBot = () => {
                     <Lottie animationData={avatar} loop autoplay />
                   </Box>
                 )}
-                <Paper
+                {/* <Paper
                   style={{
                     maxWidth: '70%',
                     padding: '10px',
@@ -227,6 +246,58 @@ const ChatBot = () => {
                   }}
                 >
                   {message.text}
+                </Paper> */}
+                <Paper
+                  style={{
+                    maxWidth: '70%',
+                    padding: '10px',
+                    borderRadius: '12px',
+                    backgroundColor: message.isUser ? '#0EB9F0' : '#f1f1f1',
+                    color: message.isUser ? '#fff' : '#000',
+                  }}
+                >
+                  {message.text && <Typography>{message.text}</Typography>}
+
+                  {message.pets && Array.isArray(message.pets) && (
+                    <Box mt={1}>
+                      {message.pets.map((pet, i) => (
+                        // <Box key={i} mb={1} p={1} style={{ border: '1px solid #ccc', borderRadius: '8px' }}>
+                        //   <Typography variant="subtitle2">{pet.name || 'Nezināms vārds'}</Typography>
+                        //   <Typography variant="body2">{`${pet.species || ''}, ${pet.age || ''}, ${pet.size || ''}`}</Typography>
+                        //   {pet.image && (
+                        //     <img
+                        //       src={pet.image}
+                        //       alt={pet.name || 'Pet'}
+                        //       style={{ width: '100%', borderRadius: '6px', marginTop: '6px' }}
+                        //     />
+                        //   )}
+                        // </Box>
+                        <a
+                          href={pet.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ textDecoration: 'none', color: 'inherit' }}
+                        >
+                          <Box
+                            key={i}
+                            mb={1}
+                            p={1}
+                            style={{ border: '1px solid #ccc', borderRadius: '8px', cursor: 'pointer' }}
+                          >
+                            <Typography variant="subtitle2">{pet.name || 'Nezināms vārds'}</Typography>
+                            <Typography variant="body2">{`${pet.status_display || ''} ${pet.species_display || ''}`}</Typography>
+                            {pet.image && (
+                              <img
+                                src={pet.image}
+                                alt={pet.name || 'Pet'}
+                                style={{ width: '100%', borderRadius: '6px', marginTop: '6px' }}
+                              />
+                            )}
+                          </Box>
+                        </a>
+                      ))}
+                    </Box>
+                  )}
                 </Paper>
               </Box>
             ))}

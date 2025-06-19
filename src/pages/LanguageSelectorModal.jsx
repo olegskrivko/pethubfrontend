@@ -3,6 +3,9 @@ import React, { useContext, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Dialog, DialogContent, Grid, IconButton, Typography, useMediaQuery, useTheme } from '@mui/material';
 
+// import WorldMapImg from '../assets/map2.webp';
+import WorldMapImg from '../assets/map4.png';
+// import WorldMapImg from '../assets/map6.png';
 import { LanguageContext } from '../contexts/LanguageContext';
 
 const languages = [
@@ -55,6 +58,22 @@ const LanguageSelectorModal = ({ open, onClose }) => {
           {/* <Typography variant="h5" align="center" mb={4} fontWeight="bold">
             Choose Your Language
           </Typography> */}
+          {/* 🌍 World Map Image */}
+          <Box display="flex" justifyContent="center" mb={3}>
+            <img
+              src={WorldMapImg} // Make sure the image exists in your public folder or is correctly imported
+              alt="World Map"
+              style={{
+                maxWidth: '250px',
+                width: '100%',
+                opacity: 0.4,
+                filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.3))',
+                userSelect: 'none', // prevent selection
+                WebkitUserSelect: 'none', // for Safari
+                MozUserSelect: 'none', // for Firefox
+              }}
+            />
+          </Box>
           <Typography variant="h5" align="center" mb={4} fontWeight="bold">
             Izvēlēties valodu
           </Typography>
@@ -76,7 +95,7 @@ const LanguageSelectorModal = ({ open, onClose }) => {
                     },
                   }}
                 >
-                  <Typography variant="h3" component="div">
+                  <Typography variant="h5" component="div">
                     {lang.flag}
                   </Typography>
                   <Typography variant="body1" mt={1}>

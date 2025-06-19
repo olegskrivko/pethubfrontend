@@ -8,10 +8,12 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import DownloadIcon from '@mui/icons-material/Download';
+import FlagIcon from '@mui/icons-material/Flag';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 import PetsIcon from '@mui/icons-material/Pets';
 import ShareIcon from '@mui/icons-material/Share';
 import WifiTetheringErrorIcon from '@mui/icons-material/WifiTetheringError';
+import { Paper, Stack } from '@mui/material';
 // to extract the pet ID from the URL
 import {
   Alert,
@@ -40,6 +42,7 @@ import IconLabelTabs from '../components/IconLabelTabs';
 import ImageCarousel from '../components/ImageCarousel';
 import PetAttributes from '../components/PetAttributes';
 import SendMessage from '../components/SendMessage';
+import StatusTransitionPremium from '../components/StatusTransitionPremium';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -110,6 +113,10 @@ const PetDetailsPage = () => {
         variant: 'error',
       });
     }
+  };
+
+  const handleReport = async () => {
+    console.log('Reported');
   };
   const handleFileInputChange = (file) => {
     const previewUrl = URL.createObjectURL(file); // Create preview URL for the file
@@ -408,6 +415,13 @@ const PetDetailsPage = () => {
                 <ShareIcon color="primary" />
               </IconButton>
             </Tooltip>
+
+            {/* Report */}
+            <Tooltip title="Report">
+              <IconButton onClick={handleReport} style={{ backgroundColor: '#f7f9fd' }}>
+                <FlagIcon color="primary" />
+              </IconButton>
+            </Tooltip>
           </Box>
         </Grid>
         {/* Attributes */}
@@ -417,7 +431,7 @@ const PetDetailsPage = () => {
       </Grid>
 
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
-        <Box
+        {/* <Box
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -432,7 +446,36 @@ const PetDetailsPage = () => {
           <Typography variant="body2" color="textSecondary">
             <b>Tagadējais status:</b> {pet.final_status_display || 'Nav statusa'}
           </Typography>
-        </Box>
+        </Box> */}
+        {/* <Paper
+          elevation={3}
+          sx={{
+            p: 2,
+            mb: 3,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            bgcolor: 'background.paper',
+            borderRadius: 2,
+          }}
+        >
+          <Stack direction="row" alignItems="center" spacing={2}>
+            <Typography variant="subtitle1" color="text.secondary" sx={{ fontWeight: 'medium' }}>
+              Sākotnējais status:
+            </Typography>
+            <Typography variant="body1" color="primary" sx={{ fontWeight: 'bold' }}>
+              {pet.status_display || 'Nav statusa'}
+            </Typography>
+            <DoubleArrowIcon color="primary" fontSize="medium" />
+            <Typography variant="subtitle1" color="text.secondary" sx={{ fontWeight: 'medium' }}>
+              Tagadējais status:
+            </Typography>
+            <Typography variant="body1" color="primary" sx={{ fontWeight: 'bold' }}>
+              {pet.final_status_display || 'Nav statusa'}
+            </Typography>
+          </Stack>
+        </Paper> */}
+
         <LeafletPetDetailsMapNew
           pet={pet}
           sightings={sightings}
@@ -446,6 +489,11 @@ const PetDetailsPage = () => {
           setCoords={setCoords}
         />
       </Grid>
+      <StatusTransitionPremium
+        initialStatus={pet.status_display}
+        currentStatus={pet.final_status_display}
+        lastUpdated={pet.updated_at} // if you have this field, else omit
+      />
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
         <Button
           variant="contained"
