@@ -36,6 +36,7 @@ const LanguageSelectorModal = ({ open, onClose }) => {
 
           //background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
           background: 'linear-gradient(190deg, #16477c 0%, #00b5ad 100%)',
+          // background: 'linear-gradient(to top, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
           color: 'white',
           display: 'flex',
           alignItems: 'center',

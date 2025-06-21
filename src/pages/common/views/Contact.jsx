@@ -272,7 +272,7 @@ const Contact = () => {
             <Paper
               elevation={3}
               sx={{
-                p: 4,
+                p: { xs: 2, sm: 3, md: 3 },
                 borderRadius: 4,
                 background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',

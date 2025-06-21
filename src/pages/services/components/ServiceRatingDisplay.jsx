@@ -56,7 +56,11 @@ const ServiceRatingDisplay = ({ serviceId, rating, reviewCount }) => {
 
       {reviews?.length ? (
         reviews.map((review, idx) => (
-          <Paper key={idx} elevation={1} sx={{ p: 2, mb: 2 }}>
+          <Paper
+            key={idx}
+            elevation={1}
+            sx={{ background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)', p: 2, mb: 2 }}
+          >
             <Box display="flex" alignItems="center" gap={2} mb={1}>
               <Avatar>{review.user_name?.charAt(0).toUpperCase() || '?'}</Avatar>
               <Box>

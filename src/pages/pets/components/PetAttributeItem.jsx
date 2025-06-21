@@ -20,6 +20,7 @@ const PetAttributeItem = ({ icon, label, value, background = '#f7f9fd', isStatic
         cursor: 'default',
         pointerEvents: 'none',
         color: '#16477c',
+        // background: 'white',
       }}
     >
       {icon}

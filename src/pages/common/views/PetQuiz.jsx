@@ -514,6 +514,7 @@ import {
   Container,
   Divider,
   Grid,
+  IconButton,
   LinearProgress,
   Paper,
   Typography,
@@ -791,7 +792,7 @@ const PetQuiz = () => {
                   role="button"
                   tabIndex={0}
                   sx={{
-                    // p: 2,
+                    p: 2,
 
                     borderRadius: 3,
                     background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
@@ -808,19 +809,33 @@ const PetQuiz = () => {
                     // },
                   }}
                 >
-                  <CardContent>
-                    {/* <Typography variant="body1" color="primary" sx={{ fontWeight: 600, textAlign: 'left' }}>
+                  {/* <CardContent> */}
+                  {/* <Typography variant="body1" color="primary" sx={{ fontWeight: 600, textAlign: 'left' }}>
               {option.answer}
             </Typography> */}
-                    <CardContent>
-                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <PetsIcon color="primary" sx={{ mr: 1 }} />
-                        <Typography variant="body1" color="primary" sx={{ fontWeight: 600, textAlign: 'left' }}>
-                          {option.answer}
-                        </Typography>
-                      </Box>
-                    </CardContent>
-                  </CardContent>
+
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <IconButton color="primary" sx={{ backgroundColor: '#f7f9fd' }}>
+                      <PetsIcon />
+                    </IconButton>
+                    {/* <PetsIcon color="primary" sx={{ mr: 2, backgroundColor: '#f7f9fd' }} /> */}
+                    <Typography variant="body1" color="textSecondary" sx={{ ml: 2 }}>
+                      {option.answer}
+                    </Typography>
+                  </Box>
+
+                  {/* <Box display="flex" alignItems="center">
+                  <IconButton color="primary" size="small" sx={{ mr: 2, backgroundColor: '#f7f9fd' }}>
+                    <TipsAndUpdatesIcon />
+                  </IconButton>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontWeight: 600, color: '#16477c', fontSize: { xs: '0.9rem', sm: '1rem' } }}
+                  >
+                    {step.question}
+                  </Typography>
+                </Box> */}
+                  {/* </CardContent> */}
                 </Card>
               </Grid>
             ))}

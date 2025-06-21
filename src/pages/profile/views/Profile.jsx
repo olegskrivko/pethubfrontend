@@ -195,7 +195,7 @@ const Profile = () => {
                 >
                   <Box display="flex" alignItems="center">
                     <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
-                      <BookmarkIcon fontSize="large" />
+                      <BookmarkIcon />
                     </IconButton>
                     <Typography variant="body1" color="textSecondary" sx={{ ml: 2 }}>
                       Saglabātie dzīvnieku sludinājumi
@@ -225,7 +225,7 @@ const Profile = () => {
                 >
                   <Box display="flex" alignItems="center">
                     <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
-                      <PetsIcon fontSize="large" />
+                      <PetsIcon />
                     </IconButton>
                     <Typography variant="body1" color="textSecondary" sx={{ ml: 2 }}>
                       Mani mājdzīvnieki
@@ -255,7 +255,7 @@ const Profile = () => {
                 >
                   <Box display="flex" alignItems="center">
                     <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
-                      <WorkIcon fontSize="large" />
+                      <WorkIcon />
                     </IconButton>
                     <Typography variant="body1" color="textSecondary" sx={{ ml: 2 }}>
                       Mani pakalpojumi
@@ -285,7 +285,7 @@ const Profile = () => {
                 >
                   <Box display="flex" alignItems="center">
                     <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
-                      <FavoriteIcon fontSize="large" />
+                      <FavoriteIcon />
                     </IconButton>
                     <Typography variant="body1" color="textSecondary" sx={{ ml: 2 }}>
                       Saglabātie pakalpojumi
@@ -322,7 +322,7 @@ const Profile = () => {
                 >
                   <Box display="flex" alignItems="center">
                     <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
-                      <SettingsIcon fontSize="large" />
+                      <SettingsIcon />
                     </IconButton>
                     <Typography variant="body1" color="textSecondary" sx={{ ml: 2 }}>
                       Iestatījumi

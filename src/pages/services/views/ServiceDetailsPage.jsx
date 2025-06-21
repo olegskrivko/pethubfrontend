@@ -36,6 +36,7 @@ import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
 import LeafletServiceDetailsMap from '../../../shared/maps/LeafletServiceDetailsMap';
 // import spinnerGif from '../../images/features/paws.gif';
 import RatingForm from '../components/RatingForm';
+import ServiceIconLabelTabs from '../components/ServiceIconLabelTabs';
 import ServiceRatingDisplay from '../components/ServiceRatingDisplay';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -258,7 +259,7 @@ const ServiceDetail = () => {
       </Typography>
       <LeafletServiceDetailsMap shelters={service.locations} centerCoords={centerCoords} />
 
-      {service.locations?.length > 0 ? (
+      {/* {service.locations?.length > 0 ? (
         service.locations.map((location, index) => (
           <Card
             key={index}
@@ -297,31 +298,6 @@ const ServiceDetail = () => {
                     </a>
                   </Typography>
                 </Box>
-                {/* <Box display="flex" alignItems="center" gap={1}>
-                  <IconButton
-                    style={{ backgroundColor: '#555', color: '#fff' }}
-                    onClick={() => handlePanToLocation(location.latitude, location.longitude)}
-                  >
-                    <LocationOn />
-                  </IconButton>
-
-                  <Typography variant="body1">
-                    <a
-                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                        `${location.street}, ${location.city}`,
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        color: '#90caf9',
-                        textDecoration: 'underline',
-                        marginLeft: '0.3rem',
-                      }}
-                    >
-                      {location.city}, {location.street}
-                    </a>
-                  </Typography>
-                </Box> */}
               </Box>
 
               <Box display="flex" alignItems="center" gap={1}>
@@ -339,20 +315,17 @@ const ServiceDetail = () => {
         <Typography variant="body2" color="text.secondary">
           No locations available for this service.
         </Typography>
-      )}
+      )} */}
 
       {/* Contact & Social Info */}
-      <Box mt={6}>
+      {/* <Box mt={6}>
         <Typography variant="h5" fontWeight={600} gutterBottom>
           Kontakti un socilālie tīkli
         </Typography>
 
         <Card elevation={3} sx={{ borderRadius: 3, p: { xs: 2, md: 3 } }}>
           <Stack spacing={2}>
-            {/* Display contact info and social media */}
-            {/* Similar logic for phone, email, website, and social media */}
-
-            {/* Phone */}
+         
             {service.phone_number && service.phone_code && (
               <Box display="flex" alignItems="center" gap={2}>
                 <IconButton
@@ -369,7 +342,7 @@ const ServiceDetail = () => {
                 </MuiLink>
               </Box>
             )}
-            {/* Email */}
+
             {service.email && (
               <Box display="flex" alignItems="center" gap={2}>
                 <IconButton
@@ -387,7 +360,7 @@ const ServiceDetail = () => {
               </Box>
             )}
 
-            {/* Website */}
+
 
             {service.website && (
               <Box display="flex" alignItems="center" gap={2}>
@@ -406,7 +379,7 @@ const ServiceDetail = () => {
               </Box>
             )}
 
-            {/* Socials */}
+ 
             {Array.isArray(service.social_media) && service.social_media.length > 0 && (
               <>
                 {service.social_media.map((social, idx) => {
@@ -448,23 +421,24 @@ const ServiceDetail = () => {
             )}
           </Stack>
         </Card>
-      </Box>
+      </Box> */}
 
-      <Box sx={{ mt: 4 }}>
+      {/* <Box sx={{ mt: 4 }}>
         <Alert severity="warning">
           Uzmanību! Pirms jebkādu maksājumu veikšanas pārliecinieties par pakalpojuma sniedzēja uzticamību...
         </Alert>
-      </Box>
+      </Box> */}
 
       {/* Reviews */}
-      <Divider sx={{ my: 3 }} />
+      {/* <Divider sx={{ my: 3 }} /> */}
       <RatingForm serviceId={id} />
-      <ServiceRatingDisplay
+      {/* <ServiceRatingDisplay
         serviceId={service.id}
         rating={service.rating}
         reviewCount={service.review_count}
         reviews={service.reviews}
-      />
+      /> */}
+      <ServiceIconLabelTabs service={service} />
     </Container>
   );
 };

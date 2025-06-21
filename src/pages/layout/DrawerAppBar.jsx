@@ -125,7 +125,8 @@ function DrawerAppBar(props) {
         position="static"
         sx={{
           // background: '#5B9BD5' ,
-          background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
+          // background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
+          background: 'linear-gradient(190deg, #16477c 0%, #00b5ad 100%)',
           // background: "linear-gradient(190deg, #16477c 0%, #00b5ad 100%)",
         }}
       >
@@ -151,13 +152,13 @@ function DrawerAppBar(props) {
               <Link
                 to="/"
                 style={{
-                  color: '#16477c',
+                  color: '#fff',
                   textDecoration: 'none',
                   display: 'flex',
                   alignItems: 'center',
                 }}
               >
-                <PetsIcon sx={{ marginRight: '0.4rem', color: '#16477c' }} />
+                <PetsIcon sx={{ marginRight: '0.4rem', color: '#fff' }} />
                 PawClix
               </Link>
             </Typography>

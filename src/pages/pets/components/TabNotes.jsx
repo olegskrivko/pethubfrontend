@@ -2,6 +2,7 @@ import React from 'react';
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import EventIcon from '@mui/icons-material/Event';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import {
   Avatar,
@@ -32,8 +33,11 @@ const TabNotes = ({ pet }) => {
         },
       }}
     >
+      {/* <CardContent style={{ paddingBottom: '1rem' }}> */}
+
+      {/* </CardContent> */}
       <CardContent style={{ paddingBottom: '1rem' }}>
-        {pet.notes ? (
+        <Box>
           <Typography>
             <Box display="flex" alignItems="center" gap={2}>
               <IconButton
@@ -43,27 +47,45 @@ const TabNotes = ({ pet }) => {
                   pointerEvents: 'none',
                 }}
               >
-                <TextSnippetIcon />
+                <TaskAltIcon />
               </IconButton>{' '}
-              {pet.notes}
+              {pet.final_status_display}
             </Box>
           </Typography>
-        ) : (
-          <Typography color="textSecondary">
-            <Box display="flex" alignItems="center" gap={2}>
-              <IconButton
-                style={{
-                  backgroundColor: '#555',
-                  color: '#fff',
-                  pointerEvents: 'none',
-                }}
-              >
-                <TextSnippetIcon />
-              </IconButton>{' '}
-              Šim sludinājumam nav pievienotas piezīmes.
-            </Box>
-          </Typography>
-        )}
+        </Box>
+        <Box mt={2}>
+          {pet.notes ? (
+            <Typography>
+              <Box display="flex" alignItems="center" gap={2}>
+                <IconButton
+                  style={{
+                    backgroundColor: '#555',
+                    color: '#fff',
+                    pointerEvents: 'none',
+                  }}
+                >
+                  <TextSnippetIcon />
+                </IconButton>{' '}
+                {pet.notes}
+              </Box>
+            </Typography>
+          ) : (
+            <Typography color="textSecondary">
+              <Box display="flex" alignItems="center" gap={2}>
+                <IconButton
+                  style={{
+                    backgroundColor: '#555',
+                    color: '#fff',
+                    pointerEvents: 'none',
+                  }}
+                >
+                  <TextSnippetIcon />
+                </IconButton>{' '}
+                Šim sludinājumam nav pievienotas piezīmes.
+              </Box>
+            </Typography>
+          )}
+        </Box>
       </CardContent>
     </Card>
   );

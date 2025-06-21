@@ -489,39 +489,40 @@ const PetDetailsPage = () => {
           setCoords={setCoords}
         />
       </Grid>
-      <StatusTransitionPremium
+      {/* <StatusTransitionPremium
         initialStatus={pet.status_display}
         currentStatus={pet.final_status_display}
         lastUpdated={pet.updated_at} // if you have this field, else omit
-      />
+        eventDate={pet.event_occurred_at}
+      /> */}
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-        <Button
+        {/* <Button
           variant="contained"
           fullWidth
           size="large"
           sx={{
-            mb: 3,
+            mb: 2,
             background: 'linear-gradient(0deg, #0994ba 30%, #02b4c4 90%)',
           }}
           onClick={handleToggle}
         >
           Pievienot ziņojumu par mājdzīvnieku
-        </Button>
+        </Button> */}
 
-        {isFormOpen && (
-          <SendMessage
-            pet={pet}
-            message={message}
-            onMessageChange={setMessage}
-            onSendMessage={handleSendMessage}
-            onUploadImage={handleFileInputChange}
-            filePreview={filePreview}
-            onAddLocation={handleAddLocation}
-            onRemoveLocation={handleRemoveLocation}
-            isLocationAdded={isLocationAdded}
-            locationAdded={locationAdded}
-          />
-        )}
+        {/* {isFormOpen && ( */}
+        <SendMessage
+          pet={pet}
+          message={message}
+          onMessageChange={setMessage}
+          onSendMessage={handleSendMessage}
+          onUploadImage={handleFileInputChange}
+          filePreview={filePreview}
+          onAddLocation={handleAddLocation}
+          onRemoveLocation={handleRemoveLocation}
+          isLocationAdded={isLocationAdded}
+          locationAdded={locationAdded}
+        />
+        {/* )} */}
       </Grid>
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
         <IconLabelTabs pet={pet} sightings={sightings} onZoomMap={handleZoomMap} />

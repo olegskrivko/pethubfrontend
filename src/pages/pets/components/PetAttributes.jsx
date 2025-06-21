@@ -8,6 +8,7 @@ import {
   Male as MaleIcon,
   MergeType as MergeTypeIcon,
   Pets as PetsIcon,
+  Search as SearchIcon,
   Tag as TagIcon,
   Texture as TextureIcon,
 } from '@mui/icons-material';
@@ -34,8 +35,8 @@ const PetAttributes = ({ pet }) => {
   const formattedTime = eventDate ? format(eventDate, 'HH:mm', { locale: lv }) : 'Nav pieejams';
 
   const attributes = [
+    { icon: <SearchIcon />, label: 'Statuss', value: pet.status_display },
     { icon: <PetsIcon />, label: 'Suga', value: pet.species_display },
-    { icon: <TagIcon />, label: 'ID', value: pet.identifier },
     { icon: <HeightIcon />, label: 'Augums', value: pet.size_display },
     { icon: <MaleIcon />, label: 'Dzimums', value: pet.gender_display },
     { icon: <CakeIcon />, label: 'Vecums', value: ageLabel },
@@ -57,9 +58,14 @@ const PetAttributes = ({ pet }) => {
     },
     {
       icon: <EventIcon />,
-      label: 'Datums un laiks',
-      value: `${formattedDate}, ${formattedTime}`,
+      label: 'Datums',
+      value: formattedDate,
     },
+    // {
+    //   icon: <EventIcon />,
+    //   label: 'Datums un laiks',
+    //   value: `${formattedDate}, ${formattedTime}`,
+    // },
   ];
 
   return (

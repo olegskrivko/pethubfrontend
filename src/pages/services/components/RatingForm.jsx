@@ -71,7 +71,7 @@ const RatingForm = ({ serviceId, onSuccess }) => {
   };
 
   return (
-    <Paper elevation={2} sx={{ p: 3, mt: 4 }}>
+    <Paper elevation={2} sx={{ p: 3, mt: 4, borderRadius: 4 }}>
       <Typography variant="h6" gutterBottom>
         Pievieno savu atsauksmi
       </Typography>

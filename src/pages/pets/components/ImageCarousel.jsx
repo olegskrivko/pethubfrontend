@@ -8,11 +8,13 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import DownloadIcon from '@mui/icons-material/Download';
 import ShareIcon from '@mui/icons-material/Share';
 import { Box, CardMedia, Chip, IconButton, Tooltip } from '@mui/material';
+import { useTheme } from '@mui/material';
 import { useSnackbar } from 'notistack';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const ImageCarousel = ({ pet, images = [] }) => {
+  const theme = useTheme();
   const { id } = useParams();
   const { enqueueSnackbar } = useSnackbar();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -46,10 +48,11 @@ const ImageCarousel = ({ pet, images = [] }) => {
             lg: 500,
           },
           objectFit: 'cover',
+          borderRadius: theme.shape.borderRadius,
         }}
       />
 
-      <Box style={{ position: 'absolute', top: 16, left: 16, zIndex: 999 }}>
+      {/* <Box style={{ position: 'absolute', top: 16, left: 16, zIndex: 999 }}>
         <Chip
           label={pet.status_display}
           variant="filled"
@@ -65,7 +68,7 @@ const ImageCarousel = ({ pet, images = [] }) => {
             //   fontSize: '0.85rem',
           }}
         />
-      </Box>
+      </Box> */}
       {/* Left arrow */}
       {images.length > 1 && (
         <IconButton

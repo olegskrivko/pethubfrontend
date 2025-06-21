@@ -225,7 +225,6 @@ function LeafletPetDetailsMapNew({
             const lat = parseFloat(sighting.latitude);
             const lng = parseFloat(sighting.longitude);
 
-            // Skip rendering if coordinates are missing or invalid
             if (!sighting.latitude || !sighting.longitude || isNaN(lat) || isNaN(lng)) {
               return null;
             }
@@ -260,7 +259,6 @@ function LeafletPetDetailsMapNew({
                     }}
                   >
                     {sighting.status_display}
-                    {/* {sighting.status_display} {format(sighting.event_occurred_at, "d. MMMM yyyy", { locale: lv })} */}
                   </div>
                 </Popup>
               </Marker>
