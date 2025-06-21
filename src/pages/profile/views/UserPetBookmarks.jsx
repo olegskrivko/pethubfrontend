@@ -230,8 +230,8 @@ function UserPetBookmarks() {
                       <DoubleArrowIcon
                         color="primary"
                         sx={{
-                          marginLeft: '1rem',
-                          marginRight: '1rem',
+                          marginLeft: '0.4rem',
+                          marginRight: '0.4rem',
                           fontSize: '1rem',
                         }}
                       />

@@ -636,7 +636,7 @@ const Poster = () => {
                   color="primary"
                   startIcon={<ArrowBackIcon />}
                   component={Link}
-                  to={`/api/pets/${pet.id}`}
+                  to={`/pets/${pet.id}`}
                   style={{ textDecoration: 'none', color: 'inherit' }}
                 >
                   Atpakaļ

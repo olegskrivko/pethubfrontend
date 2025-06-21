@@ -42,7 +42,7 @@ const TabNotes = ({ pet }) => {
             <Box display="flex" alignItems="center" gap={2}>
               <IconButton
                 style={{
-                  backgroundColor: '#555',
+                  backgroundColor: '#00b3a4',
                   color: '#fff',
                   pointerEvents: 'none',
                 }}
@@ -59,7 +59,7 @@ const TabNotes = ({ pet }) => {
               <Box display="flex" alignItems="center" gap={2}>
                 <IconButton
                   style={{
-                    backgroundColor: '#555',
+                    backgroundColor: '#00b3a4',
                     color: '#fff',
                     pointerEvents: 'none',
                   }}
@@ -74,7 +74,7 @@ const TabNotes = ({ pet }) => {
               <Box display="flex" alignItems="center" gap={2}>
                 <IconButton
                   style={{
-                    backgroundColor: '#555',
+                    backgroundColor: '#00b3a4',
                     color: '#fff',
                     pointerEvents: 'none',
                   }}

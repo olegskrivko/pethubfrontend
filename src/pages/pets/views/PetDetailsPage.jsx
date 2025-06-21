@@ -418,7 +418,7 @@ const PetDetailsPage = () => {
 
             {/* Report */}
             <Tooltip title="Report">
-              <IconButton onClick={handleReport} style={{ backgroundColor: '#f7f9fd' }}>
+              <IconButton onClick={handleReport} disabled style={{ backgroundColor: '#f7f9fd' }}>
                 <FlagIcon color="primary" />
               </IconButton>
             </Tooltip>

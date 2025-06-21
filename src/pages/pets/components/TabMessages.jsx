@@ -39,6 +39,7 @@ import moment from 'moment';
 import 'moment/locale/lv';
 
 import { useAuth } from '../../../contexts/AuthContext';
+import AnimalAvatar from '../../../shared/components/AnimalAvatar';
 
 dayjs.locale('lv');
 dayjs.extend(relativeTime);
@@ -121,11 +122,12 @@ const TabMessages = ({ pet, sightings, onZoomMap }) => {
                       <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
                         <Box>
                           <Box display="flex" alignItems="flex-start" mb={2}>
-                            <Avatar
+                            {/* <Avatar
                               src={`a.svg`}
                               alt={status.reporter.username.toUpperCase()}
                               sx={{ backgroundColor: '#22badf' }}
-                            />
+                            /> */}
+                            <AnimalAvatar animal={status.reporter.avatar} username={status.reporter.username} />
                             <Box ml={2} display="flex" flexDirection="column">
                               <Typography variant="body2" fontWeight="bold">
                                 {status.reporter.username.toUpperCase()}
@@ -143,29 +145,38 @@ const TabMessages = ({ pet, sightings, onZoomMap }) => {
                         <Box flexGrow={1} />
 
                         {/* Buttons at bottom */}
-                        <Box mt={2} display="flex" justifyContent="flex-start" gap={3}>
+                        <Box mt={2} display="flex" justifyContent="flex-start" gap={2}>
                           <Tooltip title="Parādīt kartē">
                             <IconButton
                               onClick={() => onZoomMap(status?.latitude, status?.longitude)}
-                              sx={{ backgroundColor: '#555', color: '#fff' }}
+                              sx={{ backgroundColor: '#00b3a4', color: '#fff' }}
                             >
                               {status?.latitude && status?.longitude ? <LocationOnIcon /> : <LocationOffIcon />}
                             </IconButton>
+
+                            {/* <Tooltip title="Pievienot atrašanās vietu">
+                                              <IconButton onClick={onAddLocation} sx={{ backgroundColor: '#00b3a4', color: '#fff', mr: 1 }}>
+                                                <AddLocationAltIcon />
+                                              </IconButton>
+                                            </Tooltip> */}
                           </Tooltip>
                           {canDelete && (
-                            <Box
-                              sx={{
-                                position: 'absolute',
-                                right: '0',
-                                zIndex: '999',
-                              }}
-                            >
-                              <Tooltip title="Izdzēst ziņu">
-                                <IconButton onClick={() => handleDeleteMessage(status.id)}>
-                                  <DeleteIcon color="secondary" />
-                                </IconButton>
-                              </Tooltip>
-                            </Box>
+                            // <Box
+                            //   sx={{
+                            //     position: 'absolute',
+                            //     right: '0',
+                            //     zIndex: '999',
+                            //   }}
+                            // >
+                            <Tooltip title="Izdzēst ziņu">
+                              <IconButton
+                                onClick={() => handleDeleteMessage(status.id)}
+                                sx={{ backgroundColor: '#00b3a4', color: '#fff' }}
+                              >
+                                <DeleteIcon />
+                              </IconButton>
+                            </Tooltip>
+                            // </Box>
                           )}
                         </Box>
                       </Box>
@@ -271,7 +282,7 @@ const TabMessages = ({ pet, sightings, onZoomMap }) => {
                 <Box display="flex" alignItems="center" gap={2}>
                   <IconButton
                     style={{
-                      backgroundColor: '#555',
+                      backgroundColor: '#00b3a4',
                       color: '#fff',
                       pointerEvents: 'none',
                     }}

@@ -142,7 +142,7 @@ function LeafletPetDetailsMapNew({
   onAddLocation,
 }) {
   const mainIcon = createCustomMainIcon('#0077B6');
-  const historyIcon = createCustomIcon('crimson');
+  const historyIcon = createCustomIcon('#00b3a4');
   const newMarkerIcon = createCustomAddNewIcon('#dc004e');
   const mapRef = useRef();
 
@@ -247,18 +247,6 @@ function LeafletPetDetailsMapNew({
                         }}
                       />
                     )}
-                  </div>
-                  <div
-                    style={{
-                      textAlign: 'center',
-                      backgroundColor: '#5B9BD5',
-                      padding: '0.3rem 0.6rem',
-                      borderRadius: '1rem',
-                      color: 'white',
-                      fontWeight: '500',
-                    }}
-                  >
-                    {sighting.status_display}
                   </div>
                 </Popup>
               </Marker>
