@@ -27,10 +27,10 @@ const Footer = () => {
         ru: 'Найти питомца',
       },
     },
-    {
-      path: '/services',
-      label: { lv: 'Pakalpojumi', en: 'Services', ru: 'Услуги' },
-    },
+    // {
+    //   path: '/services',
+    //   label: { lv: 'Pakalpojumi', en: 'Services', ru: 'Услуги' },
+    // },
   ];
 
   const exploreLinks = [

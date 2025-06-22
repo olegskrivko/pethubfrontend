@@ -22,6 +22,7 @@ const PetAddStepper = () => {
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const [formErrors, setFormErrors] = useState({});
+  const [serverError, setServerError] = useState('');
   const [formState, setFormState] = useState({
     location: {
       lat: 56.946285,
@@ -36,6 +37,7 @@ const PetAddStepper = () => {
       identifier: '',
       gender: '',
       age: '',
+      final_status: 1,
     },
     images: {
       pet_image_1: '',
@@ -94,6 +96,7 @@ const PetAddStepper = () => {
 
   const handleSubmit = async (event) => {
     event?.preventDefault(); // make it optional for programmatic calls
+    setServerError(''); // clear previous errors
 
     console.log('🚀 Submitting form:', formState);
 
@@ -117,6 +120,7 @@ const PetAddStepper = () => {
       formData.append('gender', formState.characteristics.gender);
       formData.append('age', formState.characteristics.age);
       formData.append('breed', formState.characteristics.breed);
+      formData.append('final_status', formState.characteristics.final_status);
 
       formData.append('date', formState.location.date);
       formData.append('time', formState.location.time);
@@ -156,7 +160,23 @@ const PetAddStepper = () => {
       console.log('✅ Pet successfully added!', response.data);
       navigate(`/pets/${response.data.id}`);
     } catch (error) {
-      console.error('❌ Error sending pet data:', error.response?.data || error.message);
+      // console.error('❌ Error sending pet data:', error.response?.data || error.message);
+      // error.response.data usually has your validation error message(s)
+      const errData = error.response?.data;
+
+      if (typeof errData === 'object' && errData !== null) {
+        // Backend might send something like: { "non_field_errors": ["Your message"] } or { "error": "Your message" }
+        const errorMessage =
+          errData.non_field_errors?.[0] ||
+          errData.error ||
+          Object.values(errData).flat()[0] || // fallback to first error message
+          'Kļūda pievienojot mājdzīvnieku.';
+        setServerError(errorMessage);
+      } else {
+        setServerError('Kļūda pievienojot mājdzīvnieku.');
+      }
+
+      console.error('❌ Error sending pet data:', errData || error.message);
     }
   };
 
@@ -214,7 +234,12 @@ const PetAddStepper = () => {
 
       {/* Middle section: Step Content (this should take available space) */}
       <Box sx={{ flexGrow: 1, mb: 3 }}>{getStepContent(activeStep)}</Box>
-
+      {/* Server error message */}
+      {serverError && (
+        <Typography color="error" sx={{ mb: 1, px: 2, fontWeight: 'bold' }}>
+          {serverError}
+        </Typography>
+      )}
       {/* Bottom section: Sticky Buttons */}
       <Box
         sx={{

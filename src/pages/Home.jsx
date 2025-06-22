@@ -242,7 +242,7 @@ function Home() {
       </Box>
       <PetPath />
 
-      <MapBannerBottom />
+      {/* <MapBannerBottom /> */}
       <TestimonialSlider />
       <MapBannerDeepBottom />
 

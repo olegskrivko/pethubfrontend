@@ -176,19 +176,15 @@ const Profile = () => {
           <Grid container spacing={2} sx={{ mt: 1, mb: 5 }} justifyContent="center">
             <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
               <Link to="/user-profile/bookmarks/pets" style={{ textDecoration: 'none' }}>
-                {/* style={{ background: "linear-gradient(135deg, #0f4c81, #00b3a4)"}} */}
                 <Paper
                   sx={{
                     p: 2,
 
                     borderRadius: 3,
                     background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
-                    // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease-in-out',
                     '&:hover': {
-                      // boxShadow: '0px 6px 20px rgba(0,0,0,0.1)',
-                      // transform: 'scale(1.01)',
                       background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
                     },
                   }}
@@ -235,7 +231,7 @@ const Profile = () => {
               </Link>
             </Grid>
 
-            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+            {/* <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
               <Link to="/user-profile/services" style={{ textDecoration: 'none' }}>
                 <Paper
                   sx={{
@@ -243,12 +239,11 @@ const Profile = () => {
 
                     borderRadius: 3,
                     background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
-                    // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
+            
                     cursor: 'pointer',
                     transition: 'all 0.3s ease-in-out',
                     '&:hover': {
-                      // boxShadow: '0px 6px 20px rgba(0,0,0,0.1)',
-                      // transform: 'scale(1.01)',
+                  
                       background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
                     },
                   }}
@@ -263,9 +258,9 @@ const Profile = () => {
                   </Box>
                 </Paper>
               </Link>
-            </Grid>
+            </Grid> */}
 
-            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+            {/* <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
               <Link to="/user-profile/bookmarks/services" style={{ textDecoration: 'none' }}>
                 <Paper
                   sx={{
@@ -273,12 +268,11 @@ const Profile = () => {
 
                     borderRadius: 3,
                     background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
-                    // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
+            
                     cursor: 'pointer',
                     transition: 'all 0.3s ease-in-out',
                     '&:hover': {
-                      // boxShadow: '0px 6px 20px rgba(0,0,0,0.1)',
-                      // transform: 'scale(1.01)',
+             
                       background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
                     },
                   }}
@@ -293,7 +287,7 @@ const Profile = () => {
                   </Box>
                 </Paper>
               </Link>
-            </Grid>
+            </Grid> */}
 
             {/* <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
     <Link to="/user-profile/notifications" style={{ textDecoration: 'none' }}>

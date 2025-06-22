@@ -34,7 +34,7 @@ const drawerWidth = 240;
 const navItems = {
   '/pets': 'pets',
   '/shelters': 'shelters',
-  '/services': 'services',
+  // '/services': 'services',
   '/articles': 'guides',
 };
 

@@ -143,10 +143,14 @@ const ArticleDetails = () => {
             <Grid size={{ xs: 12, sm: 12, md: 6, lg: 6 }} order={{ xs: 2, md: index % 2 === 0 ? 1 : 2 }}>
               <CardMedia
                 sx={{ height: 700 }}
-                //image={`https://res.cloudinary.com/dymne7cde/${paragraph.image}`}
-                image={`https://picsum.photos/600/400`}
+                image={
+                  paragraph.image
+                    ? `https://res.cloudinary.com/dymne7cde/${paragraph.image}`
+                    : 'https://picsum.photos/600/400'
+                }
                 title={paragraph.title}
               />
+
               <Typography variant="caption" color="textSecondary">
                 Ilustrācija izveidota ar Mākslīgā Intelekta palīdzību
               </Typography>

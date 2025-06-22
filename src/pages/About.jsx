@@ -81,10 +81,11 @@ function About() {
             <Typography variant="body1">
               Lietotne izstrādāta, lai efektīvi palīdzētu pazudušiem mājdzīvniekiem ātrāk atgriezties pie saviem
               saimniekiem. Tā atvieglo informācijas apmaiņu un ļauj pārskatāmi sekot meklēšanas procesa norisei.
-              Lietotne izceļas ar modernu dizainu, reāllaika paziņojumiem un mākslīgā intelekta funkcijām. Tā ir
+              Lietotne izceļas ar modernu dizainu, reāllaika paziņojumiem un mākslīgā intelekta funkcijām.
+              {/* Tā ir
               paredzēta kā centrālais resurss ar plašu informāciju un pakalpojumiem, kas saistīti ar mājdzīvnieku aprūpi
               un labklājību. Lietotāji var pievienot savus pakalpojumus, ļaujot mājdzīvnieku īpašniekiem ātri un ērti
-              atrast visu nepieciešamo vienuviet.
+              atrast visu nepieciešamo vienuviet. */}
             </Typography>
           </Grid>
         </Grid>

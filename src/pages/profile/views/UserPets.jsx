@@ -34,7 +34,7 @@ function UserPets() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [ownedPets, setOwnedPets] = useState([]);
-
+  const [quota, setQuota] = useState(null);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
   const [newStatus, setNewStatus] = useState('');
@@ -68,6 +68,68 @@ function UserPets() {
     };
 
     fetchUserPets();
+  }, []);
+  // useEffect(() => {
+  //   const fetchUserPetsAndQuota = async () => {
+  //     const accessToken = localStorage.getItem('access_token');
+  //     if (!accessToken) {
+  //       setError('You must be logged in to view pets.');
+  //       setLoading(false);
+  //       return;
+  //     }
+
+  //     try {
+  //       const [petsRes, quotaRes] = await Promise.all([
+  //         axios.get(`${API_BASE_URL}/api/accounts/user-pets/`, {
+  //           headers: { Authorization: `Bearer ${accessToken}` },
+  //         }),
+  //         axios.get(`${API_BASE_URL}/api/pets/pet-quota/`, {
+  //           headers: { Authorization: `Bearer ${accessToken}` },
+  //         }),
+  //       ]);
+
+  //       setOwnedPets(petsRes.data);
+  //       setQuota(quotaRes.data);
+  //     } catch (error) {
+  //       console.error('Error fetching pets or quota:', error);
+  //       setError('Failed to fetch pets or quota data');
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchUserPetsAndQuota();
+  // }, []);
+  useEffect(() => {
+    const fetchUserQuota = async () => {
+      const accessToken = localStorage.getItem('access_token');
+      if (!accessToken) {
+        setError('You must be logged in to view pets.');
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const [petsRes, quotaRes] = await Promise.all([
+          axios.get(`${API_BASE_URL}/api/accounts/user-pets/`, {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          }),
+          axios.get(`${API_BASE_URL}/api/pets/pet-quota/`, {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          }),
+        ]);
+
+        setOwnedPets(petsRes.data);
+        setQuota(quotaRes.data);
+      } catch (error) {
+        console.error('Error fetching pets or quota:', error);
+        setError('Failed to fetch pets or quota data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserQuota();
   }, []);
 
   const handleDeletePet = async (petId) => {
@@ -144,6 +206,44 @@ function UserPets() {
       >
         Mani mājdzīvnieki
       </Typography>
+      {quota && (
+        <Card
+          sx={{
+            p: 3,
+            mb: 4,
+            borderRadius: 3,
+            background: 'linear-gradient(90deg, #edf4ff 0%, #f3faff 100%)',
+          }}
+        >
+          <CardContent>
+            <Typography variant="h6" sx={{ fontWeight: 600 }} gutterBottom>
+              Jūsu limits
+            </Typography>
+
+            <Typography variant="body1" sx={{ mb: 1 }}>
+              Atļautais mājdzīvnieku skaits: <strong>{quota.limit}</strong>
+            </Typography>
+            <Typography variant="body1" sx={{ mb: 1 }}>
+              Pašreiz izmantots: <strong>{quota.used}</strong>
+            </Typography>
+            <Typography variant="body1">
+              Atlikušas iespējas pievienot: <strong>{quota.remaining}</strong>
+            </Typography>
+
+            <Box mt={3}>
+              <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1 }}>
+                Abonementu limiti:
+              </Typography>
+              <Box display="flex" gap={2} flexWrap="wrap">
+                <Chip label="Freemium: 1" color="default" />
+                <Chip label="Plus: 3" color="primary" />
+                <Chip label="Premium: 5" color="success" />
+              </Box>
+            </Box>
+          </CardContent>
+        </Card>
+      )}
+
       {ownedPets.length === 0 ? (
         // ✅ Display message when user has no pets
 
@@ -272,12 +372,23 @@ function UserPets() {
               Atpakaļ
             </Button>
 
+            {/* <Button
+              variant="contained"
+              color="primary"
+              startIcon={<PetsIcon />}
+              component={Link}
+              to="/add-pet"
+              style={{ textDecoration: 'none' }}
+            >
+              Pievienot mājdzīvnieku
+            </Button> */}
             <Button
               variant="contained"
               color="primary"
               startIcon={<PetsIcon />}
               component={Link}
               to="/add-pet"
+              disabled={quota && quota.remaining <= 0}
               style={{ textDecoration: 'none' }}
             >
               Pievienot mājdzīvnieku

@@ -159,7 +159,7 @@ const ChatBot = () => {
           }}
         >
           <Box sx={{ width: 180, height: 180, marginRight: '30px' }}>
-            <Lottie animationData={avatar} loop autoplay style={{ width: '90px', height: '90px' }} />
+            <Lottie animationData={avatar} loop autoplay style={{ width: '70px', height: '70px' }} />
           </Box>
         </Button>
       )}
