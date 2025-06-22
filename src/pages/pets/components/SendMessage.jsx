@@ -576,7 +576,7 @@ const SendMessage = ({
                 </Tooltip>
               )}
 
-              <label htmlFor="photo-upload-input">
+              {/* <label htmlFor="photo-upload-input">
                 <Tooltip title="Pievienot foto">
                   <IconButton
                     component="span"
@@ -595,10 +595,37 @@ const SendMessage = ({
                 id="photo-upload-input"
                 type="file"
                 onChange={handleFileInputChange}
-                style={{ display: 'none' }}
+                // style={{ display: 'none' }}
+                style={{
+                  position: 'absolute',
+                  width: '40px',
+                  height: '40px',
+                  top: 0,
+                  left: 0,
+                  opacity: 0,
+                  cursor: 'pointer',
+                }}
+              /> */}
+            </Box>
+            <Box sx={{ position: 'relative', display: 'inline-block' }}>
+              <IconButton>
+                <AddPhotoAlternateIcon />
+              </IconButton>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileInputChange}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  opacity: 0,
+                  cursor: 'pointer',
+                }}
               />
             </Box>
-
             <Tooltip title="Aizsūtīt ziņu">
               <IconButton
                 onClick={() => {
