@@ -7,6 +7,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 // Adjust the path as needed
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import { SnackbarProvider } from 'notistack';
 
 import './App.css';
 import cookieIcon from './assets/react.svg';
@@ -110,77 +111,79 @@ function App() {
     <HelmetProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Elements stripe={stripePromise}>
-          <Router>
-            <AuthProvider>
-              <LanguageProvider>
-                <Suspense fallback={<Loader />}>
-                  <Routes>
-                    {/* Routes with FullLayout (no container) */}
-                    <Route path="/" element={<FullLayout />}>
-                      <Route index element={<Home />} />
-                    </Route>
-
-                    {/* Routes with main Layout (container) */}
-                    <Route element={<Layout />}>
-                      <Route path="about" element={<About />} />
-                      <Route path="contact" element={<Contact />} />
-                      <Route path="support" element={<Support />} />
-                      <Route path="collaborate" element={<Collaborate />} />
-                      <Route path="frequently-asked-questions" element={<FrequentlyAskedQuestions />} />
-                      <Route path="virtual-pet-training-classes" element={<PetTraining />} />
-                      <Route path="policies" element={<PolicyPage />} />
-                      <Route path="pet-matching-quiz" element={<PetQuiz />} />
-                      <Route path="shelters" element={<SheltersListPage />} />
-                      <Route path="shelters/:id" element={<ShelterDetailsPage />} />
-                      <Route path="pets" element={<PetsListPage />} />
-                      <Route path="pets/:id" element={<PetDetailsPage />} />
-                      <Route path="pets/:id/poster" element={<Poster />} />
-                      <Route path="user-profile/edit-pet/:id" element={<EditPetPage />} />
-
-                      <Route path="services" element={<ServicesListPage />} />
-                      <Route path="services/:id" element={<ServiceDetailsPage />} />
-                      <Route path="articles" element={<ArticlesListPage />} />
-                      <Route path="articles/:slug" element={<ArticleDetailsPage />} />
-
-                      <Route path="pricing" element={<Pricing />} />
-                      <Route path="checkout" element={<CheckoutPage />} />
-                      <Route path="success" element={<SuccessPage />} />
-                      <Route path="subscription-success" element={<SuccessPage />} />
-                      {/* <Route path="cancel" element={<CancelPage />} /> */}
-                      <Route path="subscription-cancel" element={<CancelPage />} />
-                      <Route path="login" element={<Login />} />
-                      <Route path="register" element={<Register />} />
-                      <Route path="logout" element={<Logout />} />
-                      <Route path="forgot-password" element={<ForgotPassword />} />
-                      <Route path="account-deleted" element={<AccountDeleted />} />
-
-                      {/* Protected routes */}
-                      <Route element={<PrivateRoute />}>
-                        <Route path="add-pet" element={<PetAddStepper />} />
-                        <Route path="user-profile" element={<Profile />} />
-
-                        <Route path="user-profile/settings" element={<UserSettings />} />
-                        <Route path="user-profile/bookmarks/pets" element={<UserPetBookmarks />} />
-                        <Route path="user-profile/bookmarks/services" element={<UserServiceBookmarks />} />
-                        <Route path="user-profile/bookmarks" element={<BookmarksIndexPage />} />
-                        <Route path="user-profile/pets" element={<UserPets />} />
-                        <Route path="user-profile/services" element={<UserServices />} />
-                        {/* 
-              <Route path="test-one/new" element={<About />} />
-              <Route path="test-two/:id/edit" element={<About />} /> */}
+        <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
+          <Elements stripe={stripePromise}>
+            <Router>
+              <AuthProvider>
+                <LanguageProvider>
+                  <Suspense fallback={<Loader />}>
+                    <Routes>
+                      {/* Routes with FullLayout (no container) */}
+                      <Route path="/" element={<FullLayout />}>
+                        <Route index element={<Home />} />
                       </Route>
 
-                      {/* Catch-all for 404 */}
-                      <Route path="*" element={<PageNotFound />} />
-                    </Route>
-                  </Routes>
-                </Suspense>
-                <CookieConsent />
-              </LanguageProvider>
-            </AuthProvider>
-          </Router>
-        </Elements>
+                      {/* Routes with main Layout (container) */}
+                      <Route element={<Layout />}>
+                        <Route path="about" element={<About />} />
+                        <Route path="contact" element={<Contact />} />
+                        <Route path="support" element={<Support />} />
+                        <Route path="collaborate" element={<Collaborate />} />
+                        <Route path="frequently-asked-questions" element={<FrequentlyAskedQuestions />} />
+                        <Route path="virtual-pet-training-classes" element={<PetTraining />} />
+                        <Route path="policies" element={<PolicyPage />} />
+                        <Route path="pet-matching-quiz" element={<PetQuiz />} />
+                        <Route path="shelters" element={<SheltersListPage />} />
+                        <Route path="shelters/:id" element={<ShelterDetailsPage />} />
+                        <Route path="pets" element={<PetsListPage />} />
+                        <Route path="pets/:id" element={<PetDetailsPage />} />
+                        <Route path="pets/:id/poster" element={<Poster />} />
+                        <Route path="user-profile/edit-pet/:id" element={<EditPetPage />} />
+
+                        <Route path="services" element={<ServicesListPage />} />
+                        <Route path="services/:id" element={<ServiceDetailsPage />} />
+                        <Route path="articles" element={<ArticlesListPage />} />
+                        <Route path="articles/:slug" element={<ArticleDetailsPage />} />
+
+                        <Route path="pricing" element={<Pricing />} />
+                        <Route path="checkout" element={<CheckoutPage />} />
+                        <Route path="success" element={<SuccessPage />} />
+                        <Route path="subscription-success" element={<SuccessPage />} />
+                        {/* <Route path="cancel" element={<CancelPage />} /> */}
+                        <Route path="subscription-cancel" element={<CancelPage />} />
+                        <Route path="login" element={<Login />} />
+                        <Route path="register" element={<Register />} />
+                        <Route path="logout" element={<Logout />} />
+                        <Route path="forgot-password" element={<ForgotPassword />} />
+                        <Route path="account-deleted" element={<AccountDeleted />} />
+
+                        {/* Protected routes */}
+                        <Route element={<PrivateRoute />}>
+                          <Route path="add-pet" element={<PetAddStepper />} />
+                          <Route path="user-profile" element={<Profile />} />
+
+                          <Route path="user-profile/settings" element={<UserSettings />} />
+                          <Route path="user-profile/bookmarks/pets" element={<UserPetBookmarks />} />
+                          <Route path="user-profile/bookmarks/services" element={<UserServiceBookmarks />} />
+                          <Route path="user-profile/bookmarks" element={<BookmarksIndexPage />} />
+                          <Route path="user-profile/pets" element={<UserPets />} />
+                          <Route path="user-profile/services" element={<UserServices />} />
+                          {/* 
+              <Route path="test-one/new" element={<About />} />
+              <Route path="test-two/:id/edit" element={<About />} /> */}
+                        </Route>
+
+                        {/* Catch-all for 404 */}
+                        <Route path="*" element={<PageNotFound />} />
+                      </Route>
+                    </Routes>
+                  </Suspense>
+                  <CookieConsent />
+                </LanguageProvider>
+              </AuthProvider>
+            </Router>
+          </Elements>
+        </SnackbarProvider>
       </ThemeProvider>
     </HelmetProvider>
   );

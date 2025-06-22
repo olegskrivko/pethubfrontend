@@ -63,7 +63,7 @@ const PetDetailsPage = () => {
   const [file, setFile] = useState(null);
   const [filePreview, setFilePreview] = useState(null);
   const [markerPosition, setMarkerPosition] = useState(null);
-  const [locationAdded, setLocationAdded] = useState(false);
+  // const [locationAdded, setLocationAdded] = useState(false);
   const [isLocationAdded, setIsLocationAdded] = useState(false);
   const [coords, setCoords] = useState({ lat: null, lng: null });
 
@@ -117,10 +117,17 @@ const PetDetailsPage = () => {
   const handleReport = async () => {
     console.log('Reported');
   };
+  // const handleFileInputChange = (file) => {
+  //   const previewUrl = URL.createObjectURL(file); // Create preview URL for the file
+  //   setFile(file); // Set the file state
+  //   setFilePreview(previewUrl); // Store the preview URL
+  // };
+
   const handleFileInputChange = (file) => {
-    const previewUrl = URL.createObjectURL(file); // Create preview URL for the file
-    setFile(file); // Set the file state
-    setFilePreview(previewUrl); // Store the preview URL
+    const previewUrl = URL.createObjectURL(file);
+    if (filePreview) URL.revokeObjectURL(filePreview); // cleanup previous
+    setFile(file);
+    setFilePreview(previewUrl);
   };
 
   // Function to trigger "Add Location" in the map
@@ -215,10 +222,14 @@ const PetDetailsPage = () => {
       setMessage('');
       setFile(null);
       setFilePreview(null);
-      setLocationAdded(false);
+      // setLocationAdded(false);
       setMarkerPosition(null);
       setIsFormOpen(false);
       setIsLocationAdded(false);
+
+      // ✅ Show success toast
+      enqueueSnackbar('Message sent successfully!', { variant: 'success' });
+
       fetchPetSightings();
     } catch (error) {
       console.error('Error sending message:', error);
@@ -441,7 +452,7 @@ const PetDetailsPage = () => {
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-        <SendMessage
+        {/* <SendMessage
           pet={pet}
           message={message}
           onMessageChange={setMessage}
@@ -452,6 +463,16 @@ const PetDetailsPage = () => {
           onRemoveLocation={handleRemoveLocation}
           isLocationAdded={isLocationAdded}
           locationAdded={locationAdded}
+        /> */}
+        <SendMessage
+          message={message}
+          onMessageChange={setMessage}
+          onSendMessage={handleSendMessage}
+          onUploadImage={handleFileInputChange}
+          filePreview={filePreview}
+          onAddLocation={handleAddLocation}
+          onRemoveLocation={handleRemoveLocation}
+          isLocationAdded={isLocationAdded}
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
