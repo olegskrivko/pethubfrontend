@@ -156,44 +156,47 @@ const PetDetailsPage = () => {
   //     setFilePreview(null);
   //   }
   // };
-
   const handleFileInputChange = (file) => {
-    if (!file) return;
-
-    // Allowed MIME types (you can extend this list)
-    const allowedTypes = [
-      'image/jpeg',
-      'image/png',
-      'image/gif',
-      'image/webp',
-      'image/heic',
-      'image/heif',
-      'image/jpg',
-    ];
-
-    const maxSizeMB = 20; // Increased max size
-
-    if (!allowedTypes.includes(file.type)) {
-      alert(`Unsupported file format: ${file.type}`);
-      return;
-    }
-
-    if (file.size > maxSizeMB * 1024 * 1024) {
-      alert(`File is too large. Max size is ${maxSizeMB}MB.`);
-      return;
-    }
-
-    try {
-      const previewUrl = URL.createObjectURL(file);
-      if (filePreview) URL.revokeObjectURL(filePreview); // Cleanup
-      setFile(file);
-      setFilePreview(previewUrl);
-    } catch (error) {
-      console.warn('Could not generate preview. Showing filename only.');
-      setFile(file);
-      setFilePreview(null);
-    }
+    setFile(file);
+    setFilePreview(null); // Optional: keep for compatibility, or remove
   };
+  // const handleFileInputChange = (file) => {
+  //   if (!file) return;
+
+  //   // Allowed MIME types (you can extend this list)
+  //   const allowedTypes = [
+  //     'image/jpeg',
+  //     'image/png',
+  //     'image/gif',
+  //     'image/webp',
+  //     'image/heic',
+  //     'image/heif',
+  //     'image/jpg',
+  //   ];
+
+  //   const maxSizeMB = 20; // Increased max size
+
+  //   if (!allowedTypes.includes(file.type)) {
+  //     alert(`Unsupported file format: ${file.type}`);
+  //     return;
+  //   }
+
+  //   if (file.size > maxSizeMB * 1024 * 1024) {
+  //     alert(`File is too large. Max size is ${maxSizeMB}MB.`);
+  //     return;
+  //   }
+
+  //   try {
+  //     const previewUrl = URL.createObjectURL(file);
+  //     if (filePreview) URL.revokeObjectURL(filePreview); // Cleanup
+  //     setFile(file);
+  //     setFilePreview(previewUrl);
+  //   } catch (error) {
+  //     console.warn('Could not generate preview. Showing filename only.');
+  //     setFile(file);
+  //     setFilePreview(null);
+  //   }
+  // };
 
   // const handleFileInputChange = (file) => {
   //   if (!file) return;

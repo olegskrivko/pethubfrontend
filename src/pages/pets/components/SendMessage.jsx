@@ -533,7 +533,7 @@ const SendMessage = ({
               />
             </Box>
           )} */}
-          {filePreview ? (
+          {/* {filePreview ? (
             <Box mt={2}>
               <img
                 src={filePreview}
@@ -552,8 +552,14 @@ const SendMessage = ({
                 Selected file: {file.name}
               </Typography>
             </Box>
+          ) : null} */}
+          {file ? (
+            <Box mt={2}>
+              <Typography variant="body2" color="textSecondary">
+                Selected file: {file.name}
+              </Typography>
+            </Box>
           ) : null}
-
           <Box mt={3} display="flex" justifyContent="space-between" alignItems="center">
             <Box>
               {!isLocationAdded ? (
