@@ -22,7 +22,7 @@ const steps = [
   {
     question: 'Kāda ir atšķirība starp "Redzēts" un "Atradis"?',
     answer:
-      '“Redzēts” nozīmē, ka kāds ir pamanījis mājdzīvnieku, bet nav to noķēris. “Atradis” norāda, ka dzīvnieks ir fiziski pie īpašnieka vai glabāšanā pie atradēja.',
+      '“Redzēts” nozīmē, ka kāds ir pamanījis mājdzīvnieku, bet nav to noķēris. “Atradis” norāda, ka dzīvnieks ir pie atradēja.',
   },
   {
     question: 'Kas palīdz atrast pazudušos dzīvniekus?',
@@ -31,8 +31,7 @@ const steps = [
   },
   {
     question: 'Kā es varu paziņot par atrastu mājdzīvnieku?',
-    answer:
-      'Vienkārši piesakieties un publicējiet atraduma ziņojumu ar attēlu, atrašanās vietu un aprakstu. Tas palīdz īpašniekiem jūs atrast.',
+    answer: 'Vienkārši piesakieties un publicējiet atraduma ziņojumu ar attēlu, atrašanās vietu un aprakstu.',
   },
   {
     question: 'Ko darīt, ja redzu mājdzīvnieku, bet nevaru to noķert?',
@@ -46,7 +45,7 @@ const steps = [
   },
   {
     question: 'Cik ilgi paliek aktīvs mans sludinājums?',
-    answer: 'Sludinājums paliek aktīvs līdz jūs to manuāli noņemat vai atzīmējat kā “atrasts” / “atdots īpašniekam”.',
+    answer: 'Sludinājums paliek aktīvs līdz jūs to noņemat vai atzīmējat kā “atrasts” / “atdots īpašniekam”.',
   },
   {
     question: 'Vai ir kādi drošības padomi, satiekot atradēju vai īpašnieku?',

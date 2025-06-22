@@ -285,7 +285,7 @@ const SendMessage = ({
                 </Tooltip>
               )}
 
-              <Tooltip title="Pievienot foto">
+              {/* <Tooltip title="Pievienot foto">
                 <label htmlFor="photo-upload-input">
                   <IconButton
                     component="span"
@@ -298,7 +298,21 @@ const SendMessage = ({
                     <AddPhotoAlternateIcon />
                   </IconButton>
                 </label>
-              </Tooltip>
+              </Tooltip> */}
+              <label htmlFor="photo-upload-input">
+                <Tooltip title="Pievienot foto">
+                  <IconButton
+                    component="span"
+                    sx={{
+                      backgroundColor: '#00b3a4',
+                      color: '#fff',
+                      '&:hover': { backgroundColor: '#007c73' },
+                    }}
+                  >
+                    <AddPhotoAlternateIcon />
+                  </IconButton>
+                </Tooltip>
+              </label>
               <input
                 accept="image/*"
                 id="photo-upload-input"

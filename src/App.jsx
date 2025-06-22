@@ -11,7 +11,6 @@ import { loadStripe } from '@stripe/stripe-js';
 import './App.css';
 import cookieIcon from './assets/react.svg';
 import { AuthProvider } from './contexts/AuthContext';
-// Path to AuthContext
 import { useAuth } from './contexts/AuthContext';
 // import { DrawerProvider } from './contexts/DrawerContext'
 import { LanguageProvider } from './contexts/LanguageContext';

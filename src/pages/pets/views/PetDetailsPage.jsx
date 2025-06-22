@@ -42,7 +42,6 @@ import IconLabelTabs from '../components/IconLabelTabs';
 import ImageCarousel from '../components/ImageCarousel';
 import PetAttributes from '../components/PetAttributes';
 import SendMessage from '../components/SendMessage';
-import StatusTransitionPremium from '../components/StatusTransitionPremium';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -295,9 +294,6 @@ const PetDetailsPage = () => {
   useEffect(() => {
     fetchPetSightings(); // Automatically fetch sightings on initial load
   }, [id]);
-  useEffect(() => {
-    fetchPetSightings(); // Automatically fetch sightings on initial load
-  }, [id]); // Trigger when the pet ID or access token changes
 
   const handleFavorite = async () => {
     const accessToken = localStorage.getItem('access_token');
@@ -431,51 +427,6 @@ const PetDetailsPage = () => {
       </Grid>
 
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
-        {/* <Box
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-            marginBottom: '1rem',
-          }}
-        >
-          <Typography variant="body2" color="textSecondary">
-            <b>Sākotnējais status:</b> {pet.status_display || 'Nav statusa'}
-          </Typography>
-          <DoubleArrowIcon color="primary" sx={{ marginLeft: '1rem', marginRight: '1rem', fontSize: '1rem' }} />
-          <Typography variant="body2" color="textSecondary">
-            <b>Tagadējais status:</b> {pet.final_status_display || 'Nav statusa'}
-          </Typography>
-        </Box> */}
-        {/* <Paper
-          elevation={3}
-          sx={{
-            p: 2,
-            mb: 3,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            bgcolor: 'background.paper',
-            borderRadius: 2,
-          }}
-        >
-          <Stack direction="row" alignItems="center" spacing={2}>
-            <Typography variant="subtitle1" color="text.secondary" sx={{ fontWeight: 'medium' }}>
-              Sākotnējais status:
-            </Typography>
-            <Typography variant="body1" color="primary" sx={{ fontWeight: 'bold' }}>
-              {pet.status_display || 'Nav statusa'}
-            </Typography>
-            <DoubleArrowIcon color="primary" fontSize="medium" />
-            <Typography variant="subtitle1" color="text.secondary" sx={{ fontWeight: 'medium' }}>
-              Tagadējais status:
-            </Typography>
-            <Typography variant="body1" color="primary" sx={{ fontWeight: 'bold' }}>
-              {pet.final_status_display || 'Nav statusa'}
-            </Typography>
-          </Stack>
-        </Paper> */}
-
         <LeafletPetDetailsMapNew
           pet={pet}
           sightings={sightings}
@@ -489,27 +440,7 @@ const PetDetailsPage = () => {
           setCoords={setCoords}
         />
       </Grid>
-      {/* <StatusTransitionPremium
-        initialStatus={pet.status_display}
-        currentStatus={pet.final_status_display}
-        lastUpdated={pet.updated_at} // if you have this field, else omit
-        eventDate={pet.event_occurred_at}
-      /> */}
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-        {/* <Button
-          variant="contained"
-          fullWidth
-          size="large"
-          sx={{
-            mb: 2,
-            background: 'linear-gradient(0deg, #0994ba 30%, #02b4c4 90%)',
-          }}
-          onClick={handleToggle}
-        >
-          Pievienot ziņojumu par mājdzīvnieku
-        </Button> */}
-
-        {/* {isFormOpen && ( */}
         <SendMessage
           pet={pet}
           message={message}
@@ -522,7 +453,6 @@ const PetDetailsPage = () => {
           isLocationAdded={isLocationAdded}
           locationAdded={locationAdded}
         />
-        {/* )} */}
       </Grid>
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
         <IconLabelTabs pet={pet} sightings={sightings} onZoomMap={handleZoomMap} />
