@@ -102,22 +102,13 @@ function UserPetBookmarks() {
   // Loading and error state handling
   if (loading) {
     return (
-      // <Container>
-      //   <Typography variant="h5" align="center">
-      //     Loading your favorited pets...
-      //   </Typography>
-      // </Container>
       <Box
         sx={{
           minHeight: '100vh',
-          // background: 'linear-gradient(135deg, #6a1b9a, #9c27b0)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          color: 'white',
-          textAlign: 'center',
-          overflow: 'hidden',
         }}
       >
         <Box sx={{ width: 180, height: 180 }}>

@@ -24,7 +24,9 @@ import {
 } from '@mui/material';
 // ✅ Import missing icon
 import axios from 'axios';
+import Lottie from 'lottie-react';
 
+import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
 import { useAuth } from '../../../contexts/AuthContext';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -173,9 +175,19 @@ function UserPets() {
   if (loading) {
     return (
       <Container>
-        <Typography variant="h5" align="center">
-          Ielādē mājdzīvniekus...
-        </Typography>
+        <Box
+          sx={{
+            minHeight: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Box sx={{ width: 180, height: 180 }}>
+            <Lottie animationData={spinnerAnimation} loop autoplay />
+          </Box>
+        </Box>
       </Container>
     );
   }

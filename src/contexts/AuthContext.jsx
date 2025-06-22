@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
           userId: response.data.id,
           username: response.data.username,
           email: response.data.email,
-          avatar_animal: response.data.avatar_animal,
+          avatar: response.data.avatar,
         });
       }
     } catch (err) {

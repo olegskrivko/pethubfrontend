@@ -136,7 +136,7 @@ const Footer = () => {
         >
           <Grid container spacing={2}>
             <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
-              <Typography variant="h6" color="#ffcb56" style={{ fontWeight: '500' }}>
+              <Typography variant="h6" color="#B2FF59" style={{ fontWeight: '500' }}>
                 {t('getStarted')}
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -159,7 +159,7 @@ const Footer = () => {
             </Grid>
 
             <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
-              <Typography variant="h6" color="#ffcb56" style={{ fontWeight: '500' }}>
+              <Typography variant="h6" color="#B2FF59" style={{ fontWeight: '500' }}>
                 {t('resources')}
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -182,7 +182,7 @@ const Footer = () => {
             </Grid>
 
             <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
-              <Typography variant="h6" color="#ffcb56" style={{ fontWeight: '500' }}>
+              <Typography variant="h6" color="#B2FF59" style={{ fontWeight: '500' }}>
                 {t('learnMore')}
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -205,7 +205,7 @@ const Footer = () => {
             </Grid>
 
             <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
-              <Typography variant="h6" color="#ffcb56" style={{ fontWeight: '500' }}>
+              <Typography variant="h6" color="#B2FF59" style={{ fontWeight: '500' }}>
                 {t('info')}
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -238,7 +238,7 @@ const Footer = () => {
                 <Link
                   to="/support"
                   style={{
-                    color: '#fff',
+                    color: '#B2FF59',
                     textDecoration: 'none',
                     textTransform: 'uppercase',
                   }}

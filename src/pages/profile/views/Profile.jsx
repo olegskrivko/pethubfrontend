@@ -166,8 +166,9 @@ const Profile = () => {
               alignItems: 'center',
             }}
           >
-            <AvatarWithAnimal user={user} />
+            {/* <AvatarWithAnimal user={user} /> */}
 
+            <AvatarWithAnimal animal={user.avatar} username={user.username} />
             <Typography variant="body1" color="primary" mt={1} style={{ fontWeight: 'bold' }}>
               {user.username}
             </Typography>

@@ -77,13 +77,16 @@ function DrawerAppBar(props) {
           <Link
             to="/"
             style={{
-              color: '#16477c',
+              color: '#B2FF59',
               textDecoration: 'none',
               display: 'flex',
               alignItems: 'center',
+              fontFamily: 'Manrope, sans-serif', // 👈 Apply Manrope here
+              fontWeight: 600, // Optional: Adjust weight
+              letterSpacing: '0.5px', // Optional: Polish typography
             }}
           >
-            <PetsIcon sx={{ marginRight: '0.4rem', color: '#16477c' }} /> PawClix
+            <PetsIcon sx={{ marginRight: '0.4rem', color: '#B2FF59' }} /> Renuvio
           </Link>
         </Typography>
       </Box>
@@ -93,7 +96,14 @@ function DrawerAppBar(props) {
         {Object.entries(navItems).map(([path, key]) => (
           <ListItem key={path} disablePadding>
             <ListItemButton sx={{ textAlign: 'left' }}>
-              <Link key={path} to={path} style={{ textDecoration: 'none', color: '#16477c' }}>
+              <Link
+                key={path}
+                to={path}
+                style={{
+                  textDecoration: 'none',
+                  color: '#16477c',
+                }}
+              >
                 <ListItemText primary={t(key)} />
               </Link>
             </ListItemButton>
@@ -147,25 +157,34 @@ function DrawerAppBar(props) {
             >
               <MenuIcon />
             </IconButton>
-
             <Typography variant="h6" component="div">
               <Link
                 to="/"
                 style={{
-                  color: '#fff',
+                  color: '#B2FF59',
                   textDecoration: 'none',
                   display: 'flex',
                   alignItems: 'center',
+                  fontFamily: 'Manrope, sans-serif', // 👈 Apply Manrope here
+                  fontWeight: 600, // Optional: Adjust weight
+                  letterSpacing: '0.5px', // Optional: Polish typography
                 }}
               >
-                <PetsIcon sx={{ marginRight: '0.4rem', color: '#fff' }} />
-                PawClix
+                <PetsIcon sx={{ marginRight: '0.4rem', color: '#B2FF59' }} />
+                Renuvio
               </Link>
             </Typography>
 
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
               {Object.entries(navItems).map(([path, key]) => (
-                <Link key={path} to={path} style={{ textDecoration: 'none', color: '#fff' }}>
+                <Link
+                  key={path}
+                  to={path}
+                  style={{
+                    textDecoration: 'none',
+                    color: '#fff',
+                  }}
+                >
                   <Button size="small" sx={{ color: '#fff', fontWeight: '400' }}>
                     {t(key)}
                   </Button>
@@ -174,8 +193,8 @@ function DrawerAppBar(props) {
 
               {/* Show Profile or Login Button */}
               <Link to={user ? '/user-profile' : '/login'}>
-                <Button size="small" sx={{ color: '#fff', backgroundColor: '#16477c' }}>
-                  {user ? t('profile') : t('login')}
+                <Button size="small" sx={{ color: '#B2FF59' }}>
+                  <b>{user ? t('profile') : t('login')}</b>
                 </Button>
               </Link>
             </Box>

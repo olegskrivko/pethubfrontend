@@ -1,6 +1,6 @@
-export const COMPANY_NAME = 'PawClix';
-export const APP_NAME = 'PawClix';
-export const EMAIL = 'info.pawclix@gmail.com';
+export const COMPANY_NAME = 'Renuvio';
+export const APP_NAME = 'Renuvio';
+export const EMAIL = 'renuvio.official@gmail.com';
 export const PHONE_CODE = '+371';
 export const PHONE_NUMBER = '12345678';
 export const COUNTRY = 'Latvija';
