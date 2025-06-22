@@ -123,11 +123,66 @@ const PetDetailsPage = () => {
   //   setFilePreview(previewUrl); // Store the preview URL
   // };
 
+  // const handleFileInputChange = (file) => {
+  //   const previewUrl = URL.createObjectURL(file);
+  //   if (filePreview) URL.revokeObjectURL(filePreview); // cleanup previous
+  //   setFile(file);
+  //   setFilePreview(previewUrl);
+  // };
+  // const handleFileInputChange = (file) => {
+  //   if (!file) return;
+
+  //   if (!file.type.startsWith('image/')) {
+  //     alert('Please upload a valid image file.');
+  //     return;
+  //   }
+
+  //   if (file.size > 5 * 1024 * 1024) {
+  //     alert('Image is too large. Max size is 5MB.');
+  //     return;
+  //   }
+
+  //   if (filePreview) {
+  //     URL.revokeObjectURL(filePreview);
+  //   }
+
+  //   try {
+  //     const previewUrl = URL.createObjectURL(file);
+  //     setFile(file);
+  //     setFilePreview(previewUrl);
+  //   } catch (err) {
+  //     console.warn('Preview issue on mobile:', err);
+  //     setFile(file);
+  //     setFilePreview(null);
+  //   }
+  // };
   const handleFileInputChange = (file) => {
-    const previewUrl = URL.createObjectURL(file);
-    if (filePreview) URL.revokeObjectURL(filePreview); // cleanup previous
-    setFile(file);
-    setFilePreview(previewUrl);
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      alert('Please upload a valid image file.');
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Image is too large. Max size is 5MB.');
+      return;
+    }
+
+    // Revoke previous preview
+    if (filePreview) {
+      URL.revokeObjectURL(filePreview);
+    }
+
+    try {
+      const previewUrl = URL.createObjectURL(file);
+      setFile(file);
+      setFilePreview(previewUrl);
+    } catch (err) {
+      console.warn('Could not generate preview (possibly mobile):', err);
+      setFile(file);
+      setFilePreview(null); // fallback, no preview
+    }
   };
 
   // Function to trigger "Add Location" in the map
@@ -469,6 +524,7 @@ const PetDetailsPage = () => {
           onMessageChange={setMessage}
           onSendMessage={handleSendMessage}
           onUploadImage={handleFileInputChange}
+          file={file} // 👉 pass this new prop
           filePreview={filePreview}
           onAddLocation={handleAddLocation}
           onRemoveLocation={handleRemoveLocation}

@@ -459,6 +459,7 @@ const SendMessage = ({
   onSendMessage,
   onUploadImage,
   filePreview,
+  file, // 👈 add this here
   isLocationAdded,
   onAddLocation,
   onRemoveLocation,
@@ -518,7 +519,7 @@ const SendMessage = ({
             onChange={(e) => onMessageChange(e.target.value)}
           />
 
-          {filePreview && (
+          {/* {filePreview && (
             <Box mt={2}>
               <img
                 src={filePreview}
@@ -531,7 +532,27 @@ const SendMessage = ({
                 }}
               />
             </Box>
-          )}
+          )} */}
+          {filePreview ? (
+            <Box mt={2}>
+              <img
+                src={filePreview}
+                alt="Preview"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  borderRadius: '0.5rem',
+                  boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+                }}
+              />
+            </Box>
+          ) : file ? (
+            <Box mt={2}>
+              <Typography variant="body2" color="textSecondary">
+                Selected file: {file.name}
+              </Typography>
+            </Box>
+          ) : null}
 
           <Box mt={3} display="flex" justifyContent="space-between" alignItems="center">
             <Box>
