@@ -312,31 +312,15 @@ function UserPets() {
               >
                 <Box display="flex" alignItems="center">
                   <MuiLink href={`/pets/${pet.id}`} underline="none">
-                    <Avatar
-                      src={pet.pet_image_1}
-                      alt={pet.species_display}
-                      sx={{ width: 64, height: 64, mr: 2, cursor: 'pointer' }}
-                    />
+                    <Avatar src={pet.pet_image_1} alt={pet.species_display} sx={{ width: 64, height: 64, mr: 1 }} />
                   </MuiLink>
                   <Box flexGrow={1}>
-                    <Box
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="flex-start"
-                      sx={{
-                        gap: 1.5,
-                      }}
-                    >
-                      <Chip label={pet.status_display} size="small" color="info" sx={{ fontWeight: 500 }} />
-                      <DoubleArrowIcon fontSize="small" sx={{ color: 'text.disabled' }} />
-
-                      <Chip
-                        label={pet.final_status_display}
-                        size="small"
-                        color={pet.final_status === 1 ? 'default' : 'primary'}
-                        sx={{ fontWeight: 500 }}
-                      />
-                    </Box>
+                    <Typography variant="h6">
+                      <Chip label={pet.species_display || 'Nezināms'} size="small" color="primary" />
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" fontSize="0.8rem">
+                      {pet.final_status === 1 ? pet.status_display : pet.final_status_display}
+                    </Typography>
                   </Box>
                   {pet.is_closed ? (
                     <Tooltip title="Sludinājums slēgts">
@@ -372,7 +356,7 @@ function UserPets() {
                     {/* <IconButton color="error" onClick={() => handleDeletePet(pet.id)}>
                       <DeleteIcon />
                     </IconButton> */}
-                    <IconButton color="primary" size="small" onClick={() => openDeleteDialog(pet)}>
+                    <IconButton color="error" size="small" onClick={() => openDeleteDialog(pet)}>
                       <DeleteIcon />
                     </IconButton>
                   </Tooltip>

@@ -177,7 +177,7 @@ function UserPetBookmarks() {
                   borderRadius: 3,
                   background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
 
-                  cursor: 'pointer',
+                  // cursor: 'pointer',
                   transition: 'all 0.3s ease-in-out',
                   '&:hover': {
                     background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
@@ -185,20 +185,28 @@ function UserPetBookmarks() {
                 }}
               >
                 <Box display="flex" alignItems="center">
-                  {/* <Avatar
-                    src={pet.pet_image_1}
-                    alt={pet.species_display}
-                    sx={{ width: 64, height: 64, marginRight: 2 }}
-                  /> */}
+                  {/* <MuiLink href={`/pets/${pet.id}`} underline="none">
+                    <Avatar
+                      src={pet.pet_image_1}
+                      alt={pet.species_display}
+                      sx={{ width: 64, height: 64, mr: 1, cursor: 'pointer' }}
+                    />
+                  </MuiLink> */}
                   <MuiLink href={`/pets/${pet.id}`} underline="none">
                     <Avatar
                       src={pet.pet_image_1}
                       alt={pet.species_display}
-                      sx={{ width: 64, height: 64, mr: 2, cursor: 'pointer' }}
+                      sx={{ width: 64, height: 64, mr: 1, cursor: 'pointer' }}
                     />
                   </MuiLink>
                   <Box flexGrow={1}>
-                    <Box
+                    <Typography variant="h6">
+                      <Chip label={pet.species_display || 'Nezināms'} size="small" color="primary" />
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" fontSize="0.8rem">
+                      {pet.final_status === 1 ? pet.status_display : pet.final_status_display}
+                    </Typography>
+                    {/* <Box
                       display="flex"
                       alignItems="center"
                       justifyContent="flex-start"
@@ -215,7 +223,7 @@ function UserPetBookmarks() {
                         color={pet.final_status === 1 ? 'default' : 'primary'}
                         sx={{ fontWeight: 500 }}
                       />
-                    </Box>
+                    </Box> */}
                     {/* <Typography variant="h6">
                       <MuiLink href={`/pets/${pet.id}`} underline="none">
                         <Chip
