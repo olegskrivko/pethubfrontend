@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 import MenuIcon from '@mui/icons-material/Menu';
 import PetsIcon from '@mui/icons-material/Pets';
 // React MUI
@@ -22,6 +23,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
+import logoImg from '../../assets/logo.svg';
+import { COMPANY_NAME } from '../../constants/config';
 // import Logout from './Logout';
 
 import { useAuth } from '../../contexts/AuthContext';
@@ -86,7 +89,8 @@ function DrawerAppBar(props) {
               letterSpacing: '0.5px', // Optional: Polish typography
             }}
           >
-            <PetsIcon sx={{ marginRight: '0.4rem', color: '#B2FF59' }} /> Renuvio
+            <DarkModeIcon sx={{ marginRight: '0.4rem', color: '#B2FF59' }} />
+            {COMPANY_NAME}
           </Link>
         </Typography>
       </Box>
@@ -157,7 +161,7 @@ function DrawerAppBar(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div">
+            {/* <Typography variant="h6" component="div">
               <Link
                 to="/"
                 style={{
@@ -170,11 +174,35 @@ function DrawerAppBar(props) {
                   letterSpacing: '0.5px', // Optional: Polish typography
                 }}
               >
-                <PetsIcon sx={{ marginRight: '0.4rem', color: '#B2FF59' }} />
-                Renuvio
+            
+                <DarkModeIcon sx={{ marginRight: '0.4rem', color: '#B2FF59' }} />
+                {COMPANY_NAME}
+              </Link>
+            </Typography> */}
+            <Typography variant="h6" component="div">
+              <Link
+                to="/"
+                style={{
+                  color: '#B2FF59',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  fontFamily: 'Manrope, sans-serif',
+                  fontWeight: 600,
+                  letterSpacing: '0.5px',
+                }}
+              >
+                <img
+                  src={logoImg}
+                  alt="Logo"
+                  style={{
+                    height: 28,
+                    marginRight: '0.5rem',
+                  }}
+                />
+                {COMPANY_NAME}
               </Link>
             </Typography>
-
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
               {Object.entries(navItems).map(([path, key]) => (
                 <Link

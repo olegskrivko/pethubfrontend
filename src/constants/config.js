@@ -1,4 +1,4 @@
-export const COMPANY_NAME = 'Renuvio';
+export const COMPANY_NAME = 'Lunori';
 export const APP_NAME = 'Renuvio';
 export const EMAIL = 'renuvio.official@gmail.com';
 export const PHONE_CODE = '+371';

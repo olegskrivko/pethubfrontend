@@ -439,6 +439,7 @@
 // };
 // export default SendMessage;
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   AddLocationAlt as AddLocationAltIcon,
@@ -452,6 +453,7 @@ import AddCommentIcon from '@mui/icons-material/AddComment';
 import { Box, Card, CardContent, Collapse, IconButton, TextField, Tooltip, Typography } from '@mui/material';
 
 import { useAuth } from '../../../contexts/AuthContext';
+import AnimalAvatar from '../../../shared/components/AnimalAvatar';
 
 const SendMessage = ({
   message,
@@ -465,7 +467,7 @@ const SendMessage = ({
   onRemoveLocation,
 }) => {
   const [expanded, setExpanded] = useState(false);
-
+  const { user } = useAuth();
   const handleToggleExpand = () => setExpanded((prev) => !prev);
 
   const handleFileInputChange = (event) => {
@@ -496,30 +498,36 @@ const SendMessage = ({
         <Box sx={{ p: 2, display: 'flex', alignItems: 'center' }}>
           <Typography color="textSecondary">
             <Box display="flex" alignItems="center" gap={2}>
-              <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
-                <AddCommentIcon />
-              </IconButton>
+              {user ? (
+                <AnimalAvatar animal={user.avatar} username={user.username} />
+              ) : (
+                <>
+                  <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                    <AddCommentIcon />
+                  </IconButton>
+                </>
+              )}
               PIEVIENOT ZIŅOJUMU
             </Box>
           </Typography>
         </Box>
         <IconButton>{expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}</IconButton>
       </Box>
+      {user ? (
+        <Collapse in={expanded}>
+          <CardContent>
+            <TextField
+              label="Ierakstiet savu komentāru šeit..."
+              variant="outlined"
+              size="small"
+              fullWidth
+              multiline
+              rows={3}
+              value={message}
+              onChange={(e) => onMessageChange(e.target.value)}
+            />
 
-      <Collapse in={expanded}>
-        <CardContent>
-          <TextField
-            label="Ierakstiet savu komentāru šeit..."
-            variant="outlined"
-            size="small"
-            fullWidth
-            multiline
-            rows={3}
-            value={message}
-            onChange={(e) => onMessageChange(e.target.value)}
-          />
-
-          {/* {filePreview && (
+            {/* {filePreview && (
             <Box mt={2}>
               <img
                 src={filePreview}
@@ -533,84 +541,92 @@ const SendMessage = ({
               />
             </Box>
           )} */}
-          {filePreview ? (
-            <Box mt={2}>
-              <img
-                src={filePreview}
-                alt="Preview"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  borderRadius: '0.5rem',
-                  boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-                }}
-              />
-            </Box>
-          ) : file ? (
-            <Box mt={2}>
-              <Typography variant="body2" color="textSecondary">
-                Selected file: {file.name}
-              </Typography>
-            </Box>
-          ) : null}
+            {filePreview ? (
+              <Box mt={2}>
+                <img
+                  src={filePreview}
+                  alt="Preview"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    borderRadius: '0.5rem',
+                    boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+                  }}
+                />
+              </Box>
+            ) : file ? (
+              <Box mt={2}>
+                <Typography variant="body2" color="textSecondary">
+                  Selected file: {file.name}
+                </Typography>
+              </Box>
+            ) : null}
 
-          <Box mt={3} display="flex" justifyContent="space-between" alignItems="center">
-            <Box>
-              {!isLocationAdded ? (
-                <Tooltip title="Pievienot atrašanās vietu">
-                  <IconButton onClick={onAddLocation} sx={{ backgroundColor: '#00b3a4', color: '#fff', mr: 1 }}>
-                    <AddLocationAltIcon />
-                  </IconButton>
-                </Tooltip>
-              ) : (
-                <Tooltip title="Noņemt atrašanās vietu">
-                  <IconButton onClick={onRemoveLocation} sx={{ backgroundColor: '#00b3a4', color: '#fff', mr: 1 }}>
-                    <WrongLocationIcon />
-                  </IconButton>
-                </Tooltip>
-              )}
+            <Box mt={3} display="flex" justifyContent="space-between" alignItems="center">
+              <Box>
+                {!isLocationAdded ? (
+                  <Tooltip title="Pievienot atrašanās vietu">
+                    <IconButton onClick={onAddLocation} sx={{ backgroundColor: '#00b3a4', color: '#fff', mr: 1 }}>
+                      <AddLocationAltIcon />
+                    </IconButton>
+                  </Tooltip>
+                ) : (
+                  <Tooltip title="Noņemt atrašanās vietu">
+                    <IconButton onClick={onRemoveLocation} sx={{ backgroundColor: '#00b3a4', color: '#fff', mr: 1 }}>
+                      <WrongLocationIcon />
+                    </IconButton>
+                  </Tooltip>
+                )}
 
-              <label htmlFor="photo-upload-input">
-                <Tooltip title="Pievienot foto">
-                  <IconButton
-                    component="span"
-                    sx={{
-                      backgroundColor: '#00b3a4',
-                      color: '#fff',
-                      '&:hover': { backgroundColor: '#007c73' },
-                    }}
-                  >
-                    <AddPhotoAlternateIcon />
-                  </IconButton>
-                </Tooltip>
-              </label>
-              <input
-                accept="image/*"
-                id="photo-upload-input"
-                type="file"
-                onChange={handleFileInputChange}
-                style={{ display: 'none' }}
-              />
+                <label htmlFor="photo-upload-input">
+                  <Tooltip title="Pievienot foto">
+                    <IconButton
+                      component="span"
+                      sx={{
+                        backgroundColor: '#00b3a4',
+                        color: '#fff',
+                        '&:hover': { backgroundColor: '#007c73' },
+                      }}
+                    >
+                      <AddPhotoAlternateIcon />
+                    </IconButton>
+                  </Tooltip>
+                </label>
+                <input
+                  accept="image/*"
+                  id="photo-upload-input"
+                  type="file"
+                  onChange={handleFileInputChange}
+                  style={{ display: 'none' }}
+                />
+              </Box>
+
+              <Tooltip title="Aizsūtīt ziņu">
+                <IconButton
+                  onClick={() => {
+                    onSendMessage();
+                    if (isLocationAdded) onRemoveLocation();
+                  }}
+                  sx={{
+                    backgroundColor: '#00b3a4',
+                    color: '#fff',
+                    '&:hover': { backgroundColor: '#007c73' },
+                  }}
+                >
+                  <SendIcon />
+                </IconButton>
+              </Tooltip>
             </Box>
-
-            <Tooltip title="Aizsūtīt ziņu">
-              <IconButton
-                onClick={() => {
-                  onSendMessage();
-                  if (isLocationAdded) onRemoveLocation();
-                }}
-                sx={{
-                  backgroundColor: '#00b3a4',
-                  color: '#fff',
-                  '&:hover': { backgroundColor: '#007c73' },
-                }}
-              >
-                <SendIcon />
-              </IconButton>
-            </Tooltip>
-          </Box>
-        </CardContent>
-      </Collapse>
+          </CardContent>
+        </Collapse>
+      ) : (
+        <Box p={2}>
+          <Typography color="textSecondary">Lūdzu, piesakieties, lai pievienotu ziņojumu.</Typography>{' '}
+          <Link to="/login" style={{ textDecoration: 'none', color: '#1976d2', fontWeight: 500 }}>
+            Pieslēgties
+          </Link>
+        </Box>
+      )}
     </Card>
   );
 };

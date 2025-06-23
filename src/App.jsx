@@ -19,12 +19,12 @@ import PageNotFound from './pages/PageNotFound';
 import ArticleDetailsPage from './pages/articles/views/ArticleDetailsPage';
 import ArticlesListPage from './pages/articles/views/ArticlesPage';
 import PrivateRoute from './pages/auth/components/PrivateRoute';
-import AccountDeleted from './pages/auth/views/AccountDeleted';
-import ForgotPassword from './pages/auth/views/ForgotPassword';
-import Login from './pages/auth/views/Login';
-import Logout from './pages/auth/views/Logout';
-import Register from './pages/auth/views/Register';
-import ResetPassword from './pages/auth/views/ResetPassword';
+import AccountDeletedPage from './pages/auth/views/AccountDeletedPage';
+import ForgotPasswordPage from './pages/auth/views/ForgotPasswordPage';
+import LoginPage from './pages/auth/views/LoginPage';
+import LogoutPage from './pages/auth/views/LogoutPage';
+import RegisterPage from './pages/auth/views/RegisterPage';
+import ResetPasswordPage from './pages/auth/views/ResetPasswordPage';
 import Collaborate from './pages/common/views/Collaborate';
 // PAGES
 import Contact from './pages/common/views/Contact';
@@ -151,11 +151,12 @@ function App() {
                         <Route path="subscription-success" element={<SuccessPage />} />
                         {/* <Route path="cancel" element={<CancelPage />} /> */}
                         <Route path="subscription-cancel" element={<CancelPage />} />
-                        <Route path="login" element={<Login />} />
-                        <Route path="register" element={<Register />} />
-                        <Route path="logout" element={<Logout />} />
-                        <Route path="forgot-password" element={<ForgotPassword />} />
-                        <Route path="account-deleted" element={<AccountDeleted />} />
+                        <Route path="login" element={<LoginPage />} />
+                        <Route path="register" element={<RegisterPage />} />
+                        <Route path="logout" element={<LogoutPage />} />
+                        <Route path="forgot-password" element={<ForgotPasswordPage />} />
+                        <Route path="reset-password/:token" element={<ResetPasswordPage />} />
+                        <Route path="account-deleted" element={<AccountDeletedPage />} />
 
                         {/* Protected routes */}
                         <Route element={<PrivateRoute />}>

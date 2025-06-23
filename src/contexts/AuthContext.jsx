@@ -23,15 +23,13 @@ export const AuthProvider = ({ children }) => {
   const [isAuthLoading, setIsAuthLoading] = useState(true);
   const navigate = useNavigate();
 
-  const getCurrentUser = () => {
+  const getUserFromToken = () => {
     try {
       const accessToken = localStorage.getItem('access_token');
-      if (!accessToken) return null;
-
+      if (!accessToken || isTokenExpired(accessToken)) return null;
       const decodedToken = jwtDecode(accessToken);
       return decodedToken ? { userId: decodedToken.user_id } : null;
     } catch (err) {
-      console.error('Error decoding token:', err);
       return null;
     }
   };
@@ -64,7 +62,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const existingUser = getCurrentUser();
+    const existingUser = getUserFromToken();
     if (existingUser) {
       fetchUserDetails();
     } else {
@@ -84,10 +82,15 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('refresh_token', refresh);
 
       await fetchUserDetails();
-      return true;
+      return { success: true };
     } catch (err) {
-      console.error('Login failed:', err);
-      return false;
+      if (err.response) {
+        // Grab error message from backend
+        const message = err.response.data?.error || err.response.data?.detail || 'Nepareizs e-pasts vai parole';
+
+        return { success: false, message };
+      }
+      return { success: false, message: 'Radās kļūda pieteikšanās laikā' };
     }
   };
 
@@ -95,7 +98,6 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
     setUser(null);
-    navigate('/logout');
   };
 
   return <AuthContext.Provider value={{ user, login, logout, isAuthLoading }}>{children}</AuthContext.Provider>;

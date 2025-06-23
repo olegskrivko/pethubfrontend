@@ -8,6 +8,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import FlagIcon from '@mui/icons-material/Flag';
 import LabelImportantIcon from '@mui/icons-material/LabelImportant';
+import LockIcon from '@mui/icons-material/Lock';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import LockOutlineIcon from '@mui/icons-material/LockOutline';
+import PetsIcon from '@mui/icons-material/Pets';
 import {
   Avatar,
   Box,
@@ -19,6 +23,7 @@ import {
   Grid,
   IconButton,
   Link as MuiLink,
+  Paper,
   Tooltip,
   Typography,
 } from '@mui/material';
@@ -95,11 +100,6 @@ function UserPetBookmarks() {
     }
   };
 
-  const handleEditPet = (petId) => {
-    navigate(`/user-profile/edit-pet/${petId}`);
-  };
-
-  // Loading and error state handling
   if (loading) {
     return (
       <Box
@@ -136,7 +136,6 @@ function UserPetBookmarks() {
         sx={{
           mb: 5,
           fontWeight: 800,
-
           background: 'linear-gradient(60deg, #16477c 0%, #00b5ad 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
@@ -145,28 +144,29 @@ function UserPetBookmarks() {
         Saglabātie sludinājumi
       </Typography>
       {favoritedPets.length === 0 ? (
-        // Show message when no bookmarks are available
-        <Card
-          sx={{
-            p: 2,
-            borderRadius: 3,
-            background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease-in-out',
-            '&:hover': {
-              background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
-            },
-          }}
-        >
-          <CardContent sx={{ paddingBottom: '1rem !important' }}>
+        <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+          <Paper
+            sx={{
+              p: 2,
+              borderRadius: 3,
+              background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease-in-out',
+              '&:hover': {
+                background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
+              },
+            }}
+          >
             <Box display="flex" alignItems="center">
-              <BookmarkIcon color="primary" sx={{ fontSize: 28, marginRight: '1rem' }} />
-              <Typography variant="body2" color="textSecondary">
-                Jums vēl nav saglabātu sludinājumu.
+              <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                <BookmarkIcon />
+              </IconButton>
+              <Typography variant="body1" color="textSecondary" sx={{ ml: 2 }}>
+                Jums vēl nav saglabātu sludinājumu
               </Typography>
             </Box>
-          </CardContent>
-        </Card>
+          </Paper>
+        </Grid>
       ) : (
         <Grid container spacing={2}>
           {favoritedPets.map((pet) => (
@@ -174,31 +174,49 @@ function UserPetBookmarks() {
               <Card
                 sx={{
                   padding: 2,
-
                   borderRadius: 3,
                   background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
-                  // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
+
                   cursor: 'pointer',
                   transition: 'all 0.3s ease-in-out',
                   '&:hover': {
-                    // boxShadow: '0px 6px 20px rgba(0,0,0,0.1)',
-                    // transform: 'scale(1.01)',
                     background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
                   },
-                  // '&:focus': {
-                  //   outline: '2px solid #00b5ad',
-                  // },
                 }}
               >
-                {/* <CardContent> */}
                 <Box display="flex" alignItems="center">
-                  <Avatar
+                  {/* <Avatar
                     src={pet.pet_image_1}
                     alt={pet.species_display}
                     sx={{ width: 64, height: 64, marginRight: 2 }}
-                  />
+                  /> */}
+                  <MuiLink href={`/pets/${pet.id}`} underline="none">
+                    <Avatar
+                      src={pet.pet_image_1}
+                      alt={pet.species_display}
+                      sx={{ width: 64, height: 64, mr: 2, cursor: 'pointer' }}
+                    />
+                  </MuiLink>
                   <Box flexGrow={1}>
-                    <Typography variant="h6">
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="flex-start"
+                      sx={{
+                        gap: 1.5,
+                      }}
+                    >
+                      <Chip label={pet.status_display} size="small" color="info" sx={{ fontWeight: 500 }} />
+                      <DoubleArrowIcon fontSize="small" sx={{ color: 'text.disabled' }} />
+
+                      <Chip
+                        label={pet.final_status_display}
+                        size="small"
+                        color={pet.final_status === 1 ? 'default' : 'primary'}
+                        sx={{ fontWeight: 500 }}
+                      />
+                    </Box>
+                    {/* <Typography variant="h6">
                       <MuiLink href={`/pets/${pet.id}`} underline="none">
                         <Chip
                           label={pet.species_display || 'Nezināms'}
@@ -207,8 +225,8 @@ function UserPetBookmarks() {
                           color="primary"
                         />
                       </MuiLink>
-                    </Typography>
-                    <Box
+                    </Typography> */}
+                    {/* <Box
                       style={{
                         display: 'flex',
                         alignItems: 'center',
@@ -216,55 +234,36 @@ function UserPetBookmarks() {
                       }}
                     >
                       <Typography variant="body2" color="textSecondary">
-                        {pet.status_display || 'Nav statusa'}
+                        {pet.final_status === 1 ? pet.status_display : pet.final_status_display}
                       </Typography>
-                      <DoubleArrowIcon
-                        color="primary"
-                        sx={{
-                          marginLeft: '0.4rem',
-                          marginRight: '0.4rem',
-                          fontSize: '1rem',
-                        }}
-                      />
-                      <Typography variant="body2" color="textSecondary">
-                        {pet.final_status_display || 'Nav statusa'}
-                      </Typography>
-                    </Box>
-                  </Box>
-
-                  {/* <Box flexGrow={1}  display="flex" alignItems="center" justifyContent="flex-start">
-                       <Chip
-                          label={pet.status_display || "Nav statusa"}
-                          size="small"
-                          variant="contained"
-                          color='primary'
-                       
-                        />
-                        
-                                          
-                      <LabelImportantIcon color="primary" sx={{ fontSize: 28, margin: "0rem 1rem"  }} />
-                <Chip
-                          label={pet.final_status_display || "Nav statusa"}
-                          size="small"
-                          variant="contained"
-                          color='primary'
-                       
-                        />
-                
                     </Box> */}
+                  </Box>
+                  {pet.is_closed ? (
+                    <Tooltip title="Sludinājums slēgts">
+                      <IconButton edge="end" size="small" aria-label="delete" sx={{ mr: 1 }}>
+                        <LockOutlineIcon />
+                      </IconButton>
+                    </Tooltip>
+                  ) : (
+                    <Tooltip title="Sludinājums atvērts">
+                      <IconButton edge="end" size="small" aria-label="delete" sx={{ mr: 1 }}>
+                        <LockOpenIcon />
+                      </IconButton>
+                    </Tooltip>
+                  )}
+
                   <Tooltip title="Izdzēst">
                     <IconButton
-                      // edge="end"
-                      color="error"
+                      edge="end"
+                      color="primary"
+                      size="small"
                       aria-label="delete"
-                      style={{ backgroundColor: '#FF746C', color: '#fff' }}
                       onClick={() => handleDeletePet(pet.id)}
                     >
                       <DeleteIcon />
                     </IconButton>
                   </Tooltip>
                 </Box>
-                {/* </CardContent> */}
               </Card>
             </Grid>
           ))}
@@ -273,17 +272,22 @@ function UserPetBookmarks() {
 
       <Grid container spacing={2}>
         <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-          <Box textAlign="center" style={{ display: 'flex', justifyContent: 'space-between' }} mt={4}>
-            <Button
-              variant="outlined"
-              color="primary"
-              startIcon={<ArrowBackIcon />}
-              component={Link}
-              to={`/user-profile`}
-              style={{ textDecoration: 'none', color: 'inherit' }}
+          <Box mt={4} display="flex" justifyContent="space-between" alignItems="center" textAlign="center">
+            <Link
+              to="/user-profile"
+              style={{
+                color: '#00b5ad',
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                fontSize: '0.875rem',
+                fontWeight: '500',
+              }}
             >
+              <ArrowBackIcon fontSize="small" />
               Atpakaļ
-            </Button>
+            </Link>
           </Box>
         </Grid>
       </Grid>

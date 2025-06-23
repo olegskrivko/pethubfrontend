@@ -214,3 +214,21 @@ body::-webkit-scrollbar {
   font-variation-settings:
     "wdth" 100;
 } */
+
+input[type='password']::-webkit-textfield-decoration-container,
+input[type='password']::-webkit-password-toggle-button {
+  display: none !important;
+}
+
+input[type='password']::-ms-reveal {
+  display: none !important;
+}
+input[type='password']::-webkit-textfield-decoration-container {
+  display: none !important;
+}
+/* Hide browser’s native password reveal icon */
+input[type='password']::-ms-reveal,
+input[type='password']::-ms-clear,
+input[type='password']::-webkit-password-toggle-button {
+  display: none !important;
+}

@@ -29,7 +29,9 @@ import {
   Typography,
 } from '@mui/material';
 import axios from 'axios';
+import Lottie from 'lottie-react';
 
+import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
 import { useAuth } from '../../../contexts/AuthContext';
 import LeafletAddNotificationMap from '../../../shared/maps/LeafletAddNotificationMap';
 
@@ -59,6 +61,8 @@ function UserSettings() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -78,10 +82,9 @@ function UserSettings() {
         username: user.username,
         email: user.email,
       });
+      setLoading(false); // stop loading once user data is set
     }
   }, [user]);
-
-  console.log('User:', user);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -105,9 +108,13 @@ function UserSettings() {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
 
-      // Logout the user after account deletion
+      // Call logout
       logout();
-      navigate('/account-deleted'); // Redirect to signup or homepage
+
+      // Delay navigation so logout completes before rerender
+      setTimeout(() => {
+        navigate('/account-deleted');
+      }, 100); // 100ms is usually enough
     } catch (err) {
       console.error('Error deleting account:', err);
     }
@@ -340,39 +347,33 @@ function UserSettings() {
     }
   };
 
-  // const handleReactivateSubscription = async () => {
-  //   try {
-  //     setLoadingSubscription(true);
-  //     setSubscriptionError(null);
-  //     const accessToken = localStorage.getItem("access_token");
-  //     const response = await fetch(`${API_BASE_URL}/api/payment/subscription/reactivate/`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Authorization': `Bearer ${accessToken}`
-  //       }
-  //     });
-  //     const data = await response.json();
-  //     setSubscriptionStatus(prev => ({
-  //       ...prev,
-  //       cancel_at_period_end: false,
-  //       cancel_at: null
-  //     }));
-  //   } catch (error) {
-  //     setSubscriptionError("Failed to reactivate subscription");
-  //     console.error("Error reactivating subscription:", error);
-  //   } finally {
-  //     setLoadingSubscription(false);
-  //   }
-  // };
-
   useEffect(() => {
     checkExistingSubscription();
     fetchSubscriptionStatus();
   }, []);
-  if (!user) {
-    return <Typography>Loading user data...</Typography>;
-  }
 
+  if (loading) {
+    return (
+      <Container>
+        <Box
+          sx={{
+            minHeight: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Box sx={{ width: 180, height: 180 }}>
+            <Lottie animationData={spinnerAnimation} loop autoplay />
+          </Box>
+        </Box>
+      </Container>
+    );
+  }
+  if (!user) {
+    return <Typography>User data not found</Typography>;
+  }
   return (
     <>
       <Container component="main" maxWidth="lg">
@@ -392,6 +393,7 @@ function UserSettings() {
             >
               Lietotāja iestatījumi
             </Typography>
+
             <Box sx={{ textAlign: 'start' }}>
               <TextField
                 fullWidth
@@ -734,7 +736,7 @@ function UserSettings() {
         </Dialog>
 
         {/* Back Button */}
-        <Grid container spacing={2} sx={{ mt: 4 }}>
+        {/* <Grid container spacing={2} sx={{ mt: 4 }}>
           <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
             <Box textAlign="left">
               <Button
@@ -746,6 +748,27 @@ function UserSettings() {
               >
                 Atpakaļ
               </Button>
+            </Box>
+          </Grid>
+        </Grid> */}
+        <Grid container spacing={2}>
+          <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+            <Box mt={4} display="flex" justifyContent="space-between" alignItems="center" textAlign="center">
+              <Link
+                to="/user-profile"
+                style={{
+                  color: '#00b5ad',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  fontSize: '0.875rem',
+                  fontWeight: '500',
+                }}
+              >
+                <ArrowBackIcon fontSize="small" />
+                Atpakaļ
+              </Link>
             </Box>
           </Grid>
         </Grid>
