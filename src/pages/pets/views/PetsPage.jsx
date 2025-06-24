@@ -198,7 +198,7 @@ const PetsList = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ px: { xs: 1, sm: 2, md: 3, lg: 3, xl: 5 } }}>
+    <Container maxWidth="lg" disableGutters>
       <Grid container spacing={3}>
         {!isMobile && (
           <Grid size={{ xs: 12, sm: 12, md: 3, lg: 3 }}>
@@ -240,7 +240,9 @@ const PetsList = () => {
 
           {/* Drawer for mobile */}
           <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-            <Box sx={{ width: 300, p: 2 }}>
+            <Box
+              sx={{ width: 300, py: { xs: 1, sm: 2, md: 3, lg: 4, xl: 5 }, px: { xs: 1, sm: 2, md: 3, lg: 4, xl: 5 } }}
+            >
               <PetSidebar
                 filters={filters}
                 setFilters={setFilters}

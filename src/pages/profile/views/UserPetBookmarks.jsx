@@ -129,84 +129,85 @@ function UserPetBookmarks() {
   }
 
   return (
-    <Container component="main" maxWidth="lg">
-      <Typography
-        variant="h4"
-        align="center"
-        sx={{
-          mb: 5,
-          fontWeight: 800,
-          background: 'linear-gradient(60deg, #16477c 0%, #00b5ad 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-        }}
-      >
-        Saglabātie sludinājumi
-      </Typography>
-      {favoritedPets.length === 0 ? (
-        <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-          <Paper
-            sx={{
-              p: 2,
-              borderRadius: 3,
-              background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease-in-out',
-              '&:hover': {
-                background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
-              },
-            }}
-          >
-            <Box display="flex" alignItems="center">
-              <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
-                <BookmarkIcon />
-              </IconButton>
-              <Typography variant="body1" color="textSecondary" sx={{ ml: 2 }}>
-                Jums vēl nav saglabātu sludinājumu
-              </Typography>
-            </Box>
-          </Paper>
-        </Grid>
-      ) : (
-        <Grid container spacing={2}>
-          {favoritedPets.map((pet) => (
-            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} key={pet.id}>
-              <Card
-                sx={{
-                  padding: 2,
-                  borderRadius: 3,
-                  background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
-
-                  // cursor: 'pointer',
-                  transition: 'all 0.3s ease-in-out',
-                  '&:hover': {
-                    background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
-                  },
-                }}
-              >
-                <Box display="flex" alignItems="center">
-                  {/* <MuiLink href={`/pets/${pet.id}`} underline="none">
+    <Container component="main" maxWidth="lg" disableGutters>
+      <Box sx={{ textAlign: 'center', my: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 } }}>
+        <Typography
+          variant="h4"
+          align="center"
+          sx={{
+            mb: 5,
+            fontWeight: 800,
+            background: 'linear-gradient(60deg, #16477c 0%, #00b5ad 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}
+        >
+          Saglabātie sludinājumi
+        </Typography>
+        {favoritedPets.length === 0 ? (
+          <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+            <Paper
+              sx={{
+                p: { xs: 1, sm: 2 },
+                borderRadius: 3,
+                background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease-in-out',
+                '&:hover': {
+                  background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
+                },
+              }}
+            >
+              <Box display="flex" alignItems="center">
+                <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                  <BookmarkIcon />
+                </IconButton>
+                <Typography variant="body1" color="textSecondary" sx={{ ml: 2 }}>
+                  Jums vēl nav saglabātu sludinājumu
+                </Typography>
+              </Box>
+            </Paper>
+          </Grid>
+        ) : (
+          <Grid container spacing={2}>
+            {favoritedPets.map((pet) => (
+              <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} key={pet.id}>
+                <Card
+                  sx={{
+                    p: { xs: 1, sm: 2 },
+                    borderRadius: 3,
+                    background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+                    textAlign: 'left',
+                    // cursor: 'pointer',
+                    transition: 'all 0.3s ease-in-out',
+                    '&:hover': {
+                      background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
+                    },
+                  }}
+                >
+                  <Box display="flex" alignItems="center">
+                    {/* <MuiLink href={`/pets/${pet.id}`} underline="none">
                     <Avatar
                       src={pet.pet_image_1}
                       alt={pet.species_display}
                       sx={{ width: 64, height: 64, mr: 1, cursor: 'pointer' }}
                     />
                   </MuiLink> */}
-                  <MuiLink href={`/pets/${pet.id}`} underline="none">
-                    <Avatar
-                      src={pet.pet_image_1}
-                      alt={pet.species_display}
-                      sx={{ width: 64, height: 64, mr: 1, cursor: 'pointer' }}
-                    />
-                  </MuiLink>
-                  <Box flexGrow={1}>
-                    <Typography variant="h6">
-                      <Chip label={pet.species_display || 'Nezināms'} size="small" color="primary" />
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" fontSize="0.8rem">
-                      {pet.final_status === 1 ? pet.status_display : pet.final_status_display}
-                    </Typography>
-                    {/* <Box
+                    <MuiLink href={`/pets/${pet.id}`} underline="none">
+                      <Avatar
+                        src={pet.pet_image_1}
+                        alt={pet.species_display}
+                        sx={{ width: 64, height: 64, mr: 1, cursor: 'pointer' }}
+                      />
+                    </MuiLink>
+                    <Box flexGrow={1}>
+                      <Typography variant="h6">
+                        <Chip label={pet.species_display || 'Nezināms'} size="small" color="primary" />
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary" fontSize="0.8rem">
+                        {pet.final_status === 1 ? pet.status_display : pet.final_status_display}
+                      </Typography>
+                      {/* <Box
                       display="flex"
                       alignItems="center"
                       justifyContent="flex-start"
@@ -224,7 +225,7 @@ function UserPetBookmarks() {
                         sx={{ fontWeight: 500 }}
                       />
                     </Box> */}
-                    {/* <Typography variant="h6">
+                      {/* <Typography variant="h6">
                       <MuiLink href={`/pets/${pet.id}`} underline="none">
                         <Chip
                           label={pet.species_display || 'Nezināms'}
@@ -234,7 +235,7 @@ function UserPetBookmarks() {
                         />
                       </MuiLink>
                     </Typography> */}
-                    {/* <Box
+                      {/* <Box
                       style={{
                         display: 'flex',
                         alignItems: 'center',
@@ -245,60 +246,61 @@ function UserPetBookmarks() {
                         {pet.final_status === 1 ? pet.status_display : pet.final_status_display}
                       </Typography>
                     </Box> */}
+                    </Box>
+                    {pet.is_closed ? (
+                      <Tooltip title="Sludinājums slēgts">
+                        <IconButton edge="end" size="small" aria-label="delete" sx={{ mr: 1 }}>
+                          <LockOutlineIcon />
+                        </IconButton>
+                      </Tooltip>
+                    ) : (
+                      <Tooltip title="Sludinājums atvērts">
+                        <IconButton edge="end" size="small" aria-label="delete" sx={{ mr: 1 }}>
+                          <LockOpenIcon />
+                        </IconButton>
+                      </Tooltip>
+                    )}
+
+                    <Tooltip title="Izdzēst">
+                      <IconButton
+                        edge="end"
+                        color="primary"
+                        size="small"
+                        aria-label="delete"
+                        onClick={() => handleDeletePet(pet.id)}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </Tooltip>
                   </Box>
-                  {pet.is_closed ? (
-                    <Tooltip title="Sludinājums slēgts">
-                      <IconButton edge="end" size="small" aria-label="delete" sx={{ mr: 1 }}>
-                        <LockOutlineIcon />
-                      </IconButton>
-                    </Tooltip>
-                  ) : (
-                    <Tooltip title="Sludinājums atvērts">
-                      <IconButton edge="end" size="small" aria-label="delete" sx={{ mr: 1 }}>
-                        <LockOpenIcon />
-                      </IconButton>
-                    </Tooltip>
-                  )}
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        )}
 
-                  <Tooltip title="Izdzēst">
-                    <IconButton
-                      edge="end"
-                      color="primary"
-                      size="small"
-                      aria-label="delete"
-                      onClick={() => handleDeletePet(pet.id)}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </Tooltip>
-                </Box>
-              </Card>
-            </Grid>
-          ))}
+        <Grid container spacing={2}>
+          <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+            <Box mt={4} display="flex" justifyContent="space-between" alignItems="center" textAlign="center">
+              <Link
+                to="/user-profile"
+                style={{
+                  color: '#00b5ad',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  fontSize: '0.875rem',
+                  fontWeight: '500',
+                }}
+              >
+                <ArrowBackIcon fontSize="small" />
+                Atpakaļ
+              </Link>
+            </Box>
+          </Grid>
         </Grid>
-      )}
-
-      <Grid container spacing={2}>
-        <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-          <Box mt={4} display="flex" justifyContent="space-between" alignItems="center" textAlign="center">
-            <Link
-              to="/user-profile"
-              style={{
-                color: '#00b5ad',
-                textDecoration: 'none',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontSize: '0.875rem',
-                fontWeight: '500',
-              }}
-            >
-              <ArrowBackIcon fontSize="small" />
-              Atpakaļ
-            </Link>
-          </Box>
-        </Grid>
-      </Grid>
+      </Box>
     </Container>
   );
 }

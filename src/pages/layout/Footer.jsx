@@ -132,7 +132,8 @@ const Footer = () => {
             paddingBottom: '2rem',
             width: '100%',
             overflowX: 'hidden',
-            p: { xs: 1 },
+            py: { xs: 1, sm: 2, md: 3, lg: 4, xl: 5 },
+            px: { xs: 1, sm: 2, md: 3, lg: 4, xl: 5 },
           }}
         >
           <Grid container spacing={2}>

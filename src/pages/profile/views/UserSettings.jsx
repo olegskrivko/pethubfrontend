@@ -376,7 +376,7 @@ function UserSettings() {
   }
   return (
     <>
-      <Container component="main" maxWidth="lg">
+      <Container component="main" maxWidth="lg" sx={{ px: { xs: 1, sm: 2, md: 3, lg: 4, xl: 5 } }}>
         <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
           <Box sx={{ textAlign: 'center' }}>
             <Typography
@@ -425,7 +425,7 @@ function UserSettings() {
             <Card
               sx={{
                 // px: 2,
-                p: 3,
+                px: { xs: 0, sm: 2, md: 3, lg: 4, xl: 5 },
                 borderRadius: 3,
                 background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
                 // boxShadow: '0px 3px 10px rgba(0,0,0,0.06)',
