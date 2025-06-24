@@ -130,13 +130,19 @@ function UserPetBookmarks() {
 
   return (
     <Container component="main" maxWidth="lg" disableGutters>
-      <Box sx={{ textAlign: 'center', my: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 } }}>
+      <Box sx={{ my: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 } }}>
         <Typography
-          variant="h4"
+          component="h1"
           align="center"
           sx={{
-            mb: 5,
             fontWeight: 800,
+            fontSize: {
+              xs: '1.5rem',
+              sm: '2rem',
+              md: '2.5rem',
+              lg: '2.5rem',
+            },
+            mb: 5,
             background: 'linear-gradient(60deg, #16477c 0%, #00b5ad 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
@@ -151,7 +157,7 @@ function UserPetBookmarks() {
                 p: { xs: 1, sm: 2 },
                 borderRadius: 3,
                 background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
-                cursor: 'pointer',
+
                 transition: 'all 0.3s ease-in-out',
                 '&:hover': {
                   background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
@@ -159,10 +165,10 @@ function UserPetBookmarks() {
               }}
             >
               <Box display="flex" alignItems="center">
-                <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                <IconButton color="primary" style={{ backgroundColor: '#f7f9fd', cursor: 'default' }}>
                   <BookmarkIcon />
                 </IconButton>
-                <Typography variant="body1" color="textSecondary" sx={{ ml: 2 }}>
+                <Typography variant="body1" color="textSecondary" sx={{ ml: { xs: 1, sm: 2 } }}>
                   Jums vēl nav saglabātu sludinājumu
                 </Typography>
               </Box>
@@ -178,74 +184,60 @@ function UserPetBookmarks() {
                     borderRadius: 3,
                     background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
                     textAlign: 'left',
-                    // cursor: 'pointer',
                     transition: 'all 0.3s ease-in-out',
                     '&:hover': {
                       background: 'linear-gradient(90deg, #d0f0f5 0%, #e3fbff 100%)',
                     },
                   }}
                 >
-                  <Box display="flex" alignItems="center">
-                    {/* <MuiLink href={`/pets/${pet.id}`} underline="none">
-                    <Avatar
-                      src={pet.pet_image_1}
-                      alt={pet.species_display}
-                      sx={{ width: 64, height: 64, mr: 1, cursor: 'pointer' }}
+                  {' '}
+                  {/* <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="flex-start"
+                    sx={{
+                      gap: 0.5,
+                    }}
+                  >
+                    <Chip
+                      label={pet.status_display}
+                      size="small"
+                      color="info"
+                      sx={{ fontWeight: 400, fontSize: '0.8rem' }}
                     />
-                  </MuiLink> */}
+                    <DoubleArrowIcon fontSize="small" sx={{ color: 'text.disabled' }} />
+
+                    <Chip
+                      label={pet.final_status_display}
+                      size="small"
+                      color={pet.final_status === 1 ? 'default' : 'primary'}
+                      sx={{ fontWeight: 400, fontSize: '0.8rem' }}
+                    />
+                  </Box> */}
+                  <Box display="flex" alignItems="center">
                     <MuiLink href={`/pets/${pet.id}`} underline="none">
                       <Avatar
                         src={pet.pet_image_1}
                         alt={pet.species_display}
-                        sx={{ width: 64, height: 64, mr: 1, cursor: 'pointer' }}
+                        sx={{ width: 64, height: 64, mr: { xs: 1, sm: 2 }, cursor: 'pointer' }}
                       />
                     </MuiLink>
                     <Box flexGrow={1}>
                       <Typography variant="h6">
-                        <Chip label={pet.species_display || 'Nezināms'} size="small" color="primary" />
+                        <Chip label={pet.species_display} size="small" color="primary" />
                       </Typography>
                       <Typography variant="body2" color="textSecondary" fontSize="0.8rem">
                         {pet.final_status === 1 ? pet.status_display : pet.final_status_display}
                       </Typography>
-                      {/* <Box
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="flex-start"
-                      sx={{
-                        gap: 1.5,
-                      }}
-                    >
-                      <Chip label={pet.status_display} size="small" color="info" sx={{ fontWeight: 500 }} />
-                      <DoubleArrowIcon fontSize="small" sx={{ color: 'text.disabled' }} />
-
-                      <Chip
-                        label={pet.final_status_display}
-                        size="small"
-                        color={pet.final_status === 1 ? 'default' : 'primary'}
-                        sx={{ fontWeight: 500 }}
-                      />
-                    </Box> */}
-                      {/* <Typography variant="h6">
-                      <MuiLink href={`/pets/${pet.id}`} underline="none">
-                        <Chip
-                          label={pet.species_display || 'Nezināms'}
-                          size="small"
-                          variant="contained"
-                          color="primary"
-                        />
-                      </MuiLink>
-                    </Typography> */}
-                      {/* <Box
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'flex-start',
-                      }}
-                    >
-                      <Typography variant="body2" color="textSecondary">
-                        {pet.final_status === 1 ? pet.status_display : pet.final_status_display}
-                      </Typography>
-                    </Box> */}
+                      {/* <Box mt={4} display="flex" justifyContent="flex-start" alignItems="center" textAlign="center">
+                        <Typography variant="body2" color="textSecondary" fontSize="0.8rem">
+                          {pet.status_display}
+                        </Typography>
+                        <ArrowBackIcon fontSize="small" />
+                        <Typography variant="body2" color="textSecondary" fontSize="0.8rem">
+                          {pet.final_status_display}
+                        </Typography>
+                      </Box> */}
                     </Box>
                     {pet.is_closed ? (
                       <Tooltip title="Sludinājums slēgts">
