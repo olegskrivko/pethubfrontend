@@ -150,6 +150,7 @@ function DrawerAppBar(props) {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
+              p: { xs: 1 },
             }}
           >
             <IconButton
