@@ -73,7 +73,7 @@ const Profile = () => {
   if (!user) return <Typography>Loading...</Typography>;
 
   return (
-    <Container component="main" maxWidth="lg">
+    <Container component="main" maxWidth="lg" sx={{ px: { xs: 1, sm: 2, md: 3, lg: 4, xl: 5 } }}>
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
         <Box mt={2} sx={{ textAlign: 'center', position: 'relative' }}>
           <Box
@@ -95,8 +95,8 @@ const Profile = () => {
               <Link to="/user-profile/bookmarks/pets" style={{ textDecoration: 'none' }}>
                 <Paper
                   sx={{
-                    p: 2,
-
+                    px: { xs: 1, sm: 2 },
+                    py: { xs: 1, sm: 2 },
                     borderRadius: 3,
                     background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
                     cursor: 'pointer',

@@ -32,7 +32,7 @@ const Layout = () => {
         sx={{
           flex: '1 0 auto',
           width: '100%',
-          py: { xs: 2, sm: 3, md: 3, lg: 4, xl: 5 },
+          py: { xs: 1, sm: 2, md: 3, lg: 4, xl: 5 },
         }}
       >
         <Container disableGutters sx={{ flexGrow: 1 }}>

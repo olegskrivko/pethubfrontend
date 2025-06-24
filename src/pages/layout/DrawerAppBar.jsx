@@ -158,6 +158,7 @@ function DrawerAppBar(props) {
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
+              size="small"
               sx={{ mr: 2, display: { sm: 'none' } }}
             >
               <MenuIcon />

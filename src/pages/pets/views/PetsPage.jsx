@@ -198,7 +198,7 @@ const PetsList = () => {
   };
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ px: { xs: 1, sm: 2, md: 3, lg: 3, xl: 5 } }}>
       <Grid container spacing={3}>
         {!isMobile && (
           <Grid size={{ xs: 12, sm: 12, md: 3, lg: 3 }}>
