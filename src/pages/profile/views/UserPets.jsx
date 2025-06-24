@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -352,7 +353,7 @@ function UserPets() {
                           edge="end"
                           size="small"
                           onClick={() => handleEditPet(pet)}
-                          color="primary"
+                          color="info"
                           aria-label="delete"
                           sx={{ mr: 1 }}
                         >
@@ -412,18 +413,52 @@ function UserPets() {
               Atpakaļ
             </Link>
 
-            <Button
-              variant="contained"
-              color="primary"
-              size="small"
-              startIcon={<PetsIcon />}
+            {quota && quota.remaining <= 0 ? (
+              <Box
+                sx={{
+                  color: 'gray',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  fontSize: '0.875rem',
+                  fontWeight: '500',
+                  opacity: 0.5,
+                  cursor: 'not-allowed',
+                }}
+              >
+                <AddIcon fontSize="small" />
+                Pievienot
+              </Box>
+            ) : (
+              <Link
+                to="/add-pet"
+                style={{
+                  color: '#00b5ad',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  fontSize: '0.875rem',
+                  fontWeight: '500',
+                }}
+              >
+                <AddIcon fontSize="small" />
+                Pievienot
+              </Link>
+            )}
+
+            {/* <Button
               component={Link}
               to="/add-pet"
+              startIcon={<AddIcon />}
               disabled={quota && quota.remaining <= 0}
-              sx={{ textDecoration: 'none' }}
+              size="small"
+              sx={{
+                textTransform: 'none',
+              }}
             >
               Pievienot
-            </Button>
+            </Button> */}
           </Box>
         </Grid>
 

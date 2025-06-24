@@ -240,7 +240,7 @@ function UserPetBookmarks() {
                       </Box> */}
                     </Box>
                     {pet.is_closed ? (
-                      <Tooltip title="Sludinājums slēgts">
+                      <Tooltip title="Sludinājums aizvērts">
                         <IconButton edge="end" size="small" aria-label="delete" sx={{ mr: 1 }}>
                           <LockOutlineIcon />
                         </IconButton>
@@ -256,7 +256,7 @@ function UserPetBookmarks() {
                     <Tooltip title="Izdzēst">
                       <IconButton
                         edge="end"
-                        color="primary"
+                        color="error"
                         size="small"
                         aria-label="delete"
                         onClick={() => handleDeletePet(pet.id)}

@@ -450,7 +450,7 @@ const PetDetailsPage = () => {
   }
 
   return (
-    <Container component="main" maxWidth="lg">
+    <Container maxWidth="lg" disableGutters>
       <Grid container spacing={3}>
         <Grid size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
           <ImageCarousel pet={pet} images={imageList.filter(Boolean)} />
