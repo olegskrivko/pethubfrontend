@@ -135,7 +135,6 @@ const SendMessage = ({
 
               <Tooltip title="Pievienot foto">
                 <IconButton
-                  onClick={() => document.getElementById('photo-upload-input').click()}
                   sx={{
                     backgroundColor: '#00b3a4',
                     color: '#fff',
@@ -147,10 +146,9 @@ const SendMessage = ({
               </Tooltip>
               <input
                 accept="image/*"
-                id="photo-upload-input"
                 type="file"
                 onChange={handleFileInputChange}
-                style={{ display: 'none' }}
+                style={{ display: 'block', marginTop: '10px' }}
               />
             </Box>
 
