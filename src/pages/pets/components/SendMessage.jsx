@@ -38,7 +38,7 @@ const SendMessage = ({
     console.log('File selected:', file);
     if (file) {
       setSelectedFile(file);
-      onUploadImage(file);
+      // Don't call onUploadImage - handle locally like UploadTest
     }
   };
 
@@ -175,8 +175,14 @@ const SendMessage = ({
             <Tooltip title="Aizsūtīt ziņu">
               <IconButton
                 onClick={() => {
+                  // If we have a selected file, pass it to parent
+                  if (selectedFile) {
+                    onUploadImage(selectedFile);
+                  }
                   onSendMessage();
                   if (isLocationAdded) onRemoveLocation();
+                  // Clear local file state after sending
+                  setSelectedFile(null);
                 }}
                 sx={{
                   backgroundColor: '#00b3a4',
