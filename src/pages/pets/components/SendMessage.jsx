@@ -10,7 +10,7 @@ import {
   WrongLocation as WrongLocationIcon,
 } from '@mui/icons-material';
 import AddCommentIcon from '@mui/icons-material/AddComment';
-import { Box, Card, CardContent, Collapse, IconButton, TextField, Tooltip, Typography } from '@mui/material';
+import { Box, Card, Collapse, IconButton, TextField, Tooltip, Typography } from '@mui/material';
 
 import { useAuth } from '../../../contexts/AuthContext';
 import AnimalAvatar from '../../../shared/components/AnimalAvatar';
@@ -30,13 +30,33 @@ const SendMessage = ({
   const { user } = useAuth();
   const handleToggleExpand = () => setExpanded((prev) => !prev);
 
+  // Simple file handling like UploadTest
+  const [selectedFile, setSelectedFile] = useState(null);
+  
   const handleFileInputChange = (event) => {
-    console.log('File input changed:', event);
     const file = event.target.files[0];
-    console.log('Selected file:', file);
+    console.log('File selected:', file);
     if (file) {
-      console.log('Calling onUploadImage with file:', file.name);
+      setSelectedFile(file);
       onUploadImage(file);
+    }
+  };
+
+  const fileData = () => {
+    if (selectedFile) {
+      return (
+        <div>
+          <p><strong>Selected File:</strong> {selectedFile.name}</p>
+          <p><strong>File Type:</strong> {selectedFile.type}</p>
+          <p><strong>File Size:</strong> {(selectedFile.size / 1024 / 1024).toFixed(2)} MB</p>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <p>No file selected</p>
+        </div>
+      );
     }
   };
 
@@ -93,11 +113,35 @@ const SendMessage = ({
               onChange={(e) => onMessageChange(e.target.value)}
             />
           </Box>
-          {filePreview ? (
-            <Box>
-              <Typography variant="body2" color="textSecondary" mb={1}>
-                Selected file: {file?.name}
-              </Typography>
+
+          {/* Simple file input like UploadTest */}
+          <Box sx={{ mb: 2 }}>
+            <Typography variant="body2" color="textSecondary" mb={1}>
+              Pievienot foto:
+            </Typography>
+            <input 
+              type="file" 
+              accept="image/*"
+              onChange={handleFileInputChange}
+              style={{ 
+                display: 'block',
+                width: '100%',
+                padding: '8px',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                backgroundColor: '#fff'
+              }}
+            />
+          </Box>
+
+          {/* File details like UploadTest */}
+          <Box sx={{ mb: 2, p: 2, backgroundColor: '#f5f5f5', borderRadius: '4px' }}>
+            {fileData()}
+          </Box>
+
+          {/* File preview if available */}
+          {filePreview && (
+            <Box sx={{ mb: 2 }}>
               <img
                 src={filePreview}
                 alt="Preview"
@@ -109,13 +153,7 @@ const SendMessage = ({
                 }}
               />
             </Box>
-          ) : file ? (
-            <Box>
-              <Typography variant="body2" color="textSecondary">
-                Selected file: {file.name}
-              </Typography>
-            </Box>
-          ) : null}
+          )}
 
           <Box sx={{ pt: { xs: 0, sm: 1 } }} display="flex" justifyContent="space-between" alignItems="center">
             <Box>
@@ -132,24 +170,6 @@ const SendMessage = ({
                   </IconButton>
                 </Tooltip>
               )}
-
-              <Tooltip title="Pievienot foto">
-                <IconButton
-                  sx={{
-                    backgroundColor: '#00b3a4',
-                    color: '#fff',
-                    '&:hover': { backgroundColor: '#007c73' },
-                  }}
-                >
-                  <AddPhotoAlternateIcon />
-                </IconButton>
-              </Tooltip>
-              <input
-                accept="image/*"
-                type="file"
-                onChange={handleFileInputChange}
-                style={{ display: 'block', marginTop: '10px' }}
-              />
             </Box>
 
             <Tooltip title="Aizsūtīt ziņu">
