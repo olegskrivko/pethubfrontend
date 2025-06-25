@@ -114,11 +114,9 @@ const SendMessage = ({
             />
           </Box>
 
-          {/* Simple file input like UploadTest */}
-          <Box sx={{ mb: 2 }}>
-            <Typography variant="body2" color="textSecondary" mb={1}>
-              Pievienot foto:
-            </Typography>
+          {/* Simple file input like UploadTest - COMPLETELY ISOLATED */}
+          <div style={{ marginBottom: '16px' }}>
+            <p style={{ marginBottom: '8px', color: '#666' }}>Pievienot foto:</p>
             <input 
               type="file" 
               accept="image/*"
@@ -129,15 +127,22 @@ const SendMessage = ({
                 padding: '8px',
                 border: '1px solid #ccc',
                 borderRadius: '4px',
-                backgroundColor: '#fff'
+                backgroundColor: '#fff',
+                fontSize: '16px' // Important for mobile
               }}
             />
-          </Box>
+          </div>
 
           {/* File details like UploadTest */}
-          <Box sx={{ mb: 2, p: 2, backgroundColor: '#f5f5f5', borderRadius: '4px' }}>
+          <div style={{ 
+            marginBottom: '16px', 
+            padding: '16px', 
+            backgroundColor: '#f5f5f5', 
+            borderRadius: '4px',
+            border: '1px solid #ddd'
+          }}>
             {fileData()}
-          </Box>
+          </div>
 
           {/* File preview if available */}
           {filePreview && (
