@@ -276,16 +276,26 @@ const PetDetailsPage = () => {
       return;
     }
 
+    console.log('User:', user);
+    console.log('Access token exists:', !!accessToken);
+    console.log('FormData contents:');
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+
     try {
       const response = await fetch(`${API_BASE_URL}/api/pets/${id}/pet-sightings/?format=json`, {
         method: 'POST',
         body: formData,
         headers: {
           Authorization: `Bearer ${accessToken}`, // Add Authorization header with token
+          // Don't set Content-Type for FormData - browser will set it automatically
         },
       });
 
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Response error:', response.status, errorText);
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
@@ -307,6 +317,7 @@ const PetDetailsPage = () => {
       fetchPetSightings();
     } catch (error) {
       console.error('Error sending message:', error);
+      enqueueSnackbar('Error sending message. Please try again.', { variant: 'error' });
     }
   };
   useEffect(() => {
