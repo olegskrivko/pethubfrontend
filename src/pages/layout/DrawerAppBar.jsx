@@ -23,7 +23,11 @@ import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-import logoImg from '../../assets/logo.svg';
+// import logoImg from '../../assets/logo.svg';
+//import logoImg from '../../assets/logo1.svg';
+//import logoImg from '../../assets/logo2.svg';
+//import logoImg from '../../assets/logo3.svg';
+import logoImg from '../../assets/logo4.svg';
 import { COMPANY_NAME } from '../../constants/config';
 // import Logout from './Logout';
 
@@ -36,7 +40,7 @@ const drawerWidth = 240;
 
 const navItems = {
   '/pets': 'pets',
-  '/shelters': 'shelters',
+  // '/shelters': 'shelters',
   // '/services': 'services',
   '/articles': 'guides',
 };
@@ -67,7 +71,8 @@ function DrawerAppBar(props) {
           width: '100%',
           height: '3.5rem',
           // backgroundColor: '#5B9BD5', for icons good
-          background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
+          // background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
+          background: 'linear-gradient(190deg, #16477c 0%, #00b5ad 100%)',
           // backgroundColor: '#03a9f4',
           // backgroundColor: '#4B5AED', cool violet
 
@@ -80,7 +85,7 @@ function DrawerAppBar(props) {
           <Link
             to="/"
             style={{
-              color: '#B2FF59',
+              color: '#F5F3CE',
               textDecoration: 'none',
               display: 'flex',
               alignItems: 'center',
@@ -89,7 +94,16 @@ function DrawerAppBar(props) {
               letterSpacing: '0.5px', // Optional: Polish typography
             }}
           >
-            <DarkModeIcon sx={{ marginRight: '0.4rem', color: '#B2FF59' }} />
+            {' '}
+            <img
+              src={logoImg}
+              alt="Logo"
+              style={{
+                height: 28,
+                marginRight: '0.5rem',
+              }}
+            />
+            {/* <DarkModeIcon sx={{ marginRight: '0.4rem', color: '#F5F3CE' }} /> */}
             {COMPANY_NAME}
           </Link>
         </Typography>
@@ -141,16 +155,15 @@ function DrawerAppBar(props) {
           // background: '#5B9BD5' ,
           // background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
           background: 'linear-gradient(190deg, #16477c 0%, #00b5ad 100%)',
-          // background: "linear-gradient(190deg, #16477c 0%, #00b5ad 100%)",
         }}
       >
-        <Container disableGutters>
+        <Container maxWidth="lg" disableGutters>
           <Toolbar
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              p: { xs: 1 },
+              px: { xs: 2, sm: 3 },
             }}
           >
             <IconButton
@@ -159,7 +172,7 @@ function DrawerAppBar(props) {
               edge="start"
               onClick={handleDrawerToggle}
               size="small"
-              sx={{ mr: 2, display: { sm: 'none' } }}
+              sx={{ mr: 2, display: { sm: 'none' }, color: '#EAEAEA' }}
             >
               <MenuIcon />
             </IconButton>
@@ -181,11 +194,22 @@ function DrawerAppBar(props) {
                 {COMPANY_NAME}
               </Link>
             </Typography> */}
+            {/* Purpose	Color	Hex	Notes
+Soft moonlight	#EAEAEA	Light gray white	Soft, minimal, modern moonlight
+Silver Moon	#D6D6D6	Muted silver	Subtle and elegant
+Lunar Glow	#F5F3CE	Pale warm yellow	Feels magical and soft
+Cold Moon	#C1D3FF	Pale bluish white	Evokes a moon in a cold sky
+Highlight Moon	#F0EAD6	Off-white ivory	Luxurious, soft light */}
+            {/* 🌙 Lunar Glow	#F5F3CE	Pale, warm ivory yellow (you already used this — nice for soft magic)
+✨ Starlight Tint	#FAFAD2	Light golden shimmer, more glowing than F5F3CE
+🌟 Moongleam	#F0F8D9	A very soft, mint-tinted pale yellow — barely green, mostly glowing
+💫 Halo Gold	#FFFACD	Slightly richer cream-yellow, still very gentle and not bold */}
+
             <Typography variant="h6" component="div">
               <Link
                 to="/"
                 style={{
-                  color: '#B2FF59',
+                  color: '#FFFACD',
                   textDecoration: 'none',
                   display: 'flex',
                   alignItems: 'center',
@@ -212,10 +236,10 @@ function DrawerAppBar(props) {
                   to={path}
                   style={{
                     textDecoration: 'none',
-                    color: '#fff',
+                    color: '#EAEAEA',
                   }}
                 >
-                  <Button size="small" sx={{ color: '#fff', fontWeight: '400' }}>
+                  <Button size="small" sx={{ color: '#EAEAEA', fontWeight: '400' }}>
                     {t(key)}
                   </Button>
                 </Link>
@@ -223,8 +247,8 @@ function DrawerAppBar(props) {
 
               {/* Show Profile or Login Button */}
               <Link to={user ? '/user-profile' : '/login'}>
-                <Button size="small" sx={{ color: '#B2FF59' }}>
-                  <b>{user ? t('profile') : t('login')}</b>
+                <Button size="small" sx={{ color: '#EAEAEA' }}>
+                  {user ? t('profile') : t('login')}
                 </Button>
               </Link>
             </Box>

@@ -194,7 +194,7 @@ const Contact = () => {
     <React.Fragment>
       <ToastContainer position="top-right" autoClose={3000} />
 
-      <Container component="main" maxWidth="lg">
+      <Container maxWidth="lg" disableGutters>
         <Typography
           variant="h4"
           align="center"

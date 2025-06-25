@@ -177,7 +177,7 @@ const SheltersList = () => {
   }
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" disableGutters>
       <Grid container spacing={3}>
         {!isMobile && (
           <Grid size={{ xs: 12, sm: 12, md: 3, lg: 3 }}>

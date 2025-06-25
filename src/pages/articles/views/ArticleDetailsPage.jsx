@@ -80,19 +80,23 @@ const ArticleDetails = () => {
   };
 
   return (
-    <Container component="main" maxWidth="lg">
+    <Container maxWidth="lg" disableGutters>
       <Helmet>
         <title>{article.title}</title>
         <meta name="description" content={article.summary} />
       </Helmet>
-
       <Typography
-        variant="h4"
+        component="h1"
         align="center"
         sx={{
-          mb: 5,
           fontWeight: 800,
-
+          fontSize: {
+            xs: '1.5rem',
+            sm: '2rem',
+            md: '2.5rem',
+            lg: '2.5rem',
+          },
+          mb: 5,
           background: 'linear-gradient(60deg, #16477c 0%, #00b5ad 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',

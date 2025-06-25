@@ -62,7 +62,7 @@ function About() {
         <meta property="og:type" content="website" />
       </Helmet>
 
-      <Container component="main" maxWidth="lg">
+      <Container maxWidth="lg" disableGutters>
         <Typography
           variant="h4"
           align="center"

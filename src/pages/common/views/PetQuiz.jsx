@@ -722,7 +722,7 @@ const PetQuiz = () => {
   }
 
   return (
-    <Container component="main" maxWidth="lg">
+    <Container maxWidth="lg" disableGutters>
       {/* <Typography variant="h4" align="center" sx={{ mb: 5, fontWeight: 800 }}>
         Dzīvnieka izvēles tests
       </Typography> */}

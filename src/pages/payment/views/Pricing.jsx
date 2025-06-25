@@ -144,7 +144,7 @@ const PricingPage = () => {
   };
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" disableGutters>
       <Typography
         variant="h4"
         align="center"

@@ -68,6 +68,7 @@ const TabContact = ({ pet }) => {
   return (
     <Card
       sx={{
+        p: { xs: 1, sm: 2 },
         borderRadius: 3,
         background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
         transition: 'all 0.3s ease-in-out',
@@ -76,54 +77,54 @@ const TabContact = ({ pet }) => {
         },
       }}
     >
-      <CardContent style={{ paddingBottom: '1rem' }}>
-        <Box display="flex" alignItems="center" mb={2}>
-          {/* <Avatar
+      {/* <CardContent style={{ paddingBottom: '1rem' }}> */}
+      <Box display="flex" alignItems="center" mb={2}>
+        {/* <Avatar
             src={`a.svg`}
             alt={pet.author.username.toUpperCase()}
             style={{ backgroundColor: '#00b3a4', color: '#f7f9fd' }}
           /> */}
 
-          <AnimalAvatar animal={pet.author.avatar} username={pet.author.username} />
+        <AnimalAvatar animal={pet.author.avatar} username={pet.author.username} />
 
-          <Box ml={2}>
-            <Typography variant="body2" fontWeight="bold">
-              {pet.author.username.toUpperCase()}
+        <Box ml={2}>
+          <Typography variant="body2" fontWeight="bold">
+            {pet.author.username.toUpperCase()}
+          </Typography>
+        </Box>
+      </Box>
+
+      <Box display="flex" alignItems="center" gap={2} mt={2}>
+        <IconButton
+          style={{
+            backgroundColor: '#00b3a4',
+            color: '#f7f9fd',
+            pointerEvents: 'none', // keeps icon non-clickable
+          }}
+        >
+          <PhoneIcon />
+        </IconButton>
+
+        {pet.contact_phone ? (
+          <Typography variant="body1">
+            <Link
+              href={`tel:+${pet.phone_code}${pet.contact_phone}`}
+              underline="none"
+              color="inherit"
+              sx={{ cursor: 'pointer' }}
+            >
+              +{pet.phone_code} {pet.contact_phone}
+            </Link>
+          </Typography>
+        ) : (
+          <Box>
+            <Typography variant="body1" color="textSecondary">
+              Telefona numurs nav norādīts
             </Typography>
           </Box>
-        </Box>
-
-        <Box display="flex" alignItems="center" gap={2} mt={2}>
-          <IconButton
-            style={{
-              backgroundColor: '#00b3a4',
-              color: '#f7f9fd',
-              pointerEvents: 'none', // keeps icon non-clickable
-            }}
-          >
-            <PhoneIcon />
-          </IconButton>
-
-          {pet.contact_phone ? (
-            <Typography variant="body1">
-              <Link
-                href={`tel:+${pet.phone_code}${pet.contact_phone}`}
-                underline="none"
-                color="inherit"
-                sx={{ cursor: 'pointer' }}
-              >
-                +{pet.phone_code} {pet.contact_phone}
-              </Link>
-            </Typography>
-          ) : (
-            <Box>
-              <Typography variant="body1" color="textSecondary">
-                Telefona numurs nav norādīts
-              </Typography>
-            </Box>
-          )}
-        </Box>
-      </CardContent>
+        )}
+      </Box>
+      {/* </CardContent> */}
     </Card>
   );
 };

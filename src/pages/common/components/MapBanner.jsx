@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 // import illustration from '../pages/images/navigation_animate.svg'; // replace with your own SVG
 import { useMediaQuery } from '@mui/material';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
 
@@ -73,9 +74,9 @@ const MapBanner = () => {
             alignItems: isSmallScreen ? 'center' : 'flex-start', // 🔁 Button alignment
           }}
         >
-          <h2
+          {/* <h2
             style={{
-              // color: '#0D47A1',
+           
               fontSize: '2.5rem',
               fontWeight: 600,
               marginBottom: '1rem',
@@ -86,8 +87,21 @@ const MapBanner = () => {
             }}
           >
             Vai esi pazaudējis mājdzīvnieku?
+          </h2> */}
+          <h2
+            style={{
+              textAlign: isSmallScreen ? 'center' : 'left',
+              fontSize: isSmallScreen ? '1.75rem' : '2.5rem', // 👈 Responsive font size
+              fontWeight: 600,
+              fontFamily: "'Inter', sans-serif",
+              marginBottom: '1rem',
+              background: 'linear-gradient(60deg, #16477c 0%, #00b5ad 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            Vai esi pazaudējis mājdzīvnieku?
           </h2>
-
           <p
             style={{
               color: '#616f7d',
@@ -101,14 +115,14 @@ const MapBanner = () => {
           </p>
           {/* Button Group */}
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <button
+            {/* <button
               style={{
                 padding: '12px 28px',
                 fontSize: '1rem',
                 fontWeight: 'bold',
-                // backgroundColor: '#0EB9F0',
-                background: 'linear-gradient(0deg, #0994ba 30%, #02b4c4 90%)',
-                // backgroundColor: '#00b5ad',
+                backgroundColor: '#0EB9F0',
+                 background: 'linear-gradient(0deg, #0994ba 30%, #02b4c4 90%)',
+                background: '#00b5ad',
 
                 color: '#fff',
                 borderRadius: '8px',
@@ -125,9 +139,14 @@ const MapBanner = () => {
               }}
             >
               Skatīt karti
-            </button>
-
-            <button
+            </button> */}
+            <Button variant="contained" sx={{ borderRadius: 2 }} color="primary" onClick={() => navigate('/pets')}>
+              Skatīt karti
+            </Button>
+            <Button variant="outlined" sx={{ borderRadius: 2 }} color="primary" onClick={() => navigate('/add-pet')}>
+              Pievienot
+            </Button>
+            {/* <button
               style={{
                 padding: '12px 28px',
                 fontSize: '1rem',
@@ -135,7 +154,7 @@ const MapBanner = () => {
                 backgroundColor: 'transparent',
 
                 color: '#0994ba',
-                // border: '2px solid #0EB9F0',
+            
                 border: '2px solid  #0994ba ',
                 borderRadius: '8px',
                 cursor: 'pointer',
@@ -150,7 +169,7 @@ const MapBanner = () => {
               }}
             >
               Pievienot
-            </button>
+            </button> */}
           </div>
         </div>
 

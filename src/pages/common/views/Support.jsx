@@ -72,7 +72,7 @@ const Support = () => {
       {/* Toast notifications for success and error messages */}
       <ToastContainer />
 
-      <Container component="main" maxWidth="lg">
+      <Container maxWidth="lg" disableGutters>
         <Typography
           variant="h4"
           align="center"

@@ -69,7 +69,7 @@ const FrequentlyAskedQuestions = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Container component="main" maxWidth="lg">
+    <Container maxWidth="lg" disableGutters>
       <Typography
         variant="h4"
         align="center"

@@ -74,14 +74,7 @@ const MapBanner = () => {
           />
         </div>
         {/* LEFT SIDE */}
-        {/* <div
-        style={{
-          flex: '1 1 400px',
-          maxWidth: '600px',
-          paddingLeft: '40px',
-          zIndex: 2,
-        }}
-      > */}
+
         <div
           style={{
             flex: '1 1 400px',
@@ -94,26 +87,13 @@ const MapBanner = () => {
             alignItems: isSmallScreen ? 'center' : 'flex-end', // 🔁 Button alignment
           }}
         >
-          {/* <h2
-          style={{
-            color: '#0D47A1',
-            fontSize: '2.5rem',
-            fontWeight: 600,
-            marginBottom: '1rem',
-            fontFamily: "'Inter', sans-serif",
-          }}
-        >
-          Atrodi tuvāko patversmi
-        </h2> */}
           <h2
             style={{
-              textAlign: 'right',
-              color: '#0D47A1',
-              fontSize: '2.5rem',
+              textAlign: isSmallScreen ? 'center' : 'right',
+              fontSize: isSmallScreen ? '1.75rem' : '2.5rem', // 👈 Responsive font size
               fontWeight: 600,
+              fontFamily: "'Inter', sans-serif",
               marginBottom: '1rem',
-              // fontFamily: "'Inter', sans-serif",
-              fontFamily: "Inter', sans-serif",
               background: 'linear-gradient(60deg, #16477c 0%, #00b5ad 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -121,17 +101,7 @@ const MapBanner = () => {
           >
             Mājdzīvnieku aprūpes pakalpojumi
           </h2>
-          {/* <p
-          style={{
-            color: '#616f7d',
-            fontSize: '1.1rem',
-            lineHeight: '1.6',
-            marginBottom: '2rem',
-            fontFamily: "'Inter', sans-serif",
-          }}
-        >
-          Mēs palīdzam tev ātri un ērti atrast dzīvnieku patversmes tuvākajā apkaimē. Apskati karti vai iesniedz ziņojumu par pazudušu mājdzīvnieku.
-        </p> */}
+
           <p
             style={{
               textAlign: 'right',

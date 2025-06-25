@@ -16,6 +16,7 @@ import { useAuth } from './contexts/AuthContext';
 // import { DrawerProvider } from './contexts/DrawerContext'
 import { LanguageProvider } from './contexts/LanguageContext';
 import PageNotFound from './pages/PageNotFound';
+import UploadTest from './pages/UploadTest';
 import ArticleDetailsPage from './pages/articles/views/ArticleDetailsPage';
 import ArticlesListPage from './pages/articles/views/ArticlesPage';
 import PrivateRoute from './pages/auth/components/PrivateRoute';
@@ -139,7 +140,7 @@ function App() {
                         <Route path="pets/:id" element={<PetDetailsPage />} />
                         <Route path="pets/:id/poster" element={<Poster />} />
                         <Route path="user-profile/edit-pet/:id" element={<EditPetPage />} />
-
+                        <Route path="test" element={<UploadTest />} />
                         <Route path="services" element={<ServicesListPage />} />
                         <Route path="services/:id" element={<ServiceDetailsPage />} />
                         <Route path="articles" element={<ArticlesListPage />} />

@@ -65,7 +65,8 @@ const LanguageSelectorModal = ({ open, onClose }) => {
               src={WorldMapImg} // Make sure the image exists in your public folder or is correctly imported
               alt="World Map"
               style={{
-                maxWidth: '250px',
+                // maxWidth: '250px',
+                maxWidth: '600px',
                 width: '100%',
                 opacity: 0.4,
                 filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.3))',
@@ -78,7 +79,7 @@ const LanguageSelectorModal = ({ open, onClose }) => {
           <Typography variant="h5" align="center" mb={4} fontWeight="bold">
             Izvēlēties valodu
           </Typography>
-          <Grid container spacing={4} justifyContent="center">
+          <Grid container spacing={1} justifyContent="center">
             {languages.map((lang) => (
               <Grid item key={lang.code}>
                 <Box

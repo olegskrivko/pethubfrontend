@@ -34,14 +34,14 @@ const Footer = () => {
   ];
 
   const exploreLinks = [
-    {
-      path: '/shelters',
-      label: {
-        lv: 'Dzīvnieku patversmes',
-        en: 'Animal shelters',
-        ru: 'Приюты для животных',
-      },
-    },
+    // {
+    //   path: '/shelters',
+    //   label: {
+    //     lv: 'Dzīvnieku patversmes',
+    //     en: 'Animal shelters',
+    //     ru: 'Приюты для животных',
+    //   },
+    // },
     {
       path: '/articles',
       label: {
@@ -138,7 +138,7 @@ const Footer = () => {
         >
           <Grid container spacing={2}>
             <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
-              <Typography variant="h6" color="#B2FF59" style={{ fontWeight: '500' }}>
+              <Typography variant="h6" color="#DAFF84" style={{ fontWeight: '500' }}>
                 {t('getStarted')}
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -148,11 +148,11 @@ const Footer = () => {
                     variant="body1"
                     style={{
                       fontWeight: '400',
-                      color: '#fff',
+                      color: '#EAEAEA',
                       pointerEvents: 'auto',
                     }}
                   >
-                    <Link key={link.path} to={link.path} style={{ color: '#fff', textDecoration: 'none' }}>
+                    <Link key={link.path} to={link.path} style={{ color: '#EAEAEA', textDecoration: 'none' }}>
                       {link.label[selectedLanguage] || link.label.en}
                     </Link>
                   </Typography>
@@ -161,7 +161,7 @@ const Footer = () => {
             </Grid>
 
             <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
-              <Typography variant="h6" color="#B2FF59" style={{ fontWeight: '500' }}>
+              <Typography variant="h6" color="#DAFF84" style={{ fontWeight: '500' }}>
                 {t('resources')}
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -171,11 +171,11 @@ const Footer = () => {
                     variant="body1"
                     style={{
                       fontWeight: '400',
-                      color: '#fff',
+                      color: '#EAEAEA',
                       pointerEvents: 'auto',
                     }}
                   >
-                    <Link key={link.path} to={link.path} style={{ color: '#fff', textDecoration: 'none' }}>
+                    <Link key={link.path} to={link.path} style={{ color: '#EAEAEA', textDecoration: 'none' }}>
                       {link.label[selectedLanguage] || link.label.en}
                     </Link>
                   </Typography>
@@ -184,7 +184,7 @@ const Footer = () => {
             </Grid>
 
             <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
-              <Typography variant="h6" color="#B2FF59" style={{ fontWeight: '500' }}>
+              <Typography variant="h6" color="#DAFF84" style={{ fontWeight: '500' }}>
                 {t('learnMore')}
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -194,11 +194,11 @@ const Footer = () => {
                     variant="body1"
                     style={{
                       fontWeight: '400',
-                      color: '#fff',
+                      color: '#EAEAEA',
                       pointerEvents: 'auto',
                     }}
                   >
-                    <Link key={link.path} to={link.path} style={{ color: '#fff', textDecoration: 'none' }}>
+                    <Link key={link.path} to={link.path} style={{ color: '#EAEAEA', textDecoration: 'none' }}>
                       {link.label[selectedLanguage] || link.label.en}
                     </Link>
                   </Typography>
@@ -207,7 +207,7 @@ const Footer = () => {
             </Grid>
 
             <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
-              <Typography variant="h6" color="#B2FF59" style={{ fontWeight: '500' }}>
+              <Typography variant="h6" color="#DAFF84" style={{ fontWeight: '500' }}>
                 {t('info')}
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -217,11 +217,11 @@ const Footer = () => {
                     variant="body1"
                     style={{
                       fontWeight: '400',
-                      color: '#fff',
+                      color: '#EAEAEA',
                       pointerEvents: 'auto',
                     }}
                   >
-                    <Link key={link.path} to={link.path} style={{ color: '#fff', textDecoration: 'none' }}>
+                    <Link key={link.path} to={link.path} style={{ color: '#EAEAEA', textDecoration: 'none' }}>
                       {link.label[selectedLanguage] || link.label.en}
                     </Link>
                   </Typography>
@@ -240,7 +240,7 @@ const Footer = () => {
                 <Link
                   to="/support"
                   style={{
-                    color: '#B2FF59',
+                    color: '#DAFF84',
                     textDecoration: 'none',
                     textTransform: 'uppercase',
                   }}

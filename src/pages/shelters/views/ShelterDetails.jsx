@@ -75,7 +75,7 @@ function ShelterDetails() {
   };
 
   return (
-    <Container component="main" maxWidth="lg">
+    <Container maxWidth="lg" disableGutters>
       <Button startIcon={<ArrowBackIcon />} onClick={() => navigate('/shelters')} sx={{ mb: 3 }}>
         Atpakaļ uz patversmēm
       </Button>

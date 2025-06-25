@@ -24,6 +24,7 @@ const TabNotes = ({ pet }) => {
   return (
     <Card
       sx={{
+        p: { xs: 1, sm: 2 },
         borderRadius: 3,
         background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
         cursor: 'pointer',
@@ -36,8 +37,25 @@ const TabNotes = ({ pet }) => {
       {/* <CardContent style={{ paddingBottom: '1rem' }}> */}
 
       {/* </CardContent> */}
-      <CardContent style={{ paddingBottom: '1rem' }}>
-        <Box>
+      {/* <CardContent style={{ paddingBottom: '1rem' }}> */}
+      <Box>
+        <Typography>
+          <Box display="flex" alignItems="center" gap={2}>
+            <IconButton
+              style={{
+                backgroundColor: '#00b3a4',
+                color: '#fff',
+                pointerEvents: 'none',
+              }}
+            >
+              <TaskAltIcon />
+            </IconButton>{' '}
+            {pet.final_status_display}
+          </Box>
+        </Typography>
+      </Box>
+      <Box mt={2}>
+        {pet.notes ? (
           <Typography>
             <Box display="flex" alignItems="center" gap={2}>
               <IconButton
@@ -47,46 +65,29 @@ const TabNotes = ({ pet }) => {
                   pointerEvents: 'none',
                 }}
               >
-                <TaskAltIcon />
+                <TextSnippetIcon />
               </IconButton>{' '}
-              {pet.final_status_display}
+              {pet.notes}
             </Box>
           </Typography>
-        </Box>
-        <Box mt={2}>
-          {pet.notes ? (
-            <Typography>
-              <Box display="flex" alignItems="center" gap={2}>
-                <IconButton
-                  style={{
-                    backgroundColor: '#00b3a4',
-                    color: '#fff',
-                    pointerEvents: 'none',
-                  }}
-                >
-                  <TextSnippetIcon />
-                </IconButton>{' '}
-                {pet.notes}
-              </Box>
-            </Typography>
-          ) : (
-            <Typography color="textSecondary">
-              <Box display="flex" alignItems="center" gap={2}>
-                <IconButton
-                  style={{
-                    backgroundColor: '#00b3a4',
-                    color: '#fff',
-                    pointerEvents: 'none',
-                  }}
-                >
-                  <TextSnippetIcon />
-                </IconButton>{' '}
-                Šim sludinājumam nav pievienotas piezīmes.
-              </Box>
-            </Typography>
-          )}
-        </Box>
-      </CardContent>
+        ) : (
+          <Typography color="textSecondary">
+            <Box display="flex" alignItems="center" gap={2}>
+              <IconButton
+                style={{
+                  backgroundColor: '#00b3a4',
+                  color: '#fff',
+                  pointerEvents: 'none',
+                }}
+              >
+                <TextSnippetIcon />
+              </IconButton>{' '}
+              Šim sludinājumam nav pievienotas piezīmes.
+            </Box>
+          </Typography>
+        )}
+      </Box>
+      {/* </CardContent> */}
     </Card>
   );
 };

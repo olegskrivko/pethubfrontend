@@ -44,7 +44,25 @@ import PetAttributes from '../components/PetAttributes';
 import SendMessage from '../components/SendMessage';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
+const StatusBlock = ({ icon, label }) => (
+  <Box display="flex" alignItems="center" gap={1}>
+    <IconButton
+      disableRipple
+      sx={{
+        backgroundColor: '#00b5ad',
+        color: '#fff',
+        pointerEvents: 'none',
+        width: 40,
+        height: 40,
+      }}
+    >
+      {icon}
+    </IconButton>
+    <Typography variant="body2" fontWeight={600} color="text.primary">
+      {label}
+    </Typography>
+  </Box>
+);
 const PetDetailsPage = () => {
   const { user } = useAuth();
   const { id } = useParams();
@@ -480,11 +498,11 @@ const PetDetailsPage = () => {
             </Tooltip>
 
             {/* Report */}
-            <Tooltip title="Report">
+            {/* <Tooltip title="Report">
               <IconButton onClick={handleReport} disabled style={{ backgroundColor: '#f7f9fd' }}>
                 <FlagIcon color="primary" />
               </IconButton>
-            </Tooltip>
+            </Tooltip> */}
           </Box>
         </Grid>
         {/* Attributes */}
@@ -492,7 +510,53 @@ const PetDetailsPage = () => {
           <PetAttributes pet={pet} />
         </Grid>
       </Grid>
+      <Card
+        sx={{
+          mt: 2,
+          p: { xs: 1, sm: 2 },
+          borderRadius: 3,
+          background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+        }}
+      >
+        <Box display="flex" alignItems="center" justifyContent="center" gap={1.5}>
+          {/* Status text - primary color */}
+          <Typography
+            variant="body2"
+            sx={{
+              fontWeight: 600,
+              fontSize: '0.8rem',
+              color: 'primary.main',
+              textTransform: 'uppercase',
+              letterSpacing: 0.8,
+            }}
+          >
+            {pet.status_display}
+          </Typography>
 
+          {/* Arrow icon */}
+          <DoubleArrowIcon
+            sx={{
+              color: '#00b5ad',
+              fontSize: 20,
+              opacity: 0.7,
+            }}
+          />
+
+          {/* Final status text - conditional color */}
+          <Typography
+            variant="body2"
+            sx={{
+              fontWeight: 600,
+              fontSize: '0.8rem',
+              color: pet.final_status === 1 ? 'info.main' : 'primary.main',
+              textTransform: 'uppercase',
+              letterSpacing: 0.8,
+            }}
+          >
+            {pet.final_status_display}
+          </Typography>
+        </Box>
+      </Card>
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
         <LeafletPetDetailsMapNew
           pet={pet}
@@ -507,6 +571,29 @@ const PetDetailsPage = () => {
           setCoords={setCoords}
         />
       </Grid>
+
+      {/* <Card
+        sx={{
+          p: { xs: 1, sm: 2 },
+          borderRadius: 3,
+          background: 'linear-gradient(135deg, #f5fafd 0%, #eef8fb 100%)',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
+          transition: 'all 0.3s ease-in-out',
+          '&:hover': {
+            boxShadow: '0 6px 20px rgba(0, 0, 0, 0.1)',
+            background: 'linear-gradient(135deg, #ebf8fc 0%, #dff2f7 100%)',
+          },
+        }}
+      >
+        <Box display="flex" alignItems="center" gap={2}>
+          <StatusBlock icon={<FlagIcon />} label={pet.status_display} />
+
+          <DoubleArrowIcon />
+
+          <StatusBlock icon={<FlagIcon />} label={pet.final_status_display} />
+        </Box>
+      </Card> */}
+
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
         {/* <SendMessage
           pet={pet}

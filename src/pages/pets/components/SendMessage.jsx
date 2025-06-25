@@ -480,6 +480,7 @@ const SendMessage = ({
   return (
     <Card
       sx={{
+        p: { xs: 1, sm: 2 },
         borderRadius: 3,
         background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
         overflow: 'hidden',
@@ -490,14 +491,13 @@ const SendMessage = ({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          pr: 2,
           cursor: 'pointer',
         }}
         onClick={handleToggleExpand}
       >
-        <Box sx={{ p: 2, display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography color="textSecondary">
-            <Box display="flex" alignItems="center" gap={2}>
+            <Box display="flex" alignItems="center">
               {user ? (
                 <AnimalAvatar animal={user.avatar} username={user.username} />
               ) : (
@@ -507,7 +507,10 @@ const SendMessage = ({
                   </IconButton>
                 </>
               )}
-              PIEVIENOT ZIŅOJUMU
+
+              <Typography color="textSecondary" sx={{ pl: { xs: 1, sm: 2 } }}>
+                PIEVIENOT ZIŅOJUMU
+              </Typography>
             </Box>
           </Typography>
         </Box>
@@ -515,7 +518,8 @@ const SendMessage = ({
       </Box>
       {user ? (
         <Collapse in={expanded}>
-          <CardContent>
+          {/* <CardContent> */}
+          <Box sx={{ py: { xs: 1, sm: 2 } }}>
             <TextField
               label="Ierakstiet savu komentāru šeit..."
               variant="outlined"
@@ -526,8 +530,8 @@ const SendMessage = ({
               value={message}
               onChange={(e) => onMessageChange(e.target.value)}
             />
-
-            {/* {filePreview && (
+          </Box>
+          {/* {filePreview && (
             <Box mt={2}>
               <img
                 src={filePreview}
@@ -541,83 +545,83 @@ const SendMessage = ({
               />
             </Box>
           )} */}
-            {filePreview ? (
-              <Box mt={2}>
-                <img
-                  src={filePreview}
-                  alt="Preview"
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    borderRadius: '0.5rem',
-                    boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-                  }}
-                />
-              </Box>
-            ) : file ? (
-              <Box mt={2}>
-                <Typography variant="body2" color="textSecondary">
-                  Selected file: {file.name}
-                </Typography>
-              </Box>
-            ) : null}
-
-            <Box mt={3} display="flex" justifyContent="space-between" alignItems="center">
-              <Box>
-                {!isLocationAdded ? (
-                  <Tooltip title="Pievienot atrašanās vietu">
-                    <IconButton onClick={onAddLocation} sx={{ backgroundColor: '#00b3a4', color: '#fff', mr: 1 }}>
-                      <AddLocationAltIcon />
-                    </IconButton>
-                  </Tooltip>
-                ) : (
-                  <Tooltip title="Noņemt atrašanās vietu">
-                    <IconButton onClick={onRemoveLocation} sx={{ backgroundColor: '#00b3a4', color: '#fff', mr: 1 }}>
-                      <WrongLocationIcon />
-                    </IconButton>
-                  </Tooltip>
-                )}
-
-                <label htmlFor="photo-upload-input">
-                  <Tooltip title="Pievienot foto">
-                    <IconButton
-                      component="span"
-                      sx={{
-                        backgroundColor: '#00b3a4',
-                        color: '#fff',
-                        '&:hover': { backgroundColor: '#007c73' },
-                      }}
-                    >
-                      <AddPhotoAlternateIcon />
-                    </IconButton>
-                  </Tooltip>
-                </label>
-                <input
-                  accept="image/*"
-                  id="photo-upload-input"
-                  type="file"
-                  onChange={handleFileInputChange}
-                  style={{ display: 'none' }}
-                />
-              </Box>
-
-              <Tooltip title="Aizsūtīt ziņu">
-                <IconButton
-                  onClick={() => {
-                    onSendMessage();
-                    if (isLocationAdded) onRemoveLocation();
-                  }}
-                  sx={{
-                    backgroundColor: '#00b3a4',
-                    color: '#fff',
-                    '&:hover': { backgroundColor: '#007c73' },
-                  }}
-                >
-                  <SendIcon />
-                </IconButton>
-              </Tooltip>
+          {filePreview ? (
+            <Box>
+              <img
+                src={filePreview}
+                alt="Preview"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  borderRadius: '0.5rem',
+                  boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+                }}
+              />
             </Box>
-          </CardContent>
+          ) : file ? (
+            <Box>
+              <Typography variant="body2" color="textSecondary">
+                Selected file: {file.name}
+              </Typography>
+            </Box>
+          ) : null}
+
+          <Box sx={{ pt: { xs: 0, sm: 1 } }} display="flex" justifyContent="space-between" alignItems="center">
+            <Box>
+              {!isLocationAdded ? (
+                <Tooltip title="Pievienot atrašanās vietu">
+                  <IconButton onClick={onAddLocation} sx={{ backgroundColor: '#00b3a4', color: '#fff', mr: 1 }}>
+                    <AddLocationAltIcon />
+                  </IconButton>
+                </Tooltip>
+              ) : (
+                <Tooltip title="Noņemt atrašanās vietu">
+                  <IconButton onClick={onRemoveLocation} sx={{ backgroundColor: '#00b3a4', color: '#fff', mr: 1 }}>
+                    <WrongLocationIcon />
+                  </IconButton>
+                </Tooltip>
+              )}
+
+              <label htmlFor="photo-upload-input">
+                <Tooltip title="Pievienot foto">
+                  <IconButton
+                    component="span"
+                    sx={{
+                      backgroundColor: '#00b3a4',
+                      color: '#fff',
+                      '&:hover': { backgroundColor: '#007c73' },
+                    }}
+                  >
+                    <AddPhotoAlternateIcon />
+                  </IconButton>
+                </Tooltip>
+              </label>
+              <input
+                accept="image/*"
+                id="photo-upload-input"
+                type="file"
+                onChange={handleFileInputChange}
+                style={{ display: 'none' }}
+              />
+            </Box>
+
+            <Tooltip title="Aizsūtīt ziņu">
+              <IconButton
+                onClick={() => {
+                  onSendMessage();
+                  if (isLocationAdded) onRemoveLocation();
+                }}
+                sx={{
+                  backgroundColor: '#00b3a4',
+                  color: '#fff',
+                  '&:hover': { backgroundColor: '#007c73' },
+                }}
+              >
+                <SendIcon />
+              </IconButton>
+            </Tooltip>
+          </Box>
+          {/* </CardContent> */}
         </Collapse>
       ) : (
         <Box p={2}>

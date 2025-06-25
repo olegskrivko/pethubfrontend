@@ -10,7 +10,7 @@ const LanguageSelectorTrigger = () => {
 
   return (
     <>
-      <IconButton onClick={() => setOpen(true)} sx={{ color: 'white' }} size="small">
+      <IconButton onClick={() => setOpen(true)} sx={{ color: '#EAEAEA' }} size="small">
         <LanguageIcon />
       </IconButton>
       <LanguageSelectorModal open={open} onClose={() => setOpen(false)} />

@@ -165,7 +165,7 @@ const PetSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
 
         {/* Reset Filters */}
         <ListItem sx={{ p: 0 }}>
-          <Button
+          {/* <Button
             variant="contained"
             fullWidth
             onClick={onReset}
@@ -174,6 +174,15 @@ const PetSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
               py: 1,
               background: 'linear-gradient(0deg, #0994ba 30%, #02b4c4 90%)',
             }}
+          >
+            Atiestatīt filtrus
+          </Button> */}
+          <Button
+            variant="contained"
+            fullWidth
+            sx={{ borderRadius: 2, mt: 4, py: 1 }}
+            color="primary"
+            onClick={onReset}
           >
             Atiestatīt filtrus
           </Button>

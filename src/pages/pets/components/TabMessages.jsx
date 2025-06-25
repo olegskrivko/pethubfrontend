@@ -115,151 +115,157 @@ const TabMessages = ({ pet, sightings, onZoomMap }) => {
 
           return (
             <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} key={index}>
-              <Card sx={{ borderRadius: 3, background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)' }}>
-                <CardContent style={{ paddingBottom: '1rem' }}>
-                  <Grid container spacing={2} sx={{ position: 'relative' }}>
-                    <Grid item xs={12} sm={12} md={8} lg={8}>
-                      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
-                        <Box>
-                          <Box display="flex" alignItems="flex-start" mb={2}>
-                            {/* <Avatar
+              <Card
+                sx={{
+                  p: { xs: 1, sm: 2 },
+                  borderRadius: 3,
+                  background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
+                }}
+              >
+                {/* <CardContent style={{ paddingBottom: '1rem' }}> */}
+                <Grid container spacing={2} sx={{ position: 'relative' }}>
+                  <Grid item xs={12} sm={12} md={8} lg={8}>
+                    <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
+                      <Box>
+                        <Box display="flex" alignItems="flex-start" mb={2}>
+                          {/* <Avatar
                               src={`a.svg`}
                               alt={status.reporter.username.toUpperCase()}
                               sx={{ backgroundColor: '#22badf' }}
                             /> */}
-                            <AnimalAvatar animal={status.reporter.avatar} username={status.reporter.username} />
-                            <Box ml={2} display="flex" flexDirection="column">
-                              <Typography variant="body2" fontWeight="bold">
-                                {status.reporter.username.toUpperCase()}
-                              </Typography>
-                              <Typography variant="body2" color="textSecondary">
-                                {dayjs(status.created_at).fromNow()}
-                              </Typography>
-                            </Box>
+                          <AnimalAvatar animal={status.reporter.avatar} username={status.reporter.username} />
+                          <Box ml={2} display="flex" flexDirection="column">
+                            <Typography variant="body2" fontWeight="bold">
+                              {status.reporter.username.toUpperCase()}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary">
+                              {dayjs(status.created_at).fromNow()}
+                            </Typography>
                           </Box>
-
-                          <Typography variant="body1">{status.notes}</Typography>
                         </Box>
 
-                        {/* Spacer to push buttons down */}
-                        <Box flexGrow={1} />
+                        <Typography variant="body1">{status.notes}</Typography>
+                      </Box>
 
-                        {/* Buttons at bottom */}
-                        <Box mt={2} display="flex" justifyContent="flex-start" gap={2}>
-                          <Tooltip title="Parādīt kartē">
-                            <IconButton
-                              onClick={() => onZoomMap(status?.latitude, status?.longitude)}
-                              sx={{ backgroundColor: '#00b3a4', color: '#fff' }}
-                            >
-                              {status?.latitude && status?.longitude ? <LocationOnIcon /> : <LocationOffIcon />}
-                            </IconButton>
+                      {/* Spacer to push buttons down */}
+                      <Box flexGrow={1} />
 
-                            {/* <Tooltip title="Pievienot atrašanās vietu">
+                      {/* Buttons at bottom */}
+                      <Box mt={2} display="flex" justifyContent="flex-start" gap={2}>
+                        <Tooltip title="Parādīt kartē">
+                          <IconButton
+                            onClick={() => onZoomMap(status?.latitude, status?.longitude)}
+                            sx={{ backgroundColor: '#00b3a4', color: '#fff' }}
+                          >
+                            {status?.latitude && status?.longitude ? <LocationOnIcon /> : <LocationOffIcon />}
+                          </IconButton>
+
+                          {/* <Tooltip title="Pievienot atrašanās vietu">
                                               <IconButton onClick={onAddLocation} sx={{ backgroundColor: '#00b3a4', color: '#fff', mr: 1 }}>
                                                 <AddLocationAltIcon />
                                               </IconButton>
                                             </Tooltip> */}
-                          </Tooltip>
-                          {canDelete && (
-                            // <Box
-                            //   sx={{
-                            //     position: 'absolute',
-                            //     right: '0',
-                            //     zIndex: '999',
-                            //   }}
-                            // >
-                            <Tooltip title="Izdzēst ziņu">
-                              <IconButton
-                                onClick={() => handleDeleteMessage(status.id)}
-                                sx={{ backgroundColor: '#00b3a4', color: '#fff' }}
-                              >
-                                <DeleteIcon />
-                              </IconButton>
-                            </Tooltip>
-                            // </Box>
-                          )}
-                        </Box>
-                      </Box>
-                    </Grid>
-                    <Box flexGrow={1} />
-                    <Grid size={{ xs: 12, sm: 12, md: 4, lg: 4 }}>
-                      <Box position="relative">
-                        {status.pet_image && (
-                          <CardMedia
-                            component="img"
-                            style={{
-                              borderRadius: '8px',
-                              cursor: 'pointer',
-                              maxWidth: '100%',
-                              height: 'auto',
-                            }}
-                            image={status.pet_image}
-                            onClick={() => handleOpen(status.pet_image)}
-                          />
-                        )}
-
-                        {/* Show image modal */}
-                        <Modal
-                          open={open}
-                          onClose={handleClose}
-                          closeAfterTransition
-                          BackdropComponent={Backdrop}
-                          BackdropProps={{
-                            timeout: 500,
-                          }}
-                        >
-                          <Fade in={open}>
-                            <Box
-                              sx={{
-                                position: 'absolute',
-                                top: isSmallScreen ? '0' : '50%',
-                                left: '50%',
-                                transform: isSmallScreen ? 'translate(-50%, 0)' : 'translate(-50%, -50%)',
-                                width: isSmallScreen ? '100%' : 'auto',
-                                height: isSmallScreen ? '100%' : 'auto',
-                                maxWidth: isSmallScreen ? '100%' : '90vw',
-                                maxHeight: isSmallScreen ? '100%' : '90vh',
-                                outline: 'none',
-                                backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                                borderRadius: isSmallScreen ? '0' : '8px',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                              }}
+                        </Tooltip>
+                        {canDelete && (
+                          // <Box
+                          //   sx={{
+                          //     position: 'absolute',
+                          //     right: '0',
+                          //     zIndex: '999',
+                          //   }}
+                          // >
+                          <Tooltip title="Izdzēst ziņu">
+                            <IconButton
+                              onClick={() => handleDeleteMessage(status.id)}
+                              sx={{ backgroundColor: '#00b3a4', color: '#fff' }}
                             >
-                              {/* Close button for small screens */}
-                              {isSmallScreen && (
-                                <IconButton
-                                  aria-label="close"
-                                  onClick={handleClose}
-                                  sx={{
-                                    position: 'absolute',
-                                    top: '10px',
-                                    right: '10px',
-                                    color: '#fff',
-                                  }}
-                                >
-                                  <CloseIcon />
-                                </IconButton>
-                              )}
-                              {selectedImage ? (
-                                <img
-                                  src={selectedImage}
-                                  alt="Modal"
-                                  style={{
-                                    borderRadius: isSmallScreen ? '0' : '8px',
-                                    width: '100%',
-                                    height: 'auto',
-                                  }}
-                                />
-                              ) : null}
-                            </Box>
-                          </Fade>
-                        </Modal>
+                              <DeleteIcon />
+                            </IconButton>
+                          </Tooltip>
+                          // </Box>
+                        )}
                       </Box>
-                    </Grid>
+                    </Box>
                   </Grid>
-                </CardContent>
+                  <Box flexGrow={1} />
+                  <Grid size={{ xs: 12, sm: 12, md: 4, lg: 4 }}>
+                    <Box position="relative">
+                      {status.pet_image && (
+                        <CardMedia
+                          component="img"
+                          style={{
+                            borderRadius: '8px',
+                            cursor: 'pointer',
+                            maxWidth: '100%',
+                            height: 'auto',
+                          }}
+                          image={status.pet_image}
+                          onClick={() => handleOpen(status.pet_image)}
+                        />
+                      )}
+
+                      {/* Show image modal */}
+                      <Modal
+                        open={open}
+                        onClose={handleClose}
+                        closeAfterTransition
+                        BackdropComponent={Backdrop}
+                        BackdropProps={{
+                          timeout: 500,
+                        }}
+                      >
+                        <Fade in={open}>
+                          <Box
+                            sx={{
+                              position: 'absolute',
+                              top: isSmallScreen ? '0' : '50%',
+                              left: '50%',
+                              transform: isSmallScreen ? 'translate(-50%, 0)' : 'translate(-50%, -50%)',
+                              width: isSmallScreen ? '100%' : 'auto',
+                              height: isSmallScreen ? '100%' : 'auto',
+                              maxWidth: isSmallScreen ? '100%' : '90vw',
+                              maxHeight: isSmallScreen ? '100%' : '90vh',
+                              outline: 'none',
+                              backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                              borderRadius: isSmallScreen ? '0' : '8px',
+                              display: 'flex',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                            }}
+                          >
+                            {/* Close button for small screens */}
+                            {isSmallScreen && (
+                              <IconButton
+                                aria-label="close"
+                                onClick={handleClose}
+                                sx={{
+                                  position: 'absolute',
+                                  top: '10px',
+                                  right: '10px',
+                                  color: '#fff',
+                                }}
+                              >
+                                <CloseIcon />
+                              </IconButton>
+                            )}
+                            {selectedImage ? (
+                              <img
+                                src={selectedImage}
+                                alt="Modal"
+                                style={{
+                                  borderRadius: isSmallScreen ? '0' : '8px',
+                                  width: '100%',
+                                  height: 'auto',
+                                }}
+                              />
+                            ) : null}
+                          </Box>
+                        </Fade>
+                      </Modal>
+                    </Box>
+                  </Grid>
+                </Grid>
+                {/* </CardContent> */}
               </Card>
             </Grid>
           );
@@ -268,6 +274,7 @@ const TabMessages = ({ pet, sightings, onZoomMap }) => {
         <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
           <Card
             sx={{
+              p: { xs: 1, sm: 2 },
               borderRadius: 3,
               background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
               cursor: 'pointer',
@@ -277,22 +284,22 @@ const TabMessages = ({ pet, sightings, onZoomMap }) => {
               },
             }}
           >
-            <CardContent style={{ paddingBottom: '1rem' }}>
-              <Typography color="textSecondary">
-                <Box display="flex" alignItems="center" gap={2}>
-                  <IconButton
-                    style={{
-                      backgroundColor: '#00b3a4',
-                      color: '#fff',
-                      pointerEvents: 'none',
-                    }}
-                  >
-                    <TextSnippetIcon />
-                  </IconButton>{' '}
-                  Šobrīd nav pievienots neviens novērojums.
-                </Box>
-              </Typography>
-            </CardContent>
+            {/* <CardContent style={{ paddingBottom: '1rem' }}> */}
+            <Typography color="textSecondary">
+              <Box display="flex" alignItems="center" gap={2}>
+                <IconButton
+                  style={{
+                    backgroundColor: '#00b3a4',
+                    color: '#fff',
+                    pointerEvents: 'none',
+                  }}
+                >
+                  <TextSnippetIcon />
+                </IconButton>{' '}
+                Šobrīd nav pievienots neviens novērojums.
+              </Box>
+            </Typography>
+            {/* </CardContent> */}
           </Card>
         </Grid>
       )}

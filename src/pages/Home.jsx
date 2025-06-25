@@ -65,23 +65,24 @@ function Home() {
       <Box>
         <Container component="main" maxWidth="lg" sx={{ py: 4, paddingLeft: '0', paddingRight: '0' }}>
           <Grid container spacing={3}>
-            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} textAlign="center">
+            <Grid size={{ xs: 12 }} textAlign="center">
               <Typography
-                variant="h4"
-                style={{
-                  fontWeight: '400',
+                variant={isSmallScreen ? 'h6' : 'h4'}
+                sx={{
+                  fontWeight: 400,
                   color: '#00b5ad',
                   fontFamily: 'Titillium Web, sans-serif',
                   textTransform: 'uppercase',
-                  marginBottom: '2rem',
+                  mb: 4,
                 }}
               >
                 Digitālais atbalsts
               </Typography>
+
               <Typography
-                variant="h2"
-                style={{
-                  fontWeight: '500',
+                variant={isSmallScreen ? 'h4' : 'h2'}
+                sx={{
+                  fontWeight: 500,
                   color: '#16477c',
                   background: 'linear-gradient(60deg, #16477c 0%, #00b5ad 100%)',
                   WebkitBackgroundClip: 'text',
@@ -250,6 +251,31 @@ function Home() {
         <Grid container spacing={3} style={{ marginTop: '1rem', marginBottom: '3rem' }}>
           <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} textAlign="center">
             <Typography
+              variant={isSmallScreen ? 'h6' : 'h4'}
+              sx={{
+                fontWeight: 400,
+                color: '#00b5ad',
+                fontFamily: 'Titillium Web, sans-serif',
+                textTransform: 'uppercase',
+                mb: 4,
+              }}
+            >
+              Mūsdienīgs risinājums
+            </Typography>
+
+            <Typography
+              variant={isSmallScreen ? 'h4' : 'h2'}
+              sx={{
+                fontWeight: 500,
+                color: '#16477c',
+                background: 'linear-gradient(60deg, #16477c 0%, #00b5ad 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
+              Tehnoloģija, kas vieno dzīvnieku draugus
+            </Typography>
+            {/* <Typography
               variant="h4"
               style={{
                 fontWeight: '400',
@@ -260,8 +286,8 @@ function Home() {
               }}
             >
               Mūsdienīgs risinājums
-            </Typography>
-            <Typography
+            </Typography> */}
+            {/* <Typography
               variant="h2"
               style={{
                 fontWeight: '500',
@@ -272,7 +298,7 @@ function Home() {
               }}
             >
               Tehnoloģijas, kas strādā Tavā labā
-            </Typography>
+            </Typography> */}
           </Grid>
 
           <Grid size={{ xs: 12, sm: 12, md: 6, lg: 3 }} textAlign="center">
