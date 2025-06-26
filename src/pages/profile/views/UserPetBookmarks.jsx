@@ -226,19 +226,50 @@ function UserPetBookmarks() {
                       <Typography variant="h6">
                         <Chip label={pet.species_display} size="small" color="primary" />
                       </Typography>
-                      <Typography variant="body2" color="textSecondary" fontSize="0.8rem">
-                        {pet.final_status === 1 ? pet.status_display : pet.final_status_display}
+                      {/* <Typography variant="body2" color="textSecondary" fontSize="0.8rem">
+                        {pet.status_display}
                       </Typography>
-                      {/* <Box mt={4} display="flex" justifyContent="flex-start" alignItems="center" textAlign="center">
-                        <Typography variant="body2" color="textSecondary" fontSize="0.8rem">
+                      <Typography variant="body2" color="textSecondary" fontSize="0.8rem">
+                        {pet.final_status_display}
+                      </Typography> */}
+                      <Box display="flex" alignItems="center" justifyContent="flex-start" gap={1.5}>
+                        {/* Status text - primary color */}
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            fontWeight: 500,
+                            fontSize: '0.6rem',
+                            color: 'primary.main',
+                            textTransform: 'uppercase',
+                          }}
+                        >
                           {pet.status_display}
                         </Typography>
-                        <ArrowBackIcon fontSize="small" />
-                        <Typography variant="body2" color="textSecondary" fontSize="0.8rem">
+
+                        {/* Arrow icon */}
+                        <DoubleArrowIcon
+                          sx={{
+                            color: '#00b5ad',
+                            fontSize: 16,
+                            opacity: 0.7,
+                          }}
+                        />
+
+                        {/* Final status text - conditional color */}
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            fontWeight: 500,
+                            fontSize: '0.6rem',
+                            color: pet.final_status === 1 ? 'slategray' : 'primary.main',
+                            textTransform: 'uppercase',
+                          }}
+                        >
                           {pet.final_status_display}
                         </Typography>
-                      </Box> */}
+                      </Box>
                     </Box>
+
                     {pet.is_closed ? (
                       <Tooltip title="Sludinājums aizvērts">
                         <IconButton edge="end" size="small" aria-label="delete" sx={{ mr: 1 }}>

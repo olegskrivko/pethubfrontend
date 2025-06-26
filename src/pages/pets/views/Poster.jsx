@@ -606,7 +606,7 @@ const Poster = () => {
           </Grid>
           {/* <Grid container spacing={1} justifyContent="center" alignItems="center" >
             <Grid item xs={12} md={12} style={{display: "flex", justifyContent: "center", alignItems: "center", margin: "0",  padding: "0"}}>
-              <Typography variant='body2' style={{fontSize: "0.7rem"}}>Made by PawClix</Typography>
+              <Typography variant='body2' style={{fontSize: "0.7rem"}}>Made by Lunori</Typography>
               </Grid>
               </Grid> */}
         </Box>

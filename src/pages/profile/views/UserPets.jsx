@@ -261,7 +261,7 @@ function UserPets() {
           Mani mājdzīvnieki
         </Typography>
         {/* Quota */}
-        {quota && (
+        {/* {quota && (
           <Card
             sx={{
               p: { xs: 1, sm: 2 },
@@ -290,7 +290,7 @@ function UserPets() {
               </Box>
             </Box>
           </Card>
-        )}
+        )} */}
 
         {/* Pets List */}
         {ownedPets.length === 0 ? (

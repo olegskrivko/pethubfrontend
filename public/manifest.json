@@ -1,7 +1,7 @@
 {
-  "short_name": "PawClix",
+  "short_name": "Lunori",
   "description": "Palīdzam apvienot pazudušos un atrastos mājdzīvniekus Latvijā. Atrodi savu mīluli, sazinies ar patversmēm un saņem padomus, kā rīkoties.",
-  "name": "PawClix",
+  "name": "Lunori",
   "icons": [
     {
       "src": "favicon.ico",
@@ -24,6 +24,3 @@
   "theme_color": "#000000",
   "background_color": "#ffffff"
 }
-
-
-

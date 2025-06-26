@@ -17,6 +17,7 @@ import {
   Button,
   Card,
   CardContent,
+  Chip,
   CircularProgress,
   Container,
   Dialog,
@@ -72,7 +73,7 @@ function UserSettings() {
   });
   const [location, setLocation] = useState({ lat: 56.946285, lng: 24.105078 });
   const [distance, setDistance] = useState(5); // Default 5 km
-
+  const [quota, setQuota] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
   const [subscriptionStatus, setSubscriptionStatus] = useState(null);
   const [loadingSubscription, setLoadingSubscription] = useState(false);
@@ -91,6 +92,27 @@ function UserSettings() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const fetchUserPetQuota = async () => {
+    try {
+      const accessToken = localStorage.getItem('access_token');
+      const response = await fetch(`${API_BASE_URL}/api/pets/pet-quota/`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch pet quota');
+      }
+
+      const data = await response.json();
+      console.log('Pet Quota:', data);
+      setQuota(data); // ✅ set the state here
+    } catch (error) {
+      console.error('Error fetching pet quota:', error);
+      setQuota(null); // optional: set to null or default if there's an error
+    }
   };
 
   const handleLogout = () => {
@@ -353,6 +375,7 @@ function UserSettings() {
   useEffect(() => {
     checkExistingSubscription();
     fetchSubscriptionStatus();
+    fetchUserPetQuota(); // ✅ Add this line
   }, []);
 
   if (loading) {
@@ -565,6 +588,38 @@ function UserSettings() {
                       <Typography variant="body2" color="text.secondary" gutterBottom>
                         Current Period Ends: {new Date(subscriptionStatus.subscription_end).toLocaleDateString()}
                       </Typography>
+
+                      {/* Quota */}
+                      {quota && (
+                        <Card
+                          sx={{
+                            p: { xs: 1, sm: 2 },
+                            mb: 2,
+                            borderRadius: 3,
+                            background: 'linear-gradient(90deg, #edf4ff 0%, #f3faff 100%)',
+                          }}
+                        >
+                          <Typography variant="h6" sx={{ fontWeight: 600 }} gutterBottom>
+                            Jūsu abonementa limits
+                          </Typography>
+                          <Typography variant="body2" component="p" sx={{ mb: 1 }}>
+                            Atļautais mājdzīvnieku skaits: <strong>{quota.limit}</strong>
+                          </Typography>
+                          <Typography variant="body2" component="p" sx={{ mb: 1 }}>
+                            Pašreiz izmantots: <strong>{quota.used}</strong>
+                          </Typography>
+                          {/* <Box mt={3}>
+                            <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1 }}>
+                              Abonementu limiti:
+                            </Typography>
+                            <Box display="flex" gap={2} flexWrap="wrap">
+                              <Chip label="Freemium: 1" size="small" color="primary" />
+                              <Chip label="Plus: 3" size="small" color="primary" />
+                              <Chip label="Premium: 5" size="small" color="primary" />
+                            </Box>
+                          </Box> */}
+                        </Card>
+                      )}
 
                       {subscriptionStatus.cancel_at_period_end ? (
                         <Box mt={2}>

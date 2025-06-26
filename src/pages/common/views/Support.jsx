@@ -53,19 +53,19 @@ const Support = () => {
     <React.Fragment>
       {/* Helmet for SEO metadata */}
       <Helmet>
-        <title>Atbalstīt projektu | PawClix</title>
+        <title>Atbalstīt projektu | Lunori</title>
         <meta
           name="description"
-          content="Palīdzi mums attīstīt PawClix platformu un atbalstīt mūsu projektu! Uzzini, kā vari palīdzēt, daloties, ziedojot vai sponsorējot."
+          content="Palīdzi mums attīstīt Lunori platformu un atbalstīt mūsu projektu! Uzzini, kā vari palīdzēt, daloties, ziedojot vai sponsorējot."
         />
         <meta
           name="keywords"
-          content="atbalstīt projektu, ziedot, sponsorēt, palīdzēt dzīvniekiem, pazudušie mājdzīvnieki, PawClix"
+          content="atbalstīt projektu, ziedot, sponsorēt, palīdzēt dzīvniekiem, pazudušie mājdzīvnieki, Lunori"
         />
-        <meta property="og:title" content="Atbalstīt projektu | PawClix" />
+        <meta property="og:title" content="Atbalstīt projektu | Lunori" />
         <meta
           property="og:description"
-          content="Palīdzi mums attīstīt PawClix platformu un atbalstīt mūsu projektu! Uzzini, kā vari palīdzēt, daloties, ziedojot vai sponsorējot."
+          content="Palīdzi mums attīstīt Lunori platformu un atbalstīt mūsu projektu! Uzzini, kā vari palīdzēt, daloties, ziedojot vai sponsorējot."
         />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -184,7 +184,7 @@ const Support = () => {
             <Box display="flex" alignItems="center" sx={{ my: 2 }}>
               <TextField
                 fullWidth
-                value="https://pawclix.com"
+                value="https://lunori.app"
                 variant="outlined"
                 InputProps={{
                   readOnly: true,

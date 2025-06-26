@@ -3,4 +3,4 @@ Disallow: /admin/
 Disallow: /api/
 Allow: /
 
-Sitemap: https://www.pawclix.com/sitemap.xml
+Sitemap: https://www.lunori.app/sitemap.xml
