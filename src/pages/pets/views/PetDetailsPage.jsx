@@ -52,25 +52,6 @@ import PetAttributes from '../components/PetAttributes';
 import SendMessage from '../components/SendMessage';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const StatusBlock = ({ icon, label }) => (
-  <Box display="flex" alignItems="center" gap={1}>
-    <IconButton
-      disableRipple
-      sx={{
-        backgroundColor: '#00b5ad',
-        color: '#fff',
-        pointerEvents: 'none',
-        width: 40,
-        height: 40,
-      }}
-    >
-      {icon}
-    </IconButton>
-    <Typography variant="body2" fontWeight={600} color="text.primary">
-      {label}
-    </Typography>
-  </Box>
-);
 
 const PetDetailsPage = () => {
   const { user } = useAuth();
@@ -87,30 +68,47 @@ const PetDetailsPage = () => {
   const [zoomPosition, setZoomPosition] = useState(null);
   // new states for sending message
   const [message, setMessage] = useState('');
-  const [file, setFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [filePreview, setFilePreview] = useState(null);
   const [markerPosition, setMarkerPosition] = useState(null);
   // const [locationAdded, setLocationAdded] = useState(false);
   const [isLocationAdded, setIsLocationAdded] = useState(false);
   const [coords, setCoords] = useState({ lat: null, lng: null });
 
-  // Dropzone configuration
+  const onFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
   const onDrop = useCallback((acceptedFiles) => {
-    const file = acceptedFiles[0];
-    console.log('File dropped/selected:', file);
-    if (file) {
-      handleFileInputChange(file);
-    }
+    setSelectedFile(acceptedFiles[0]);
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: {
-      'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.bmp', '.webp'],
-    },
+    accept: { 'image/*': [] },
     maxFiles: 1,
     multiple: false,
   });
+
+  const fileData = () => {
+    if (selectedFile) {
+      return (
+        <div>
+          <h2>File Details:</h2>
+          <p>File Name: {selectedFile.name}</p>
+          <p>File Type: {selectedFile.type}</p>
+          <p>Last Modified: {selectedFile.lastModifiedDate?.toDateString()}</p>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <br />
+          <h4>Choose before Pressing the Upload button</h4>
+        </div>
+      );
+    }
+  };
 
   // Function to receive data from child
   const handleChildData = (data) => {
@@ -159,49 +157,6 @@ const PetDetailsPage = () => {
     }
   };
 
-  const handleReport = async () => {
-    console.log('Reported');
-  };
-  // const handleFileInputChange = (file) => {
-  //   const previewUrl = URL.createObjectURL(file); // Create preview URL for the file
-  //   setFile(file); // Set the file state
-  //   setFilePreview(previewUrl); // Store the preview URL
-  // };
-
-  // const handleFileInputChange = (file) => {
-  //   const previewUrl = URL.createObjectURL(file);
-  //   if (filePreview) URL.revokeObjectURL(filePreview); // cleanup previous
-  //   setFile(file);
-  //   setFilePreview(previewUrl);
-  // };
-  // const handleFileInputChange = (file) => {
-  //   if (!file) return;
-
-  //   if (!file.type.startsWith('image/')) {
-  //     alert('Please upload a valid image file.');
-  //     return;
-  //   }
-
-  //   if (file.size > 5 * 1024 * 1024) {
-  //     alert('Image is too large. Max size is 5MB.');
-  //     return;
-  //   }
-
-  //   if (filePreview) {
-  //     URL.revokeObjectURL(filePreview);
-  //   }
-
-  //   try {
-  //     const previewUrl = URL.createObjectURL(file);
-  //     setFile(file);
-  //     setFilePreview(previewUrl);
-  //   } catch (err) {
-  //     console.warn('Preview issue on mobile:', err);
-  //     setFile(file);
-  //     setFilePreview(null);
-  //   }
-  // };
-
   const handleFileInputChange = (file) => {
     if (!file) return;
 
@@ -222,11 +177,9 @@ const PetDetailsPage = () => {
 
     try {
       const previewUrl = URL.createObjectURL(file);
-      setFile(file);
       setFilePreview(previewUrl);
     } catch (err) {
       console.warn('Could not generate preview (possibly mobile):', err);
-      setFile(file);
       setFilePreview(null); // fallback, no preview
     }
   };
@@ -250,7 +203,7 @@ const PetDetailsPage = () => {
 
   const handleSendMessage = async () => {
     const hasMessage = !!message.trim();
-    const hasImage = !!file;
+    const hasImage = !!selectedFile;
     const hasCoords =
       Array.isArray(markerPosition) &&
       markerPosition.length === 2 &&
@@ -276,8 +229,8 @@ const PetDetailsPage = () => {
     const formData = new FormData();
     //formData.append('message', message);  // Assuming 'message' is included
 
-    if (file) {
-      formData.append('image', file);
+    if (selectedFile) {
+      formData.append('image', selectedFile);
     }
     // Only add latitude and longitude if they exist and are valid
     if (markerPosition && markerPosition.length === 2) {
@@ -331,7 +284,7 @@ const PetDetailsPage = () => {
 
       // Reset form after sending
       setMessage('');
-      setFile(null);
+      setSelectedFile(null);
       setFilePreview(null);
       // setLocationAdded(false);
       setMarkerPosition(null);
@@ -663,68 +616,37 @@ const PetDetailsPage = () => {
           </Box>
 
           {/* Simple file input like UploadTest - COMPLETELY ISOLATED */}
-          <div style={{ marginBottom: '16px' }}>
-            <p style={{ marginBottom: '8px', color: '#666' }}>Pievienot foto:</p>
-            <div
-              {...getRootProps()}
-              style={{
-                border: '2px dashed #00b3a4',
-                borderRadius: '8px',
-                padding: '20px',
-                textAlign: 'center',
-                backgroundColor: isDragActive ? '#e8f6f9' : '#f8f9fa',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                minHeight: '100px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <input {...getInputProps()} />
-              <AddPhotoAlternateIcon
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ marginBottom: 8, color: '#666' }}>Upload a file:</div>
+            <div style={{ display: 'flex', gap: 16 }}>
+              {/* Dropzone */}
+              <div
+                {...getRootProps()}
                 style={{
-                  fontSize: '32px',
-                  color: '#00b3a4',
-                  marginBottom: '8px',
+                  border: '2px dashed #00b3a4',
+                  borderRadius: 8,
+                  padding: 20,
+                  textAlign: 'center',
+                  backgroundColor: isDragActive ? '#e8f6f9' : '#f8f9fa',
+                  cursor: 'pointer',
+                  minWidth: 180,
                 }}
-              />
-              {isDragActive ? (
-                <p style={{ margin: 0, color: '#00b3a4', fontWeight: 'bold' }}>Drop the image here...</p>
-              ) : (
-                <div>
-                  <p style={{ margin: '0 0 4px 0', color: '#666', fontWeight: '500' }}>
-                    Drag & drop an image here, or click to select
-                  </p>
-                  <p style={{ margin: 0, fontSize: '12px', color: '#999' }}>Supports: JPG, PNG, GIF, BMP, WebP</p>
-                </div>
-              )}
+              >
+                <input {...getInputProps()} />
+                {isDragActive ? (
+                  <p>Drop the file here ...</p>
+                ) : (
+                  <p>Drag & drop here</p>
+                )}
+              </div>
+              <div style={{ alignSelf: 'center' }}>OR</div>
+              {/* Plain file input */}
+              <input type="file" accept="image/*" onChange={onFileChange} />
             </div>
           </div>
 
           {/* File details */}
-          {file && (
-            <div
-              style={{
-                marginBottom: '16px',
-                padding: '16px',
-                backgroundColor: '#f5f5f5',
-                borderRadius: '4px',
-                border: '1px solid #ddd',
-              }}
-            >
-              <p>
-                <strong>Selected File:</strong> {file.name}
-              </p>
-              <p>
-                <strong>File Type:</strong> {file.type}
-              </p>
-              <p>
-                <strong>File Size:</strong> {(file.size / 1024 / 1024).toFixed(2)} MB
-              </p>
-            </div>
-          )}
+          {fileData()}
 
           {/* File preview */}
           {filePreview && (
