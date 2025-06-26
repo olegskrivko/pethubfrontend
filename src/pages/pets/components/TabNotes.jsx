@@ -38,7 +38,7 @@ const TabNotes = ({ pet }) => {
 
       {/* </CardContent> */}
       {/* <CardContent style={{ paddingBottom: '1rem' }}> */}
-      <Box>
+      {/* <Box>
         <Typography>
           <Box display="flex" alignItems="center" gap={2}>
             <IconButton
@@ -53,8 +53,8 @@ const TabNotes = ({ pet }) => {
             {pet.final_status_display}
           </Box>
         </Typography>
-      </Box>
-      <Box mt={2}>
+      </Box> */}
+      <Box>
         {pet.notes ? (
           <Typography>
             <Box display="flex" alignItems="center" gap={2}>

@@ -8,6 +8,7 @@ import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PetsIcon from '@mui/icons-material/Pets';
 import Chip from '@mui/material/Chip';
+import Box from '@mui/material/Box';
 import { format } from 'date-fns';
 import { lv } from 'date-fns/locale';
 import L from 'leaflet';
@@ -156,7 +157,7 @@ function LeafletPetDetailsMapNew({
     if (!isLocationAdded) {
       setMarkerPosition(null);
     }
-  }, [onRemoveLocation]);
+  }, [isLocationAdded, setMarkerPosition]);
 
   const defaultCenter = [56.9496, 24.1052]; // Coordinates for Riga, Latvia
   const [newMarker, setNewMarker] = useState(null);
@@ -180,16 +181,19 @@ function LeafletPetDetailsMapNew({
 
   useEffect(() => {
     if (isLocationAdded && mapRef.current) {
+      // Use the current center as the new marker position
       const center = mapRef.current.getCenter();
       setNewMarker([center.lat, center.lng]);
       handleClick(center.lat, center.lng);
+      // Pan the map to the new marker
+      mapRef.current.panTo([center.lat, center.lng]);
     }
   }, [isLocationAdded]);
 
   return (
-    <>
+    <Box sx={{ my: 3 }}>
       <MapContainer
-        style={{ height: '400px', width: '100%' }}
+        style={{ height: '400px', width: '100%', }}
         center={center}
         zoom={defaultZoom}
         scrollWheelZoom={true}
@@ -273,7 +277,7 @@ function LeafletPetDetailsMapNew({
 
         <MapWrapper onMapLoad={onMapLoadHandler} />
       </MapContainer>
-    </>
+    </Box>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Link, useParams } from 'react-router-dom';
 
@@ -34,13 +34,16 @@ import {
   TextField,
   Tooltip,
   Typography,
+  Collapse,
 } from '@mui/material';
 import Chip from '@mui/material/Chip';
 import Lottie from 'lottie-react';
 import moment from 'moment';
 import 'moment/locale/lv';
 import { useSnackbar } from 'notistack';
-
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import AnimalAvatar from '../../../shared/components/AnimalAvatar';
 import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
 import { useAuth } from '../../../contexts/AuthContext';
 // import LeafletPetDetailsMap from '../../../components/LeafletPetDetailsMap'
@@ -50,7 +53,9 @@ import IconLabelTabs from '../components/IconLabelTabs';
 import ImageCarousel from '../components/ImageCarousel';
 import PetAttributes from '../components/PetAttributes';
 import SendMessage from '../components/SendMessage';
-
+import AddCommentIcon from '@mui/icons-material/AddComment';
+import WrongLocationIcon from '@mui/icons-material/WrongLocation';
+import CloseIcon from '@mui/icons-material/Close';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const PetDetailsPage = () => {
@@ -76,6 +81,8 @@ const PetDetailsPage = () => {
   const [coords, setCoords] = useState({ lat: null, lng: null });
   const [selectedFile, setSelectedFile] = useState(null);
   const [petImageFile, setPetImageFile] = useState(null);
+  const [msgExpanded, setMsgExpanded] = useState(false);
+  const mapRef = useRef(null); // Ref for the map container
   const onFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
@@ -124,9 +131,11 @@ const PetDetailsPage = () => {
 
   const handleZoomMap = (lat, lng) => {
     if (lat && lng) {
-      console.log('aaa');
-      console.log(`Zooming to: ${lat}, ${lng}`);
       setZoomPosition({ lat, lng });
+    }
+    // Always scroll to map when zooming
+    if (mapRef.current) {
+      mapRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
   const handleShare = async () => {
@@ -304,6 +313,15 @@ const PetDetailsPage = () => {
     setPetImageFile(file);
   };
 
+  const handleToggleMsgExpand = () => setMsgExpanded((prev) => !prev);
+
+  const handleRemoveImage = () => {
+    setFile(null);
+    setFilePreview(null);
+    setPetImageFile(null);
+    setSelectedFile(null);
+  };
+
   useEffect(() => {
     const fetchPetDetails = async () => {
       try {
@@ -408,6 +426,12 @@ const PetDetailsPage = () => {
   };
 
   const isStillLoading = loading || (!pet && !error);
+
+  useEffect(() => {
+    if (isLocationAdded && mapRef.current) {
+      mapRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [isLocationAdded]);
 
   if (isStillLoading) {
     return (
@@ -552,7 +576,7 @@ const PetDetailsPage = () => {
           </Typography>
         </Box>
       </Card>
-      <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+      <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} ref={mapRef}>
         <LeafletPetDetailsMapNew
           pet={pet}
           sightings={sightings}
@@ -590,7 +614,6 @@ const PetDetailsPage = () => {
       </Card> */}
 
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-        {/* Simple file upload like UploadTest */}
         <Card
           sx={{
             p: { xs: 1, sm: 2 },
@@ -599,151 +622,198 @@ const PetDetailsPage = () => {
             overflow: 'hidden',
           }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-            <Typography variant="h6" sx={{ color: '#16477c' }}>
-              PIEVIENOT ZIŅOJUMU
-            </Typography>
-          </Box>
-
-          {/* Message input */}
-          <Box sx={{ mb: 2 }}>
-            <TextField
-              label="Ierakstiet savu komentāru šeit..."
-              variant="outlined"
-              size="small"
-              fullWidth
-              multiline
-              rows={3}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-          </Box>
-
-          {/* Simple file input like UploadTest - COMPLETELY ISOLATED */}
-          <div style={{ marginBottom: '16px' }}>
-            <p style={{ marginBottom: '8px', color: '#666' }}>Pievienot foto:</p>
-            <div
-              {...getRootProps()}
-              style={{
-                border: '2px dashed #00b3a4',
-                borderRadius: '8px',
-                padding: '20px',
-                textAlign: 'center',
-                backgroundColor: isDragActive ? '#e8f6f9' : '#f8f9fa',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                minHeight: '100px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <input {...getInputProps()} />
-              <AddPhotoAlternateIcon
-                style={{
-                  fontSize: '32px',
-                  color: '#00b3a4',
-                  marginBottom: '8px',
-                }}
-              />
-              {isDragActive ? (
-                <p style={{ margin: 0, color: '#00b3a4', fontWeight: 'bold' }}>Drop the image here...</p>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              cursor: 'pointer',
+            }}
+            onClick={handleToggleMsgExpand}
+          >
+            {/* <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Typography color="textSecondary">
+                <Box display="flex" alignItems="center">
+                  <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                    <AddPhotoAlternateIcon />
+                  </IconButton>
+                  <Typography color="textSecondary" sx={{ pl: { xs: 1, sm: 2 } }}>
+                    PIEVIENOT ZIŅOJUMU
+                  </Typography>
+                </Box>
+              </Typography>
+            </Box> */}
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Typography color="textSecondary">
+            <Box display="flex" alignItems="center">
+              {user ? (
+                <AnimalAvatar animal={user.avatar} username={user.username} />
               ) : (
-                <div>
-                  <p style={{ margin: '0 0 4px 0', color: '#666', fontWeight: '500' }}>
-                    Drag & drop an image here, or click to select
-                  </p>
-                  <p style={{ margin: 0, fontSize: '12px', color: '#999' }}>Supports: JPG, PNG, GIF, BMP, WebP</p>
-                </div>
+                <>
+                  <IconButton color="primary" style={{ backgroundColor: '#f7f9fd' }}>
+                    <AddCommentIcon />
+                  </IconButton>
+                </>
               )}
-            </div>
-            <UploadTest onFileSelected={handlePetImageSelected} />
-          </div>
 
-          {/* File details */}
-          {file && (
-            <div
-              style={{
-                marginBottom: '16px',
-                padding: '16px',
-                backgroundColor: '#f5f5f5',
-                borderRadius: '4px',
-                border: '1px solid #ddd',
-              }}
-            >
-              <p>
-                <strong>Selected File:</strong> {file.name}
-              </p>
-              <p>
-                <strong>File Type:</strong> {file.type}
-              </p>
-              <p>
-                <strong>File Size:</strong> {(file.size / 1024 / 1024).toFixed(2)} MB
-              </p>
-            </div>
-          )}
-
-          {/* File preview */}
-          {filePreview && (
-            <Box sx={{ mb: 2 }}>
-              <img
-                src={filePreview}
-                alt="Preview"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  borderRadius: '0.5rem',
-                  boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-                }}
+              <Typography color="textSecondary" sx={{ pl: { xs: 1, sm: 2 } }}>
+                PIEVIENOT ZIŅOJUMU
+              </Typography>
+            </Box>
+          </Typography>
+        </Box>
+            <IconButton>{msgExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}</IconButton>
+          </Box>
+          {user ? (
+          <Collapse in={msgExpanded}>
+            <Box sx={{ py: { xs: 1, sm: 2 } }}>
+              <TextField
+                label="Ierakstiet savu komentāru šeit..."
+                variant="outlined"
+                size="small"
+                fullWidth
+                multiline
+                rows={3}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
               />
             </Box>
-          )}
-
-          {/* Action buttons */}
-          <Box display="flex" justifyContent="space-between" alignItems="center">
-            <Box>
-              {!isLocationAdded ? (
-                <Tooltip title="Pievienot atrašanās vietu">
-                  <IconButton onClick={handleAddLocation} sx={{ backgroundColor: '#00b3a4', color: '#fff', mr: 1 }}>
-                    <AddLocationAltIcon />
-                  </IconButton>
-                </Tooltip>
-              ) : (
-                <Tooltip title="Noņemt atrašanās vietu">
-                  <IconButton onClick={handleRemoveLocation} sx={{ backgroundColor: '#00b3a4', color: '#fff', mr: 1 }}>
-                    <AddLocationAltIcon />
-                  </IconButton>
-                </Tooltip>
-              )}
-            </Box>
-
-            <Tooltip title="Aizsūtīt ziņu">
-              <IconButton
-                onClick={handleSendMessage}
-                sx={{
-                  backgroundColor: '#00b3a4',
-                  color: '#fff',
-                  '&:hover': { backgroundColor: '#007c73' },
+            <div style={{ marginBottom: '16px' }}>
+              <p style={{ marginBottom: '8px', color: '#666' }}>Pievienot foto:</p>
+              <div
+                {...getRootProps()}
+                style={{
+                  border: '2px dashed #00b3a4',
+                  borderRadius: '8px',
+                  padding: '20px',
+                  textAlign: 'center',
+                  backgroundColor: isDragActive ? '#e8f6f9' : '#f8f9fa',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  minHeight: '100px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
               >
-                <SendIcon />
-              </IconButton>
-            </Tooltip>
-          </Box>
+                <input {...getInputProps()} />
+                <AddPhotoAlternateIcon
+                  style={{
+                    fontSize: '32px',
+                    color: '#00b3a4',
+                    marginBottom: '8px',
+                  }}
+                />
+                {isDragActive ? (
+                  <p style={{ margin: 0, color: '#00b3a4', fontWeight: 'bold' }}>Drop the image here...</p>
+                ) : (
+                  <div>
+                    <p style={{ margin: '0 0 4px 0', color: '#666', fontWeight: '500' }}>
+                      Drag & drop an image here, or click to select
+                    </p>
+                    <p style={{ margin: 0, fontSize: '12px', color: '#999' }}>Supports: JPG, PNG, GIF, BMP, WebP</p>
+                  </div>
+                )}
+              </div>
+              <div style={{ marginTop: 16 }}>
+                <input type="file" accept="image/*" onChange={e => handleFileInputChange(e.target.files[0])} />
+              </div>
+            </div>
+            {file && (
+              <div
+                style={{
+                  marginBottom: '16px',
+                  padding: '16px',
+                  backgroundColor: '#f5f5f5',
+                  borderRadius: '4px',
+                  border: '1px solid #ddd',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between'
+                }}
+              >
+                <div>
+                  <p>
+                    <strong>Selected File:</strong> {file.name}
+                  </p>
+                  <p>
+                    <strong>File Type:</strong> {file.type}
+                  </p>
+                  <p>
+                    <strong>File Size:</strong> {(file.size / 1024 / 1024).toFixed(2)} MB
+                  </p>
+                </div>
+                <IconButton onClick={handleRemoveImage} color="error">
+                  <CloseIcon />
+                </IconButton>
+              </div>
+            )}
+            {filePreview && (
+              <Box sx={{ mb: 2 }}>
+                <img
+                  src={filePreview}
+                  alt="Preview"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    borderRadius: '0.5rem',
+                    boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+                  }}
+                />
+              </Box>
+            )}
+            <Box display="flex" justifyContent="space-between" alignItems="center">
+              <Box>
+                {!isLocationAdded ? (
+                  <Tooltip title="Pievienot atrašanās vietu">
+                    <IconButton onClick={handleAddLocation} sx={{ backgroundColor: '#00b3a4', color: '#fff', mr: 1 }}>
+                      <AddLocationAltIcon />
+                    </IconButton>
+                  </Tooltip>
+                ) : (
+                  <Tooltip title="Noņemt atrašanās vietu">
+                    <IconButton onClick={handleRemoveLocation} sx={{ backgroundColor: '#00b3a4', color: '#fff', mr: 1 }}>
+                      <WrongLocationIcon />
+                    </IconButton>
+                  </Tooltip>
+                )}
+              </Box>
+              <Tooltip title="Aizsūtīt ziņu">
+                <IconButton
+                  onClick={handleSendMessage}
+                  sx={{
+                    backgroundColor: '#00b3a4',
+                    color: '#fff',
+                    '&:hover': { backgroundColor: '#007c73' },
+                  }}
+                >
+                  <SendIcon />
+                </IconButton>
+              </Tooltip>
+            </Box>
+          </Collapse>
+             ) : (
+              <Box p={2}>
+                <Typography color="textSecondary">Lūdzu, piesakieties, lai pievienotu ziņojumu.</Typography>{' '}
+                <Link to="/login" style={{ textDecoration: 'none', color: '#1976d2', fontWeight: 500 }}>
+                  Pieslēgties
+                </Link>
+              </Box>
+            )}
         </Card>
       </Grid>
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
         <IconLabelTabs pet={pet} sightings={sightings} onZoomMap={handleZoomMap} />
       </Grid>
-      {petImageFile && (
+      {/* {petImageFile && (
         <div style={{marginTop: 8}}>
           <h4>Selected File for Pet:</h4>
           <p>File Name: {petImageFile.name}</p>
           <p>File Type: {petImageFile.type}</p>
           <p>Last Modified: {petImageFile.lastModifiedDate?.toDateString()}</p>
         </div>
-      )}
+      )} */}
     </Container>
   );
 };

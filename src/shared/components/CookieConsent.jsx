@@ -10,12 +10,14 @@ const COOKIE_EXPIRY_DAYS = 150;
 
 const CookieConsent = () => {
   const [accepted, setAccepted] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const cookieAccepted = Cookies.get(COOKIE_NAME);
     if (cookieAccepted === 'true') {
       setAccepted(true);
     }
+    setLoading(false);
   }, []);
 
   const handleAccept = () => {
@@ -29,18 +31,21 @@ const CookieConsent = () => {
     console.log('User declined cookies');
   };
 
-  if (accepted) return null;
+  if (loading || accepted) return null;
 
   return (
     <Box
       sx={{
         position: 'fixed',
         bottom: 20,
-        left: 20,
+        left: { xs: 0, sm: 20 },
+        right: { xs: 0, sm: 20 },
         zIndex: 1300,
-        maxWidth: 360,
+        maxWidth: { xs: 'calc(100vw - 16px)', sm: 360 },
+        mx: { xs: 'auto', sm: 0 },
         boxShadow: 4,
         overflow: 'visible',
+        px: { xs: 1, sm: 0 }, // extra horizontal padding for xs
       }}
     >
       <Card
