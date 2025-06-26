@@ -14,7 +14,12 @@ import { Box, Card, Collapse, IconButton, TextField, Tooltip, Typography } from 
 
 import { useAuth } from '../../../contexts/AuthContext';
 import AnimalAvatar from '../../../shared/components/AnimalAvatar';
-
+const onFileUpload = () => {
+  const formData = new FormData();
+  formData.append('myFile', selectedFile, selectedFile.name);
+  console.log(selectedFile);
+  // axios.post('api/uploadfile', formData);
+};
 const SendMessage = ({
   message,
   onMessageChange,
@@ -33,15 +38,17 @@ const SendMessage = ({
   // Simple file handling like UploadTest
   const [selectedFile, setSelectedFile] = useState(null);
   
-  const handleFileInputChange = (event) => {
-    const file = event.target.files[0];
-    console.log('File selected:', file);
-    if (file) {
-      setSelectedFile(file);
-      // Don't call onUploadImage - handle locally like UploadTest
-    }
+  // const onFileChange = (event) => {
+  //   const file = event.target.files[0];
+  //   console.log('File selected:', file);
+  //   if (file) {
+  //     setSelectedFile(file);
+  //     // Don't call onUploadImage - handle locally like UploadTest
+  //   }
+  // };
+  const onFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
   };
-
   const fileData = () => {
     if (selectedFile) {
       return (
@@ -98,7 +105,7 @@ const SendMessage = ({
           </Typography>
         </Box>
         <IconButton>{expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}</IconButton>
-      </Box>
+      </Box> 
       {user ? (
         <Collapse in={expanded}>
           <Box sx={{ py: { xs: 1, sm: 2 } }}>
@@ -117,20 +124,8 @@ const SendMessage = ({
           {/* Simple file input like UploadTest - COMPLETELY ISOLATED */}
           <div style={{ marginBottom: '16px' }}>
             <p style={{ marginBottom: '8px', color: '#666' }}>Pievienot foto:</p>
-            <input 
-              type="file" 
-              accept="image/*"
-              onChange={handleFileInputChange}
-              style={{ 
-                display: 'block',
-                width: '100%',
-                padding: '8px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                backgroundColor: '#fff',
-                fontSize: '16px' // Important for mobile
-              }}
-            />
+            <input type="file" onChange={onFileChange} />
+            <button onClick={onFileUpload}>Upload!</button>
           </div>
 
           {/* File details like UploadTest */}
