@@ -566,7 +566,7 @@ const PetDetailsPage = () => {
           setCoords={setCoords}
         />
       </Grid>
-      <UploadTest onFileSelected={handlePetImageSelected} />
+      {/* <UploadTest onFileSelected={handlePetImageSelected} /> */}
       {/* <Card
         sx={{
           p: { xs: 1, sm: 2 },
@@ -658,6 +658,7 @@ const PetDetailsPage = () => {
                 </div>
               )}
             </div>
+            <UploadTest onFileSelected={handlePetImageSelected} />
           </div>
 
           {/* File details */}

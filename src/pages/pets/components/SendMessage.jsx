@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { useDropzone } from 'react-dropzone';
 
 import {
   AddLocationAlt as AddLocationAltIcon,
@@ -14,12 +15,14 @@ import { Box, Card, Collapse, IconButton, TextField, Tooltip, Typography } from 
 
 import { useAuth } from '../../../contexts/AuthContext';
 import AnimalAvatar from '../../../shared/components/AnimalAvatar';
+
 const onFileUpload = () => {
   const formData = new FormData();
   formData.append('myFile', selectedFile, selectedFile.name);
   console.log(selectedFile);
   // axios.post('api/uploadfile', formData);
 };
+
 const SendMessage = ({
   message,
   onMessageChange,
@@ -35,33 +38,47 @@ const SendMessage = ({
   const { user } = useAuth();
   const handleToggleExpand = () => setExpanded((prev) => !prev);
 
-  // Simple file handling like UploadTest
+  // Dropzone logic
   const [selectedFile, setSelectedFile] = useState(null);
-  
-  // const onFileChange = (event) => {
-  //   const file = event.target.files[0];
-  //   console.log('File selected:', file);
-  //   if (file) {
-  //     setSelectedFile(file);
-  //     // Don't call onUploadImage - handle locally like UploadTest
-  //   }
-  // };
+  const onDrop = useCallback((acceptedFiles) => {
+    const file = acceptedFiles[0];
+    setSelectedFile(file);
+    if (file && onUploadImage) {
+      onUploadImage(file);
+    }
+  }, [onUploadImage]);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: { 'image/*': [] },
+    maxFiles: 1,
+    multiple: false,
+  });
+
+  // Simple file input logic
   const onFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+    const file = event.target.files[0];
+    setSelectedFile(file);
+    if (file && onUploadImage) {
+      onUploadImage(file);
+    }
   };
+
   const fileData = () => {
     if (selectedFile) {
       return (
         <div>
-          <p><strong>Selected File:</strong> {selectedFile.name}</p>
-          <p><strong>File Type:</strong> {selectedFile.type}</p>
-          <p><strong>File Size:</strong> {(selectedFile.size / 1024 / 1024).toFixed(2)} MB</p>
+          <h2>File Details:</h2>
+          <p>File Name: {selectedFile.name}</p>
+          <p>File Type: {selectedFile.type}</p>
+          <p>Last Modified: {selectedFile.lastModifiedDate?.toDateString()}</p>
         </div>
       );
     } else {
       return (
         <div>
-          <p>No file selected</p>
+          <br />
+          <h4>Choose before Pressing the Upload button</h4>
         </div>
       );
     }
@@ -121,39 +138,35 @@ const SendMessage = ({
             />
           </Box>
 
-          {/* Simple file input like UploadTest - COMPLETELY ISOLATED */}
-          <div style={{ marginBottom: '16px' }}>
-            <p style={{ marginBottom: '8px', color: '#666' }}>Pievienot foto:</p>
-            <input type="file" onChange={onFileChange} />
-            <button onClick={onFileUpload}>Upload!</button>
-          </div>
-
-          {/* File details like UploadTest */}
-          <div style={{ 
-            marginBottom: '16px', 
-            padding: '16px', 
-            backgroundColor: '#f5f5f5', 
-            borderRadius: '4px',
-            border: '1px solid #ddd'
-          }}>
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ marginBottom: 8, color: '#666' }}>Upload a file:</div>
+            <div style={{ display: 'flex', gap: 16 }}>
+              {/* Dropzone */}
+              <div
+                {...getRootProps()}
+                style={{
+                  border: '2px dashed #00b3a4',
+                  borderRadius: 8,
+                  padding: 20,
+                  textAlign: 'center',
+                  backgroundColor: isDragActive ? '#e8f6f9' : '#f8f9fa',
+                  cursor: 'pointer',
+                  minWidth: 180,
+                }}
+              >
+                <input {...getInputProps()} />
+                {isDragActive ? (
+                  <p>Drop the file here ...</p>
+                ) : (
+                  <p>Drag & drop here</p>
+                )}
+              </div>
+              <div style={{ alignSelf: 'center' }}>OR</div>
+              {/* Plain file input */}
+              <input type="file" accept="image/*" onChange={onFileChange} />
+            </div>
             {fileData()}
           </div>
-
-          {/* File preview if available */}
-          {filePreview && (
-            <Box sx={{ mb: 2 }}>
-              <img
-                src={filePreview}
-                alt="Preview"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  borderRadius: '0.5rem',
-                  boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-                }}
-              />
-            </Box>
-          )}
 
           <Box sx={{ pt: { xs: 0, sm: 1 } }} display="flex" justifyContent="space-between" alignItems="center">
             <Box>
