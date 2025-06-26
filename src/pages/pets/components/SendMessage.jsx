@@ -122,7 +122,7 @@ const SendMessage = ({
           </Typography>
         </Box>
         <IconButton>{expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}</IconButton>
-      </Box> 
+      </Box>
       {user ? (
         <Collapse in={expanded}>
           <Box sx={{ py: { xs: 1, sm: 2 } }}>
