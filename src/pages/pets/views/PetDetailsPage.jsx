@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useDropzone } from 'react-dropzone';
 
 // Import Latvian locale
 import { ContactSupportOutlined } from '@mui/icons-material';
@@ -91,6 +92,24 @@ const PetDetailsPage = () => {
   // const [locationAdded, setLocationAdded] = useState(false);
   const [isLocationAdded, setIsLocationAdded] = useState(false);
   const [coords, setCoords] = useState({ lat: null, lng: null });
+
+  // Dropzone configuration
+  const onDrop = useCallback((acceptedFiles) => {
+    const file = acceptedFiles[0];
+    console.log('File dropped/selected:', file);
+    if (file) {
+      handleFileInputChange(file);
+    }
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.bmp', '.webp']
+    },
+    maxFiles: 1,
+    multiple: false
+  });
 
   // Function to receive data from child
   const handleChildData = (data) => {
@@ -645,26 +664,46 @@ const PetDetailsPage = () => {
           {/* Simple file input like UploadTest - COMPLETELY ISOLATED */}
           <div style={{ marginBottom: '16px' }}>
             <p style={{ marginBottom: '8px', color: '#666' }}>Pievienot foto:</p>
-            <input 
-              type="file" 
-              accept="image/*"
-              onChange={(event) => {
-                const file = event.target.files[0];
-                console.log('File selected:', file);
-                if (file) {
-                  handleFileInputChange(file);
-                }
+            <div 
+              {...getRootProps()} 
+              style={{
+                border: '2px dashed #00b3a4',
+                borderRadius: '8px',
+                padding: '20px',
+                textAlign: 'center',
+                backgroundColor: isDragActive ? '#e8f6f9' : '#f8f9fa',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                minHeight: '100px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center'
               }}
-              style={{ 
-                display: 'block',
-                width: '100%',
-                padding: '8px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                backgroundColor: '#fff',
-                fontSize: '16px' // Important for mobile
-              }}
-            />
+            >
+              <input {...getInputProps()} />
+              <AddPhotoAlternateIcon 
+                style={{ 
+                  fontSize: '32px', 
+                  color: '#00b3a4', 
+                  marginBottom: '8px' 
+                }} 
+              />
+              {isDragActive ? (
+                <p style={{ margin: 0, color: '#00b3a4', fontWeight: 'bold' }}>
+                  Drop the image here...
+                </p>
+              ) : (
+                <div>
+                  <p style={{ margin: '0 0 4px 0', color: '#666', fontWeight: '500' }}>
+                    Drag & drop an image here, or click to select
+                  </p>
+                  <p style={{ margin: 0, fontSize: '12px', color: '#999' }}>
+                    Supports: JPG, PNG, GIF, BMP, WebP
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* File details */}
