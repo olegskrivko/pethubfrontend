@@ -40,11 +40,9 @@ const CookieConsent = () => {
         bottom: 20,
         left: { xs: 0, sm: 20 },
         right: { xs: 0, sm: 20 },
-        zIndex: 1300,
+        zIndex: 10000,
         maxWidth: { xs: 'calc(100vw - 16px)', sm: 360 },
         mx: { xs: 'auto', sm: 0 },
-        boxShadow: 4,
-        overflow: 'visible',
         px: { xs: 1, sm: 0 }, // extra horizontal padding for xs
       }}
     >
@@ -54,8 +52,8 @@ const CookieConsent = () => {
           pt: 5,
           borderRadius: 3,
           textAlign: 'center',
-          overflow: 'visible',
           textAlign: 'left',
+          boxShadow: 4,
         }}
       >
         <Box

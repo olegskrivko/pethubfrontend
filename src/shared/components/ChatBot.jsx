@@ -131,7 +131,7 @@ const ChatBot = () => {
             borderRadius: '10px',
             boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
             fontSize: '12px',
-            zIndex: 9999,
+            zIndex: 999,
           }}
         >
           {t('hello')}
@@ -199,7 +199,7 @@ const ChatBot = () => {
                 <Lottie animationData={avatar} loop autoplay />
               </Box>
               <Typography marginLeft={1} variant="body1">
-                AI ChatBot
+                AI Assistant
               </Typography>
             </Box>
             <Box>
