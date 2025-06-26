@@ -75,6 +75,7 @@ const PetDetailsPage = () => {
   const [isLocationAdded, setIsLocationAdded] = useState(false);
   const [coords, setCoords] = useState({ lat: null, lng: null });
   const [selectedFile, setSelectedFile] = useState(null);
+  const [petImageFile, setPetImageFile] = useState(null);
   const onFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
@@ -223,9 +224,13 @@ const PetDetailsPage = () => {
     const formData = new FormData();
     //formData.append('message', message);  // Assuming 'message' is included
 
-    if (file) {
-      formData.append('image', file);
+    // Prefer petImageFile (from UploadTest), fallback to file (from other input)
+    if (petImageFile) {
+      formData.append('image', petImageFile, petImageFile.name);
+    } else if (file) {
+      formData.append('image', file, file.name);
     }
+
     // Only add latitude and longitude if they exist and are valid
     if (markerPosition && markerPosition.length === 2) {
       const latitude = parseFloat(markerPosition[0]).toFixed(6);
@@ -294,6 +299,11 @@ const PetDetailsPage = () => {
       enqueueSnackbar('Error sending message. Please try again.', { variant: 'error' });
     }
   };
+
+  const handlePetImageSelected = (file) => {
+    setPetImageFile(file);
+  };
+
   useEffect(() => {
     const fetchPetDetails = async () => {
       try {
@@ -556,7 +566,7 @@ const PetDetailsPage = () => {
           setCoords={setCoords}
         />
       </Grid>
-      <UploadTest />
+      <UploadTest onFileSelected={handlePetImageSelected} />
       {/* <Card
         sx={{
           p: { xs: 1, sm: 2 },
@@ -725,6 +735,14 @@ const PetDetailsPage = () => {
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
         <IconLabelTabs pet={pet} sightings={sightings} onZoomMap={handleZoomMap} />
       </Grid>
+      {petImageFile && (
+        <div style={{marginTop: 8}}>
+          <h4>Selected File for Pet:</h4>
+          <p>File Name: {petImageFile.name}</p>
+          <p>File Type: {petImageFile.type}</p>
+          <p>Last Modified: {petImageFile.lastModifiedDate?.toDateString()}</p>
+        </div>
+      )}
     </Container>
   );
 };
