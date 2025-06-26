@@ -91,10 +91,31 @@ export const PRICE_TYPE_CHOICES = [
   { value: 4, label: 'Pēc vienošanās' },
 ];
 
-export const SUBJECT_CHOICES = [
-  { value: 1, label: 'Kļūdu ziņojums' },
-  { value: 2, label: 'Vispārīgs jautājums' },
-  { value: 3, label: 'Funkciju pieprasījums' },
-  { value: 4, label: 'Sadarbības pieprasījums' },
-  { value: 5, label: 'Cits' },
-];
+export const SUBJECT_CHOICES = {
+  lv: [
+    { value: 1, label: 'Kļūdu ziņojums' },
+    { value: 2, label: 'Vispārīgs jautājums' },
+    { value: 3, label: 'Funkciju pieprasījums' },
+    { value: 4, label: 'Sadarbības pieprasījums' },
+    { value: 5, label: 'Cits' },
+  ],
+  en: [
+    { value: 1, label: 'Bug Report' },
+    { value: 2, label: 'General Question' },
+    { value: 3, label: 'Feature Request' },
+    { value: 4, label: 'Collaboration Request' },
+    { value: 5, label: 'Other' },
+  ],
+  ru: [
+    { value: 1, label: 'Сообщение об ошибке' },
+    { value: 2, label: 'Общий вопрос' },
+    { value: 3, label: 'Запрос функции' },
+    { value: 4, label: 'Запрос о сотрудничестве' },
+    { value: 5, label: 'Другое' },
+  ],
+};
+
+// Helper function to get choices for current language
+export const getSubjectChoices = (language = 'lv') => {
+  return SUBJECT_CHOICES[language] || SUBJECT_CHOICES.lv;
+};

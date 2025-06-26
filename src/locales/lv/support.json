@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "title": "Atbalstīt projektu | Lunori",
+    "description": "Palīdzi mums attīstīt Lunori platformu un atbalstīt mūsu projektu! Uzzini, kā vari palīdzēt, daloties, ziedojot vai sponsorējot.",
+    "keywords": "atbalstīt projektu, ziedot, sponsorēt, palīdzēt dzīvniekiem, pazudušie mājdzīvnieki, Lunori"
+  },
+  "title": "Atbalstīt projektu",
+  "collaboration": {
+    "intro": "Mēs ticam, ka kopīga sadarbība var padarīt mūsu platformu vēl labāku! Ja esat dzīvnieku patversme, veterinārā klīnika, tehnoloģiju uzņēmums vai vienkārši kaislīgs dzīvnieku mīļotājs, mēs labprāt uzklausītu jūsu idejas.",
+    "title": "Mēs esam atvērti dažāda veida partnerībām:",
+    "points": [
+      "Dzīvnieku patversmēm un glābšanas organizācijām – lai palīdzētu ātrāk atrast mājas pazudušajiem mājdzīvniekiem.",
+      "Veterinārajām klīnikām un speciālistiem – lai sniegtu vērtīgus padomus mājdzīvnieku īpašniekiem.",
+      "Tehnoloģiju un datu partnerībām – lai uzlabotu mākslāgā intelekta un datu analīzes iespējas pazudušo mājdzīvnieku atrašanā.",
+      "Sociālo tīklu un mediju sadarbībām – lai informācija par pazudušiem dzīvniekiem izplatītos pēc iespējas plašāk.",
+      "Izstrādātājiem un dizaineriem – ja jūs vēlaties pievienoties mūsu komandai, lai uzlabotu lietotnes funkcionalitāti vai dizainu, mēs būsim priecīgi sadarboties."
+    ],
+    "outro": "Ja jums ir idejas vai vēlme sadarboties, sazinieties ar mums! Kopā mēs varam radīt drošāku un atbalstošāku vidi mājdzīvnieku īpašniekiem."
+  },
+  "support": {
+    "intro": "Mēs esam pateicīgi par jebkādu atbalstu vai sponsora palīdzību, kas var palīdzēt mums atklāt pilnu mūsu tīmekļa lietotnes potenciālu. Ja jūs dalāties mūsu redzējumā un vēlētos ieguldīt premium līmeņu un pakalpojumu izmantošanas izmaksās, lūdzu, sazinieties ar mums.",
+    "title": "Veidi, kā jūs varat palīdzēt:",
+    "points": [
+      "Finansiāls atbalsts hostinga vai mākoņservisu segšanai.",
+      "Sponsorēšana lietotnes jaunu funkciju attīstībai.",
+      "Dalīšanās mūsu projektā sociālajos medijos.",
+      "Ieteikumi vai kontakti, kas var palīdzēt izaugsmei."
+    ],
+    "shareText": "Jūs arī varat atbalstīt mūsu projektu, vienkārši daloties ar šo saiti:",
+    "donationText": "Jūs varat arī ziedot mūsu projektam, lai palīdzētu mums attīstīties! Ziedojumi tiek apstrādāti, izmantojot drošu PayPal platformu, kas garantē jūsu datu aizsardzību. Jūsu atbalsts ir ļoti svarīgs, un mēs to augstu vērtējam.",
+    "donateButton": "Ziedot tagad"
+  },
+  "toast": {
+    "urlCopied": "URL nokopēta!",
+    "urlCopyError": "Neizdevās nokopēt URL"
+  },
+  "illustrations": {
+    "alt": "Atbalsts",
+    "attribution": "Business illustrations by Storyset"
+  }
+} 

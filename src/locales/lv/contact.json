@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "Kontakti - Atrodi savu pazudušo mājdzīvnieku | Lunori",
+    "description": "Vai jums ir jautājumi vai ierosinājumi? Sazinieties ar mums, lai palīdzētu atgriezt pazudušos mājdzīvniekus viņu ģimenēm Latvijā.",
+    "keywords": "kontakti, pazudis mājdzīvnieks, palīdzība, dzīvnieku glābšana, Latvija"
+  },
+  "title": "Kontakti",
+  "questions": {
+    "title": "Kādi jautājumi?",
+    "description1": "Ja jums ir jautājumi, ierosinājumi vai vienkārši vēlaties ar mums sazināties — aizpildiet formu zemāk, un mēs ar prieku atbildēsim.",
+    "description2": "Mēs priecājamies dzirdēt jūsu viedokli! Vai jums ir ideja, ierosinājums vai esat pamanījis kļūdu? Lūdzu, aizpildiet formu zemāk, un mēs ar jums sazināsimies, ja būs nepieciešams.",
+    "description3": "Jūsu atsauksmes palīdz mums uzlabot sniegto informāciju un pakalpojumus. Neatkarīgi no tā, vai vēlaties uzzināt vairāk, pieteikt sadarbību vai vienkārši dalīties savā pieredzē — jūsu viedoklis mums ir svarīgs."
+  },
+  "form": {
+    "title": "Sazinieties ar mums",
+    "subject": "Tēma",
+    "name": "Jūsu vārds",
+    "email": "Jūsu e-pasts",
+    "message": "Jūsu ziņa",
+    "privacy": "Apstiprinu, ka esmu izlasījis",
+    "privacyLink": "privātuma politiku",
+    "privacyEnd": ". Dati tiek apstrādāti, lai atbildētu uz pieprasījumu.",
+    "submit": "Nosūtīt ziņu",
+    "submitLoading": "Nosūtīšana...",
+    "loginToSubmit": "Ielogoties, lai nosūtītu ziņu"
+  },
+  "errors": {
+    "nameRequired": "Lūdzu, ievadiet savu vārdu.",
+    "emailRequired": "Lūdzu, ievadiet e-pastu.",
+    "emailInvalid": "Lūdzu, ievadiet derīgu e-pasta adresi.",
+    "messageRequired": "Ziņa nedrīkst būt tukša.",
+    "messageTooShort": "Ziņai jābūt vismaz 3 rakstzīmēm garai.",
+    "messageTooLong": "Ziņa nedrīkst būt garāka par 500 rakstzīmēm.",
+    "fillRequiredFields": "Lūdzu, aizpildiet visus obligātos laukus.",
+    "loginRequired": "Lūdzu, ielogojieties, lai nosūtītu ziņu.",
+    "rateLimit": "Lūdzu, uzgaidiet pirms nākamās ziņas nosūtīšanas. Jūs varat nosūtīt ziņu vēlreiz pēc 1 minūtes.",
+    "fixErrors": "Lūdzu, labojiet norādītās kļūdas.",
+    "generalError": "Radās kļūda. Mēģiniet vēlreiz vēlāk.",
+    "success": "Ziņa veiksmīgi nosūtīta!"
+  },
+  "contactInfo": {
+    "title": "Kontaktinformācija",
+    "email": {
+      "description": "Jautājumi, atsauksmes vai sadarbība? Rakstiet mums!"
+    },
+    "phone": {
+      "description": "Zvaniet mums darba laikā – mēs vienmēr esam gatavi palīdzēt."
+    },
+    "location": {
+      "description": "Mēs atrodamies šajā reģionā, bet vienmēr esam gatavi palīdzēt attālināti!"
+    }
+  },
+  "socialMedia": {
+    "title": "Sekojiet mums sociālajos tīklos",
+    "description": "Mēs dalāmies ar noderīgiem padomiem, jaunākajām ziņām, sadarbībām un stāstiem par pazudušiem mājdzīvniekiem. Pievienojieties mums Facebook un Instagram, lai vienmēr būtu lietas kursā."
+  },
+  "illustrations": {
+    "alt": "Saziņas ilustrācija",
+    "attribution": "Business illustrations by Storyset"
+  }
+}

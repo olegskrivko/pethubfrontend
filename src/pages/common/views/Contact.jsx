@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -31,12 +33,11 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-// import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
 
 import contactImage from '../../../assets/images/contact/mobile_marketing_cuate_blue.svg';
 import feedbackImage from '../../../assets/images/feedback/customer_feedback_amico_blue.svg';
-import { SUBJECT_CHOICES } from '../../../constants/Choices';
+import { SUBJECT_CHOICES, getSubjectChoices } from '../../../constants/Choices';
 import {
   CITY,
   COUNTRY,
@@ -49,11 +50,15 @@ import {
   YOUTUBE,
 } from '../../../constants/config';
 import { useAuth } from '../../../contexts/AuthContext';
-import ImageTextSection from '../../layout/ImageTextSection';
+// import { LanguageContext } from '../../../contexts/LanguageContext';
+
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Contact = () => {
+  const { i18n } = useTranslation();
+  console.log(i18n.language);
+  const { t } = useTranslation('contact');
   const { user } = useAuth();
   const navigate = useNavigate();
   const [subject, setSubject] = useState(5);
@@ -78,19 +83,19 @@ const Contact = () => {
     const tempErrors = {};
 
     if (!sender.trim()) {
-      tempErrors.sender = 'Lūdzu, ievadiet savu vārdu.';
+      tempErrors.sender = t('errors.nameRequired');
     }
     if (!email) {
-      tempErrors.email = 'Lūdzu, ievadiet e-pastu.';
+      tempErrors.email = t('errors.emailRequired');
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      tempErrors.email = 'Lūdzu, ievadiet derīgu e-pasta adresi.';
+      tempErrors.email = t('errors.emailInvalid');
     }
     if (!message.trim()) {
-      tempErrors.message = 'Ziņa nedrīkst būt tukša.';
+      tempErrors.message = t('errors.messageRequired');
     } else if (message.length < 3) {
-      tempErrors.message = 'Ziņai jābūt vismaz 3 rakstzīmēm garai.';
+      tempErrors.message = t('errors.messageTooShort');
     } else if (message.length > 500) {
-      tempErrors.message = 'Ziņa nedrīkst būt garāka par 500 rakstzīmēm.';
+      tempErrors.message = t('errors.messageTooLong');
     }
 
     setErrors(tempErrors);
@@ -110,7 +115,7 @@ const Contact = () => {
     }
 
     if (!validate()) {
-      showAlert('Lūdzu, aizpildiet visus obligātos laukus.', 'error');
+      showAlert(t('errors.fillRequiredFields'), 'error');
       return;
     }
 
@@ -118,7 +123,7 @@ const Contact = () => {
     try {
       const accessToken = localStorage.getItem('access_token');
       if (!accessToken) {
-        showAlert('Lūdzu, ielogojieties, lai nosūtītu ziņu.', 'error');
+        showAlert(t('errors.loginRequired'), 'error');
         navigate('/login');
         return;
       }
@@ -141,7 +146,7 @@ const Contact = () => {
       );
 
       if (response.status === 201) {
-        showAlert('Ziņa veiksmīgi nosūtīta!');
+        showAlert(t('errors.success'));
         setSubject(5);
         setSender('');
         setEmail('');
@@ -152,12 +157,9 @@ const Contact = () => {
       console.error('Contact error:', error);
 
       if (error.response?.status === 429) {
-        showAlert(
-          'Lūdzu, uzgaidiet pirms nākamās ziņas nosūtīšanas. Jūs varat nosūtīt ziņu vēlreiz pēc 1 minūtes.',
-          'error',
-        );
+        showAlert(t('errors.rateLimit'), 'error');
       } else if (error.response?.status === 401) {
-        showAlert('Lūdzu, ielogojieties, lai nosūtītu ziņu.', 'error');
+        showAlert(t('errors.loginRequired'), 'error');
         navigate('/login');
       } else if (error.response?.data) {
         const backendErrors = error.response.data;
@@ -171,12 +173,12 @@ const Contact = () => {
             }
           });
           setErrors(newErrors);
-          showAlert('Lūdzu, labojiet norādītās kļūdas.', 'error');
+          showAlert(t('errors.fixErrors'), 'error');
         } else {
-          showAlert(backendErrors.detail || 'Radās kļūda. Mēģiniet vēlreiz vēlāk.', 'error');
+          showAlert(backendErrors.detail || t('errors.generalError'), 'error');
         }
       } else {
-        showAlert('Radās kļūda. Mēģiniet vēlreiz vēlāk.', 'error');
+        showAlert(t('errors.generalError'), 'error');
       }
     } finally {
       setLoading(false);
@@ -192,6 +194,25 @@ const Contact = () => {
 
   return (
     <React.Fragment>
+      <Helmet>
+        {/* Dynamically set the language attribute on <html> */}
+        <html lang={i18n.language || 'lv'} />
+
+        {/* Dynamic title */}
+        <title>{t('meta.title')}</title>
+
+        {/* Dynamic description */}
+        <meta name="description" content={t('meta.description')} />
+
+        {/* Keywords (optional) */}
+        <meta name="keywords" content={t('meta.keywords')} />
+
+        {/* Open Graph tags for social */}
+        <meta property="og:title" content={t('meta.title')} />
+        <meta property="og:description" content={t('meta.description')} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={window.location.href} />
+      </Helmet>
       <ToastContainer position="top-right" autoClose={3000} />
 
       <Container maxWidth="lg" disableGutters>
@@ -207,7 +228,7 @@ const Contact = () => {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Kontakti
+          {t('title')}
         </Typography>
         <Grid container spacing={6} alignItems="center" sx={{ mb: 8 }}>
           <Grid size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
@@ -215,7 +236,7 @@ const Contact = () => {
               <CardMedia
                 component="img"
                 src={contactImage}
-                alt="Saziņas ilustrācija"
+                alt={t('illustrations.alt')}
                 sx={{
                   width: { xs: '70%', sm: '80%', md: '90%', lg: '100%' },
                   objectFit: 'contain',
@@ -236,7 +257,7 @@ const Contact = () => {
                   fontWeight: 300,
                 }}
               >
-                Business illustrations by Storyset
+                {t('illustrations.attribution')}
               </MuiLink>
             </Box>
           </Grid>
@@ -248,20 +269,16 @@ const Contact = () => {
                 align="left"
                 sx={{ fontWeight: 500, color: '#16477c', mb: 2, fontSize: { xs: '1.8rem', sm: '2rem' } }}
               >
-                Kādi jautājumi?
+                {t('questions.title')}
               </Typography>
               <Typography gutterBottom variant="body1" sx={{ mb: 2 }}>
-                Ja jums ir jautājumi, ierosinājumi vai vienkārši vēlaties ar mums sazināties — aizpildiet formu zemāk,
-                un mēs ar prieku atbildēsim.
+                {t('questions.description1')}
               </Typography>
               <Typography gutterBottom variant="body1" sx={{ mb: 2 }}>
-                Mēs priecājamies dzirdēt jūsu viedokli! Vai jums ir ideja, ierosinājums vai esat pamanījis kļūdu? Lūdzu,
-                aizpildiet formu zemāk, un mēs ar jums sazināsimies, ja būs nepieciešams.
+                {t('questions.description2')}
               </Typography>
               <Typography gutterBottom variant="body1" sx={{ mb: 2 }}>
-                Jūsu atsauksmes palīdz mums uzlabot sniegto informāciju un pakalpojumus. Neatkarīgi no tā, vai vēlaties
-                uzzināt vairāk, pieteikt sadarbību vai vienkārši dalīties savā pieredzē — jūsu viedoklis mums ir
-                svarīgs.
+                {t('questions.description3')}
               </Typography>
             </Box>
           </Grid>
@@ -287,7 +304,7 @@ const Contact = () => {
                   textAlign: 'center',
                 }}
               >
-                Sazinieties ar mums
+                {t('form.title')}
               </Typography>
 
               <Box
@@ -306,15 +323,15 @@ const Contact = () => {
                 )}
 
                 <FormControl fullWidth>
-                  <InputLabel id="subject-label">Tēma</InputLabel>
+                  <InputLabel id="subject-label">{t('form.subject')}</InputLabel>
                   <Select
                     labelId="subject-label"
                     value={subject}
-                    label="Tēma"
+                    label={t('form.subject')}
                     onChange={(e) => setSubject(e.target.value)}
                     error={!!errors.subject}
                   >
-                    {SUBJECT_CHOICES.map((choice) => (
+                    {getSubjectChoices(i18n.language).map((choice) => (
                       <MenuItem key={choice.value} value={choice.value}>
                         {choice.label}
                       </MenuItem>
@@ -322,7 +339,7 @@ const Contact = () => {
                   </Select>
                 </FormControl>
                 <TextField
-                  label="Jūsu vārds"
+                  label={t('form.name')}
                   fullWidth
                   value={sender}
                   onChange={(e) => setSender(e.target.value)}
@@ -337,7 +354,7 @@ const Contact = () => {
                   }}
                 />
                 <TextField
-                  label="Jūsu e-pasts"
+                  label={t('form.email')}
                   type="email"
                   fullWidth
                   value={email}
@@ -353,7 +370,7 @@ const Contact = () => {
                   }}
                 />
                 <TextField
-                  label="Jūsu ziņa"
+                  label={t('form.message')}
                   multiline
                   rows={4}
                   fullWidth
@@ -388,7 +405,7 @@ const Contact = () => {
                     }}
                   />
                   <Typography variant="body2" color="text.secondary">
-                    Apstiprinu, ka esmu izlasījis{' '}
+                    {t('form.privacy')}{' '}
                     <MuiLink
                       href="policies"
                       target="_blank"
@@ -401,9 +418,9 @@ const Contact = () => {
                         },
                       }}
                     >
-                      privātuma politiku
+                      {t('form.privacyLink')}
                     </MuiLink>
-                    . Dati tiek apstrādāti, lai atbildētu uz pieprasījumu.
+                    {t('form.privacyEnd')}
                   </Typography>
                 </Box>
                 <Button
@@ -418,7 +435,7 @@ const Contact = () => {
                   }}
                   startIcon={loading ? <CircularProgress size={20} color="inherit" /> : null}
                 >
-                  {loading ? 'Nosūtīšana...' : user ? 'Nosūtīt ziņu' : 'Ielogoties, lai nosūtītu ziņu'}
+                  {loading ? t('form.submitLoading') : user ? t('form.submit') : t('form.loginToSubmit')}
                 </Button>
               </Box>
             </Paper>
@@ -429,7 +446,7 @@ const Contact = () => {
               <CardMedia
                 component="img"
                 src={feedbackImage}
-                alt="Saziņas ilustrācija"
+                alt={t('illustrations.alt')}
                 sx={{
                   width: { xs: '70%', sm: '80%', md: '90%', lg: '100%' },
                   objectFit: 'contain',
@@ -450,7 +467,7 @@ const Contact = () => {
                   fontWeight: 300,
                 }}
               >
-                Business illustrations by Storyset
+                {t('illustrations.attribution')}
               </MuiLink>
             </Box>
           </Grid>
@@ -461,7 +478,7 @@ const Contact = () => {
           align="center"
           sx={{ fontWeight: 500, color: '#16477c', mt: 8, mb: 4, mb: 5, fontSize: { xs: '1.8rem', sm: '2rem' } }}
         >
-          Kontaktinformācija
+          {t('contactInfo.title')}
         </Typography>
         <Grid container spacing={3} style={{ marginTop: '1rem', marginBottom: '3rem' }}>
           <Grid size={{ xs: 12, sm: 12, md: 6, lg: 4 }} textAlign="center">
@@ -497,7 +514,7 @@ const Contact = () => {
                     fontFamily: 'Titillium Web, sans-serif',
                   }}
                 >
-                  Jautājumi, atsauksmes vai sadarbība? Rakstiet mums!
+                  {t('contactInfo.email.description')}
                 </Typography>
               </div>
             </CardContent>
@@ -540,7 +557,7 @@ const Contact = () => {
                     fontFamily: 'Titillium Web, sans-serif',
                   }}
                 >
-                  Zvaniet mums darba laikā – mēs vienmēr esam gatavi palīdzēt.
+                  {t('contactInfo.phone.description')}
                 </Typography>
               </div>
             </CardContent>
@@ -583,7 +600,7 @@ const Contact = () => {
                     fontFamily: 'Titillium Web, sans-serif',
                   }}
                 >
-                  Mēs atrodamies šajā reģionā, bet vienmēr esam gatavi palīdzēt attālināti!
+                  {t('contactInfo.location.description')}
                 </Typography>
               </div>
             </CardContent>
@@ -591,58 +608,59 @@ const Contact = () => {
         </Grid>
 
         <Grid container spacing={3} justifyContent="center">
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12 }}>
             <Typography
               variant="h4"
               align="center"
               sx={{ fontWeight: 500, color: '#16477c', mt: 8, mb: 4, fontSize: { xs: '1.8rem', sm: '2rem' } }}
             >
-              Sekojiet mums sociālajos tīklos
+              {t('socialMedia.title')}
             </Typography>
 
             <Typography variant="body1" align="center" sx={{ maxWidth: 700, mx: 'auto', mb: 3, color: '#555' }}>
-              Mēs dalāmies ar noderīgiem padomiem, jaunākajām ziņām, sadarbībām un stāstiem par pazudušiem
-              mājdzīvniekiem. Pievienojieties mums Facebook un Instagram, lai vienmēr būtu lietas kursā.
+              {t('socialMedia.description')}
             </Typography>
           </Grid>
 
-          {[
-            {
-              href: FACEBOOK,
-              icon: <FacebookIcon fontSize="large" />,
-              color: '#16477c',
-            },
-            {
-              href: INSTAGRAM,
-              icon: <InstagramIcon fontSize="large" />,
-              color: '#16477c',
-            },
-            {
-              href: YOUTUBE,
-              icon: <YouTubeIcon fontSize="large" />,
-              color: '#16477c',
-            },
-            { href: X, icon: <XIcon fontSize="large" />, color: '#16477c' },
-          ].map(({ href, icon, color }, index) => (
-            <Grid item key={index}>
-              <MuiLink href={href} target="_blank" rel="noopener" underline="none">
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    color: color,
-                    transition: 'color 0.3s ease',
-                    '&:hover': {
-                      color: '#3498db',
-                    },
-                  }}
-                >
-                  {icon}
-                </Box>
-              </MuiLink>
-            </Grid>
-          ))}
+          <Grid container spacing={2} justifyContent="center">
+            {[
+              {
+                href: FACEBOOK,
+                icon: <FacebookIcon fontSize="large" />,
+                color: '#16477c',
+              },
+              {
+                href: INSTAGRAM,
+                icon: <InstagramIcon fontSize="large" />,
+                color: '#16477c',
+              },
+              {
+                href: YOUTUBE,
+                icon: <YouTubeIcon fontSize="large" />,
+                color: '#16477c',
+              },
+              { href: X, icon: <XIcon fontSize="large" />, color: '#16477c' },
+            ].map(({ href, icon, color }, index) => (
+              <Grid item key={index}>
+                <MuiLink href={href} target="_blank" rel="noopener" underline="none">
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      color: color,
+                      transition: 'color 0.3s ease',
+                      '&:hover': {
+                        color: '#3498db',
+                      },
+                    }}
+                  >
+                    {icon}
+                  </Box>
+                </MuiLink>
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
       </Container>
     </React.Fragment>

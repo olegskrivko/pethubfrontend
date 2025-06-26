@@ -232,7 +232,7 @@ const Footer = () => {
         </Container>
 
         <Container>
-          <Grid container>
+          <Grid container mt={4}>
             {/* SUPPORT */}
             <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} textAlign="center">
               <Typography gutterBottom variant="body2" sx={{ color: '#fff' }}>
@@ -243,6 +243,7 @@ const Footer = () => {
                     color: '#DAFF84',
                     textDecoration: 'none',
                     textTransform: 'uppercase',
+                    fontWeight: 500,
                   }}
                 >
                   {t('support')}

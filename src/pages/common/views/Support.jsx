@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -25,27 +26,15 @@ import CollaborationtImg from '../../../assets/images/collaboration/creative_tea
 import SupportImg from '../../../assets/images/support/cat_astronaut_cuate_blue.svg';
 import { DOMAIN_URL, PAYPAL_BUTTON_ID } from '../../../constants/config';
 
-const collaborationPoints = [
-  'Dzīvnieku patversmēm un glābšanas organizācijām – lai palīdzētu ātrāk atrast mājas pazudušajiem mājdzīvniekiem.',
-  'Veterinārajām klīnikām un speciālistiem – lai sniegtu vērtīgus padomus mājdzīvnieku īpašniekiem.',
-  'Tehnoloģiju un datu partnerībām – lai uzlabotu mākslīgā intelekta un datu analīzes iespējas pazudušo mājdzīvnieku atrašanā.',
-  'Sociālo tīklu un mediju sadarbībām – lai informācija par pazudušiem dzīvniekiem izplatītos pēc iespējas plašāk.',
-  'Izstrādātājiem un dizaineriem – ja jūs vēlaties pievienoties mūsu komandai, lai uzlabotu lietotnes funkcionalitāti vai dizainu, mēs būsim priecīgi sadarboties.',
-];
-// Points to show in the list of how people can support the project
-const supportPoints = [
-  'Finansiāls atbalsts hostinga vai mākoņservisu segšanai.',
-  'Sponsorēšana lietotnes jaunu funkciju attīstībai.',
-  'Dalīšanās mūsu projektā sociālajos medijos.',
-  'Ieteikumi vai kontakti, kas var palīdzēt izaugsmei.',
-];
-
 const Support = () => {
+  const { i18n } = useTranslation();
+  const { t } = useTranslation('support');
+
   // Function to copy the URL to the clipboard
   const handleCopyUrl = () => {
     navigator.clipboard.writeText(DOMAIN_URL).then(
-      () => toast.success('URL nokopēta!'), // Success toast notification when URL is copied
-      () => toast.error('Neizdevās nokopēt URL'), // Error toast notification when copying fails
+      () => toast.success(t('toast.urlCopied')), // Success toast notification when URL is copied
+      () => toast.error(t('toast.urlCopyError')), // Error toast notification when copying fails
     );
   };
 
@@ -53,21 +42,14 @@ const Support = () => {
     <React.Fragment>
       {/* Helmet for SEO metadata */}
       <Helmet>
-        <title>Atbalstīt projektu | Lunori</title>
-        <meta
-          name="description"
-          content="Palīdzi mums attīstīt Lunori platformu un atbalstīt mūsu projektu! Uzzini, kā vari palīdzēt, daloties, ziedojot vai sponsorējot."
-        />
-        <meta
-          name="keywords"
-          content="atbalstīt projektu, ziedot, sponsorēt, palīdzēt dzīvniekiem, pazudušie mājdzīvnieki, Lunori"
-        />
-        <meta property="og:title" content="Atbalstīt projektu | Lunori" />
-        <meta
-          property="og:description"
-          content="Palīdzi mums attīstīt Lunori platformu un atbalstīt mūsu projektu! Uzzini, kā vari palīdzēt, daloties, ziedojot vai sponsorējot."
-        />
+        <html lang={i18n.language || 'lv'} />
+        <title>{t('meta.title')}</title>
+        <meta name="description" content={t('meta.description')} />
+        <meta name="keywords" content={t('meta.keywords')} />
+        <meta property="og:title" content={t('meta.title')} />
+        <meta property="og:description" content={t('meta.description')} />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content={window.location.href} />
       </Helmet>
       {/* Toast notifications for success and error messages */}
       <ToastContainer />
@@ -86,7 +68,7 @@ const Support = () => {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Atbalstīt projektu
+          {t('title')}
         </Typography>
         <Grid container spacing={6} alignItems="center">
           {/* Left Side - Illustration Section */}
@@ -95,7 +77,7 @@ const Support = () => {
               <CardMedia
                 component="img"
                 src={CollaborationtImg}
-                alt="Atbalsts"
+                alt={t('illustrations.alt')}
                 sx={{
                   width: { xs: '100%', sm: '80%', md: '100%' },
                   objectFit: 'contain',
@@ -117,7 +99,7 @@ const Support = () => {
                   fontWeight: 300,
                 }}
               >
-                Business illustrations by Storyset
+                {t('illustrations.attribution')}
               </MuiLink>
             </Box>
           </Grid>
@@ -125,17 +107,15 @@ const Support = () => {
           {/* Right Side - Content Section */}
           <Grid size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
             <Typography variant="body1" sx={{ mb: 3 }}>
-              Mēs ticam, ka kopīga sadarbība var padarīt mūsu platformu vēl labāku! Ja esat dzīvnieku patversme,
-              veterinārā klīnika, tehnoloģiju uzņēmums vai vienkārši kaislīgs dzīvnieku mīļotājs, mēs labprāt uzklausītu
-              jūsu idejas.
+              {t('collaboration.intro')}
             </Typography>
 
             <Typography variant="h6" sx={{ my: 1, fontWeight: 500, color: '#16477c' }}>
-              Mēs esam atvērti dažāda veida partnerībām:
+              {t('collaboration.title')}
             </Typography>
 
             <List dense>
-              {collaborationPoints.map((point, index) => (
+              {t('collaboration.points', { returnObjects: true }).map((point, index) => (
                 <ListItem key={index} sx={{ pl: 0 }}>
                   <ListItemIcon sx={{ minWidth: 32 }}>
                     <Pets fontSize="small" sx={{ color: '#16477c' }} />
@@ -146,8 +126,7 @@ const Support = () => {
             </List>
 
             <Typography variant="body1" sx={{ mt: 3, mb: 4 }}>
-              Ja jums ir idejas vai vēlme sadarboties, sazinieties ar mums! Kopā mēs varam radīt drošāku un atbalstošāku
-              vidi mājdzīvnieku īpašniekiem.
+              {t('collaboration.outro')}
             </Typography>
           </Grid>
         </Grid>
@@ -156,17 +135,15 @@ const Support = () => {
           {/* Left Side - Illustration Section */}
           <Grid size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
             <Typography variant="body1" sx={{ mb: 3 }}>
-              Mēs esam pateicīgi par jebkādu atbalstu vai sponsora palīdzību, kas var palīdzēt mums atklāt pilnu mūsu
-              tīmekļa lietotnes potenciālu. Ja jūs dalāties mūsu redzējumā un vēlētos ieguldīt premium līmeņu un
-              pakalpojumu izmantošanas izmaksās, lūdzu, sazinieties ar mums.
+              {t('support.intro')}
             </Typography>
             <Typography variant="h6" sx={{ my: 1, fontWeight: 500, color: '#16477c' }}>
-              Veidi, kā jūs varat palīdzēt:
+              {t('support.title')}
             </Typography>
 
             {/* List of support options */}
             <List dense>
-              {supportPoints.map((point, index) => (
+              {t('support.points', { returnObjects: true }).map((point, index) => (
                 <ListItem key={index} sx={{ pl: 0 }}>
                   <ListItemIcon sx={{ minWidth: 32 }}>
                     <Pets fontSize="small" sx={{ color: '#16477c' }} /> {/* Icon for each support point */}
@@ -177,7 +154,7 @@ const Support = () => {
             </List>
 
             <Typography variant="body1" sx={{ mt: 3 }}>
-              Jūs arī varat atbalstīt mūsu projektu, vienkārši daloties ar šo saiti:
+              {t('support.shareText')}
             </Typography>
 
             {/* Shareable URL with copy functionality */}
@@ -199,9 +176,7 @@ const Support = () => {
 
             {/* PayPal Donation Button Section */}
             <Typography variant="body1" sx={{ mt: 3, mb: 2 }}>
-              Jūs varat arī ziedot mūsu projektam, lai palīdzētu mums attīstīties! Ziedojumi tiek apstrādāti, izmantojot
-              drošu PayPal platformu, kas garantē jūsu datu aizsardzību. Jūsu atbalsts ir ļoti svarīgs, un mēs to augstu
-              vērtējam.
+              {t('support.donationText')}
             </Typography>
             {/* PayPal Button for donations */}
             <Box display="flex" justifyContent="center" sx={{ mt: 2 }}>
@@ -215,7 +190,7 @@ const Support = () => {
                   window.open(`https://www.paypal.com/donate/?hosted_button_id=${PAYPAL_BUTTON_ID}`, '_blank')
                 }
               >
-                Ziedot tagad
+                {t('support.donateButton')}
               </Button>
             </Box>
           </Grid>
@@ -226,7 +201,7 @@ const Support = () => {
               <CardMedia
                 component="img"
                 src={SupportImg}
-                alt="Atbalsts"
+                alt={t('illustrations.alt')}
                 sx={{
                   width: { xs: '100%', sm: '80%', md: '100%' },
                   objectFit: 'contain',
@@ -248,7 +223,7 @@ const Support = () => {
                   fontWeight: 300,
                 }}
               >
-                Business illustrations by Storyset
+                {t('illustrations.attribution')}
               </MuiLink>
             </Box>
           </Grid>

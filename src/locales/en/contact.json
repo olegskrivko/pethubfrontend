@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "Contact - Find Your Lost Pet | Lunori",
+    "description": "Have questions or suggestions? Contact us to help reunite lost pets with their families in Latvia.",
+    "keywords": "contact, lost pet, help, pet rescue, Latvia"
+  },
+  "title": "Contact",
+  "questions": {
+    "title": "Any Questions?",
+    "description1": "If you have questions, suggestions, or simply want to get in touch with us — fill out the form below, and we'll be happy to respond.",
+    "description2": "We're happy to hear your opinion! Do you have an idea, suggestion, or have you noticed an error? Please fill out the form below, and we'll get in touch with you if needed.",
+    "description3": "Your feedback helps us improve the information and services we provide. Whether you want to learn more, propose collaboration, or simply share your experience — your opinion is important to us."
+  },
+  "form": {
+    "title": "Contact Us",
+    "subject": "Subject",
+    "name": "Your Name",
+    "email": "Your Email",
+    "message": "Your Message",
+    "privacy": "I confirm that I have read the",
+    "privacyLink": "privacy policy",
+    "privacyEnd": ". Data is processed to respond to the request.",
+    "submit": "Send Message",
+    "submitLoading": "Sending...",
+    "loginToSubmit": "Login to Send Message"
+  },
+  "errors": {
+    "nameRequired": "Please enter your name.",
+    "emailRequired": "Please enter your email.",
+    "emailInvalid": "Please enter a valid email address.",
+    "messageRequired": "Message cannot be empty.",
+    "messageTooShort": "Message must be at least 3 characters long.",
+    "messageTooLong": "Message cannot be longer than 500 characters.",
+    "fillRequiredFields": "Please fill in all required fields.",
+    "loginRequired": "Please log in to send a message.",
+    "rateLimit": "Please wait before sending the next message. You can send a message again after 1 minute.",
+    "fixErrors": "Please fix the indicated errors.",
+    "generalError": "An error occurred. Please try again later.",
+    "success": "Message sent successfully!"
+  },
+  "contactInfo": {
+    "title": "Contact Information",
+    "email": {
+      "description": "Questions, feedback, or collaboration? Write to us!"
+    },
+    "phone": {
+      "description": "Call us during business hours – we're always ready to help."
+    },
+    "location": {
+      "description": "We are located in this region, but we're always ready to help remotely!"
+    }
+  },
+  "socialMedia": {
+    "title": "Follow Us on Social Media",
+    "description": "We share useful tips, latest news, collaborations, and stories about lost pets. Join us on Facebook and Instagram to always stay in the loop."
+  },
+  "illustrations": {
+    "alt": "Contact illustration",
+    "attribution": "Business illustrations by Storyset"
+  }
+}

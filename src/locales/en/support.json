@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "title": "Support the Project | Lunori",
+    "description": "Help us develop the Lunori platform and support our project! Learn how you can help by sharing, donating, or sponsoring.",
+    "keywords": "support project, donate, sponsor, help animals, lost pets, Lunori"
+  },
+  "title": "Support the Project",
+  "collaboration": {
+    "intro": "We believe that collaborative partnerships can make our platform even better! If you are an animal shelter, veterinary clinic, technology company, or simply a passionate animal lover, we would love to hear your ideas.",
+    "title": "We are open to various types of partnerships:",
+    "points": [
+      "Animal shelters and rescue organizations – to help find homes for lost pets faster.",
+      "Veterinary clinics and specialists – to provide valuable advice to pet owners.",
+      "Technology and data partnerships – to improve artificial intelligence and data analysis capabilities in finding lost pets.",
+      "Social media and media collaborations – to spread information about lost animals as widely as possible.",
+      "Developers and designers – if you want to join our team to improve the app's functionality or design, we would be happy to collaborate."
+    ],
+    "outro": "If you have ideas or desire to collaborate, contact us! Together we can create a safer and more supportive environment for pet owners."
+  },
+  "support": {
+    "intro": "We are grateful for any support or sponsor assistance that can help us unlock the full potential of our web application. If you share our vision and would like to invest in premium level and service usage costs, please contact us.",
+    "title": "Ways you can help:",
+    "points": [
+      "Financial support for hosting or cloud services coverage.",
+      "Sponsoring the development of new app features.",
+      "Sharing our project on social media.",
+      "Recommendations or contacts that can help with growth."
+    ],
+    "shareText": "You can also support our project by simply sharing this link:",
+    "donationText": "You can also donate to our project to help us grow! Donations are processed using the secure PayPal platform, which guarantees the protection of your data. Your support is very important, and we highly value it.",
+    "donateButton": "Donate Now"
+  },
+  "toast": {
+    "urlCopied": "URL copied!",
+    "urlCopyError": "Failed to copy URL"
+  },
+  "illustrations": {
+    "alt": "Support",
+    "attribution": "Business illustrations by Storyset"
+  }
+} 
