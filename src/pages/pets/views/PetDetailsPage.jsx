@@ -1,9 +1,14 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { Link, useParams } from 'react-router-dom';
 
 // Import Latvian locale
 import { ContactSupportOutlined } from '@mui/icons-material';
+import {
+  AddLocationAlt as AddLocationAltIcon,
+  AddPhotoAlternate as AddPhotoAlternateIcon,
+  Send as SendIcon,
+} from '@mui/icons-material';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -26,25 +31,21 @@ import {
   Container,
   Grid,
   IconButton,
+  TextField,
   Tooltip,
   Typography,
-  TextField,
 } from '@mui/material';
 import Chip from '@mui/material/Chip';
 import Lottie from 'lottie-react';
 import moment from 'moment';
 import 'moment/locale/lv';
 import { useSnackbar } from 'notistack';
-import {
-  AddLocationAlt as AddLocationAltIcon,
-  AddPhotoAlternate as AddPhotoAlternateIcon,
-  Send as SendIcon,
-} from '@mui/icons-material';
 
 import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
 import { useAuth } from '../../../contexts/AuthContext';
 // import LeafletPetDetailsMap from '../../../components/LeafletPetDetailsMap'
 import LeafletPetDetailsMapNew from '../../../shared/maps/LeafletPetDetailsMapNew';
+import UploadTest from '../../UploadTest';
 import IconLabelTabs from '../components/IconLabelTabs';
 import ImageCarousel from '../components/ImageCarousel';
 import PetAttributes from '../components/PetAttributes';
@@ -105,10 +106,10 @@ const PetDetailsPage = () => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.bmp', '.webp']
+      'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.bmp', '.webp'],
     },
     maxFiles: 1,
-    multiple: false
+    multiple: false,
   });
 
   // Function to receive data from child
@@ -608,7 +609,7 @@ const PetDetailsPage = () => {
           setCoords={setCoords}
         />
       </Grid>
-
+      <UploadTest />
       {/* <Card
         sx={{
           p: { xs: 1, sm: 2 },
@@ -664,8 +665,8 @@ const PetDetailsPage = () => {
           {/* Simple file input like UploadTest - COMPLETELY ISOLATED */}
           <div style={{ marginBottom: '16px' }}>
             <p style={{ marginBottom: '8px', color: '#666' }}>Pievienot foto:</p>
-            <div 
-              {...getRootProps()} 
+            <div
+              {...getRootProps()}
               style={{
                 border: '2px dashed #00b3a4',
                 borderRadius: '8px',
@@ -678,29 +679,25 @@ const PetDetailsPage = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
               }}
             >
               <input {...getInputProps()} />
-              <AddPhotoAlternateIcon 
-                style={{ 
-                  fontSize: '32px', 
-                  color: '#00b3a4', 
-                  marginBottom: '8px' 
-                }} 
+              <AddPhotoAlternateIcon
+                style={{
+                  fontSize: '32px',
+                  color: '#00b3a4',
+                  marginBottom: '8px',
+                }}
               />
               {isDragActive ? (
-                <p style={{ margin: 0, color: '#00b3a4', fontWeight: 'bold' }}>
-                  Drop the image here...
-                </p>
+                <p style={{ margin: 0, color: '#00b3a4', fontWeight: 'bold' }}>Drop the image here...</p>
               ) : (
                 <div>
                   <p style={{ margin: '0 0 4px 0', color: '#666', fontWeight: '500' }}>
                     Drag & drop an image here, or click to select
                   </p>
-                  <p style={{ margin: 0, fontSize: '12px', color: '#999' }}>
-                    Supports: JPG, PNG, GIF, BMP, WebP
-                  </p>
+                  <p style={{ margin: 0, fontSize: '12px', color: '#999' }}>Supports: JPG, PNG, GIF, BMP, WebP</p>
                 </div>
               )}
             </div>
@@ -708,16 +705,24 @@ const PetDetailsPage = () => {
 
           {/* File details */}
           {file && (
-            <div style={{ 
-              marginBottom: '16px', 
-              padding: '16px', 
-              backgroundColor: '#f5f5f5', 
-              borderRadius: '4px',
-              border: '1px solid #ddd'
-            }}>
-              <p><strong>Selected File:</strong> {file.name}</p>
-              <p><strong>File Type:</strong> {file.type}</p>
-              <p><strong>File Size:</strong> {(file.size / 1024 / 1024).toFixed(2)} MB</p>
+            <div
+              style={{
+                marginBottom: '16px',
+                padding: '16px',
+                backgroundColor: '#f5f5f5',
+                borderRadius: '4px',
+                border: '1px solid #ddd',
+              }}
+            >
+              <p>
+                <strong>Selected File:</strong> {file.name}
+              </p>
+              <p>
+                <strong>File Type:</strong> {file.type}
+              </p>
+              <p>
+                <strong>File Size:</strong> {(file.size / 1024 / 1024).toFixed(2)} MB
+              </p>
             </div>
           )}
 
