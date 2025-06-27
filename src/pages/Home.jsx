@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
@@ -28,7 +29,7 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import MapBanner from '../pages/common/components/MapBanner';
-import MapBannerBottom from '../pages/common/components/MapBannerBottom';
+// import MapBannerBottom from '../pages/common/components/MapBannerBottom';
 import MapBannerDeepBottom from '../pages/common/components/MapBannerDeepBottom';
 import PetPath from '../pages/common/components/PetPath';
 import ChatBot from '../shared/components/ChatBot';
@@ -40,24 +41,16 @@ function Home() {
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const { t } = useTranslation('homePage');
 
   return (
     <React.Fragment>
       <Helmet>
-        <title>Galvenā - Atrodi savu pazudušo mājdzīvnieku</title>
-        <meta
-          name="description"
-          content="Palīdzi atrast pazudušus mājdzīvniekus un atkalapvienot ģimenes ar saviem mīluļiem. Ziņo, meklē un dalies ar svarīgu informāciju savā reģionā."
-        />
-        <meta
-          name="keywords"
-          content="pazudis dzīvnieks, atrast suni, atrast kaķi, mājdzīvnieks pazudis, PetRescue, meklēt mīluli, atrasti dzīvnieki Latvija"
-        />
-        <meta property="og:title" content="Galvenā - Atrodi savu pazudušo mājdzīvnieku" />
-        <meta
-          property="og:description"
-          content="Kopā palīdzam pazudušiem mājdzīvniekiem atgriezties mājās. Ziņojiet vai meklējiet pazudušu mīluli savā apkārtnē."
-        />
+        <title>{t('title')}</title>
+        <meta name="description" content={t('metaDescription')} />
+        <meta name="keywords" content={t('metaKeywords')} />
+        <meta property="og:title" content={t('ogTitle')} />
+        <meta property="og:description" content={t('ogDescription')} />
         <meta property="og:type" content="website" />
       </Helmet>
       <MapBanner />
@@ -76,7 +69,7 @@ function Home() {
                   mb: 4,
                 }}
               >
-                Digitālais atbalsts
+                {t('digitalSupport.subtitle')}
               </Typography>
 
               <Typography
@@ -89,7 +82,7 @@ function Home() {
                   WebkitTextFillColor: 'transparent',
                 }}
               >
-                Kā tieši mēs jums palīdzam?
+                {t('digitalSupport.title')}
               </Typography>
             </Grid>
           </Grid>
@@ -115,7 +108,7 @@ function Home() {
                       fontFamily: 'Titillium Web, sans-serif',
                     }}
                   >
-                    Iekļaušana mūsu mājaslapā
+                    {t('digitalSupport.features.websiteInclusion.title')}
                   </Typography>
                   <Typography
                     variant="body2"
@@ -125,7 +118,7 @@ function Home() {
                       fontFamily: 'Titillium Web, sans-serif',
                     }}
                   >
-                    Jūsu mājdzīvnieks tiek pievienots mūsu lapai, padarot ziņošanu par novērojumiem īpaši ērtu.
+                    {t('digitalSupport.features.websiteInclusion.description')}
                   </Typography>
                 </div>
               </CardContent>
@@ -152,7 +145,7 @@ function Home() {
                       fontFamily: 'Titillium Web, sans-serif',
                     }}
                   >
-                    Izdrukājams plakāts
+                    {t('digitalSupport.features.printablePoster.title')}
                   </Typography>
                   <Typography
                     variant="body2"
@@ -162,7 +155,7 @@ function Home() {
                       fontFamily: 'Titillium Web, sans-serif',
                     }}
                   >
-                    Saņemiet profesionāli izstrādātu pazudušā mājdzīvnieka plakātu ar QR kodu.
+                    {t('digitalSupport.features.printablePoster.description')}
                   </Typography>
                 </div>
               </CardContent>
@@ -187,7 +180,7 @@ function Home() {
                       fontFamily: 'Titillium Web, sans-serif',
                     }}
                   >
-                    Saņemiet novērojumu ziņojumus
+                    {t('digitalSupport.features.observationReports.title')}
                   </Typography>
                   <Typography
                     variant="body2"
@@ -197,7 +190,7 @@ function Home() {
                       fontFamily: 'Titillium Web, sans-serif',
                     }}
                   >
-                    Pārbaudiet jaunus novērojumus, ko ziņojusi kopiena, lai sekotu līdzi norādēm par savu mājdzīvnieku.
+                    {t('digitalSupport.features.observationReports.description')}
                   </Typography>
                 </div>
               </CardContent>
@@ -223,7 +216,7 @@ function Home() {
                       fontFamily: 'Titillium Web, sans-serif',
                     }}
                   >
-                    Push paziņojumi
+                    {t('digitalSupport.features.pushNotifications.title')}
                   </Typography>
                   <Typography
                     variant="body2"
@@ -233,7 +226,7 @@ function Home() {
                       fontFamily: 'Titillium Web, sans-serif',
                     }}
                   >
-                    Saņemiet tūlītējus brīdinājumus, kad jūsu tuvumā tiek ziņots par pazudušu vai atrastu mājdzīvnieku.
+                    {t('digitalSupport.features.pushNotifications.description')}
                   </Typography>
                 </div>
               </CardContent>
@@ -260,7 +253,7 @@ function Home() {
                 mb: 4,
               }}
             >
-              Mūsdienīgs risinājums
+              {t('modernSolution.subtitle')}
             </Typography>
 
             <Typography
@@ -273,32 +266,8 @@ function Home() {
                 WebkitTextFillColor: 'transparent',
               }}
             >
-              Tehnoloģija, kas vieno dzīvnieku draugus
+              {t('modernSolution.title')}
             </Typography>
-            {/* <Typography
-              variant="h4"
-              style={{
-                fontWeight: '400',
-                color: '#00b5ad',
-                fontFamily: 'Titillium Web, sans-serif',
-                textTransform: 'uppercase',
-                marginBottom: '2rem',
-              }}
-            >
-              Mūsdienīgs risinājums
-            </Typography> */}
-            {/* <Typography
-              variant="h2"
-              style={{
-                fontWeight: '500',
-                color: '#16477c',
-                background: 'linear-gradient(60deg, #16477c 0%, #00b5ad 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}
-            >
-              Tehnoloģijas, kas strādā Tavā labā
-            </Typography> */}
           </Grid>
 
           <Grid size={{ xs: 12, sm: 12, md: 6, lg: 3 }} textAlign="center">
@@ -322,7 +291,7 @@ function Home() {
                     fontFamily: 'Titillium Web, sans-serif',
                   }}
                 >
-                  Tehnoloģija, kas vieno dzīvnieku draugus
+                  {t('modernSolution.features.unitingTechnology.title')}
                 </Typography>
                 <Typography
                   variant="body2"
@@ -332,8 +301,7 @@ function Home() {
                     fontFamily: 'Titillium Web, sans-serif',
                   }}
                 >
-                  Mūsu lietotne savieno cilvēkus ar kopīgu mērķi – palīdzēt atrast pazudušos mājdzīvniekus. Kopiena, kas
-                  sadarbojas un rūpējas.
+                  {t('modernSolution.features.unitingTechnology.description')}
                 </Typography>
               </div>
             </CardContent>
@@ -360,7 +328,7 @@ function Home() {
                     fontFamily: 'Titillium Web, sans-serif',
                   }}
                 >
-                  Mobilajām ierīcēm optimizēta platforma
+                  {t('modernSolution.features.mobileOptimized.title')}
                 </Typography>
                 <Typography
                   variant="body2"
@@ -370,8 +338,7 @@ function Home() {
                     fontFamily: 'Titillium Web, sans-serif',
                   }}
                 >
-                  Neatkarīgi no tā, vai lieto telefonu vai planšeti – mūsu platforma ir pielāgota ērtai un ātrai
-                  lietošanai visās ierīcēs. Piekļūsti vajadzīgajam jebkurā laikā un vietā.
+                  {t('modernSolution.features.mobileOptimized.description')}
                 </Typography>
               </div>
             </CardContent>
@@ -396,7 +363,7 @@ function Home() {
                     fontFamily: 'Titillium Web, sans-serif',
                   }}
                 >
-                  Lietotnes pieredze – pārlūkā
+                  {t('modernSolution.features.appExperience.title')}
                 </Typography>
                 <Typography
                   variant="body2"
@@ -406,8 +373,7 @@ function Home() {
                     fontFamily: 'Titillium Web, sans-serif',
                   }}
                 >
-                  Pievieno mūsu platformu savam ierīces sākuma ekrānam un izmanto to kā īstu lietotni. Bez lejupielādes
-                  no veikala – vienkārši, ātri un vienmēr pieejami.
+                  {t('modernSolution.features.appExperience.description')}
                 </Typography>
               </div>
             </CardContent>
@@ -433,7 +399,7 @@ function Home() {
                     fontFamily: 'Titillium Web, sans-serif',
                   }}
                 >
-                  Mākslīgais intelekts Tava mīluļa labā
+                  {t('modernSolution.features.artificialIntelligence.title')}
                 </Typography>
                 <Typography
                   variant="body2"
@@ -443,8 +409,7 @@ function Home() {
                     fontFamily: 'Titillium Web, sans-serif',
                   }}
                 >
-                  Mūsu AI asistents atbild uz jautājumiem par mājdzīvniekiem – no ikdienas aprūpes līdz ārkārtas
-                  situācijām. Zināšanas vienmēr pa rokai, lai Tu justos droši un informēti.
+                  {t('modernSolution.features.artificialIntelligence.description')}
                 </Typography>
               </div>
             </CardContent>

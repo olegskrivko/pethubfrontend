@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 // Import MUI Icons
@@ -42,23 +43,16 @@ import img1 from '../assets/images/about/qr_code_bro.svg';
 import Jumbotron from '../shared/components/Jumbotron';
 
 function About() {
+  const { t } = useTranslation('aboutPage');
+
   return (
     <>
       <Helmet>
-        <title>Par Mums - Mājdzīvnieku Meklēšanas Platforma</title>
-        <meta
-          name="description"
-          content="Mūsu lietotne palīdz atrast pazudušus mājdzīvniekus, izmantojot modernās tehnoloģijas, reāllaika paziņojumus un kopienas atbalstu. Uzziniet vairāk par mūsu vīziju un misiju."
-        />
-        <meta
-          name="keywords"
-          content="pazudis mājdzīvnieks, atrasts mājdzīvnieks, mājdzīvnieku meklēšana, mājdzīvnieku platforma, pazudušu dzīvnieku karte, paziņojumi par dzīvniekiem, dzīvnieku īpašnieku palīdzība, dzīvnieku glābšana, QR kods plakāts, sabiedrības atbalsts dzīvniekiem"
-        />
-        <meta property="og:title" content="Par Mums - Mājdzīvnieku Meklēšanas Platforma" />
-        <meta
-          property="og:description"
-          content="Mūsu lietotne palīdz atrast pazudušus mājdzīvniekus, izmantojot modernās tehnoloģijas, reāllaika paziņojumus un kopienas atbalstu. Uzziniet vairāk par mūsu vīziju un misiju."
-        />
+        <title>{t('title')}</title>
+        <meta name="description" content={t('metaDescription')} />
+        <meta name="keywords" content={t('metaKeywords')} />
+        <meta property="og:title" content={t('ogTitle')} />
+        <meta property="og:description" content={t('ogDescription')} />
         <meta property="og:type" content="website" />
       </Helmet>
 
@@ -74,220 +68,209 @@ function About() {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Lietotnes mērķis
+          {t('mainTitle')}
         </Typography>
         <Grid container spacing={3}>
           <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
             <Typography variant="body1">
-              Lietotne izstrādāta, lai efektīvi palīdzētu pazudušiem mājdzīvniekiem ātrāk atgriezties pie saviem
-              saimniekiem. Tā atvieglo informācijas apmaiņu un ļauj pārskatāmi sekot meklēšanas procesa norisei.
-              Lietotne izceļas ar modernu dizainu, reāllaika paziņojumiem un mākslīgā intelekta funkcijām.
-              {/* Tā ir
-              paredzēta kā centrālais resurss ar plašu informāciju un pakalpojumiem, kas saistīti ar mājdzīvnieku aprūpi
-              un labklājību. Lietotāji var pievienot savus pakalpojumus, ļaujot mājdzīvnieku īpašniekiem ātri un ērti
-              atrast visu nepieciešamo vienuviet. */}
+              {t('mainDescription')}
             </Typography>
           </Grid>
         </Grid>
 
-        <Grid container spacing={3} mt={2}>
-          <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-            <Typography variant="h4" align="center" sx={{ fontWeight: 500, color: '#16477c', mt: 8, mb: 4 }}>
-              Ceļš uz risinājumu
-            </Typography>
+        {/* Add more explicit spacing */}
+        <div style={{ marginTop: '80px', marginBottom: '40px' }}>
+          <Grid container spacing={3}>
+            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+              <Typography variant="h4" align="center" sx={{ fontWeight: 500, color: '#16477c', mb: 4 }}>
+                {t('pathToSolutionTitle')}
+              </Typography>
+            </Grid>
           </Grid>
-        </Grid>
+        </div>
+
         {/* Left Paragraph */}
-        <Grid container spacing={3}>
-          <Grid size={{ xs: 12, sm: 12, md: 8, lg: 8 }}>
-            <Typography variant="h5" textAlign="left" gutterBottom sx={{ color: '#00b5ad' }}>
-              Meklēšanas izaicinājumi
-            </Typography>
-            <Typography variant="body1" component="p" gutterBottom style={{ textAlign: 'left' }}>
-              Pazudušu dzīvnieku plakāti uz ielām bieži rada neskaidrības — vai dzīvnieks jau ir atrasts, vai vēl tiek
-              meklēts. Bez papildus informācijas plakāti var maldināt, jo tie netiek laicīgi atjaunoti vai noņemti.
-              Turklāt plakāti āra apstākļos bojājas, samazinot to efektivitāti.
-            </Typography>
-            <Typography variant="body1" component="p" gutterBottom style={{ textAlign: 'left' }}>
-              Papildus informācija par pazudušiem dzīvniekiem bieži ir izkliedēta dažādos sociālo tīklu kanālos un
-              platformās, kas apgrūtina efektīvu un ātru palīdzības sniegšanu. Lai risinātu šīs problēmas, tiek
-              piedāvāti profesionāli izstrādāti plakāti ar QR kodiem, kas ļauj ātri piekļūt aktuālākajai informācijai
-              par konkrēto dzīvnieku digitālajā platformā. Šī pieeja nodrošina pārskatāmu un vienmēr aktuālu meklēšanas
-              procesa uzraudzību.
-            </Typography>
-          </Grid>
-          <Grid size={{ xs: 12, sm: 12, md: 4, lg: 4 }}>
-            <Box position="relative" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-              <CardMedia component="img" src={img1} alt="QR code image" />
-              <Box
-                style={{
-                  marginTop: '0.5rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <MuiLink
-                  href="https://storyset.com/technology"
-                  target="_blank"
-                  rel="noopener noreferrer"
+        <div style={{ marginTop: '80px', marginBottom: '40px' }}>
+          <Grid container spacing={3}>
+            <Grid size={{ xs: 12, sm: 12, md: 8, lg: 8 }}>
+              <Typography variant="h5" textAlign="left" gutterBottom sx={{ color: '#00b5ad' }}>
+                {t('searchChallengesTitle')}
+              </Typography>
+              <Typography variant="body1" component="p" gutterBottom style={{ textAlign: 'left' }}>
+                {t('searchChallengesText1')}
+              </Typography>
+              <Typography variant="body1" component="p" gutterBottom style={{ textAlign: 'left' }}>
+                {t('searchChallengesText2')}
+              </Typography>
+            </Grid>
+            <Grid size={{ xs: 12, sm: 12, md: 4, lg: 4 }}>
+              <Box position="relative" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                <CardMedia component="img" src={img1} alt={t('altText.qrCode')} />
+                <Box
                   style={{
-                    fontSize: '0.6rem',
-                    fontStyle: 'italic',
-                    color: '#999',
-                    fontWeight: '300',
+                    marginTop: '0.5rem',
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                 >
-                  Technology illustrations by Storyset
-                </MuiLink>
+                  <MuiLink
+                    href="https://storyset.com/technology"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      fontSize: '0.6rem',
+                      fontStyle: 'italic',
+                      color: '#999',
+                      fontWeight: '300',
+                    }}
+                  >
+                    {t('attribution.technology')}
+                  </MuiLink>
+                </Box>
               </Box>
-            </Box>
+            </Grid>
           </Grid>
-        </Grid>
+        </div>
 
-        {/* Righ Paragraph */}
-        <Grid container spacing={3}>
-          <Grid size={{ xs: 12, sm: 12, md: 4, lg: 4 }} order={{ xs: 2, md: 1 }}>
-            <Box position="relative" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-              <CardMedia
-                component="img"
-                src={img2}
-                alt="Web api image"
-                style={{
-                  width: 'auto',
-                  maxHeight: '380px',
-                  objectFit: 'cover',
-                }}
-              />
-              <Box
-                style={{
-                  marginTop: '0.5rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <MuiLink
-                  href="https://storyset.com/technology"
-                  target="_blank"
-                  rel="noopener noreferrer"
+        {/* Right Paragraph */}
+        <div style={{ marginTop: '80px', marginBottom: '40px' }}>
+          <Grid container spacing={3}>
+            <Grid size={{ xs: 12, sm: 12, md: 4, lg: 4 }} order={{ xs: 2, md: 1 }}>
+              <Box position="relative" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                <CardMedia
+                  component="img"
+                  src={img2}
+                  alt={t('altText.webApi')}
                   style={{
-                    fontSize: '0.6rem',
-                    fontStyle: 'italic',
-                    color: '#999',
-                    fontWeight: '300',
+                    width: 'auto',
+                    maxHeight: '380px',
+                    objectFit: 'cover',
+                  }}
+                />
+                <Box
+                  style={{
+                    marginTop: '0.5rem',
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                 >
-                  Technology illustrations by Storyset
-                </MuiLink>
+                  <MuiLink
+                    href="https://storyset.com/technology"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      fontSize: '0.6rem',
+                      fontStyle: 'italic',
+                      color: '#999',
+                      fontWeight: '300',
+                    }}
+                  >
+                    {t('attribution.technology')}
+                  </MuiLink>
+                </Box>
               </Box>
-            </Box>
+            </Grid>
+            <Grid size={{ xs: 12, sm: 12, md: 8, lg: 8 }} order={{ xs: 1, md: 2 }}>
+              <Typography variant="h5" textAlign="left" gutterBottom sx={{ color: '#00b5ad' }}>
+                {t('innovativeSolutionTitle')}
+              </Typography>
+              <Typography variant="body1" component="p" style={{ textAlign: 'left' }}>
+                {t('innovativeSolutionText')}
+              </Typography>
+              <List dense disablePadding sx={{ mt: 2 }}>
+                <ListItem>
+                  <ListItemIcon sx={{ minWidth: 30, color: '#00b5ad' }}>
+                    <CheckCircleIcon fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText primary={t('features.realtimeNotifications')} />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon sx={{ minWidth: 30, color: '#00b5ad' }}>
+                    <CheckCircleIcon fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText primary={t('features.qrCodes')} />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon sx={{ minWidth: 30, color: '#00b5ad' }}>
+                    <CheckCircleIcon fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText primary={t('features.mapMarking')} />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon sx={{ minWidth: 30, color: '#00b5ad' }}>
+                    <CheckCircleIcon fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText primary={t('features.savePosts')} />
+                </ListItem>
+                <ListItem>
+                  <ListItemIcon sx={{ minWidth: 30, color: '#00b5ad' }}>
+                    <CheckCircleIcon fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText primary={t('features.downloadApp')} />
+                </ListItem>
+              </List>
+            </Grid>
           </Grid>
-          <Grid size={{ xs: 12, sm: 12, md: 8, lg: 8 }} order={{ xs: 1, md: 2 }}>
-            <Typography variant="h5" textAlign="left" gutterBottom sx={{ color: '#00b5ad' }}>
-              Inovatīvs risinājums
-            </Typography>
-            <Typography variant="body1" component="p" style={{ textAlign: 'left' }}>
-              Lai efektīvi risinātu pazudušu mājdzīvnieku meklēšanas problēmas, tika izveidota lietone, kas apvieno
-              informāciju vienuviet un ļauj viegli piekļūt aktuālākajiem datiem. Tā paplašina tradicionālo meklēšanas
-              metožu iespējas, integrējot reāllaika paziņojumus un interaktīvus elementus, piemēram, QR kodus uz
-              plakātiem. Šāda pieeja nodrošina ātru un ērtu informācijas apmaiņu, veicina kopienas iesaisti un ļauj
-              sniegt atbalstu arī tiem, kuriem ir grūtības izmantot sociālos tīklus vai citas platformas.
-            </Typography>
-            <List dense disablePadding sx={{ mt: 2 }}>
-              <ListItem>
-                <ListItemIcon sx={{ minWidth: 30, color: '#00b5ad' }}>
-                  <CheckCircleIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText primary="Reāllaika paziņojumi par pazudušajiem mājdzīvniekiem" />
-              </ListItem>
-              <ListItem>
-                <ListItemIcon sx={{ minWidth: 30, color: '#00b5ad' }}>
-                  <CheckCircleIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText primary="Interaktīvi QR kodi uz plakātiem" />
-              </ListItem>
-              <ListItem>
-                <ListItemIcon sx={{ minWidth: 30, color: '#00b5ad' }}>
-                  <CheckCircleIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText primary="Iespēja lietotājiem atzīmēt mājdzīvnieku atrašanās vietu kartē" />
-              </ListItem>
-              <ListItem>
-                <ListItemIcon sx={{ minWidth: 30, color: '#00b5ad' }}>
-                  <CheckCircleIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText primary="Iespēja saglabāt sludinājumus ērtai statusa izsekošanai" />
-              </ListItem>
-              <ListItem>
-                <ListItemIcon sx={{ minWidth: 30, color: '#00b5ad' }}>
-                  <CheckCircleIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText primary="Lietotni var lejupielādēt ērtākai piekļuvei" />
-              </ListItem>
-            </List>
-          </Grid>
-        </Grid>
+        </div>
+
         {/* Left Paragraph */}
-        <Grid container spacing={3}>
-          <Grid size={{ xs: 12, sm: 12, md: 8, lg: 8 }}>
-            <Typography variant="h5" textAlign="left" gutterBottom sx={{ color: '#00b5ad' }}>
-              Rezultāts un attīstības virziens
-            </Typography>
+        <div style={{ marginTop: '80px', marginBottom: '40px' }}>
+          <Grid container spacing={3}>
+            <Grid size={{ xs: 12, sm: 12, md: 8, lg: 8 }}>
+              <Typography variant="h5" textAlign="left" gutterBottom sx={{ color: '#00b5ad' }}>
+                {t('resultAndDevelopmentTitle')}
+              </Typography>
 
-            <Typography variant="body1" component="p" gutterBottom style={{ textAlign: 'left' }}>
-              Lietotne izveidota, lai risinātu konkrētas problēmas un radītu ilgtspējīgu vērtību sabiedrībai, un tiek
-              pastāvīgi pilnveidota. No vienkāršas idejas tā attīstījusies par jaudīgu rīku, kas efektīvi atbalsta
-              mājdzīvnieku īpašniekus krīzes situācijās. Platforma apvieno modernu dizainu, mākslīgā intelekta
-              risinājumus un ērtu lietojamību, padarot dzīvnieku meklēšanu caurskatāmu un rezultatīvu.
-            </Typography>
+              <Typography variant="body1" component="p" gutterBottom style={{ textAlign: 'left' }}>
+                {t('resultAndDevelopmentText1')}
+              </Typography>
 
-            <Typography variant="body1" component="p" gutterBottom style={{ textAlign: 'left' }}>
-              Lietotāji var bez maksas publicēt pazudušos un atrastos mājdzīvniekus, kā arī atrast saistītus
-              pakalpojumus, patversmes un saņemt praktiskus padomus ārkārtas situācijās.
-            </Typography>
+              <Typography variant="body1" component="p" gutterBottom style={{ textAlign: 'left' }}>
+                {t('resultAndDevelopmentText2')}
+              </Typography>
 
-            <Typography variant="body1" component="p" style={{ textAlign: 'left' }}>
-              Platforma darbojas pateicoties bezmaksas pieejām un aktīvai kopienas iesaistei. Projekts turpina
-              attīstīties, ieviešot jaunas funkcijas, lai stiprinātu kopienas atbalstu un palielinātu platformas
-              ietekmi.
-            </Typography>
-          </Grid>
+              <Typography variant="body1" component="p" style={{ textAlign: 'left' }}>
+                {t('resultAndDevelopmentText3')}
+              </Typography>
+            </Grid>
 
-          <Grid size={{ xs: 12, sm: 12, md: 4, lg: 4 }}>
-            <Box position="relative" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-              <CardMedia
-                component="img"
-                src={img3}
-                alt="Navigation image"
-                style={{
-                  width: 'auto',
-                  maxHeight: '380px',
-                  objectFit: 'cover',
-                }}
-              />
-              <Box
-                style={{
-                  marginTop: '0.5rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <MuiLink
-                  href="https://storyset.com/city"
-                  target="_blank"
-                  rel="noopener noreferrer"
+            <Grid size={{ xs: 12, sm: 12, md: 4, lg: 4 }}>
+              <Box position="relative" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                <CardMedia
+                  component="img"
+                  src={img3}
+                  alt={t('altText.navigation')}
                   style={{
-                    fontSize: '0.6rem',
-                    fontStyle: 'italic',
-                    color: '#999',
-                    fontWeight: '300',
+                    width: 'auto',
+                    maxHeight: '380px',
+                    objectFit: 'cover',
+                  }}
+                />
+                <Box
+                  style={{
+                    marginTop: '0.5rem',
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                 >
-                  City illustrations by Storyset
-                </MuiLink>
+                  <MuiLink
+                    href="https://storyset.com/city"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      fontSize: '0.6rem',
+                      fontStyle: 'italic',
+                      color: '#999',
+                      fontWeight: '300',
+                    }}
+                  >
+                    {t('attribution.city')}
+                  </MuiLink>
+                </Box>
               </Box>
-            </Box>
+            </Grid>
           </Grid>
-        </Grid>
+        </div>
 
         <Jumbotron />
       </Container>

@@ -1,4 +1,5 @@
 import { Avatar, Box, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import petIcon4 from '../../../assets/images/home/cat_icon2.jpg';
 import petIcon1 from '../../../assets/images/home/dog_icon1.jpg';
@@ -17,6 +18,8 @@ const pets = [
 ];
 
 const PetPath = () => {
+  const { t } = useTranslation('homePage');
+
   return (
     <Box
       sx={{
@@ -27,7 +30,7 @@ const PetPath = () => {
       }}
     >
       <Typography variant="h4" fontWeight={600} gutterBottom style={{ color: '#16477c' }}>
-        Vieda un ērta sludinājumu pārvaldība
+        {t('petPath.title')}
       </Typography>
       <Typography
         variant="body1"
@@ -37,8 +40,7 @@ const PetPath = () => {
           color: '#555',
         }}
       >
-        Pateicoties ērtam dizainam un filtriem, meklēšana starp sludinājumiem kļūst vienkārša un patīkama. Saglabā
-        sludinājumus savā profilā, lai jebkurā laikā varētu viegli sekot līdzi to statusam.
+        {t('petPath.description')}
       </Typography>
       <Box
         sx={{
@@ -117,7 +119,7 @@ const PetPath = () => {
           <Avatar
             key={index}
             src={pet.src}
-            alt={`Pet ${index}`}
+            alt={`${t('petPath.altText.pet')} ${index}`}
             sx={{
               position: 'absolute',
               width: pet.size,

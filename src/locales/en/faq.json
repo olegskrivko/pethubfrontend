@@ -1,0 +1,41 @@
+{
+  "title": "Frequently Asked Questions",
+  "faqs": [
+    {
+      "question": "What is the difference between \"Seen\" and \"Found\"?",
+      "answer": "\"Seen\" means someone has spotted the pet but hasn't caught it. \"Found\" indicates that the animal is with the finder."
+    },
+    {
+      "question": "What helps find lost pets?",
+      "answer": "The community is the main driving force – people who share, report sightings, or take in animals. Our platform connects finders with owners."
+    },
+    {
+      "question": "How can I report a found pet?",
+      "answer": "Simply sign up and post a found report with a photo, location, and description."
+    },
+    {
+      "question": "What should I do if I see a pet but can't catch it?",
+      "answer": "Use the \"Seen\" function and post information with a description, time, and location. This can be very helpful for owners!"
+    },
+    {
+      "question": "Can I use the platform from my mobile phone?",
+      "answer": "Yes! Our website is fully adapted for mobile devices. You can add posts, search for pets, and contact finders anywhere."
+    },
+    {
+      "question": "How long does my post remain active?",
+      "answer": "The post remains active until you remove it or mark it as \"found\" / \"returned to owner\"."
+    },
+    {
+      "question": "Are there any safety tips when meeting a finder or owner?",
+      "answer": "Always meet in public places when possible. If you feel unsafe, bring a friend or choose a veterinary clinic as a meeting place."
+    },
+    {
+      "question": "Can I add other animals, not just dogs or cats?",
+      "answer": "Yes, of course! Although the platform is more oriented towards dogs and cats, you can also add other animals by selecting the species \"Other\"."
+    },
+    {
+      "question": "Can I offer a reward for finding my pet?",
+      "answer": "We don't encourage offering rewards as it can create unexpected situations. The community often helps from the heart – the main goal is to safely return the pet home."
+    }
+  ]
+}

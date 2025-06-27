@@ -1,0 +1,79 @@
+{
+  "title": "Home - Find Your Lost Pet",
+  "metaDescription": "Help find lost pets and reunite families with their beloved animals. Report, search, and share important information in your region.",
+  "metaKeywords": "lost pet, find dog, find cat, pet lost, PetRescue, search pet, found animals Latvia",
+  "ogTitle": "Home - Find Your Lost Pet",
+  "ogDescription": "Together we help lost pets return home. Report or search for a lost pet in your area.",
+  "digitalSupport": {
+    "subtitle": "Digital Support",
+    "title": "How exactly do we help you?",
+    "features": {
+      "websiteInclusion": {
+        "title": "Inclusion on our website",
+        "description": "Your pet is added to our page, making reporting observations especially convenient."
+      },
+      "printablePoster": {
+        "title": "Printable poster",
+        "description": "Receive a professionally designed lost pet poster with QR code."
+      },
+      "observationReports": {
+        "title": "Receive observation reports",
+        "description": "Check new observations reported by the community to track leads about your pet."
+      },
+      "pushNotifications": {
+        "title": "Push notifications",
+        "description": "Receive instant alerts when a lost or found pet is reported in your vicinity."
+      }
+    }
+  },
+  "modernSolution": {
+    "subtitle": "Modern Solution",
+    "title": "Technology that unites pet lovers",
+    "features": {
+      "unitingTechnology": {
+        "title": "Technology that unites pet lovers",
+        "description": "Our application connects people with a common goal – to help find lost pets. A community that collaborates and cares."
+      },
+      "mobileOptimized": {
+        "title": "Mobile-optimized platform",
+        "description": "Whether using a phone or tablet – our platform is adapted for comfortable and fast use on all devices. Access what you need anytime and anywhere."
+      },
+      "appExperience": {
+        "title": "App experience – in browser",
+        "description": "Add our platform to your device's home screen and use it like a real app. No download from store – simple, fast, and always available."
+      },
+      "artificialIntelligence": {
+        "title": "Artificial Intelligence for your pet's benefit",
+        "description": "Our AI assistant answers questions about pets – from daily care to emergency situations. Knowledge always at hand so you feel safe and informed."
+      }
+    }
+  },
+  "mapBanner": {
+    "title": "Have you lost a pet?",
+    "description": "Use our application to post a lost or found pet advertisement.",
+    "buttons": {
+      "viewMap": "View Map",
+      "add": "Add"
+    },
+    "altText": {
+      "illustration": "Illustration"
+    }
+  },
+  "petPath": {
+    "title": "Smart and convenient post management",
+    "description": "Thanks to the convenient design and filters, searching among posts becomes simple and pleasant. Save posts to your profile so you can easily track their status at any time.",
+    "altText": {
+      "pet": "Pet"
+    }
+  },
+  "mapBannerDeepBottom": {
+    "title": "Practical pet care tips",
+    "description": "Learn how to best care for your pet – from daily care to emergency situations. Practical tips, guides, and answers to important questions all in one place.",
+    "buttons": {
+      "viewTips": "View Tips"
+    },
+    "altText": {
+      "illustration": "Illustration"
+    }
+  }
+}

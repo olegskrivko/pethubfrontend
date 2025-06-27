@@ -1,8 +1,43 @@
 {
-  "hello": "Hello",
-  "welcome": "Welcome to our site!",
-  "goodbye": "Goodbye",
-  "thank_you": "Thank you",
-  "yes": "Yes",
-  "no": "No"
+  "title": "About Us - Pet Search Platform",
+  "metaDescription": "Our application helps find lost pets using modern technologies, real-time notifications, and community support. Learn more about our vision and mission.",
+  "metaKeywords": "lost pet, found pet, pet search, pet platform, lost animal map, pet notifications, pet owner help, pet rescue, QR code poster, community support for pets",
+  "ogTitle": "About Us - Pet Search Platform",
+  "ogDescription": "Our application helps find lost pets using modern technologies, real-time notifications, and community support. Learn more about our vision and mission.",
+  "mainTitle": "Application Purpose",
+  "mainDescription": "The application is designed to effectively help lost pets return to their owners faster. It facilitates information exchange and allows for transparent tracking of the search process. The application stands out with its modern design, real-time notifications, and artificial intelligence features.",
+  "pathToSolutionTitle": "Path to Solution",
+  "searchChallengesTitle": "Search Challenges",
+  "searchChallengesText1": "Lost pet posters on the streets often create confusion — whether the pet has already been found or is still being searched for. Without additional information, posters can be misleading as they are not updated or removed in a timely manner. Additionally, posters deteriorate in outdoor conditions, reducing their effectiveness.",
+  "searchChallengesText2": "Additional information about lost pets is often scattered across various social media channels and platforms, making it difficult to provide effective and quick assistance. To solve these problems, professionally designed posters with QR codes are offered, allowing quick access to the most current information about a specific pet on the digital platform. This approach ensures transparent and always current monitoring of the search process.",
+  "innovativeSolutionTitle": "Innovative Solution",
+  "innovativeSolutionText": "To effectively solve the problems of searching for lost pets, an application was created that combines information in one place and allows easy access to the most current data. It expands the capabilities of traditional search methods by integrating real-time notifications and interactive elements, such as QR codes on posters. This approach ensures fast and convenient information exchange, promotes community engagement, and allows support to be provided even to those who have difficulty using social networks or other platforms.",
+  "features": {
+    "realtimeNotifications": "Real-time notifications about lost pets",
+    "qrCodes": "Interactive QR codes on posters",
+    "mapMarking": "Ability for users to mark pet locations on the map",
+    "savePosts": "Ability to save posts for convenient status tracking",
+    "downloadApp": "The app can be downloaded for easier access"
+  },
+  "resultAndDevelopmentTitle": "Result and Development Direction",
+  "resultAndDevelopmentText1": "The application was created to solve specific problems and create sustainable value for society, and is constantly being improved. From a simple idea, it has evolved into a powerful tool that effectively supports pet owners in crisis situations. The platform combines modern design, artificial intelligence solutions, and user-friendly interface, making pet search transparent and effective.",
+  "resultAndDevelopmentText2": "Users can post lost and found pets for free, as well as find related services, shelters, and receive practical advice in emergency situations.",
+  "resultAndDevelopmentText3": "The platform operates thanks to free access and active community engagement. The project continues to develop, implementing new features to strengthen community support and increase the platform's impact.",
+  "attribution": {
+    "technology": "Technology illustrations by Storyset",
+    "city": "City illustrations by Storyset"
+  },
+  "altText": {
+    "qrCode": "QR code image",
+    "webApi": "Web API image",
+    "navigation": "Navigation image"
+  },
+  "jumbotron": {
+    "supportTitle": "Support the Project",
+    "supportDescription": "Your support will help us continue our mission to reunite lost pets with their families. You can also support us by sharing the link on social networks or telling friends about our web application. Every contribution, big or small, is important, and we truly appreciate your support!",
+    "supportButton": "Support the Project",
+    "feedbackTitle": "Share Your Opinion",
+    "feedbackDescription": "Your feedback is important as we strive to improve our application and provide the best service to pet owners. Please share your comments, suggestions, or criticism to help us make the application even better.",
+    "feedbackButton": "Leave Feedback"
+  }
 }

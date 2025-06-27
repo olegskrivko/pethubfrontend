@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
-// import illustration from '../pages/images/navigation_animate.svg'; // replace with your own SVG
+import { useTranslation } from 'react-i18next';
 import { useMediaQuery } from '@mui/material';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -16,10 +15,13 @@ import illustration from '../../../assets/images/home/navigation_animate.svg';
 {
   /* <a href="https://storyset.com/city">City illustrations by Storyset</a> */
 }
+
 const MapBanner = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const navigate = useNavigate();
+  const { t } = useTranslation('homePage');
+
   return (
     <div
       style={{
@@ -27,9 +29,7 @@ const MapBanner = () => {
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'space-between',
-        // background: 'linear-gradient(145deg, #e3f2fd, #ffffff)',
         background: 'linear-gradient( #e3f2fd, #ffffff)',
-        // padding: '60px 40px',
         minHeight: '500px',
         position: 'relative',
       }}
@@ -42,56 +42,27 @@ const MapBanner = () => {
           flexWrap: 'wrap',
           alignItems: 'center',
           justifyContent: 'space-between',
-
-          // padding: '60px 40px',
-          // minHeight: '500px',
-          // position: 'relative',
         }}
         sx={{
           py: 6,
-          // paddingLeft: "0",
-          // paddingRight: "0"
         }}
       >
-        {/* LEFT SIDE */}
-        {/* <div
-        style={{
-          flex: '1 1 400px',
-          maxWidth: '600px',
-          paddingRight: '40px',
-          zIndex: 2,
-        }}
-      > */}
         <div
           style={{
             flex: '1 1 400px',
             maxWidth: '600px',
             paddingRight: isSmallScreen ? '0' : '40px',
             zIndex: 2,
-            textAlign: isSmallScreen ? 'center' : 'left', // 🔁 Text centered on small screens
+            textAlign: isSmallScreen ? 'center' : 'left',
             display: 'flex',
             flexDirection: 'column',
-            alignItems: isSmallScreen ? 'center' : 'flex-start', // 🔁 Button alignment
+            alignItems: isSmallScreen ? 'center' : 'flex-start',
           }}
         >
-          {/* <h2
-            style={{
-           
-              fontSize: '2.5rem',
-              fontWeight: 600,
-              marginBottom: '1rem',
-              fontFamily: "'Inter', sans-serif",
-              background: 'linear-gradient(60deg, #16477c 0%, #00b5ad 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}
-          >
-            Vai esi pazaudējis mājdzīvnieku?
-          </h2> */}
           <h2
             style={{
               textAlign: isSmallScreen ? 'center' : 'left',
-              fontSize: isSmallScreen ? '1.75rem' : '2.5rem', // 👈 Responsive font size
+              fontSize: isSmallScreen ? '1.75rem' : '2.5rem',
               fontWeight: 600,
               fontFamily: "'Inter', sans-serif",
               marginBottom: '1rem',
@@ -100,7 +71,7 @@ const MapBanner = () => {
               WebkitTextFillColor: 'transparent',
             }}
           >
-            Vai esi pazaudējis mājdzīvnieku?
+            {t('mapBanner.title')}
           </h2>
           <p
             style={{
@@ -111,69 +82,18 @@ const MapBanner = () => {
               fontFamily: "'Inter', sans-serif",
             }}
           >
-            Izmanto mūsu aplikāciju, lai ievietotu pazuduša vai atrasta mājdzīvnieka sludinājumu.
+            {t('mapBanner.description')}
           </p>
-          {/* Button Group */}
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            {/* <button
-              style={{
-                padding: '12px 28px',
-                fontSize: '1rem',
-                fontWeight: 'bold',
-                backgroundColor: '#0EB9F0',
-                 background: 'linear-gradient(0deg, #0994ba 30%, #02b4c4 90%)',
-                background: '#00b5ad',
-
-                color: '#fff',
-                borderRadius: '8px',
-                border: 'none',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-              }}
-              onClick={() => navigate('/pets')}
-              onMouseOver={(e) => {
-                e.currentTarget.style.backgroundColor = '#0a98c2';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.backgroundColor = '#0EB9F0';
-              }}
-            >
-              Skatīt karti
-            </button> */}
             <Button variant="contained" sx={{ borderRadius: 2 }} color="primary" onClick={() => navigate('/pets')}>
-              Skatīt karti
+              {t('mapBanner.buttons.viewMap')}
             </Button>
             <Button variant="outlined" sx={{ borderRadius: 2 }} color="primary" onClick={() => navigate('/add-pet')}>
-              Pievienot
+              {t('mapBanner.buttons.add')}
             </Button>
-            {/* <button
-              style={{
-                padding: '12px 28px',
-                fontSize: '1rem',
-                fontWeight: 'bold',
-                backgroundColor: 'transparent',
-
-                color: '#0994ba',
-            
-                border: '2px solid  #0994ba ',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-              }}
-              onClick={() => navigate('/add-pet')}
-              onMouseOver={(e) => {
-                e.currentTarget.style.backgroundColor = '#e5faff';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-              }}
-            >
-              Pievienot
-            </button> */}
           </div>
         </div>
 
-        {/* RIGHT SIDE - SVG IMAGE */}
         <div
           style={{
             flex: '1 1 400px',
@@ -185,7 +105,7 @@ const MapBanner = () => {
         >
           <img
             src={illustration}
-            alt="Illustration"
+            alt={t('mapBanner.altText.illustration')}
             style={{
               width: '100%',
               maxWidth: '400px',

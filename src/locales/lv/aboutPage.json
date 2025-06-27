@@ -1,8 +1,43 @@
 {
-  "hello": "Sveiki",
-  "welcome": "Laipni lūdzam mūsu vietnē!",
-  "goodbye": "Uz redzēšanos",
-  "thank_you": "Paldies",
-  "yes": "Jā",
-  "no": "Nē"
+  "title": "Par Mums - Mājdzīvnieku Meklēšanas Platforma",
+  "metaDescription": "Mūsu lietotne palīdz atrast pazudušus mājdzīvniekus, izmantojot modernās tehnoloģijas, reāllaika paziņojumus un kopienas atbalstu. Uzziniet vairāk par mūsu vīziju un misiju.",
+  "metaKeywords": "pazudis mājdzīvnieks, atrasts mājdzīvnieks, mājdzīvnieku meklēšana, mājdzīvnieku platforma, pazudušu dzīvnieku karte, paziņojumi par dzīvniekiem, dzīvnieku īpašnieku palīdzība, dzīvnieku glābšana, QR kods plakāts, sabiedrības atbalsts dzīvniekiem",
+  "ogTitle": "Par Mums - Mājdzīvnieku Meklēšanas Platforma",
+  "ogDescription": "Mūsu lietotne palīdz atrast pazudušus mājdzīvniekus, izmantojot modernās tehnoloģijas, reāllaika paziņojumus un kopienas atbalstu. Uzziniet vairāk par mūsu vīziju un misiju.",
+  "mainTitle": "Lietotnes mērķis",
+  "mainDescription": "Lietotne izstrādāta, lai efektīvi palīdzētu pazudušiem mājdzīvniekiem ātrāk atgriezties pie saviem saimniekiem. Tā atvieglo informācijas apmaiņu un ļauj pārskatāmi sekot meklēšanas procesa norisei. Lietotne izceļas ar modernu dizainu, reāllaika paziņojumiem un mākslīgā intelekta funkcijām.",
+  "pathToSolutionTitle": "Ceļš uz risinājumu",
+  "searchChallengesTitle": "Meklēšanas izaicinājumi",
+  "searchChallengesText1": "Pazudušu dzīvnieku plakāti uz ielām bieži rada neskaidrības — vai dzīvnieks jau ir atrasts, vai vēl tiek meklēts. Bez papildus informācijas plakāti var maldināt, jo tie netiek laicīgi atjaunoti vai noņemti. Turklāt plakāti āra apstākļos bojājas, samazinot to efektivitāti.",
+  "searchChallengesText2": "Papildus informācija par pazudušiem dzīvniekiem bieži ir izkliedēta dažādos sociālo tīklu kanālos un platformās, kas apgrūtina efektīvu un ātru palīdzības sniegšanu. Lai risinātu šīs problēmas, tiek piedāvāti profesionāli izstrādāti plakāti ar QR kodiem, kas ļauj ātri piekļūt aktuālākajai informācijai par konkrēto dzīvnieku digitālajā platformā. Šī pieeja nodrošina pārskatāmu un vienmēr aktuālu meklēšanas procesa uzraudzību.",
+  "innovativeSolutionTitle": "Inovatīvs risinājums",
+  "innovativeSolutionText": "Lai efektīvi risinātu pazudušu mājdzīvnieku meklēšanas problēmas, tika izveidota lietone, kas apvieno informāciju vienuviet un ļauj viegli piekļūt aktuālākajiem datiem. Tā paplašina tradicionālo meklēšanas metožu iespējas, integrējot reāllaika paziņojumus un interaktīvus elementus, piemēram, QR kodus uz plakātiem. Šāda pieeja nodrošina ātru un ērtu informācijas apmaiņu, veicina kopienas iesaisti un ļauj sniegt atbalstu arī tiem, kuriem ir grūtības izmantot sociālos tīklus vai citas platformas.",
+  "features": {
+    "realtimeNotifications": "Reāllaika paziņojumi par pazudušajiem mājdzīvniekiem",
+    "qrCodes": "Interaktīvi QR kodi uz plakātiem",
+    "mapMarking": "Iespēja lietotājiem atzīmēt mājdzīvnieku atrašanās vietu kartē",
+    "savePosts": "Iespēja saglabāt sludinājumus ērtai statusa izsekošanai",
+    "downloadApp": "Lietotni var lejupielādēt ērtākai piekļuvei"
+  },
+  "resultAndDevelopmentTitle": "Rezultāts un attīstības virziens",
+  "resultAndDevelopmentText1": "Lietotne izveidota, lai risinātu konkrētas problēmas un radītu ilgtspējīgu vērtību sabiedrībai, un tiek pastāvīgi pilnveidota. No vienkāršas idejas tā attīstījusies par jaudīgu rīku, kas efektīvi atbalsta mājdzīvnieku īpašniekus krīzes situācijās. Platforma apvieno modernu dizainu, mākslīgā intelekta risinājumus un ērtu lietojamību, padarot dzīvnieku meklēšanu caurskatāmu un rezultatīvu.",
+  "resultAndDevelopmentText2": "Lietotāji var bez maksas publicēt pazudušos un atrastos mājdzīvniekus, kā arī atrast saistītus pakalpojumus, patversmes un saņemt praktiskus padomus ārkārtas situācijās.",
+  "resultAndDevelopmentText3": "Platforma darbojas pateicoties bezmaksas pieejām un aktīvai kopienas iesaistei. Projekts turpina attīstīties, ieviešot jaunas funkcijas, lai stiprinātu kopienas atbalstu un palielinātu platformas ietekmi.",
+  "attribution": {
+    "technology": "Technology illustrations by Storyset",
+    "city": "City illustrations by Storyset"
+  },
+  "altText": {
+    "qrCode": "QR koda attēls",
+    "webApi": "Web API attēls",
+    "navigation": "Navigācijas attēls"
+  },
+  "jumbotron": {
+    "supportTitle": "Atbalstiet projektu",
+    "supportDescription": "Jūsu atbalsts palīdzēs mums turpināt mūsu misiju apvienot pazudušos mājdzīvniekus ar viņu ģimenēm. Jūs varat arī atbalstīt mūs, daloties ar saiti sociālajos tīklos vai pastāstot draugiem par mūsu tīmekļa lietotni. Katrs ieguldījums, liels vai mazs, ir svarīgs, un mēs patiesi novērtējam jūsu atbalstu!",
+    "supportButton": "Atbalstīt projektu",
+    "feedbackTitle": "Dalieties ar savu viedokli",
+    "feedbackDescription": "Jūsu atsauksmes ir svarīgas, jo mēs cenšamies uzlabot mūsu lietotni un sniegt labāko pakalpojumu mājdzīvnieku īpašniekiem. Lūdzu, dalieties ar saviem komentāriem, ieteikumiem vai kritiku, lai palīdzētu mums padarīt lietotni vēl labāku.",
+    "feedbackButton": "Atstāt atsauksmi"
+  }
 }

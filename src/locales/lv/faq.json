@@ -1,0 +1,41 @@
+{
+  "title": "Biežāk uzdotie jautājumi",
+  "faqs": [
+    {
+      "question": "Kāda ir atšķirība starp \"Redzēts\" un \"Atradis\"?",
+      "answer": "\"Redzēts\" nozīmē, ka kāds ir pamanījis mājdzīvnieku, bet nav to noķēris. \"Atradis\" norāda, ka dzīvnieks ir pie atradēja."
+    },
+    {
+      "question": "Kas palīdz atrast pazudušos dzīvniekus?",
+      "answer": "Kopiena ir galvenais dzinējspēks – cilvēki, kuri dalās, ziņo par redzētiem dzīvniekiem vai tos uzņem. Mūsu platforma savieno atradējus ar īpašniekiem."
+    },
+    {
+      "question": "Kā es varu paziņot par atrastu mājdzīvnieku?",
+      "answer": "Vienkārši piesakieties un publicējiet atraduma ziņojumu ar attēlu, atrašanās vietu un aprakstu."
+    },
+    {
+      "question": "Ko darīt, ja redzu mājdzīvnieku, bet nevaru to noķert?",
+      "answer": "Izmantojiet funkciju \"Redzēts\" un publicējiet informāciju ar aprakstu, laiku un vietu. Tas var būt ļoti noderīgi īpašniekiem!"
+    },
+    {
+      "question": "Vai varu izmantot platformu arī no mobilā telefona?",
+      "answer": "Jā! Mūsu mājaslapa ir pilnībā pielāgota mobilajām ierīcēm. Varat pievienot paziņojumus, meklēt dzīvniekus un sazināties ar atradējiem jebkur."
+    },
+    {
+      "question": "Cik ilgi paliek aktīvs mans sludinājums?",
+      "answer": "Sludinājums paliek aktīvs līdz jūs to noņemat vai atzīmējat kā \"atrasts\" / \"atdots īpašniekam\"."
+    },
+    {
+      "question": "Vai ir kādi drošības padomi, satiekot atradēju vai īpašnieku?",
+      "answer": "Vienmēr satikties publiskās vietās, ja iespējams. Ja jūtaties nedroši, ņemiet līdzi draugu vai izvēlieties veterināro klīniku kā tikšanās vietu."
+    },
+    {
+      "question": "Vai varu pievienot citus dzīvniekus, ne tikai suņus vai kaķus?",
+      "answer": "Jā, protams! Lai gan platforma vairāk orientēta uz suņiem un kaķiem, jūs varat pievienot arī citus dzīvniekus, izvēloties sugu \"Cits\"."
+    },
+    {
+      "question": "Vai varu piedāvāt atlīdzību par mājdzīvnieka atrašanu?",
+      "answer": "Mēs neveicinām atlīdzības piedāvāšanu, jo tas var radīt neparedzētas situācijas. Kopiena bieži palīdz no sirds – galvenais mērķis ir droši atgriezt mājdzīvnieku mājās."
+    }
+  ]
+}

@@ -7,7 +7,9 @@ import enAboutPage from './locales/en/aboutPage.json';
 import enChatbot from './locales/en/chatbot.json';
 // Import namespaces
 import enCommon from './locales/en/common.json';
+import enHomePage from './locales/en/homePage.json';
 import enContact from './locales/en/contact.json';
+import enFaq from './locales/en/faq.json';
 import enFooter from './locales/en/footer.json';
 import enNavbar from './locales/en/navbar.json';
 import enSelectOptions from './locales/en/selectOptions.json';
@@ -15,7 +17,9 @@ import enSupport from './locales/en/support.json';
 import lvAboutPage from './locales/lv/aboutPage.json';
 import lvChatbot from './locales/lv/chatbot.json';
 import lvCommon from './locales/lv/common.json';
+import lvHomePage from './locales/lv/homePage.json';
 import lvContact from './locales/lv/contact.json';
+import lvFaq from './locales/lv/faq.json';
 import lvFooter from './locales/lv/footer.json';
 import lvNavbar from './locales/lv/navbar.json';
 import lvSelectOptions from './locales/lv/selectOptions.json';
@@ -23,7 +27,9 @@ import lvSupport from './locales/lv/support.json';
 import ruAboutPage from './locales/ru/aboutPage.json';
 import ruChatbot from './locales/ru/chatbot.json';
 import ruCommon from './locales/ru/common.json';
+import ruHomePage from './locales/ru/homePage.json';
 import ruContact from './locales/ru/contact.json';
+import ruFaq from './locales/ru/faq.json';
 import ruFooter from './locales/ru/footer.json';
 import ruNavbar from './locales/ru/navbar.json';
 import ruSelectOptions from './locales/ru/selectOptions.json';
@@ -44,37 +50,43 @@ i18n
         navbar: enNavbar,
         footer: enFooter,
         aboutPage: enAboutPage,
+        homePage: enHomePage,
         selectOptions: enSelectOptions,
         chatbot: enChatbot,
         contact: enContact,
         support: enSupport,
+        faq: enFaq,
       },
       lv: {
         common: lvCommon,
         navbar: lvNavbar,
         footer: lvFooter,
         aboutPage: lvAboutPage,
+        homePage: lvHomePage,
         selectOptions: lvSelectOptions,
         chatbot: lvChatbot,
         contact: lvContact,
         support: lvSupport,
+        faq: lvFaq,
       },
       ru: {
         common: ruCommon,
         navbar: ruNavbar,
         footer: ruFooter,
         aboutPage: ruAboutPage,
+        homePage: ruHomePage,
         selectOptions: ruSelectOptions,
         chatbot: ruChatbot,
         contact: ruContact,
         support: ruSupport,
+        faq: ruFaq,
       },
     },
     detection: {
       order: ['queryString', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
       caches: ['localStorage', 'cookie'],
     },
-    ns: ['common', 'navbar', 'footer', 'aboutPage', 'selectOptions', 'chatbot', 'contact', 'support'],
+    ns: ['common', 'navbar', 'footer', 'aboutPage', 'homePage', 'selectOptions', 'chatbot', 'contact', 'support', 'faq'],
     defaultNS: 'common', // Default namespace
   });
 

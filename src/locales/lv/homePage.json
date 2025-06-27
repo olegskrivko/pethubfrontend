@@ -1,0 +1,79 @@
+{
+  "title": "Galvenā - Atrodi savu pazudušo mājdzīvnieku",
+  "metaDescription": "Palīdzi atrast pazudušus mājdzīvniekus un atkalapvienot ģimenes ar saviem mīluļiem. Ziņo, meklē un dalies ar svarīgu informāciju savā reģionā.",
+  "metaKeywords": "pazudis dzīvnieks, atrast suni, atrast kaķi, mājdzīvnieks pazudis, PetRescue, meklēt mīluli, atrasti dzīvnieki Latvija",
+  "ogTitle": "Galvenā - Atrodi savu pazudušo mājdzīvnieku",
+  "ogDescription": "Kopā palīdzam pazudušiem mājdzīvniekiem atgriezties mājās. Ziņojiet vai meklējiet pazudušu mīluli savā apkārtnē.",
+  "digitalSupport": {
+    "subtitle": "Digitālais atbalsts",
+    "title": "Kā tieši mēs jums palīdzam?",
+    "features": {
+      "websiteInclusion": {
+        "title": "Iekļaušana mūsu mājaslapā",
+        "description": "Jūsu mājdzīvnieks tiek pievienots mūsu lapai, padarot ziņošanu par novērojumiem īpaši ērtu."
+      },
+      "printablePoster": {
+        "title": "Izdrukājams plakāts",
+        "description": "Saņemiet profesionāli izstrādātu pazudušā mājdzīvnieka plakātu ar QR kodu."
+      },
+      "observationReports": {
+        "title": "Saņemiet novērojumu ziņojumus",
+        "description": "Pārbaudiet jaunus novērojumus, ko ziņojusi kopiena, lai sekotu līdzi norādēm par savu mājdzīvnieku."
+      },
+      "pushNotifications": {
+        "title": "Push paziņojumi",
+        "description": "Saņemiet tūlītējus brīdinājumus, kad jūsu tuvumā tiek ziņots par pazudušu vai atrastu mājdzīvnieku."
+      }
+    }
+  },
+  "modernSolution": {
+    "subtitle": "Mūsdienīgs risinājums",
+    "title": "Tehnoloģija, kas vieno dzīvnieku draugus",
+    "features": {
+      "unitingTechnology": {
+        "title": "Tehnoloģija, kas vieno dzīvnieku draugus",
+        "description": "Mūsu lietotne savieno cilvēkus ar kopīgu mērķi – palīdzēt atrast pazudušos mājdzīvniekus. Kopiena, kas sadarbojas un rūpējas."
+      },
+      "mobileOptimized": {
+        "title": "Mobilajām ierīcēm optimizēta platforma",
+        "description": "Neatkarīgi no tā, vai lieto telefonu vai planšeti – mūsu platforma ir pielāgota ērtai un ātrai lietošanai visās ierīcēs. Piekļūsti vajadzīgajam jebkurā laikā un vietā."
+      },
+      "appExperience": {
+        "title": "Lietotnes pieredze – pārlūkā",
+        "description": "Pievieno mūsu platformu savam ierīces sākuma ekrānam un izmanto to kā īstu lietotni. Bez lejupielādes no veikala – vienkārši, ātri un vienmēr pieejami."
+      },
+      "artificialIntelligence": {
+        "title": "Mākslīgais intelekts Tava mīluļa labā",
+        "description": "Mūsu AI asistents atbild uz jautājumiem par mājdzīvniekiem – no ikdienas aprūpes līdz ārkārtas situācijām. Zināšanas vienmēr pa rokai, lai Tu justos droši un informēti."
+      }
+    }
+  },
+  "mapBanner": {
+    "title": "Vai esi pazaudējis mājdzīvnieku?",
+    "description": "Izmanto mūsu aplikāciju, lai ievietotu pazuduša vai atrasta mājdzīvnieka sludinājumu.",
+    "buttons": {
+      "viewMap": "Skatīt karti",
+      "add": "Pievienot"
+    },
+    "altText": {
+      "illustration": "Ilustrācija"
+    }
+  },
+  "petPath": {
+    "title": "Vieda un ērta sludinājumu pārvaldība",
+    "description": "Pateicoties ērtam dizainam un filtriem, meklēšana starp sludinājumiem kļūst vienkārša un patīkama. Saglabā sludinājumus savā profilā, lai jebkurā laikā varētu viegli sekot līdzi to statusam.",
+    "altText": {
+      "pet": "Mājdzīvnieks"
+    }
+  },
+  "mapBannerDeepBottom": {
+    "title": "Praktiski padomi mājdzīvnieku aprūpei",
+    "description": "Uzzini, kā vislabāk parūpēties par savu mīluli – no ikdienas aprūpes līdz rīcībai ārkārtas situācijās. Praktiski padomi, ceļveži un atbildes uz svarīgiem jautājumiem vienuviet.",
+    "buttons": {
+      "viewTips": "Apskatīt padomus"
+    },
+    "altText": {
+      "illustration": "Ilustrācija"
+    }
+  }
+}

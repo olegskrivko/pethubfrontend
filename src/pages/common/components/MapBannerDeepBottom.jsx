@@ -1,6 +1,7 @@
 import React from 'react';
 //import illustration from '../pages/images/navigation_cuate.svg';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { useMediaQuery } from '@mui/material';
 import Button from '@mui/material/Button';
@@ -14,10 +15,12 @@ import illustration from '../../../assets/images/home/innovation_animate.svg';
 {
   /* <a href="https://storyset.com/city">City illustrations by Storyset</a> */
 }
-const MapBanner = () => {
+const MapBannerDeepBottom = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const navigate = useNavigate();
+  const { t } = useTranslation('homePage');
+
   return (
     <div
       style={{
@@ -85,7 +88,7 @@ const MapBanner = () => {
               WebkitTextFillColor: 'transparent',
             }}
           >
-            Praktiski padomi mājdzīvnieku aprūpei
+            {t('mapBannerDeepBottom.title')}
           </h2>
           {/* <h2
             style={{
@@ -111,8 +114,7 @@ const MapBanner = () => {
               fontFamily: "'Inter', sans-serif",
             }}
           >
-            Uzzini, kā vislabāk parūpēties par savu mīluli – no ikdienas aprūpes līdz rīcībai ārkārtas situācijās.
-            Praktiski padomi, ceļveži un atbildes uz svarīgiem jautājumiem vienuviet.
+            {t('mapBannerDeepBottom.description')}
           </p>
           {/* Button Group */}
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
@@ -140,7 +142,7 @@ const MapBanner = () => {
               Apskatīt padomus
             </button> */}
             <Button variant="contained" sx={{ borderRadius: 2 }} color="primary" onClick={() => navigate('/articles')}>
-              Apskatīt padomus
+              {t('mapBannerDeepBottom.buttons.viewTips')}
             </Button>
           </div>
         </div>
@@ -157,7 +159,7 @@ const MapBanner = () => {
         >
           <img
             src={illustration}
-            alt="Illustration"
+            alt={t('mapBannerDeepBottom.altText.illustration')}
             style={{
               width: '100%',
               maxWidth: '400px',
@@ -170,4 +172,4 @@ const MapBanner = () => {
   );
 };
 
-export default MapBanner;
+export default MapBannerDeepBottom;
