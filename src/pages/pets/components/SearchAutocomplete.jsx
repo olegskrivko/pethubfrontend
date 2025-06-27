@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Autocomplete, Box, CircularProgress, InputLabel, ListItem, TextField } from '@mui/material';
 import axios from 'axios';
@@ -6,6 +7,7 @@ import axios from 'axios';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const SearchAutocomplete = ({ filters, searchValue, onSearchSelect }) => {
+  const { t } = useTranslation('pets');
   const [inputValue, setInputValue] = useState('');
   useEffect(() => {
     // Whenever searchValue from parent changes, update the input
@@ -45,7 +47,7 @@ const SearchAutocomplete = ({ filters, searchValue, onSearchSelect }) => {
   return (
     <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
       <Box sx={{ width: '100%' }}>
-        <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>Meklēt</InputLabel>
+        <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>{t('sidebar.search', { ns: 'pets' })}</InputLabel>
         <Autocomplete
           freeSolo
           options={options}
@@ -66,8 +68,7 @@ const SearchAutocomplete = ({ filters, searchValue, onSearchSelect }) => {
           renderInput={(params) => (
             <TextField
               {...params}
-              //   label="Search Notes / ID"
-              placeholder="Sāc rakstīt, lai meklētu..."
+              placeholder={t('sidebar.searchPlaceholder', { ns: 'pets' })}
               variant="outlined"
               size="small"
               InputProps={{

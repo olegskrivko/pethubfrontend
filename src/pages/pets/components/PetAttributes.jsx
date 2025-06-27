@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   Cake as CakeIcon,
@@ -19,6 +20,8 @@ import { lv } from 'date-fns/locale';
 import PetAttributeItem from './PetAttributeItem';
 
 const PetAttributes = ({ pet }) => {
+  const { t } = useTranslation('pets');
+
   const AGE_LABELS_BY_SPECIES = {
     1: { 1: 'Kucēns', 2: 'Pieaugušais', 3: 'Seniors' },
     2: { 1: 'Kaķēns', 2: 'Pieaugušais', 3: 'Seniors' },
@@ -35,35 +38,35 @@ const PetAttributes = ({ pet }) => {
   const formattedTime = eventDate ? format(eventDate, 'HH:mm', { locale: lv }) : 'Nav pieejams';
 
   const attributes = [
-    { icon: <SearchIcon />, label: 'Statuss', value: pet.status_display },
-    { icon: <PetsIcon />, label: 'Suga', value: pet.species_display },
-    { icon: <HeightIcon />, label: 'Augums', value: pet.size_display },
-    { icon: <MaleIcon />, label: 'Dzimums', value: pet.gender_display },
-    { icon: <CakeIcon />, label: 'Vecums', value: ageLabel },
-    { icon: <MergeTypeIcon />, label: 'Šķirne', value: breedLabel },
+    { icon: <SearchIcon />, label: t('attributes.status', { ns: 'pets' }), value: pet.status_display },
+    { icon: <PetsIcon />, label: t('attributes.species', { ns: 'pets' }), value: pet.species_display },
+    { icon: <HeightIcon />, label: t('attributes.size', { ns: 'pets' }), value: pet.size_display },
+    { icon: <MaleIcon />, label: t('attributes.gender', { ns: 'pets' }), value: pet.gender_display },
+    { icon: <CakeIcon />, label: t('attributes.age', { ns: 'pets' }), value: ageLabel },
+    { icon: <MergeTypeIcon />, label: t('attributes.breed', { ns: 'pets' }), value: breedLabel },
     {
       icon: <TextureIcon />,
-      label: 'Kažoka raksts',
+      label: t('attributes.pattern', { ns: 'pets' }),
       value: pet.pattern_display,
     },
     {
       icon: <ColorLensIcon />,
-      label: 'Pamatkrāsa',
+      label: t('attributes.primaryColor', { ns: 'pets' }),
       value: pet.primary_color_display,
     },
     {
       icon: <ColorLensIcon />,
-      label: 'Sekundārā krāsa',
+      label: t('attributes.secondaryColor', { ns: 'pets' }),
       value: pet.secondary_color_display,
     },
     {
       icon: <EventIcon />,
-      label: 'Datums',
+      label: t('attributes.date', { ns: 'pets' }),
       value: formattedDate,
     },
     // {
     //   icon: <EventIcon />,
-    //   label: 'Datums un laiks',
+    //   label: t('attributes.dateTime', { ns: 'pets' }),
     //   value: `${formattedDate}, ${formattedTime}`,
     // },
   ];

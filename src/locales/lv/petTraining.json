@@ -1,0 +1,70 @@
+{
+  "metadata": {
+    "title": "Mājdzīvnieku apmācības nodarbības",
+    "description": "Apgūsti mājdzīvnieku apmācību ar video pamācībām un svarīgiem padomiem no ekspertiem. Uzlabo sava mājdzīvnieka uzvedību pozitīvā un jautrā veidā.",
+    "keywords": "mājdzīvnieku apmācība, suņu apmācība, kaķu apmācība, mājdzīvnieku uzvedība, pozitīva apmācība, mājdzīvnieku padomi, video pamācības, dzīvnieku uzvedība, suņu komandas, mājdzīvnieku socializācija",
+    "ogTitle": "Virtuālās mājdzīvnieku apmācības nodarbības",
+    "ogDescription": "Apgūsti mājdzīvnieku apmācību ar video pamācībām un svarīgiem padomiem no ekspertiem. Uzlabo sava mājdzīvnieka uzvedību pozitīvā un jautrā veidā."
+  },
+  "mainHeading": "Suņu skola",
+  "description": {
+    "paragraph1": "Šis visaptverošais ceļvedis piedāvā rūpīgi izvēlētus video materiālus efektīvai suņu apmācībai. Tajā atradīsiet praktiskus resursus, kas palīdzēs apgūt būtiskas prasmes suņa uzvedības veidošanā.",
+    "paragraph2": "Neatkarīgi no tā, vai esat jauns suņa īpašnieks vai vēlaties papildināt savas zināšanas, šie video aptver visu — sākot no pamata komandām līdz progresīvākām apmācības metodēm."
+  },
+  "videos": {
+    "source": "Avots: RSPCA South Australia",
+    "titles": {
+      "sitAndLie": "Komanda - Sēdēt un gulēt (ENG)",
+      "noseTargeting": "Mērķēšana ar degunu (ENG)",
+      "looseLeash": "Pastaiga ar vaļīgu pavadu (ENG)",
+      "comeBack": "Komanda - Atgriezties atpakaļ (ENG)",
+      "wait": "Komanda - Pagaidi (ENG)",
+      "tricksAndGames": "Triki un rotaļas (ENG)"
+    }
+  },
+  "tipsSection": {
+    "heading": "Būtiski padomi efektīvai mājdzīvnieku apmācībai"
+  },
+  "trainingTips": {
+    "basicCommands": {
+      "title": "Sāciet ar pamata komandām",
+      "description": "Sāciet ar pamatkomandām, piemēram, sēdi, paliec un nāc. Tās nodrošina pamatu turpmākai apmācībai un palīdz nostiprināt jūsu lomu kā līderim."
+    },
+    "positiveReinforcement": {
+      "title": "Izmantojiet pozitīvu pastiprinājumu",
+      "description": "Apbalvojiet savu mājdzīvnieku ar kārumiem, uzslavām vai spēlēm, kad tas izrāda vēlamo uzvedību. Pozitīvs pastiprinājums veicina šīs uzvedības atkārtošanu."
+    },
+    "consistency": {
+      "title": "Esi konsekvents",
+      "description": "Konsekvence ir veiksmīgas apmācības atslēga. Pastāvīgi izmantojiet vienas un tās pašas norādes un atlīdzības, lai jūsu mājdzīvnieks saprastu, kas no viņa tiek gaidīts."
+    },
+    "shortSessions": {
+      "title": "Saglabājiet treniņu sesijas īsas un pozitīvas",
+      "description": "Mājdzīvniekiem ir īss uzmanības noturības laiks, tāpēc treniņu sesijas saglabājiet īsas (apmēram 10-15 minūtes) un pozitīvas. Beidziet uz pozitīvas nots, lai viņi saglabātu interesi un gaidītu nākamo sesiju."
+    },
+    "patience": {
+      "title": "Pacietība ir būtiska",
+      "description": "Saprotiet, ka apmācībai nepieciešams laiks un pacietība. Izvairieties no vilšanās, ja progress ir lēns. Katrs mājdzīvnieks mācās savā tempā."
+    },
+    "breedUnderstanding": {
+      "title": "Izprotiet sava mājdzīvnieka šķirni un personību",
+      "description": "Dažādām šķirnēm ir dažādi temperamenti un uzvedība. Pielāgojiet savu apmācības pieeju, lai tā atbilstu jūsu mājdzīvnieka īpašajām vajadzībām un personībai."
+    },
+    "socialization": {
+      "title": "Socializācija ir atslēga",
+      "description": "No agrīna vecuma iepazīstiniet savu mājdzīvnieku ar dažādām vidēm, cilvēkiem un dzīvniekiem. Pareiza socializācija palīdz novērst uzvedības problēmas un veido pārliecību."
+    },
+    "professionalHelp": {
+      "title": "Meklējiet profesionālu palīdzību, ja nepieciešams",
+      "description": "Ja jums ir grūtības ar apmācību vai sastopaties ar uzvedības problēmām, nevilcinieties meklēt palīdzību pie profesionāla trenera vai uzvedības speciālista."
+    },
+    "stayCalm": {
+      "title": "Palieciet mierīgs un pozitīvs",
+      "description": "Mājdzīvnieki spēj sajust jūsu emocijas, tāpēc saglabājiet mieru un pacietību apmācību laikā. Jūsu pozitīvā attieksme palīdzēs radīt pozitīvu mācību vidi."
+    },
+    "enjoyProcess": {
+      "title": "Izbaudiet procesu",
+      "description": "Jūsu mājdzīvnieka apmācībai vajadzētu būt jautram un vienojošam pieredzei jums abiem. Svērtiet katru sasniegumu un izbaudiet skatīšanos, kā jūsu mājdzīvnieks aug un mācās."
+    }
+  }
+}

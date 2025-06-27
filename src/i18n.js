@@ -7,31 +7,37 @@ import enAboutPage from './locales/en/aboutPage.json';
 import enChatbot from './locales/en/chatbot.json';
 // Import namespaces
 import enCommon from './locales/en/common.json';
-import enHomePage from './locales/en/homePage.json';
 import enContact from './locales/en/contact.json';
 import enFaq from './locales/en/faq.json';
 import enFooter from './locales/en/footer.json';
+import enHomePage from './locales/en/homePage.json';
 import enNavbar from './locales/en/navbar.json';
+import enPetTraining from './locales/en/petTraining.json';
+import enPets from './locales/en/pets.json';
 import enSelectOptions from './locales/en/selectOptions.json';
 import enSupport from './locales/en/support.json';
 import lvAboutPage from './locales/lv/aboutPage.json';
 import lvChatbot from './locales/lv/chatbot.json';
 import lvCommon from './locales/lv/common.json';
-import lvHomePage from './locales/lv/homePage.json';
 import lvContact from './locales/lv/contact.json';
 import lvFaq from './locales/lv/faq.json';
 import lvFooter from './locales/lv/footer.json';
+import lvHomePage from './locales/lv/homePage.json';
 import lvNavbar from './locales/lv/navbar.json';
+import lvPetTraining from './locales/lv/petTraining.json';
+import lvPets from './locales/lv/pets.json';
 import lvSelectOptions from './locales/lv/selectOptions.json';
 import lvSupport from './locales/lv/support.json';
 import ruAboutPage from './locales/ru/aboutPage.json';
 import ruChatbot from './locales/ru/chatbot.json';
 import ruCommon from './locales/ru/common.json';
-import ruHomePage from './locales/ru/homePage.json';
 import ruContact from './locales/ru/contact.json';
 import ruFaq from './locales/ru/faq.json';
 import ruFooter from './locales/ru/footer.json';
+import ruHomePage from './locales/ru/homePage.json';
 import ruNavbar from './locales/ru/navbar.json';
+import ruPetTraining from './locales/ru/petTraining.json';
+import ruPets from './locales/ru/pets.json';
 import ruSelectOptions from './locales/ru/selectOptions.json';
 import ruSupport from './locales/ru/support.json';
 
@@ -56,6 +62,8 @@ i18n
         contact: enContact,
         support: enSupport,
         faq: enFaq,
+        pets: enPets,
+        petTraining: enPetTraining,
       },
       lv: {
         common: lvCommon,
@@ -68,6 +76,8 @@ i18n
         contact: lvContact,
         support: lvSupport,
         faq: lvFaq,
+        pets: lvPets,
+        petTraining: lvPetTraining,
       },
       ru: {
         common: ruCommon,
@@ -80,13 +90,28 @@ i18n
         contact: ruContact,
         support: ruSupport,
         faq: ruFaq,
+        pets: ruPets,
+        petTraining: ruPetTraining,
       },
     },
     detection: {
       order: ['queryString', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
       caches: ['localStorage', 'cookie'],
     },
-    ns: ['common', 'navbar', 'footer', 'aboutPage', 'homePage', 'selectOptions', 'chatbot', 'contact', 'support', 'faq'],
+    ns: [
+      'common',
+      'navbar',
+      'footer',
+      'aboutPage',
+      'homePage',
+      'selectOptions',
+      'chatbot',
+      'contact',
+      'support',
+      'faq',
+      'pets',
+      'petTraining',
+    ],
     defaultNS: 'common', // Default namespace
   });
 

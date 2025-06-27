@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import FilterListIcon from '@mui/icons-material/FilterList';
@@ -24,6 +26,7 @@ import PetSidebar from '../components/PetSidebar';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const PetsList = () => {
+  const { t } = useTranslation('pets');
   const mapRef = useRef(null);
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -199,6 +202,14 @@ const PetsList = () => {
 
   return (
     <Container maxWidth="lg" disableGutters>
+      <Helmet>
+        <title>{t('title')}</title>
+        <meta name="description" content={t('metaDescription')} />
+        <meta name="keywords" content={t('metaKeywords')} />
+        <meta property="og:title" content={t('ogTitle')} />
+        <meta property="og:description" content={t('ogDescription')} />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Grid container spacing={3}>
         {!isMobile && (
           <Grid size={{ xs: 12, sm: 12, md: 3, lg: 3 }}>

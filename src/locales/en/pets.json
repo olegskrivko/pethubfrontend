@@ -1,0 +1,71 @@
+{
+  "sidebar": {
+    "status": "Status",
+    "species": "Species",
+    "gender": "Gender",
+    "size": "Size",
+    "pattern": "Coat Pattern",
+    "color": "Color",
+    "date": "Date",
+    "resetFilters": "Reset Filters",
+    "search": "Search",
+    "searchPlaceholder": "Start typing to search..."
+  },
+  "options": {
+    "status": {
+      "1": "Lost",
+      "2": "Found",
+      "3": "Seen"
+    },
+    "species": {
+      "1": "Dog",
+      "2": "Cat",
+      "3": "Other"
+    },
+    "gender": {
+      "1": "Male",
+      "2": "Female"
+    },
+    "size": {
+      "1": "Small",
+      "2": "Medium",
+      "3": "Large"
+    },
+    "pattern": {
+      "1": "Solid",
+      "2": "Striped",
+      "3": "Spotted",
+      "4": "Patchy",
+      "5": "Mixed"
+    },
+    "color": {
+      "1": "Black",
+      "2": "Gray",
+      "3": "White",
+      "4": "Cream",
+      "5": "Yellow",
+      "6": "Golden",
+      "7": "Brown",
+      "8": "Red",
+      "9": "Lilac",
+      "10": "Blue",
+      "11": "Green",
+      "12": "Khaki",
+      "13": "Beige",
+      "14": "Tan",
+      "15": "Chestnut"
+    }
+  },
+  "attributes": {
+    "status": "Status",
+    "species": "Species",
+    "size": "Size",
+    "gender": "Gender",
+    "age": "Age",
+    "breed": "Breed",
+    "pattern": "Coat Pattern",
+    "primaryColor": "Primary Color",
+    "secondaryColor": "Secondary Color",
+    "date": "Date"
+  }
+}

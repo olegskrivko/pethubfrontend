@@ -1,4 +1,5 @@
 import { Box, Button, Chip, InputLabel, List, ListItem, TextField } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import {
   COLOR_CHOICES,
@@ -11,6 +12,8 @@ import {
 import SearchAutocomplete from './SearchAutocomplete';
 
 const PetSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
+  const { t } = useTranslation('pets');
+
   const handleChipClick = (type, value) => {
     const newFilters = {
       ...filters,
@@ -45,11 +48,11 @@ const PetSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
         {/* Status Filter */}
         <ListItem sx={{ padding: '0 !important' }}>
           <Box>
-            <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>Statuss</InputLabel>
+            <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>{t('sidebar.status', { ns: 'pets' })}</InputLabel>
             {STATUS_CHOICES.map((status) => (
               <Chip
                 key={status.value}
-                label={status.label}
+                label={t(`options.status.${status.value}`, { ns: 'pets' })}
                 clickable
                 color={filters.status === status.value ? 'primary' : 'default'}
                 onClick={() => handleChipClick('status', status.value)}
@@ -62,11 +65,11 @@ const PetSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
         {/* Species Filter */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box>
-            <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>Suga</InputLabel>
+            <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>{t('sidebar.species', { ns: 'pets' })}</InputLabel>
             {SPECIES_CHOICES.map((species) => (
               <Chip
                 key={species.value}
-                label={species.label}
+                label={t(`options.species.${species.value}`, { ns: 'pets' })}
                 clickable
                 color={filters.species === species.value ? 'primary' : 'default'}
                 onClick={() => handleChipClick('species', species.value)}
@@ -79,11 +82,11 @@ const PetSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
         {/* Gender Filter */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box>
-            <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>Dzimums</InputLabel>
+            <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>{t('sidebar.gender', { ns: 'pets' })}</InputLabel>
             {GENDER_CHOICES.map((gender) => (
               <Chip
                 key={gender.value}
-                label={gender.label}
+                label={t(`options.gender.${gender.value}`, { ns: 'pets' })}
                 clickable
                 color={filters.gender === gender.value ? 'primary' : 'default'}
                 onClick={() => handleChipClick('gender', gender.value)}
@@ -96,11 +99,11 @@ const PetSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
         {/* Size Filter */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box>
-            <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>Izmērs</InputLabel>
+            <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>{t('sidebar.size', { ns: 'pets' })}</InputLabel>
             {SIZE_CHOICES.map((size) => (
               <Chip
                 key={size.value}
-                label={size.label}
+                label={t(`options.size.${size.value}`, { ns: 'pets' })}
                 clickable
                 color={filters.size === size.value ? 'primary' : 'default'}
                 onClick={() => handleChipClick('size', size.value)}
@@ -113,11 +116,11 @@ const PetSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
         {/* Pattern Filter */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box>
-            <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>Kažoka raksts</InputLabel>
+            <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>{t('sidebar.pattern', { ns: 'pets' })}</InputLabel>
             {PATTERN_CHOICES.map((pattern) => (
               <Chip
                 key={pattern.value}
-                label={pattern.label}
+                label={t(`options.pattern.${pattern.value}`, { ns: 'pets' })}
                 clickable
                 color={filters.pattern === pattern.value ? 'primary' : 'default'}
                 onClick={() => handleChipClick('pattern', pattern.value)}
@@ -130,11 +133,11 @@ const PetSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
         {/* Color Filter */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box>
-            <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>Krāsa</InputLabel>
+            <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>{t('sidebar.color', { ns: 'pets' })}</InputLabel>
             {COLOR_CHOICES.map((color) => (
               <Chip
                 key={color.value}
-                label={color.label}
+                label={t(`options.color.${color.value}`, { ns: 'pets' })}
                 clickable
                 color={filters.color === color.value ? 'primary' : 'default'}
                 onClick={() => handleChipClick('color', color.value)}
@@ -147,8 +150,7 @@ const PetSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
         {/* Date Filter */}
         <ListItem sx={{ padding: '0 !important', paddingTop: '0.8rem !important' }}>
           <Box sx={{ width: '100%' }}>
-            <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>Datums</InputLabel>
-
+            <InputLabel sx={{ fontWeight: '500', color: '#16477c' }}>{t('sidebar.date', { ns: 'pets' })}</InputLabel>
             <TextField
               type="date"
               variant="outlined"
@@ -165,18 +167,6 @@ const PetSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
 
         {/* Reset Filters */}
         <ListItem sx={{ p: 0 }}>
-          {/* <Button
-            variant="contained"
-            fullWidth
-            onClick={onReset}
-            sx={{
-              mt: 4,
-              py: 1,
-              background: 'linear-gradient(0deg, #0994ba 30%, #02b4c4 90%)',
-            }}
-          >
-            Atiestatīt filtrus
-          </Button> */}
           <Button
             variant="contained"
             fullWidth
@@ -184,7 +174,7 @@ const PetSidebar = ({ filters, setFilters, onFilterChange, onReset }) => {
             color="primary"
             onClick={onReset}
           >
-            Atiestatīt filtrus
+            {t('sidebar.resetFilters', { ns: 'pets' })}
           </Button>
         </ListItem>
       </List>

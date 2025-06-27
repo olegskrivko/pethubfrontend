@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { IconButton } from '@mui/material';
@@ -12,6 +13,7 @@ import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 
 const PetCard = ({ pet, onPanToLocation }) => {
+  const { t } = useTranslation('pets');
   const [userCoords, setUserCoords] = useState(null);
   const [distance, setDistance] = useState(null);
 
@@ -71,7 +73,7 @@ const PetCard = ({ pet, onPanToLocation }) => {
             }}
           />
           <Chip
-            label={pet.status_display}
+            label={pet.status ? t(`options.status.${pet.status}`, { ns: 'pets' }) : pet.status_display}
             variant="contained"
             sx={{
               backgroundColor: 'rgba(0, 179, 164, 0.6)',

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
@@ -21,105 +22,87 @@ import { useTheme } from '@mui/material/styles';
 
 const trainingTips = [
   {
-    title: 'Sāciet ar pamata komandām',
-    description:
-      'Sāciet ar pamatkomandām, piemēram, sēdi, paliec un nāc. Tās nodrošina pamatu turpmākai apmācībai un palīdz nostiprināt jūsu lomu kā līderim.',
+    key: 'basicCommands',
+    src: 'https://www.youtube.com/embed/NFSkzAuCjcI',
   },
   {
-    title: 'Izmantojiet pozitīvu pastiprinājumu',
-    description:
-      'Apbalvojiet savu mājdzīvnieku ar kārumiem, uzslavām vai spēlēm, kad tas izrāda vēlamo uzvedību. Pozitīvs pastiprinājums veicina šīs uzvedības atkārtošanu.',
+    key: 'positiveReinforcement',
+    src: 'https://www.youtube.com/embed/VJczka-U0D8',
   },
   {
-    title: 'Esi konsekvents',
-    description:
-      'Konsekvence ir veiksmīgas apmācības atslēga. Pastāvīgi izmantojiet vienas un tās pašas norādes un atlīdzības, lai jūsu mājdzīvnieks saprastu, kas no viņa tiek gaidīts.',
+    key: 'consistency',
+    src: 'https://www.youtube.com/embed/Ya72yz1X40g',
   },
   {
-    title: 'Saglabājiet treniņu sesijas īsas un pozitīvas',
-    description:
-      'Mājdzīvniekiem ir īss uzmanības noturības laiks, tāpēc treniņu sesijas saglabājiet īsas (apmēram 10-15 minūtes) un pozitīvas. Beidziet uz pozitīvas nots, lai viņi saglabātu interesi un gaidītu nākamo sesiju.',
+    key: 'shortSessions',
+    src: 'https://www.youtube.com/embed/CUbZ6refFKA',
   },
   {
-    title: 'Pacietība ir būtiska',
-    description:
-      'Saprotiet, ka apmācībai nepieciešams laiks un pacietība. Izvairieties no vilšanās, ja progress ir lēns. Katrs mājdzīvnieks mācās savā tempā.',
+    key: 'patience',
+    src: 'https://www.youtube.com/embed/jnKxnUvlZcU',
   },
   {
-    title: 'Izprotiet sava mājdzīvnieka šķirni un personību',
-    description:
-      'Dažādām šķirnēm ir dažādi temperamenti un uzvedība. Pielāgojiet savu apmācības pieeju, lai tā atbilstu jūsu mājdzīvnieka īpašajām vajadzībām un personībai.',
+    key: 'breedUnderstanding',
+    src: 'https://www.youtube.com/embed/7qW2OU8n9ZM',
   },
   {
-    title: 'Socializācija ir atslēga',
-    description:
-      'No agrīna vecuma iepazīstiniet savu mājdzīvnieku ar dažādām vidēm, cilvēkiem un dzīvniekiem. Pareiza socializācija palīdz novērst uzvedības problēmas un veido pārliecību.',
+    key: 'socialization',
+    src: 'https://www.youtube.com/embed/NFSkzAuCjcI',
   },
   {
-    title: 'Meklējiet profesionālu palīdzību, ja nepieciešams',
-    description:
-      'Ja jums ir grūtības ar apmācību vai sastopaties ar uzvedības problēmām, nevilcinieties meklēt palīdzību pie profesionāla trenera vai uzvedības speciālista.',
+    key: 'professionalHelp',
+    src: 'https://www.youtube.com/embed/VJczka-U0D8',
   },
   {
-    title: 'Palieciet mierīgs un pozitīvs',
-    description:
-      'Mājdzīvnieki spēj sajust jūsu emocijas, tāpēc saglabājiet mieru un pacietību apmācību laikā. Jūsu pozitīvā attieksme palīdzēs radīt pozitīvu mācību vidi.',
+    key: 'stayCalm',
+    src: 'https://www.youtube.com/embed/Ya72yz1X40g',
   },
   {
-    title: 'Izbaudiet procesu',
-    description:
-      'Jūsu mājdzīvnieka apmācībai vajadzētu būt jautram un vienojošam pieredzei jums abiem. Svērtiet katru sasniegumu un izbaudiet skatīšanos, kā jūsu mājdzīvnieks aug un mācās.',
+    key: 'enjoyProcess',
+    src: 'https://www.youtube.com/embed/CUbZ6refFKA',
   },
 ];
 
 const videos = [
   {
-    title: 'Komanda - Sēdēt un gulēt (ENG)',
+    key: 'sitAndLie',
     src: 'https://www.youtube.com/embed/NFSkzAuCjcI',
   },
   {
-    title: 'Mērķēšana ar degunu (ENG)',
+    key: 'noseTargeting',
     src: 'https://www.youtube.com/embed/VJczka-U0D8',
   },
   {
-    title: 'Pastaiga ar vaļīgu pavadu (ENG)',
+    key: 'looseLeash',
     src: 'https://www.youtube.com/embed/Ya72yz1X40g',
   },
   {
-    title: 'Komanda - Atgriezties atpakaļ (ENG)',
+    key: 'comeBack',
     src: 'https://www.youtube.com/embed/CUbZ6refFKA',
   },
   {
-    title: 'Komanda - Pagaidi  (ENG)',
+    key: 'wait',
     src: 'https://www.youtube.com/embed/jnKxnUvlZcU',
   },
   {
-    title: 'Triki un rotaļas (ENG)',
+    key: 'tricksAndGames',
     src: 'https://www.youtube.com/embed/7qW2OU8n9ZM',
   },
 ];
 
 const PetTraining = () => {
+  const { t } = useTranslation('petTraining');
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <>
       <Helmet>
-        <title>Mājdzīvnieku apmācības nodarbības</title>
-        <meta
-          name="description"
-          content="Apgūsti mājdzīvnieku apmācību ar video pamācībām un svarīgiem padomiem no ekspertiem. Uzlabo sava mājdzīvnieka uzvedību pozitīvā un jautrā veidā."
-        />
-        <meta
-          name="keywords"
-          content="mājdzīvnieku apmācība, suņu apmācība, kaķu apmācība, mājdzīvnieku uzvedība, pozitīva apmācība, mājdzīvnieku padomi, video pamācības, dzīvnieku uzvedība, suņu komandas, mājdzīvnieku socializācija"
-        />
-        <meta property="og:title" content="Virtuālās mājdzīvnieku apmācības nodarbības" />
-        <meta
-          property="og:description"
-          content="Apgūsti mājdzīvnieku apmācību ar video pamācībām un svarīgiem padomiem no ekspertiem. Uzlabo sava mājdzīvnieka uzvedību pozitīvā un jautrā veidā."
-        />
+        <title>{t('metadata.title', { ns: 'petTraining' })}</title>
+        <meta name="description" content={t('metadata.description', { ns: 'petTraining' })} />
+        <meta name="keywords" content={t('metadata.keywords', { ns: 'petTraining' })} />
+        <meta property="og:title" content={t('metadata.ogTitle', { ns: 'petTraining' })} />
+        <meta property="og:description" content={t('metadata.ogDescription', { ns: 'petTraining' })} />
         <meta property="og:type" content="website" />
       </Helmet>
 
@@ -130,24 +113,21 @@ const PetTraining = () => {
           sx={{
             mb: 5,
             fontWeight: 800,
-
             background: 'linear-gradient(60deg, #16477c 0%, #00b5ad 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Suņu skola
+          {t('mainHeading', { ns: 'petTraining' })}
         </Typography>
 
         <Grid container spacing={3}>
           <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
             <Typography variant="body1" component="p" sx={{ mb: 3 }} gutterBottom>
-              Šis visaptverošais ceļvedis piedāvā rūpīgi izvēlētus video materiālus efektīvai suņu apmācībai. Tajā
-              atradīsiet praktiskus resursus, kas palīdzēs apgūt būtiskas prasmes suņa uzvedības veidošanā.
+              {t('description.paragraph1', { ns: 'petTraining' })}
             </Typography>
             <Typography variant="body1" component="p" sx={{ mb: 3 }} gutterBottom>
-              Neatkarīgi no tā, vai esat jauns suņa īpašnieks vai vēlaties papildināt savas zināšanas, šie video aptver
-              visu — sākot no pamata komandām līdz progresīvākām apmācības metodēm.
+              {t('description.paragraph2', { ns: 'petTraining' })}
             </Typography>
           </Grid>
         </Grid>
@@ -159,7 +139,7 @@ const PetTraining = () => {
                 <CardMedia component="div" sx={{ position: 'relative', pt: '56.25%' }}>
                   <iframe
                     src={video.src}
-                    title={video.title}
+                    title={t(`videos.titles.${video.key}`, { ns: 'petTraining' })}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     style={{
@@ -184,10 +164,10 @@ const PetTraining = () => {
                       },
                     }}
                   >
-                    {video.title}
+                    {t(`videos.titles.${video.key}`, { ns: 'petTraining' })}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Avots: RSPCA South Australia
+                    {t('videos.source', { ns: 'petTraining' })}
                   </Typography>
                 </CardContent>
               </Card>
@@ -206,7 +186,7 @@ const PetTraining = () => {
             fontSize: { xs: '1.8rem', sm: '2rem' },
           }}
         >
-          Būtiski padomi efektīvai mājdzīvnieku apmācībai
+          {t('tipsSection.heading', { ns: 'petTraining' })}
         </Typography>
         <Grid container spacing={3}>
           {trainingTips.map((tip, index) => (
@@ -229,7 +209,6 @@ const PetTraining = () => {
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls={`panel-${index}-content`}
                   id={`panel-${index}-header`}
-                  // sx={{ px: 2, py: 1.5 }}
                 >
                   <Box display="flex" alignItems="center">
                     <IconButton color="primary" size="small" sx={{ mr: 2, backgroundColor: '#f7f9fd' }}>
@@ -239,7 +218,7 @@ const PetTraining = () => {
                       variant="h6"
                       sx={{ fontWeight: 600, color: '#16477c', fontSize: { xs: '0.9rem', sm: '1rem' } }}
                     >
-                      {tip.title}
+                      {t(`trainingTips.${tip.key}.title`, { ns: 'petTraining' })}
                     </Typography>
                   </Box>
                 </AccordionSummary>
@@ -248,7 +227,7 @@ const PetTraining = () => {
                     variant="body1"
                     sx={{ color: '#444', fontSize: { xs: '0.9rem', sm: '1rem' }, lineHeight: 1.6 }}
                   >
-                    {tip.description}
+                    {t(`trainingTips.${tip.key}.description`, { ns: 'petTraining' })}
                   </Typography>
                 </AccordionDetails>
               </Accordion>

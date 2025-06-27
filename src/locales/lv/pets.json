@@ -1,0 +1,71 @@
+{
+  "sidebar": {
+    "status": "Statuss",
+    "species": "Suga",
+    "gender": "Dzimums",
+    "size": "Izmērs",
+    "pattern": "Kažoka raksts",
+    "color": "Krāsa",
+    "date": "Datums",
+    "resetFilters": "Atiestatīt filtrus",
+    "search": "Meklēt",
+    "searchPlaceholder": "Sāc rakstīt, lai meklētu..."
+  },
+  "options": {
+    "status": {
+      "1": "Pazudis",
+      "2": "Atrasts",
+      "3": "Redzēts"
+    },
+    "species": {
+      "1": "Suns",
+      "2": "Kaķis",
+      "3": "Cits"
+    },
+    "gender": {
+      "1": "Tēviņš",
+      "2": "Mātīte"
+    },
+    "size": {
+      "1": "Mazs",
+      "2": "Vidējs",
+      "3": "Liels"
+    },
+    "pattern": {
+      "1": "Vienkrāsains",
+      "2": "Strīpains",
+      "3": "Punktveida",
+      "4": "Plankumains",
+      "5": "Raibs"
+    },
+    "color": {
+      "1": "Melns",
+      "2": "Pelēks",
+      "3": "Balts",
+      "4": "Krēmīgs",
+      "5": "Dzeltens",
+      "6": "Zeltains",
+      "7": "Brūns",
+      "8": "Sarkans",
+      "9": "Lillīgs",
+      "10": "Zils",
+      "11": "Zaļš",
+      "12": "Haki",
+      "13": "Bēšīgs",
+      "14": "Dzeltenbrūns",
+      "15": "Kaštanbrūns"
+    }
+  },
+  "attributes": {
+    "status": "Statuss",
+    "species": "Suga",
+    "size": "Augums",
+    "gender": "Dzimums",
+    "age": "Vecums",
+    "breed": "Šķirne",
+    "pattern": "Kažoka raksts",
+    "primaryColor": "Pamatkrāsa",
+    "secondaryColor": "Sekundārā krāsa",
+    "date": "Datums"
+  }
+}
