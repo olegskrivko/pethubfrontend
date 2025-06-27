@@ -241,7 +241,11 @@ const Poster = () => {
 
     fetchPetDetails();
   }, [id]);
-
+  const bulkDownloadPDFs = async () => {
+    for (const poster of generatedPosters) {
+      await generatePDF(poster.id);
+    }
+  };
   const handleGeneratePosters = async () => {
     try {
       setLoading(true);
@@ -278,7 +282,12 @@ const Poster = () => {
       setLoading(false);
     }
   };
-
+  // Currently you download posters one by one. If your posters are many and small, you could also kick off all downloads in parallel like this:
+  // const bulkDownloadPDFs = async () => {
+  //   await Promise.all(
+  //     generatedPosters.map((poster) => generatePDF(poster.id))
+  //   );
+  // };
   const generatePDF = async (posterId) => {
     try {
       setDownloading(posterId);
@@ -364,7 +373,17 @@ const Poster = () => {
           <Typography variant="h5" mt={4}>
             Generated Posters:
           </Typography>
-
+          <Box mt={2}>
+            <Button
+              variant="contained"
+              color="secondary"
+              startIcon={<ArrowDownwardIcon />}
+              onClick={bulkDownloadPDFs}
+              disabled={downloading !== null}
+            >
+              Download All Posters as PDF
+            </Button>
+          </Box>
           {generatedPosters.map((poster) => {
             const posterUrl = `${DOMAIN_URL}/posters/${poster.id}/scan/`;
 

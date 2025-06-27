@@ -168,6 +168,7 @@ import { Suspense, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import MapIcon from '@mui/icons-material/Map';
 import PetsIcon from '@mui/icons-material/Pets';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Avatar, Box, Container, Grid, IconButton, Paper, Typography } from '@mui/material';
@@ -193,6 +194,11 @@ const Profile = () => {
       label: 'Mani mājdzīvnieki',
     },
     {
+      to: '/user-profile/map',
+      icon: <MapIcon />,
+      label: 'Karte ar pašreizējiem sludinājumiem',
+    },
+    {
       to: '/user-profile/settings',
       icon: <SettingsIcon />,
       label: 'Iestatījumi',
@@ -202,10 +208,6 @@ const Profile = () => {
   return (
     <Container component="main" maxWidth="lg" disableGutters>
       <Box sx={{ textAlign: 'center', my: { xs: 2, sm: 2, md: 3, lg: 4, xl: 4 } }}>
-        {/* <AvatarWithAnimal animal={user.avatar} username={user.username} />
-        <Typography variant="h6" color="primary" mt={1} mb={2} fontWeight="bold">
-          {user.username}
-        </Typography> */}
         <Box
           style={{
             display: 'flex',

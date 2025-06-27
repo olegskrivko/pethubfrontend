@@ -50,6 +50,7 @@ import BookmarksIndexPage from './pages/profile/views/BookmarksIndexPage';
 import Profile from './pages/profile/views/Profile';
 import UserPetBookmarks from './pages/profile/views/UserPetBookmarks';
 import UserPets from './pages/profile/views/UserPets';
+import UserPosters from './pages/profile/views/UserPosters';
 import UserServiceBookmarks from './pages/profile/views/UserServiceBookmarks';
 import UserServices from './pages/profile/views/UserServices';
 import UserSettings from './pages/profile/views/UserSettings';
@@ -173,6 +174,8 @@ function App() {
                           <Route path="user-profile/bookmarks" element={<BookmarksIndexPage />} />
                           <Route path="user-profile/pets" element={<UserPets />} />
                           <Route path="user-profile/services" element={<UserServices />} />
+                          <Route path="user-profile/map" element={<UserPosters />} />
+
                           {/* 
               <Route path="test-one/new" element={<About />} />
               <Route path="test-two/:id/edit" element={<About />} /> */}
