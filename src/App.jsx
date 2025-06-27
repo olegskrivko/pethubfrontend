@@ -160,7 +160,7 @@ function App() {
                         <Route path="reset-password/:token" element={<ResetPasswordPage />} />
                         <Route path="account-deleted" element={<AccountDeletedPage />} />
                         {/* <Route path="scan" element={<PosterScanPage />} /> */}
-                        <Route path="posters/:posterId/scan/" element={<PosterScanPage />} />
+                        <Route path="posters/:posterId/scan" element={<PosterScanPage />} />
 
                         {/* Protected routes */}
                         <Route element={<PrivateRoute />}>
