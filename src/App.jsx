@@ -16,6 +16,7 @@ import { useAuth } from './contexts/AuthContext';
 // import { DrawerProvider } from './contexts/DrawerContext'
 import { LanguageProvider } from './contexts/LanguageContext';
 import PageNotFound from './pages/PageNotFound';
+import PosterScanPage from './pages/PosterScanPage';
 import UploadTest from './pages/UploadTest';
 import ArticleDetailsPage from './pages/articles/views/ArticleDetailsPage';
 import ArticlesListPage from './pages/articles/views/ArticlesPage';
@@ -158,6 +159,8 @@ function App() {
                         <Route path="forgot-password" element={<ForgotPasswordPage />} />
                         <Route path="reset-password/:token" element={<ResetPasswordPage />} />
                         <Route path="account-deleted" element={<AccountDeletedPage />} />
+                        {/* <Route path="scan" element={<PosterScanPage />} /> */}
+                        <Route path="posters/:posterId/scan/" element={<PosterScanPage />} />
 
                         {/* Protected routes */}
                         <Route element={<PrivateRoute />}>
