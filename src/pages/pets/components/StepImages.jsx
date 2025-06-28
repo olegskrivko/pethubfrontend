@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
 
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -33,15 +34,21 @@ const StepImages = ({ formState, handleChange }) => {
     pet_image_3: '',
     pet_image_4: '',
   });
+  const [dragActive, setDragActive] = useState({
+    pet_image_1: false,
+    pet_image_2: false,
+    pet_image_3: false,
+    pet_image_4: false,
+  });
 
   const validateImage = (file, field) => {
     let errors = {};
     let success = {};
 
     // ✅ Allowed file types
-    const allowedTypes = ['image/jpeg', 'image/jpg'];
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp', 'image/webp'];
     if (!allowedTypes.includes(file.type)) {
-      errors[field] = '❌ Atļauts tikai JPG formāts.';
+      errors[field] = '❌ Atļauts tikai JPG, PNG, GIF, BMP, WebP formāts.';
     }
 
     // ✅ Max file size (5MB)
@@ -61,6 +68,7 @@ const StepImages = ({ formState, handleChange }) => {
 
     return { errors, success };
   };
+
   const handleImageUpload = (file, field) => {
     if (!file) return;
 
@@ -136,6 +144,27 @@ const StepImages = ({ formState, handleChange }) => {
     setExtraImagesPreview((prev) => ({ ...prev, [field]: '' }));
   };
 
+  // Dropzone configuration for each field
+  const createDropzoneConfig = (field) => {
+    const onDrop = useCallback((acceptedFiles) => {
+      const file = acceptedFiles[0];
+      if (file) {
+        handleImageUpload(file, field);
+      }
+    }, [field]);
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+      onDrop,
+      accept: {
+        'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.bmp', '.webp'],
+      },
+      maxFiles: 1,
+      multiple: false,
+    });
+
+    return { getRootProps, getInputProps, isDragActive };
+  };
+
   useEffect(() => {
     return () => {
       Object.values(extraImagesPreview).forEach((preview) => {
@@ -147,28 +176,33 @@ const StepImages = ({ formState, handleChange }) => {
   const getImageBackground = (field) => {
     return extraImagesPreview[field] ? `url(${extraImagesPreview[field]}) center/cover` : '#f5f5f5';
   };
+
   return (
     <Grid container spacing={2} my={1}>
       <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
         <Grid container spacing={2}>
-          {['pet_image_1', 'pet_image_2', 'pet_image_3', 'pet_image_4'].map((field) => (
-            <Grid size={{ xs: 6, sm: 6, md: 6, lg: 6 }} key={field}>
-              <Box sx={{ position: 'relative' }}>
-                <input
-                  accept="image/*"
-                  id={field}
-                  type="file"
-                  onChange={(e) => handleImageUpload(e.target.files[0], field)}
-                  style={{ display: 'none' }}
-                />
-                <label htmlFor={field} style={{ display: 'block' }}>
-                  <Box
-                    sx={{
+          {['pet_image_1', 'pet_image_2', 'pet_image_3', 'pet_image_4'].map((field) => {
+            const { getRootProps, getInputProps, isDragActive } = createDropzoneConfig(field);
+            
+            return (
+              <Grid size={{ xs: 6, sm: 6, md: 6, lg: 6 }} key={field}>
+                <Box sx={{ position: 'relative' }}>
+                  {/* Hidden file input for default upload */}
+                  <input
+                    accept="image/*"
+                    id={field}
+                    type="file"
+                    onChange={(e) => handleImageUpload(e.target.files[0], field)}
+                    style={{ display: 'none' }}
+                  />
+                  
+                  {/* Dropzone area */}
+                  <div
+                    {...getRootProps()}
+                    style={{
                       width: '100%',
                       aspectRatio: '4 / 3',
                       background: getImageBackground(field),
-                      // border: `2px dashed ${imageErrors[field] ? "red" : "#aaa"}`,
-                      // border: extraImagesPreview[field] ? "none" : "1px solid #aaa",
                       border: imageErrors[field] ? '1px solid red' : '1px solid #aaa',
                       display: 'flex',
                       flexDirection: 'column',
@@ -180,50 +214,70 @@ const StepImages = ({ formState, handleChange }) => {
                       color: '#666',
                       position: 'relative',
                       transition: 'border 0.3s ease',
+                      backgroundColor: isDragActive ? '#e8f6f9' : '#f5f5f5',
                       '&:hover': { borderColor: '#666' },
                     }}
                   >
+                    <input {...getInputProps()} />
                     {!extraImagesPreview[field] && (
                       <>
                         <AddPhotoAlternateIcon sx={{ fontSize: 40, mb: 1, color: '#999' }} />
-                        <Typography variant="body2">Izvēlēties bildi</Typography>
-                        <Typography variant="caption">Atļautais formāts: JPG, Max 5MB</Typography>
+                        <Typography variant="body2">
+                          {isDragActive ? 'Nometiet attēlu šeit...' : 'Izvēlēties bildi'}
+                        </Typography>
+                        <Typography variant="caption">
+                          {isDragActive ? '' : 'Atļautais formāts: JPG, PNG, GIF, BMP, WebP, Max 5MB'}
+                        </Typography>
+                        <Typography variant="caption" sx={{ mt: 1, fontSize: '10px', color: '#999' }}>
+                          ⚠️ Dažos mobilajos pārlūkos vilkšana var nedarboties pareizi.
+                        </Typography>
+                        <Typography variant="caption" sx={{ fontSize: '10px', color: '#999' }}>
+                          Ja rodas problēmas, izmantojiet faila ievades lauku zemāk.
+                        </Typography>
                       </>
                     )}
-                  </Box>
-                </label>
+                  </div>
 
-                {/* Close IconButton placed outside the label */}
-                {extraImagesPreview[field] && (
-                  <IconButton
-                    size="small"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleClearImage(field);
-                    }}
-                    sx={{
-                      position: 'absolute',
-                      top: 4,
-                      right: 4,
-                      zIndex: 10,
-                      backgroundColor: '#f5f5f5',
-                      '&:hover': { backgroundColor: '#e0e0e0' },
-                      borderRadius: '50%',
-
-                      boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)',
-                    }}
-                  >
-                    <CloseIcon fontSize="small" sx={{ color: '#616161' }} />
-                  </IconButton>
+                  {/* Close IconButton placed outside the dropzone */}
+                  {extraImagesPreview[field] && (
+                    <IconButton
+                      size="small"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleClearImage(field);
+                      }}
+                      sx={{
+                        position: 'absolute',
+                        top: 4,
+                        right: 4,
+                        zIndex: 10,
+                        backgroundColor: '#f5f5f5',
+                        '&:hover': { backgroundColor: '#e0e0e0' },
+                        borderRadius: '50%',
+                        boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)',
+                      }}
+                    >
+                      <CloseIcon fontSize="small" sx={{ color: '#616161' }} />
+                    </IconButton>
+                  )}
+                </Box>
+                
+                {/* Default file input for mobile compatibility */}
+                <input
+                  accept="image/*"
+                  id={`${field}_default`}
+                  type="file"
+                  onChange={(e) => handleImageUpload(e.target.files[0], field)}
+                />
+                
+                {imageErrors[field] && (
+                  <Typography color="red" variant="body2" mt={1} textAlign="center">
+                    {imageErrors[field]}
+                  </Typography>
                 )}
-              </Box>
-              {imageErrors[field] && (
-                <Typography color="red" variant="body2" mt={1} textAlign="center">
-                  {imageErrors[field]}
-                </Typography>
-              )}
-            </Grid>
-          ))}
+              </Grid>
+            );
+          })}
         </Grid>
       </Grid>
     </Grid>
