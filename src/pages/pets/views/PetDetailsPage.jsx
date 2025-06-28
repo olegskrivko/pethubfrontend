@@ -99,22 +99,29 @@ const PetDetailsPage = () => {
     // axios.post('api/uploadfile', formData);
   };
   // Dropzone configuration
-  const onDrop = useCallback((acceptedFiles) => {
-    const file = acceptedFiles[0];
-    console.log('File dropped/selected:', file);
-    if (file) {
-      handleFileInputChange(file);
-    }
+  const createDropzoneConfig = useCallback(() => {
+    const onDrop = useCallback((acceptedFiles) => {
+      const file = acceptedFiles[0];
+      console.log('File dropped/selected:', file);
+      if (file) {
+        handleFileInputChange(file);
+      }
+    }, []);
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+      onDrop,
+      accept: {
+        'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.bmp', '.webp'],
+      },
+      maxFiles: 1,
+      multiple: false,
+    });
+
+    return { getRootProps, getInputProps, isDragActive };
   }, []);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept: {
-      'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.bmp', '.webp'],
-    },
-    maxFiles: 1,
-    multiple: false,
-  });
+  // Get dropzone configuration
+  const { getRootProps, getInputProps, isDragActive } = createDropzoneConfig();
 
   // Function to receive data from child
   const handleChildData = (data) => {
@@ -168,28 +175,32 @@ const PetDetailsPage = () => {
   const handleFileInputChange = (file) => {
     if (!file) return;
 
-    if (!file.type.startsWith('image/')) {
+    // Validate file type
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp', 'image/webp'];
+    if (!allowedTypes.includes(file.type)) {
       alert(t('alerts.invalidImage'));
       return;
     }
 
+    // Validate file size (5MB)
     if (file.size > 5 * 1024 * 1024) {
       alert(t('alerts.imageTooLarge'));
       return;
     }
 
-    // Revoke previous preview
+    // Revoke previous preview to prevent memory leaks
     if (filePreview) {
       URL.revokeObjectURL(filePreview);
     }
 
+    // Set file and create preview
+    setFile(file);
+    
     try {
       const previewUrl = URL.createObjectURL(file);
-      setFile(file);
       setFilePreview(previewUrl);
     } catch (err) {
       console.warn('Could not generate preview (possibly mobile):', err);
-      setFile(file);
       setFilePreview(null); // fallback, no preview
     }
   };
@@ -438,6 +449,15 @@ const PetDetailsPage = () => {
       mapRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }, [isLocationAdded]);
+
+  // Cleanup file preview on unmount
+  useEffect(() => {
+    return () => {
+      if (filePreview) {
+        URL.revokeObjectURL(filePreview);
+      }
+    };
+  }, [filePreview]);
 
   if (isStillLoading) {
     return (
