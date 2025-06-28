@@ -424,7 +424,47 @@ const Poster = () => {
                     Pazudis {pet.species_display}
                   </Typography>
                 </Box>
-
+                <Grid container spacing={3}>
+                  <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
+                    {pet.pet_image_1 && (
+                      <Box
+                        position="relative"
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
+                        sx={{ width: '100%', borderRadius: 1 }}
+                      >
+                        <img
+                          src={pet.pet_image_1}
+                          alt={pet.name}
+                          style={{
+                            maxWidth: '100%',
+                            height: 'auto',
+                            borderRadius: '4px',
+                          }}
+                        />
+                        {/* <Typography
+                          variant="caption"
+                          sx={{
+                            position: 'absolute',
+                            bottom: 8,
+                            right: 8,
+                            backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                           
+                            color: 'black',
+                            px: 1,
+                            py: 0.2,
+                            borderRadius: 1,
+                            fontSize: '0.6rem',
+                            fontWeight: 500,
+                          }}
+                        >
+                          Made by {APP_NAME}
+                        </Typography> */}
+                      </Box>
+                    )}
+                  </Grid>
+                </Grid>
                 <Box display="flex" justifyContent="center" mt={2}>
                   <QRCode value={posterUrl} size={200} />
                 </Box>
