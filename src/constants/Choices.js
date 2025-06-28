@@ -114,8 +114,55 @@ export const SUBJECT_CHOICES = {
     { value: 5, label: 'Другое' },
   ],
 };
+const finalStatusOptions = {
+  1: [
+    // lost
+    { value: 1, label: 'Nav atrisināts' },
+    { value: 8, label: 'Atradies' },
+    { value: 7, label: 'Miris' },
+    { value: 9, label: 'Cits' },
+  ],
 
+  2: [
+    // found
+    { value: 1, label: 'Nav atrisināts' },
+    { value: 2, label: 'Atgriezts saimniekam' },
+    { value: 3, label: 'Nodots patversmei' },
+    { value: 4, label: 'Paturēts sev' },
+    { value: 9, label: 'Cits' },
+  ],
+  3: [
+    // seen
+    { value: 1, label: 'Nav atrisināts' },
+    { value: 5, label: 'Klaiņojošs' },
+    { value: 6, label: 'Brīvā pastaigā' },
+    { value: 7, label: 'Miris' },
+    { value: 9, label: 'Cits' },
+  ],
+};
 // Helper function to get choices for current language
 export const getSubjectChoices = (language = 'lv') => {
   return SUBJECT_CHOICES[language] || SUBJECT_CHOICES.lv;
 };
+
+// Helper function to get translated choice value
+export const getTranslatedChoice = (choiceType, value, t) => {
+  if (!value) return '';
+  
+  const choiceKey = `choices.${choiceType}.${value}`;
+  return t(choiceKey);
+};
+
+// Helper functions for specific choice types
+export const getGenderLabel = (value, t) => getTranslatedChoice('gender', value, t);
+export const getSizeLabel = (value, t) => getTranslatedChoice('size', value, t);
+export const getSpeciesLabel = (value, t) => getTranslatedChoice('species', value, t);
+export const getAgeLabel = (value, t) => getTranslatedChoice('age', value, t);
+export const getStatusLabel = (value, t) => getTranslatedChoice('status', value, t);
+export const getFinalStatusLabel = (value, t) => getTranslatedChoice('finalStatus', value, t);
+export const getPatternLabel = (value, t) => getTranslatedChoice('pattern', value, t);
+export const getColorLabel = (value, t) => getTranslatedChoice('color', value, t);
+export const getCategoryLabel = (value, t) => getTranslatedChoice('category', value, t);
+export const getShelterCategoryLabel = (value, t) => getTranslatedChoice('shelterCategory', value, t);
+export const getProviderTypeLabel = (value, t) => getTranslatedChoice('providerType', value, t);
+export const getPriceTypeLabel = (value, t) => getTranslatedChoice('priceType', value, t);

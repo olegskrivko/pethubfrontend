@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   Delete as DeleteIcon,
@@ -45,6 +46,7 @@ dayjs.locale('lv');
 dayjs.extend(relativeTime);
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const TabMessages = ({ pet, sightings, onZoomMap }) => {
+  const { t } = useTranslation('petDetails');
   const { user, logout } = useAuth();
 
   const theme = useTheme();
@@ -77,7 +79,7 @@ const TabMessages = ({ pet, sightings, onZoomMap }) => {
   };
 
   const handleDeleteMessage = async (messageId) => {
-    if (!window.confirm('Are you sure you want to delete this message?')) return;
+    if (!window.confirm(t('messages.deleteConfirmation'))) return;
     const accessToken = localStorage.getItem('access_token');
     if (!accessToken) {
       // setError('You must be logged in to view shelters.');
@@ -152,7 +154,7 @@ const TabMessages = ({ pet, sightings, onZoomMap }) => {
 
                       {/* Buttons at bottom */}
                       <Box mt={2} display="flex" justifyContent="flex-start" gap={2}>
-                        <Tooltip title="Parādīt kartē">
+                        <Tooltip title={t('tooltips.showOnMap')}>
                           <span>
                             <IconButton
                               onClick={() => onZoomMap(status?.latitude, status?.longitude)}
@@ -171,7 +173,7 @@ const TabMessages = ({ pet, sightings, onZoomMap }) => {
                           //     zIndex: '999',
                           //   }}
                           // >
-                          <Tooltip title="Izdzēst ziņu">
+                          <Tooltip title={t('tooltips.deleteMessage')}>
                             <IconButton
                               onClick={() => handleDeleteMessage(status.id)}
                               sx={{ backgroundColor: '#00b3a4', color: '#fff' }}
@@ -293,7 +295,7 @@ const TabMessages = ({ pet, sightings, onZoomMap }) => {
                 >
                   <TextSnippetIcon />
                 </IconButton>{' '}
-                Šobrīd nav pievienots neviens novērojums.
+                {t('messages.noObservations')}
               </Box>
             </Typography>
             {/* </CardContent> */}

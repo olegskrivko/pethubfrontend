@@ -12,6 +12,7 @@ import enFaq from './locales/en/faq.json';
 import enFooter from './locales/en/footer.json';
 import enHomePage from './locales/en/homePage.json';
 import enNavbar from './locales/en/navbar.json';
+import enPetDetails from './locales/en/petDetails.json';
 import enPetTraining from './locales/en/petTraining.json';
 import enPets from './locales/en/pets.json';
 import enSelectOptions from './locales/en/selectOptions.json';
@@ -24,6 +25,7 @@ import lvFaq from './locales/lv/faq.json';
 import lvFooter from './locales/lv/footer.json';
 import lvHomePage from './locales/lv/homePage.json';
 import lvNavbar from './locales/lv/navbar.json';
+import lvPetDetails from './locales/lv/petDetails.json';
 import lvPetTraining from './locales/lv/petTraining.json';
 import lvPets from './locales/lv/pets.json';
 import lvSelectOptions from './locales/lv/selectOptions.json';
@@ -36,6 +38,7 @@ import ruFaq from './locales/ru/faq.json';
 import ruFooter from './locales/ru/footer.json';
 import ruHomePage from './locales/ru/homePage.json';
 import ruNavbar from './locales/ru/navbar.json';
+import ruPetDetails from './locales/ru/petDetails.json';
 import ruPetTraining from './locales/ru/petTraining.json';
 import ruPets from './locales/ru/pets.json';
 import ruSelectOptions from './locales/ru/selectOptions.json';
@@ -64,6 +67,7 @@ i18n
         faq: enFaq,
         pets: enPets,
         petTraining: enPetTraining,
+        petDetails: enPetDetails,
       },
       lv: {
         common: lvCommon,
@@ -78,6 +82,7 @@ i18n
         faq: lvFaq,
         pets: lvPets,
         petTraining: lvPetTraining,
+        petDetails: lvPetDetails,
       },
       ru: {
         common: ruCommon,
@@ -92,6 +97,7 @@ i18n
         faq: ruFaq,
         pets: ruPets,
         petTraining: ruPetTraining,
+        petDetails: ruPetDetails,
       },
     },
     detection: {
@@ -111,6 +117,7 @@ i18n
       'faq',
       'pets',
       'petTraining',
+      'petDetails',
     ],
     defaultNS: 'common', // Default namespace
   });

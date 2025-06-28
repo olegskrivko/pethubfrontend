@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import EventIcon from '@mui/icons-material/Event';
@@ -20,7 +21,11 @@ import {
 import { format } from 'date-fns';
 import { lv } from 'date-fns/locale';
 
+import { getStatusLabel, getFinalStatusLabel } from '../../../constants/Choices';
+
 const StatusHistory = ({ pet, sightings }) => {
+  const { t } = useTranslation('petDetails');
+  
   // Filter sightings where both latitude and longitude are valid
   const validSightings = sightings.filter(
     (sighting) => sighting.latitude && sighting.longitude && !isNaN(sighting.latitude) && !isNaN(sighting.longitude),
@@ -67,7 +72,7 @@ const StatusHistory = ({ pet, sightings }) => {
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText
-                    primary={'Mājdzīvnieks ' + `${pet.status_display.toLowerCase()} ` + `${formattedDate}`}
+                    primary={'Mājdzīvnieks ' + `${getStatusLabel(pet.status, t).toLowerCase()} ` + `${formattedDate}`}
                   />
                 </ListItem>
               )}
@@ -99,7 +104,7 @@ const StatusHistory = ({ pet, sightings }) => {
                       <ListItemText
                         primary={
                           'Mājdzīvnieks ' +
-                          `${sighting.status_display.toLowerCase()} ` +
+                          `${getStatusLabel(sighting.status, t).toLowerCase()} ` +
                           `${format(sighting.event_occurred_at, 'd. MMMM yyyy', {
                             locale: lv,
                           })}`
@@ -125,7 +130,7 @@ const StatusHistory = ({ pet, sightings }) => {
                     <FlagIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary={`Galīgais statuss: ${pet.final_status_display}`} />
+                <ListItemText primary={`Galīgais statuss: ${getFinalStatusLabel(pet.final_status, t)}`} />
               </ListItem>
             </List>
           </CardContent>

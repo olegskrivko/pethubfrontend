@@ -17,10 +17,20 @@ import { Box, Grid } from '@mui/material';
 import { format } from 'date-fns';
 import { lv } from 'date-fns/locale';
 
+import {
+  getStatusLabel,
+  getSpeciesLabel,
+  getSizeLabel,
+  getGenderLabel,
+  getAgeLabel,
+  getPatternLabel,
+  getColorLabel,
+} from '../../../constants/Choices';
 import PetAttributeItem from './PetAttributeItem';
 
 const PetAttributes = ({ pet }) => {
   const { t } = useTranslation('pets');
+  const { t: tPetDetails } = useTranslation('petDetails');
 
   const AGE_LABELS_BY_SPECIES = {
     1: { 1: 'Kucēns', 2: 'Pieaugušais', 3: 'Seniors' },
@@ -38,26 +48,26 @@ const PetAttributes = ({ pet }) => {
   const formattedTime = eventDate ? format(eventDate, 'HH:mm', { locale: lv }) : 'Nav pieejams';
 
   const attributes = [
-    { icon: <SearchIcon />, label: t('attributes.status', { ns: 'pets' }), value: pet.status_display },
-    { icon: <PetsIcon />, label: t('attributes.species', { ns: 'pets' }), value: pet.species_display },
-    { icon: <HeightIcon />, label: t('attributes.size', { ns: 'pets' }), value: pet.size_display },
-    { icon: <MaleIcon />, label: t('attributes.gender', { ns: 'pets' }), value: pet.gender_display },
-    { icon: <CakeIcon />, label: t('attributes.age', { ns: 'pets' }), value: ageLabel },
+    { icon: <SearchIcon />, label: t('attributes.status', { ns: 'pets' }), value: getStatusLabel(pet.status, tPetDetails) },
+    { icon: <PetsIcon />, label: t('attributes.species', { ns: 'pets' }), value: getSpeciesLabel(pet.species, tPetDetails) },
+    { icon: <HeightIcon />, label: t('attributes.size', { ns: 'pets' }), value: getSizeLabel(pet.size, tPetDetails) },
+    { icon: <MaleIcon />, label: t('attributes.gender', { ns: 'pets' }), value: getGenderLabel(pet.gender, tPetDetails) },
+    { icon: <CakeIcon />, label: t('attributes.age', { ns: 'pets' }), value: getAgeLabel(pet.age, tPetDetails) },
     { icon: <MergeTypeIcon />, label: t('attributes.breed', { ns: 'pets' }), value: breedLabel },
     {
       icon: <TextureIcon />,
       label: t('attributes.pattern', { ns: 'pets' }),
-      value: pet.pattern_display,
+      value: getPatternLabel(pet.pattern, tPetDetails),
     },
     {
       icon: <ColorLensIcon />,
       label: t('attributes.primaryColor', { ns: 'pets' }),
-      value: pet.primary_color_display,
+      value: getColorLabel(pet.primary_color, tPetDetails),
     },
     {
       icon: <ColorLensIcon />,
       label: t('attributes.secondaryColor', { ns: 'pets' }),
-      value: pet.secondary_color_display,
+      value: getColorLabel(pet.secondary_color, tPetDetails),
     },
     {
       icon: <EventIcon />,

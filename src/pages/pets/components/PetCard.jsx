@@ -12,8 +12,11 @@ import Chip from '@mui/material/Chip';
 // Import Link from react-router-dom
 import Typography from '@mui/material/Typography';
 
+import { getSpeciesLabel, getStatusLabel } from '../../../constants/Choices';
+
 const PetCard = ({ pet, onPanToLocation }) => {
   const { t } = useTranslation('pets');
+  const { t: tPetDetails } = useTranslation('petDetails');
   const [userCoords, setUserCoords] = useState(null);
   const [distance, setDistance] = useState(null);
 
@@ -65,7 +68,7 @@ const PetCard = ({ pet, onPanToLocation }) => {
           <CardMedia
             component="img"
             src={pet.pet_image_1}
-            alt={pet.species_display}
+            alt={getSpeciesLabel(pet.species, tPetDetails)}
             sx={{
               width: '100%',
               height: '100%',
@@ -73,7 +76,7 @@ const PetCard = ({ pet, onPanToLocation }) => {
             }}
           />
           <Chip
-            label={pet.status ? t(`options.status.${pet.status}`, { ns: 'pets' }) : pet.status_display}
+            label={getStatusLabel(pet.status, tPetDetails)}
             variant="contained"
             sx={{
               backgroundColor: 'rgba(0, 179, 164, 0.6)',

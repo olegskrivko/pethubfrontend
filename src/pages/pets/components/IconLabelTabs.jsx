@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
@@ -47,6 +48,7 @@ TabPanel.propTypes = {
 };
 
 function IconLabelTabs({ pet, sightings, onZoomMap }) {
+  const { t } = useTranslation('petDetails');
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -63,10 +65,10 @@ function IconLabelTabs({ pet, sightings, onZoomMap }) {
     <Box sx={{ margin: '0rem !important', padding: '0rem !important' }}>
       <div style={{ margin: '1rem 0' }}>
         <Tabs value={value} centered onChange={handleChange} variant="fullWidth" aria-label="basic tabs example">
-          <Tab icon={<ForumIcon />} label="Ziņas" sx={{ fontSize: '0.7rem' }} {...a11yProps(0)} />
-          <Tab icon={<DescriptionIcon />} label="Piezīmes" sx={{ fontSize: '0.7rem' }} {...a11yProps(1)} />
+          <Tab icon={<ForumIcon />} label={t('tabs.messages')} sx={{ fontSize: '0.7rem' }} {...a11yProps(0)} />
+          <Tab icon={<DescriptionIcon />} label={t('tabs.notes')} sx={{ fontSize: '0.7rem' }} {...a11yProps(1)} />
 
-          <Tab icon={<ContactPageIcon />} label="Kontakti" sx={{ fontSize: '0.7rem' }} {...a11yProps(2)} />
+          <Tab icon={<ContactPageIcon />} label={t('tabs.contacts')} sx={{ fontSize: '0.7rem' }} {...a11yProps(2)} />
         </Tabs>
       </div>
 

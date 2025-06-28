@@ -1,0 +1,159 @@
+{
+  "alerts": {
+    "loginRequired": "You must be logged in to manage favorites.",
+    "noPetDetails": "No pet details available",
+    "linkCopied": "Link copied to clipboard!",
+    "errorSharing": "Error sharing pet. Please try again later.",
+    "invalidImage": "Please upload a valid image file.",
+    "imageTooLarge": "Image is too large. Max size is 5MB.",
+    "messageRequired": "Please enter a message.",
+    "locationRequired": "Please add the location where the image was taken.",
+    "messageSent": "Message sent successfully!",
+    "errorSendingMessage": "Error sending message. Please try again.",
+    "errorUpdatingFavorite": "Error updating favorite status. Please try again later.",
+    "somethingWentWrong": "Something went wrong"
+  },
+  "tooltips": {
+    "removeFromFavorites": "Remove from favorites",
+    "addToFavorites": "Add to favorites",
+    "downloadPoster": "Download Poster",
+    "share": "Share",
+    "report": "Report",
+    "addLocation": "Add location",
+    "removeLocation": "Remove location",
+    "sendMessage": "Send message",
+    "showOnMap": "Show on map",
+    "deleteMessage": "Delete message"
+  },
+  "form": {
+    "commentPlaceholder": "Enter your comment here...",
+    "addPhoto": "Add photo:",
+    "dragDropText": "Drag & drop an image here, or click to select",
+    "supportedFormats": "Supports: JPG, PNG, GIF, BMP, WebP",
+    "mobileWarning": "⚠️ In some mobile browsers or older devices, drag & drop or clickable upload zones may not work properly.",
+    "mobileWarning2": "If you're having trouble uploading an image, please use the file input below instead.",
+    "dropHere": "Drop the image here...",
+    "selectedFile": "Selected File:",
+    "fileType": "File Type:",
+    "fileSize": "File Size:"
+  },
+  "actions": {
+    "addMessage": "ADD MESSAGE",
+    "pleaseLogin": "Please log in to add a message.",
+    "login": "Login"
+  },
+  "notifications": {
+    "petAddedToFavorites": "Pet added to favorites",
+    "petRemovedFromFavorites": "Pet removed from favorites"
+  },
+  "tabs": {
+    "messages": "Messages",
+    "notes": "Notes",
+    "contacts": "Contacts"
+  },
+  "messages": {
+    "noObservations": "No observations have been added yet.",
+    "deleteConfirmation": "Are you sure you want to delete this message?"
+  },
+  "notes": {
+    "noNotes": "No notes have been added to this listing."
+  },
+  "contact": {
+    "phoneNotProvided": "Phone number not provided"
+  },
+  "choices": {
+    "gender": {
+      "1": "Male",
+      "2": "Female"
+    },
+    "size": {
+      "1": "Small",
+      "2": "Medium",
+      "3": "Large"
+    },
+    "species": {
+      "1": "Dog",
+      "2": "Cat",
+      "3": "Other"
+    },
+    "age": {
+      "1": "Puppy/Kitten",
+      "2": "Adult",
+      "3": "Senior"
+    },
+    "status": {
+      "1": "Lost",
+      "2": "Found",
+      "3": "Seen"
+    },
+    "finalStatus": {
+      "1": "Not Resolved",
+      "2": "Returned to Owner",
+      "3": "Given to Shelter",
+      "4": "Kept for Self",
+      "5": "Roaming",
+      "6": "Free Walking",
+      "7": "Deceased",
+      "8": "Found",
+      "9": "Other"
+    },
+    "pattern": {
+      "1": "Solid",
+      "2": "Striped",
+      "3": "Spotted",
+      "4": "Patched",
+      "5": "Mixed"
+    },
+    "color": {
+      "1": "Black",
+      "2": "Gray",
+      "3": "White",
+      "4": "Cream",
+      "5": "Yellow",
+      "6": "Golden",
+      "7": "Brown",
+      "8": "Red",
+      "9": "Purple",
+      "10": "Blue",
+      "11": "Green",
+      "12": "Khaki",
+      "13": "Beige",
+      "14": "Yellow-Brown",
+      "15": "Chestnut"
+    },
+    "category": {
+      "1": "Pet Sitting",
+      "2": "Dog Walking",
+      "3": "Grooming",
+      "4": "Training",
+      "5": "Boarding",
+      "6": "Veterinary",
+      "7": "Photo Sessions",
+      "8": "Rescue & Search",
+      "9": "Accessories",
+      "10": "Art",
+      "11": "Burial",
+      "12": "Transport",
+      "13": "Breeding",
+      "14": "Insurance",
+      "15": "Other Services"
+    },
+    "shelterCategory": {
+      "1": "Municipal Shelter",
+      "2": "Animal Rescue",
+      "3": "Sanctuary",
+      "4": "Private Shelter",
+      "5": "Other"
+    },
+    "providerType": {
+      "1": "Individual",
+      "2": "Legal Entity"
+    },
+    "priceType": {
+      "1": "Per Hour",
+      "2": "Per Unit",
+      "3": "Per Day",
+      "4": "By Agreement"
+    }
+  }
+}

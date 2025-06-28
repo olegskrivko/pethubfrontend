@@ -58,6 +58,7 @@
 // };
 // export default TabContact;
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import PhoneIcon from '@mui/icons-material/Phone';
 import { Avatar, Box, Card, CardContent, IconButton, Link, Typography } from '@mui/material';
@@ -65,6 +66,8 @@ import { Avatar, Box, Card, CardContent, IconButton, Link, Typography } from '@m
 import AnimalAvatar from '../../../shared/components/AnimalAvatar';
 
 const TabContact = ({ pet }) => {
+  const { t } = useTranslation('petDetails');
+
   return (
     <Card
       sx={{
@@ -119,7 +122,7 @@ const TabContact = ({ pet }) => {
         ) : (
           <Box>
             <Typography variant="body1" color="textSecondary">
-              Telefona numurs nav norādīts
+              {t('contact.phoneNotProvided')}
             </Typography>
           </Box>
         )}

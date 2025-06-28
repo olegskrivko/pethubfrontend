@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 
 // Import Latvian locale
@@ -47,6 +49,7 @@ import moment from 'moment';
 import 'moment/locale/lv';
 import { useSnackbar } from 'notistack';
 
+import { getStatusLabel, getFinalStatusLabel } from '../../../constants/Choices';
 import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
 import { useAuth } from '../../../contexts/AuthContext';
 import AnimalAvatar from '../../../shared/components/AnimalAvatar';
@@ -61,6 +64,7 @@ import SendMessage from '../components/SendMessage';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const PetDetailsPage = () => {
+  const { t } = useTranslation('petDetails');
   const { user } = useAuth();
   const { id } = useParams();
   const { enqueueSnackbar } = useSnackbar();
@@ -144,18 +148,18 @@ const PetDetailsPage = () => {
     try {
       if (navigator.share) {
         await navigator.share({
-          title: pet.status_display,
-          text: pet.breed_display,
+          title: getStatusLabel(pet.status, t),
+          text: pet.breed || '',
           url: window.location.href,
         });
       } else {
         // Fallback: Copy URL to clipboard
         navigator.clipboard.writeText(window.location.href);
-        enqueueSnackbar('Link copied to clipboard!', { variant: 'success' });
+        enqueueSnackbar(t('alerts.linkCopied'), { variant: 'success' });
       }
     } catch (error) {
       console.error('Error sharing pet:', error);
-      enqueueSnackbar('Error sharing pet. Please try again later.', {
+      enqueueSnackbar(t('alerts.errorSharing'), {
         variant: 'error',
       });
     }
@@ -165,12 +169,12 @@ const PetDetailsPage = () => {
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
-      alert('Please upload a valid image file.');
+      alert(t('alerts.invalidImage'));
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      alert('Image is too large. Max size is 5MB.');
+      alert(t('alerts.imageTooLarge'));
       return;
     }
 
@@ -217,13 +221,13 @@ const PetDetailsPage = () => {
 
     // 1. Message is always required
     if (!hasMessage) {
-      alert('Please enter a message.');
+      alert(t('alerts.messageRequired'));
       return;
     }
 
     // 2. If image is included, coords are also required
     if (hasImage && !hasCoords) {
-      alert('Please add the location where the image was taken.');
+      alert(t('alerts.locationRequired'));
       return;
     }
 
@@ -302,12 +306,12 @@ const PetDetailsPage = () => {
       setIsLocationAdded(false);
 
       // ✅ Show success toast
-      enqueueSnackbar('Message sent successfully!', { variant: 'success' });
+      enqueueSnackbar(t('alerts.messageSent'), { variant: 'success' });
 
       fetchPetSightings();
     } catch (error) {
       console.error('Error sending message:', error);
-      enqueueSnackbar('Error sending message. Please try again.', { variant: 'error' });
+      enqueueSnackbar(t('alerts.errorSendingMessage'), { variant: 'error' });
     }
   };
 
@@ -398,7 +402,7 @@ const PetDetailsPage = () => {
   const handleFavorite = async () => {
     const accessToken = localStorage.getItem('access_token');
     if (!accessToken) {
-      alert('You must be logged in to manage favorites.');
+      alert(t('alerts.loginRequired'));
       return;
     }
 
@@ -414,16 +418,16 @@ const PetDetailsPage = () => {
 
       if (response.ok) {
         setIsFavorite(!isFavorite);
-        enqueueSnackbar(isFavorite ? 'Pet removed from favorites' : 'Pet added to favorites', { variant: 'success' });
+        enqueueSnackbar(isFavorite ? t('notifications.petRemovedFromFavorites') : t('notifications.petAddedToFavorites'), { variant: 'success' });
       } else {
         const errorData = await response.json();
-        enqueueSnackbar(errorData.detail || 'Something went wrong', {
+        enqueueSnackbar(errorData.detail || t('alerts.somethingWentWrong'), {
           variant: 'error',
         });
       }
     } catch (error) {
       console.error('Error updating favorite status:', error);
-      enqueueSnackbar('Error updating favorite status. Please try again later.', { variant: 'error' });
+      enqueueSnackbar(t('alerts.errorUpdatingFavorite'), { variant: 'error' });
     }
   };
 
@@ -483,7 +487,7 @@ const PetDetailsPage = () => {
           height: '100vh',
         }}
       >
-        <Alert severity="info">No pet details available</Alert>
+        <Alert severity="info">{t('alerts.noPetDetails')}</Alert>
       </div>
     );
   }
@@ -496,14 +500,14 @@ const PetDetailsPage = () => {
           {/* 👉 Action Buttons BELOW the image */}
           <Box sx={{ display: 'flex', justifyContent: 'space-around', py: 1 }}>
             {/* Add to Favorites */}
-            <Tooltip title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}>
+            <Tooltip title={isFavorite ? t('tooltips.removeFromFavorites') : t('tooltips.addToFavorites')}>
               <IconButton onClick={handleFavorite} style={{ backgroundColor: '#f7f9fd' }}>
                 {isFavorite ? <BookmarkIcon color="primary" /> : <BookmarkBorderIcon color="primary" />}
               </IconButton>
             </Tooltip>
 
             {/* Download */}
-            <Tooltip title="Download Poster">
+            <Tooltip title={t('tooltips.downloadPoster')}>
               <Link to={`/pets/${id}/poster`}>
                 <IconButton style={{ backgroundColor: '#f7f9fd' }}>
                   <DownloadIcon color="primary" />
@@ -512,14 +516,14 @@ const PetDetailsPage = () => {
             </Tooltip>
 
             {/* Share */}
-            <Tooltip title="Share">
+            <Tooltip title={t('tooltips.share')}>
               <IconButton onClick={handleShare} style={{ backgroundColor: '#f7f9fd' }}>
                 <ShareIcon color="primary" />
               </IconButton>
             </Tooltip>
 
             {/* Report */}
-            {/* <Tooltip title="Report">
+            {/* <Tooltip title={t('tooltips.report')}>
               <IconButton onClick={handleReport} disabled style={{ backgroundColor: '#f7f9fd' }}>
                 <FlagIcon color="primary" />
               </IconButton>
@@ -551,7 +555,7 @@ const PetDetailsPage = () => {
               letterSpacing: 0.8,
             }}
           >
-            {pet.status_display}
+            {getStatusLabel(pet.status, t)}
           </Typography>
 
           {/* Arrow icon */}
@@ -574,7 +578,7 @@ const PetDetailsPage = () => {
               letterSpacing: 0.8,
             }}
           >
-            {pet.final_status_display}
+            {getFinalStatusLabel(pet.final_status, t)}
           </Typography>
         </Box>
       </Card>
@@ -607,11 +611,11 @@ const PetDetailsPage = () => {
         }}
       >
         <Box display="flex" alignItems="center" gap={2}>
-          <StatusBlock icon={<FlagIcon />} label={pet.status_display} />
+          <StatusBlock icon={<FlagIcon />} label={getStatusLabel(pet.status, t)} />
 
           <DoubleArrowIcon />
 
-          <StatusBlock icon={<FlagIcon />} label={pet.final_status_display} />
+          <StatusBlock icon={<FlagIcon />} label={getStatusLabel(pet.final_status, t)} />
         </Box>
       </Card> */}
 
@@ -659,7 +663,7 @@ const PetDetailsPage = () => {
                   )}
 
                   <Typography color="textSecondary" sx={{ pl: { xs: 1, sm: 2 } }}>
-                    PIEVIENOT ZIŅOJUMU
+                    {t('actions.addMessage')}
                   </Typography>
                 </Box>
               </Typography>
@@ -670,7 +674,7 @@ const PetDetailsPage = () => {
             <Collapse in={msgExpanded}>
               <Box sx={{ py: { xs: 1, sm: 2 } }}>
                 <TextField
-                  label="Ierakstiet savu komentāru šeit..."
+                  label={t('form.commentPlaceholder')}
                   variant="outlined"
                   size="small"
                   fullWidth
@@ -681,7 +685,7 @@ const PetDetailsPage = () => {
                 />
               </Box>
               <div style={{ marginBottom: '16px' }}>
-                <p style={{ marginBottom: '8px', color: '#666' }}>Pievienot foto:</p>
+                <p style={{ marginBottom: '8px', color: '#666' }}>{t('form.addPhoto')}</p>
                 <div
                   {...getRootProps()}
                   style={{
@@ -708,21 +712,20 @@ const PetDetailsPage = () => {
                     }}
                   />
                   {isDragActive ? (
-                    <p style={{ margin: 0, color: '#00b3a4', fontWeight: 'bold' }}>Drop the image here...</p>
+                    <p style={{ margin: 0, color: '#00b3a4', fontWeight: 'bold' }}>{t('form.dropHere')}</p>
                   ) : (
                     <div>
                       <p style={{ margin: '0 0 4px 0', color: '#666', fontWeight: '500' }}>
-                        Drag & drop an image here, or click to select
+                        {t('form.dragDropText')}
                       </p>
-                      <p style={{ margin: 0, fontSize: '12px', color: '#999' }}>Supports: JPG, PNG, GIF, BMP, WebP</p>
+                      <p style={{ margin: 0, fontSize: '12px', color: '#999' }}>{t('form.supportedFormats')}</p>
                     </div>
                   )}
                 </div>
                 <p style={{ marginTop: '16px', fontSize: '14px', color: '#666', textAlign: 'center' }}>
-                  ⚠️ In some mobile browsers or older devices, drag & drop or clickable upload zones may not work
-                  properly.
+                  {t('form.mobileWarning')}
                   <br />
-                  If you’re having trouble uploading an image, please use the file input below instead.
+                  {t('form.mobileWarning2')}
                 </p>
                 <div style={{ marginTop: 16 }}>
                   <input type="file" accept="image/*" onChange={(e) => handleFileInputChange(e.target.files[0])} />
@@ -743,13 +746,13 @@ const PetDetailsPage = () => {
                 >
                   <div>
                     <p>
-                      <strong>Selected File:</strong> {file.name}
+                      <strong>{t('form.selectedFile')}</strong> {file.name}
                     </p>
                     <p>
-                      <strong>File Type:</strong> {file.type}
+                      <strong>{t('form.fileType')}</strong> {file.type}
                     </p>
                     <p>
-                      <strong>File Size:</strong> {(file.size / 1024 / 1024).toFixed(2)} MB
+                      <strong>{t('form.fileSize')}</strong> {(file.size / 1024 / 1024).toFixed(2)} MB
                     </p>
                   </div>
                   <IconButton onClick={handleRemoveImage} color="error">
@@ -774,13 +777,13 @@ const PetDetailsPage = () => {
               <Box display="flex" justifyContent="space-between" alignItems="center">
                 <Box>
                   {!isLocationAdded ? (
-                    <Tooltip title="Pievienot atrašanās vietu">
+                    <Tooltip title={t('tooltips.addLocation')}>
                       <IconButton onClick={handleAddLocation} sx={{ backgroundColor: '#00b3a4', color: '#fff', mr: 1 }}>
                         <AddLocationAltIcon />
                       </IconButton>
                     </Tooltip>
                   ) : (
-                    <Tooltip title="Noņemt atrašanās vietu">
+                    <Tooltip title={t('tooltips.removeLocation')}>
                       <IconButton
                         onClick={handleRemoveLocation}
                         sx={{ backgroundColor: '#00b3a4', color: '#fff', mr: 1 }}
@@ -790,7 +793,7 @@ const PetDetailsPage = () => {
                     </Tooltip>
                   )}
                 </Box>
-                <Tooltip title="Aizsūtīt ziņu">
+                <Tooltip title={t('tooltips.sendMessage')}>
                   <IconButton
                     onClick={handleSendMessage}
                     sx={{
@@ -806,9 +809,9 @@ const PetDetailsPage = () => {
             </Collapse>
           ) : (
             <Box p={2}>
-              <Typography color="textSecondary">Lūdzu, piesakieties, lai pievienotu ziņojumu.</Typography>{' '}
+              <Typography color="textSecondary">{t('actions.pleaseLogin')}</Typography>{' '}
               <Link to="/login" style={{ textDecoration: 'none', color: '#1976d2', fontWeight: 500 }}>
-                Pieslēgties
+                {t('actions.login')}
               </Link>
             </Box>
           )}

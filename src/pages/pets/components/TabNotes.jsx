@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import EventIcon from '@mui/icons-material/Event';
@@ -21,6 +22,8 @@ import {
 import moment from 'moment';
 
 const TabNotes = ({ pet }) => {
+  const { t } = useTranslation('petDetails');
+
   return (
     <Card
       sx={{
@@ -82,7 +85,7 @@ const TabNotes = ({ pet }) => {
               >
                 <TextSnippetIcon />
               </IconButton>{' '}
-              Šim sludinājumam nav pievienotas piezīmes.
+              {t('notes.noNotes')}
             </Box>
           </Typography>
         )}

@@ -1,0 +1,159 @@
+{
+  "alerts": {
+    "loginRequired": "Jums jāpiesakās, lai pārvaldītu favorītus.",
+    "noPetDetails": "Mājdzīvnieka informācija nav pieejama",
+    "linkCopied": "Saite kopēta starpliktuvē!",
+    "errorSharing": "Kļūda dalīšanās ar mājdzīvnieku. Lūdzu, mēģiniet vēlāk.",
+    "invalidImage": "Lūdzu, augšupielādējiet derīgu attēla failu.",
+    "imageTooLarge": "Attēls ir pārāk liels. Maksimālais izmērs ir 5MB.",
+    "messageRequired": "Lūdzu, ievadiet ziņojumu.",
+    "locationRequired": "Lūdzu, pievienojiet vietu, kur attēls tika uzņemts.",
+    "messageSent": "Ziņojums nosūtīts veiksmīgi!",
+    "errorSendingMessage": "Kļūda ziņojuma nosūtīšanā. Lūdzu, mēģiniet vēlreiz.",
+    "errorUpdatingFavorite": "Kļūda favorīta statusa atjaunināšanā. Lūdzu, mēģiniet vēlāk.",
+    "somethingWentWrong": "Kaut kas nogāja greizi"
+  },
+  "tooltips": {
+    "removeFromFavorites": "Noņemt no favorītiem",
+    "addToFavorites": "Pievienot favorītiem",
+    "downloadPoster": "Lejupielādēt plakātu",
+    "share": "Dalīties",
+    "report": "Ziņot",
+    "addLocation": "Pievienot atrašanās vietu",
+    "removeLocation": "Noņemt atrašanās vietu",
+    "sendMessage": "Sūtīt ziņojumu",
+    "showOnMap": "Parādīt kartē",
+    "deleteMessage": "Izdzēst ziņu"
+  },
+  "form": {
+    "commentPlaceholder": "Ierakstiet savu komentāru šeit...",
+    "addPhoto": "Pievienot foto:",
+    "dragDropText": "Vilkt un nomest attēlu šeit vai noklikšķināt, lai izvēlētos",
+    "supportedFormats": "Atbalstīti: JPG, PNG, GIF, BMP, WebP",
+    "mobileWarning": "⚠️ Dažos mobilajos pārlūkos vai vecākos ierīcēs vilkšana un nometšana vai noklikšķināmas augšupielādes zonas var nedarboties pareizi.",
+    "mobileWarning2": "Ja jums ir problēmas ar attēla augšupielādi, lūdzu, izmantojiet faila ievades lauku zemāk.",
+    "dropHere": "Nometiet attēlu šeit...",
+    "selectedFile": "Izvēlētais fails:",
+    "fileType": "Faila tips:",
+    "fileSize": "Faila izmērs:"
+  },
+  "actions": {
+    "addMessage": "PIEVIENOT ZIŅOJUMU",
+    "pleaseLogin": "Lūdzu, piesakieties, lai pievienotu ziņojumu.",
+    "login": "Pieslēgties"
+  },
+  "notifications": {
+    "petAddedToFavorites": "Mājdzīvnieks pievienots favorītiem",
+    "petRemovedFromFavorites": "Mājdzīvnieks noņemts no favorītiem"
+  },
+  "tabs": {
+    "messages": "Ziņas",
+    "notes": "Piezīmes",
+    "contacts": "Kontakti"
+  },
+  "messages": {
+    "noObservations": "Šobrīd nav pievienots neviens novērojums.",
+    "deleteConfirmation": "Vai tiešām vēlaties izdzēst šo ziņu?"
+  },
+  "notes": {
+    "noNotes": "Šim sludinājumam nav pievienotas piezīmes."
+  },
+  "contact": {
+    "phoneNotProvided": "Telefona numurs nav norādīts"
+  },
+  "choices": {
+    "gender": {
+      "1": "Tēviņš",
+      "2": "Mātīte"
+    },
+    "size": {
+      "1": "Mazs",
+      "2": "Vidējs",
+      "3": "Liels"
+    },
+    "species": {
+      "1": "Suns",
+      "2": "Kaķis",
+      "3": "Cits"
+    },
+    "age": {
+      "1": "Mazulis",
+      "2": "Pieaugušais",
+      "3": "Seniors"
+    },
+    "status": {
+      "1": "Pazudis",
+      "2": "Atrasts",
+      "3": "Redzēts"
+    },
+    "finalStatus": {
+      "1": "Nav atrisināts",
+      "2": "Atgriezts saimniekam",
+      "3": "Nodots patversmei",
+      "4": "Paturēts sev",
+      "5": "Klaiņojošs",
+      "6": "Brīvā pastaigā",
+      "7": "Miris",
+      "8": "Atradies",
+      "9": "Cits"
+    },
+    "pattern": {
+      "1": "Vienkrāsains",
+      "2": "Strīpains",
+      "3": "Punktveida",
+      "4": "Plankumains",
+      "5": "Raibs"
+    },
+    "color": {
+      "1": "Melns",
+      "2": "Pelēks",
+      "3": "Balts",
+      "4": "Krēmīgs",
+      "5": "Dzeltens",
+      "6": "Zeltains",
+      "7": "Brūns",
+      "8": "Sarkans",
+      "9": "Lillīgs",
+      "10": "Zils",
+      "11": "Zaļš",
+      "12": "Haki",
+      "13": "Bēšīgs",
+      "14": "Dzeltenbrūns",
+      "15": "Kaštanbrūns"
+    },
+    "category": {
+      "1": "Dzīvnieku pieskatīšana",
+      "2": "Suņu pastaigas",
+      "3": "Kopšana",
+      "4": "Apmācība",
+      "5": "Izmitināšana",
+      "6": "Veterinārārsts",
+      "7": "Foto sesijas",
+      "8": "Glābšana un meklēšana",
+      "9": "Piederumi un aksesuāri",
+      "10": "Māksla",
+      "11": "Apbedīšana",
+      "12": "Transports",
+      "13": "Audzētavas",
+      "14": "Apdrošināšana",
+      "15": "Citi pakalpojumi"
+    },
+    "shelterCategory": {
+      "1": "Pašvaldības patversme",
+      "2": "Dzīvnieku glābšana",
+      "3": "Patvērums (Sanctuary)",
+      "4": "Privāta patversme",
+      "5": "Cits"
+    },
+    "providerType": {
+      "1": "Fiziska persona",
+      "2": "Juridiska persona"
+    },
+    "priceType": {
+      "1": "Stundā",
+      "2": "Vienībā",
+      "3": "Dienā",
+      "4": "Pēc vienošanās"
+    }
+  }
+}
