@@ -1,0 +1,9 @@
+{
+  "loading": "Загрузка...",
+  "menuItems": {
+    "savedPetListings": "Сохраненные объявления о животных",
+    "myPets": "Мои питомцы",
+    "mapWithCurrentListings": "Карта с текущими объявлениями",
+    "settings": "Настройки"
+  }
+}

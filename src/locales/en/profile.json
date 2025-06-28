@@ -1,0 +1,9 @@
+{
+  "loading": "Loading...",
+  "menuItems": {
+    "savedPetListings": "Saved Pet Listings",
+    "myPets": "My Pets",
+    "mapWithCurrentListings": "Map with Current Listings",
+    "settings": "Settings"
+  }
+}

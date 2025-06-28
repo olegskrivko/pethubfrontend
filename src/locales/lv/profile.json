@@ -1,0 +1,9 @@
+{
+  "loading": "Ielādē...",
+  "menuItems": {
+    "savedPetListings": "Saglabātie dzīvnieku sludinājumi",
+    "myPets": "Mani mājdzīvnieki",
+    "mapWithCurrentListings": "Karte ar pašreizējiem sludinājumiem",
+    "settings": "Iestatījumi"
+  }
+}
