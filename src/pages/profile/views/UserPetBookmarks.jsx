@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -32,11 +33,13 @@ import axios from 'axios';
 import Lottie from 'lottie-react';
 
 import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
+import { getFinalStatusLabel, getSpeciesLabel, getStatusLabel } from '../../../constants/Choices';
 import { useAuth } from '../../../contexts/AuthContext';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function UserPetBookmarks() {
+  const { t } = useTranslation('savedPets');
   const { user } = useAuth(); // Assuming you are managing user state in context
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -47,7 +50,7 @@ function UserPetBookmarks() {
     const fetchFavoritedPets = async () => {
       const accessToken = localStorage.getItem('access_token');
       if (!accessToken) {
-        setError('You must be logged in to view favorited pets.');
+        setError(t('errors.loginRequired'));
         setLoading(false);
         return;
       }
@@ -63,18 +66,18 @@ function UserPetBookmarks() {
         setLoading(false); // Stop loading when data is fetched
       } catch (error) {
         console.error('Error fetching favorited pets data:', error);
-        setError('Failed to fetch favorited pets data');
-        setLoading(false); // Stop loading even when there’s an error
+        setError(t('errors.fetchFailed'));
+        setLoading(false); // Stop loading even when there's an error
       }
     };
 
     fetchFavoritedPets();
-  }, []);
+  }, [t]);
 
   const handleDeletePet = async (petId) => {
     const accessToken = localStorage.getItem('access_token');
     if (!accessToken) {
-      alert('You must be logged in to delete pets.');
+      alert(t('errors.deleteLoginRequired'));
       return;
     }
 
@@ -96,7 +99,7 @@ function UserPetBookmarks() {
       }
     } catch (error) {
       console.error('Error removing pet from favorites:', error);
-      alert('Error removing pet from favorites');
+      alert(t('errors.deleteFailed'));
     }
   };
 
@@ -148,7 +151,7 @@ function UserPetBookmarks() {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Saglabātie sludinājumi
+          {t('title')}
         </Typography>
         {favoritedPets.length === 0 ? (
           <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
@@ -169,7 +172,7 @@ function UserPetBookmarks() {
                   <BookmarkIcon />
                 </IconButton>
                 <Typography variant="body1" color="textSecondary" sx={{ ml: { xs: 1, sm: 2 } }}>
-                  Jums vēl nav saglabātu sludinājumu
+                  {t('noSavedListings')}
                 </Typography>
               </Box>
             </Paper>
@@ -218,22 +221,16 @@ function UserPetBookmarks() {
                     <MuiLink href={`/pets/${pet.id}`} underline="none">
                       <Avatar
                         src={pet.pet_image_1}
-                        alt={pet.species_display}
+                        alt={getSpeciesLabel(pet.species, t) || t('unknown')}
                         sx={{ width: 64, height: 64, mr: { xs: 1, sm: 2 }, cursor: 'pointer' }}
                       />
                     </MuiLink>
                     <Box flexGrow={1}>
                       <Typography variant="h6">
-                        <Chip label={pet.species_display} size="small" color="primary" />
+                        <Chip label={getSpeciesLabel(pet.species, t) || t('unknown')} size="small" color="primary" />
                       </Typography>
-                      {/* <Typography variant="body2" color="textSecondary" fontSize="0.8rem">
-                        {pet.status_display}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary" fontSize="0.8rem">
-                        {pet.final_status_display}
-                      </Typography> */}
+
                       <Box display="flex" alignItems="center" justifyContent="flex-start" gap={1.5}>
-                        {/* Status text - primary color */}
                         <Typography
                           variant="body2"
                           sx={{
@@ -243,10 +240,9 @@ function UserPetBookmarks() {
                             textTransform: 'uppercase',
                           }}
                         >
-                          {pet.status_display}
+                          {getStatusLabel(pet.status, t)}
                         </Typography>
 
-                        {/* Arrow icon */}
                         <DoubleArrowIcon
                           sx={{
                             color: '#00b5ad',
@@ -255,7 +251,6 @@ function UserPetBookmarks() {
                           }}
                         />
 
-                        {/* Final status text - conditional color */}
                         <Typography
                           variant="body2"
                           sx={{
@@ -265,26 +260,26 @@ function UserPetBookmarks() {
                             textTransform: 'uppercase',
                           }}
                         >
-                          {pet.final_status_display}
+                          {getFinalStatusLabel(pet.final_status, t)}
                         </Typography>
                       </Box>
                     </Box>
 
                     {pet.is_closed ? (
-                      <Tooltip title="Sludinājums aizvērts">
+                      <Tooltip title={t('tooltips.listingClosed')}>
                         <IconButton edge="end" size="small" aria-label="delete" sx={{ mr: 1 }}>
                           <LockOutlineIcon />
                         </IconButton>
                       </Tooltip>
                     ) : (
-                      <Tooltip title="Sludinājums atvērts">
+                      <Tooltip title={t('tooltips.listingOpen')}>
                         <IconButton edge="end" size="small" aria-label="delete" sx={{ mr: 1 }}>
                           <LockOpenIcon />
                         </IconButton>
                       </Tooltip>
                     )}
 
-                    <Tooltip title="Izdzēst">
+                    <Tooltip title={t('tooltips.delete')}>
                       <IconButton
                         edge="end"
                         color="error"
@@ -318,7 +313,7 @@ function UserPetBookmarks() {
                 }}
               >
                 <ArrowBackIcon fontSize="small" />
-                Atpakaļ
+                {t('back')}
               </Link>
             </Box>
           </Grid>

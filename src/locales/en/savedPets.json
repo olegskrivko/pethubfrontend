@@ -1,1 +1,39 @@
-{}
+{
+  "title": "Saved Listings",
+  "noSavedListings": "You don't have any saved listings yet",
+  "back": "Back",
+  "tooltips": {
+    "listingClosed": "Listing closed",
+    "listingOpen": "Listing open",
+    "delete": "Delete"
+  },
+  "errors": {
+    "loginRequired": "You must be logged in to view favorited pets.",
+    "fetchFailed": "Failed to fetch favorited pets data",
+    "deleteLoginRequired": "You must be logged in to delete pets.",
+    "deleteFailed": "Error removing pet from favorites"
+  },
+  "choices": {
+    "status": {
+      "1": "Lost",
+      "2": "Found",
+      "3": "Seen"
+    },
+    "species": {
+      "1": "Dog",
+      "2": "Cat",
+      "3": "Other"
+    },
+    "finalStatus": {
+      "1": "Unresolved",
+      "2": "Returned to owner",
+      "3": "Given to shelter",
+      "4": "Kept for myself",
+      "5": "Roaming",
+      "6": "Free walk",
+      "7": "Deceased",
+      "8": "Found",
+      "9": "Other"
+    }
+  }
+}

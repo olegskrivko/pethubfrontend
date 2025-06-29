@@ -1,1 +1,60 @@
-{}
+{
+  "title": "My Pets",
+  "emptyState": "You haven't added any pets yet",
+  "unknown": "Unknown",
+  "back": "Back",
+  "add": "Add",
+  "tooltips": {
+    "advertisementClosed": "Advertisement closed",
+    "close": "Close",
+    "delete": "Delete"
+  },
+  "modals": {
+    "editStatus": {
+      "title": "Change Status (Close Advertisement)",
+      "cancel": "Cancel",
+      "save": "Save"
+    },
+    "delete": {
+      "title": "Confirm Deletion",
+      "message": "Are you sure you want to delete the pet {{species}}? This action is irreversible.",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "deleting": "Deleting..."
+    }
+  },
+  "messages": {
+    "errors": {
+      "mustBeLoggedIn": "You must be logged in to view pets.",
+      "fetchFailed": "Failed to fetch pets or quota data",
+      "updateFailed": "Failed to save status.",
+      "deleteFailed": "Error deleting pet."
+    },
+    "success": {
+      "petDeleted": "Pet successfully deleted."
+    }
+  },
+  "choices": {
+    "species": {
+      "1": "Dog",
+      "2": "Cat",
+      "3": "Other"
+    },
+    "status": {
+      "1": "Lost",
+      "2": "Found",
+      "3": "Seen"
+    },
+    "finalStatus": {
+      "1": "Unresolved",
+      "2": "Returned to owner",
+      "3": "Given to shelter",
+      "4": "Kept for myself",
+      "5": "Roaming",
+      "6": "Free walk",
+      "7": "Deceased",
+      "8": "Found",
+      "9": "Other"
+    }
+  }
+}

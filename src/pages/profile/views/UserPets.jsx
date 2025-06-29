@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -34,10 +35,12 @@ import { useSnackbar } from 'notistack';
 
 import spinnerAnimation from '../../../assets/Animation-1749725645616.json';
 import { useAuth } from '../../../contexts/AuthContext';
+import { getFinalStatusLabel, getStatusLabel, getSpeciesLabel } from '../../../constants/Choices';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function UserPets() {
+  const { t } = useTranslation('userPets');
   const { enqueueSnackbar } = useSnackbar();
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -58,34 +61,34 @@ function UserPets() {
   const finalStatusOptions = {
     1: [
       // lost
-      { value: 1, label: 'Nav atrisināts' },
-      { value: 8, label: 'Atradies' },
-      { value: 7, label: 'Miris' },
-      { value: 9, label: 'Cits' },
+      { value: 1, label: t('choices.finalStatus.1') },
+      { value: 8, label: t('choices.finalStatus.8') },
+      { value: 7, label: t('choices.finalStatus.7') },
+      { value: 9, label: t('choices.finalStatus.9') },
     ],
 
     2: [
       // found
-      { value: 1, label: 'Nav atrisināts' },
-      { value: 2, label: 'Atgriezts saimniekam' },
-      { value: 3, label: 'Nodots patversmei' },
-      { value: 4, label: 'Paturēts sev' },
-      { value: 9, label: 'Cits' },
+      { value: 1, label: t('choices.finalStatus.1') },
+      { value: 2, label: t('choices.finalStatus.2') },
+      { value: 3, label: t('choices.finalStatus.3') },
+      { value: 4, label: t('choices.finalStatus.4') },
+      { value: 9, label: t('choices.finalStatus.9') },
     ],
     3: [
       // seen
-      { value: 1, label: 'Nav atrisināts' },
-      { value: 5, label: 'Klaiņojošs' },
-      { value: 6, label: 'Brīvā pastaigā' },
-      { value: 7, label: 'Miris' },
-      { value: 9, label: 'Cits' },
+      { value: 1, label: t('choices.finalStatus.1') },
+      { value: 5, label: t('choices.finalStatus.5') },
+      { value: 6, label: t('choices.finalStatus.6') },
+      { value: 7, label: t('choices.finalStatus.7') },
+      { value: 9, label: t('choices.finalStatus.9') },
     ],
   };
   console.log('selectedPet', selectedPet);
   const fetchUserPetsAndQuota = async () => {
     const accessToken = localStorage.getItem('access_token');
     if (!accessToken) {
-      setError('You must be logged in to view pets.');
+      setError(t('messages.errors.mustBeLoggedIn'));
       setLoading(false);
       return;
     }
@@ -104,7 +107,7 @@ function UserPets() {
       setQuota(quotaRes.data);
     } catch (error) {
       console.error('Error fetching pets or quota:', error);
-      setError('Failed to fetch pets or quota data');
+      setError(t('messages.errors.fetchFailed'));
     } finally {
       setLoading(false);
     }
@@ -167,7 +170,7 @@ function UserPets() {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Mani mājdzīvnieki
+          {t('title')}
         </Typography>
         {/* Quota */}
         {/* {quota && (
@@ -220,7 +223,7 @@ function UserPets() {
                   <BookmarkIcon />
                 </IconButton>
                 <Typography variant="body1" color="textSecondary" sx={{ ml: { xs: 1, sm: 2 } }}>
-                  Jums vēl nav pievienotu mājdzīvnieku
+                  {t('emptyState')}
                 </Typography>
               </Box>
             </Paper>
@@ -244,20 +247,53 @@ function UserPets() {
                     <MuiLink href={`/pets/${pet.id}`} underline="none">
                       <Avatar
                         src={pet.pet_image_1}
-                        alt={pet.species_display}
+                        alt={getSpeciesLabel(pet.species, t) || t('unknown')}
                         sx={{ width: 64, height: 64, mr: { xs: 1, sm: 2 }, cursor: 'pointer' }}
                       />
                     </MuiLink>
                     <Box flexGrow={1}>
                       <Typography variant="h6">
-                        <Chip label={pet.species_display || 'Nezināms'} size="small" color="primary" />
+                        <Chip label={getSpeciesLabel(pet.species, t) || t('unknown')} size="small" color="primary" />
                       </Typography>
-                      <Typography variant="body2" color="textSecondary" fontSize="0.8rem">
+                      {/* <Typography variant="body2" color="textSecondary" fontSize="0.8rem">
                         {pet.final_status === 1 ? pet.status_display : pet.final_status_display}
-                      </Typography>
+                      </Typography> */}
+                      <Box display="flex" alignItems="center" justifyContent="flex-start" gap={1.5}>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            fontWeight: 500,
+                            fontSize: '0.6rem',
+                            color: 'primary.main',
+                            textTransform: 'uppercase',
+                          }}
+                        >
+                          {getStatusLabel(pet.status, t)}
+                        </Typography>
+
+                        <DoubleArrowIcon
+                          sx={{
+                            color: '#00b5ad',
+                            fontSize: 16,
+                            opacity: 0.7,
+                          }}
+                        />
+
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            fontWeight: 500,
+                            fontSize: '0.6rem',
+                            color: pet.final_status === 1 ? 'slategray' : 'primary.main',
+                            textTransform: 'uppercase',
+                          }}
+                        >
+                          {getFinalStatusLabel(pet.final_status, t)}
+                        </Typography>
+                      </Box>
                     </Box>
                     {pet.is_closed ? (
-                      <Tooltip title="Sludinājums aizvērts">
+                      <Tooltip title={t('tooltips.advertisementClosed')}>
                         <IconButton
                           edge="end"
                           size="small"
@@ -270,7 +306,7 @@ function UserPets() {
                         </IconButton>
                       </Tooltip>
                     ) : (
-                      <Tooltip title="Aizvērt">
+                      <Tooltip title={t('tooltips.close')}>
                         <IconButton
                           edge="end"
                           size="small"
@@ -288,7 +324,7 @@ function UserPets() {
                         <EditIcon />
                       </IconButton>
                     </Tooltip> */}
-                    <Tooltip title="Izdzēst">
+                    <Tooltip title={t('tooltips.delete')}>
                       {/* <IconButton color="error" onClick={() => handleDeletePet(pet.id)}>
                       <DeleteIcon />
                     </IconButton> */}
@@ -319,7 +355,7 @@ function UserPets() {
               }}
             >
               <ArrowBackIcon fontSize="small" />
-              Atpakaļ
+              {t('back')}
             </Link>
 
             {quota && quota.remaining <= 0 ? (
@@ -336,7 +372,7 @@ function UserPets() {
                 }}
               >
                 <AddIcon fontSize="small" />
-                Pievienot
+                {t('add')}
               </Box>
             ) : (
               <Link
@@ -352,7 +388,7 @@ function UserPets() {
                 }}
               >
                 <AddIcon fontSize="small" />
-                Pievienot
+                {t('add')}
               </Link>
             )}
 
@@ -373,7 +409,7 @@ function UserPets() {
 
         {/* Edit Dialog */}
         <Dialog open={editModalOpen} onClose={() => setEditModalOpen(false)} maxWidth="xs" fullWidth>
-          <DialogTitle>Mainīt statusu (Slēgt sludinājumu)</DialogTitle>
+          <DialogTitle>{t('modals.editStatus.title')}</DialogTitle>
           <DialogContent>
             {/* <Select fullWidth value={newStatus} onChange={(e) => setNewStatus(e.target.value)} sx={{ mt: 1, mb: 2 }}>
             <MenuItem value={1}>Nav atrisināts</MenuItem>
@@ -393,7 +429,7 @@ function UserPets() {
             </Select>
           </DialogContent>
           <DialogActions>
-            <Button onClick={() => setEditModalOpen(false)}>Atcelt</Button>
+            <Button onClick={() => setEditModalOpen(false)}>{t('modals.editStatus.cancel')}</Button>
             <Button
               variant="contained"
               onClick={async () => {
@@ -408,11 +444,11 @@ function UserPets() {
                   setEditModalOpen(false);
                 } catch (err) {
                   console.error('Error updating status', err);
-                  enqueueSnackbar('Neizdevās saglabāt statusu.', { variant: 'error' });
+                  enqueueSnackbar(t('messages.errors.updateFailed'), { variant: 'error' });
                 }
               }}
             >
-              Saglabāt
+              {t('modals.editStatus.save')}
             </Button>
           </DialogActions>
         </Dialog>
@@ -424,17 +460,16 @@ function UserPets() {
           aria-labelledby="delete-confirmation-dialog"
         >
           <DialogTitle id="delete-confirmation-dialog" sx={{ p: { xs: 2, sm: 2 } }}>
-            Apstiprināt dzēšanu
+            {t('modals.delete.title')}
           </DialogTitle>
           <DialogContent sx={{ p: { xs: 2, sm: 2 } }}>
             <Typography>
-              Vai tiešām vēlaties izdzēst mājdzīvnieku <strong>{petToDelete?.species_display || ''}</strong>? <br />
-              Šī darbība ir neatgriezeniska.
+              {t('modals.delete.message', { species: getSpeciesLabel(petToDelete?.species, t) || t('unknown') })}
             </Typography>
           </DialogContent>
           <DialogActions sx={{ p: { xs: 2, sm: 2 } }}>
             <Button onClick={() => setDeleteDialogOpen(false)} disabled={deleting}>
-              Atcelt
+              {t('modals.delete.cancel')}
             </Button>
             <Button
               variant="contained"
@@ -453,7 +488,7 @@ function UserPets() {
                   });
 
                   if (response.ok) {
-                    enqueueSnackbar('Mājdzīvnieks veiksmīgi izdzēsts.', { variant: 'success' });
+                    enqueueSnackbar(t('messages.success.petDeleted'), { variant: 'success' });
                     await fetchUserPetsAndQuota(); // refetch pets after delete
                     setDeleteDialogOpen(false);
                     setPetToDelete(null);
@@ -463,14 +498,14 @@ function UserPets() {
                   }
                 } catch (error) {
                   console.error('Error deleting pet:', error);
-                  enqueueSnackbar('Kļūda dzēšot mājdzīvnieku.', { variant: 'error' });
+                  enqueueSnackbar(t('messages.errors.deleteFailed'), { variant: 'error' });
                 } finally {
                   setDeleting(false);
                 }
               }}
               disabled={deleting}
             >
-              {deleting ? 'Dzēš...' : 'Dzēst'}
+              {deleting ? t('modals.delete.deleting') : t('modals.delete.delete')}
             </Button>
           </DialogActions>
         </Dialog>

@@ -1,1 +1,60 @@
-{}
+{
+  "title": "Mani mājdzīvnieki",
+  "emptyState": "Jums vēl nav pievienotu mājdzīvnieku",
+  "unknown": "Nezināms",
+  "back": "Atpakaļ",
+  "add": "Pievienot",
+  "tooltips": {
+    "advertisementClosed": "Sludinājums aizvērts",
+    "close": "Aizvērt",
+    "delete": "Izdzēst"
+  },
+  "modals": {
+    "editStatus": {
+      "title": "Mainīt statusu (Slēgt sludinājumu)",
+      "cancel": "Atcelt",
+      "save": "Saglabāt"
+    },
+    "delete": {
+      "title": "Apstiprināt dzēšanu",
+      "message": "Vai tiešām vēlaties izdzēst mājdzīvnieku {{species}}? Šī darbība ir neatgriezeniska.",
+      "cancel": "Atcelt",
+      "delete": "Dzēst",
+      "deleting": "Dzēš..."
+    }
+  },
+  "messages": {
+    "errors": {
+      "mustBeLoggedIn": "Jums jābūt ielogotam, lai apskatītu mājdzīvniekus.",
+      "fetchFailed": "Neizdevās ielādēt mājdzīvnieku vai kvotas datus",
+      "updateFailed": "Neizdevās saglabāt statusu.",
+      "deleteFailed": "Kļūda dzēšot mājdzīvnieku."
+    },
+    "success": {
+      "petDeleted": "Mājdzīvnieks veiksmīgi izdzēsts."
+    }
+  },
+  "choices": {
+    "species": {
+      "1": "Suns",
+      "2": "Kaķis",
+      "3": "Cits"
+    },
+    "status": {
+      "1": "Pazudis",
+      "2": "Atrasts",
+      "3": "Redzēts"
+    },
+    "finalStatus": {
+      "1": "Nav atrisināts",
+      "2": "Atgriezts saimniekam",
+      "3": "Nodots patversmei",
+      "4": "Paturēts sev",
+      "5": "Klaiņojošs",
+      "6": "Brīvā pastaigā",
+      "7": "Miris",
+      "8": "Atradies",
+      "9": "Cits"
+    }
+  }
+}

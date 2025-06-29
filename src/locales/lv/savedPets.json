@@ -1,1 +1,39 @@
-{}
+{
+  "title": "Saglabātie sludinājumi",
+  "noSavedListings": "Jums vēl nav saglabātu sludinājumu",
+  "back": "Atpakaļ",
+  "tooltips": {
+    "listingClosed": "Sludinājums aizvērts",
+    "listingOpen": "Sludinājums atvērts",
+    "delete": "Izdzēst"
+  },
+  "errors": {
+    "loginRequired": "You must be logged in to view favorited pets.",
+    "fetchFailed": "Failed to fetch favorited pets data",
+    "deleteLoginRequired": "You must be logged in to delete pets.",
+    "deleteFailed": "Error removing pet from favorites"
+  },
+  "choices": {
+    "status": {
+      "1": "Pazudis",
+      "2": "Atrasts",
+      "3": "Redzēts"
+    },
+    "species": {
+      "1": "Suns",
+      "2": "Kaķis",
+      "3": "Cits"
+    },
+    "finalStatus": {
+      "1": "Nav atrisināts",
+      "2": "Atgriezts saimniekam",
+      "3": "Nodots patversmei",
+      "4": "Paturēts sev",
+      "5": "Klaiņojošs",
+      "6": "Brīvā pastaigā",
+      "7": "Miris",
+      "8": "Atradies",
+      "9": "Cits"
+    }
+  }
+}
