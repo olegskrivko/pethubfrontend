@@ -156,14 +156,7 @@ function UserSettings() {
   }, []);
 
   const handleLocationChange = (coords) => {
-    setLocation({
-      lat: coords.lat,
-      lng: coords.lng,
-    });
-    // If user is subscribed, update the subscription with new location
-    if (isSubscribed && subscription) {
-      saveSubscriptionToBackend(subscription);
-    }
+    setLocation(coords);
   };
 
   const fetchUserLocation = async () => {
@@ -206,35 +199,31 @@ function UserSettings() {
   const subscribeUserToPush = async () => {
     try {
       const registration = await navigator.serviceWorker.register('/service-worker.js');
-
       const subscription = await registration.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(
           'BOZTcqsdJXUbELTV3ax5lK3X3Wh4S33MuJAZ75MVWCxjtrcn7nVr2Xp-JPiPlVJCE9gqmLv23_PR_f-7uKgU8iU',
         ),
       });
-
       setSubscription(subscription);
       setIsSubscribed(true);
-      await saveSubscriptionToBackend(subscription);
+      await saveSubscriptionToBackend(subscription, location, distance);
     } catch (error) {
       console.error('Subscription error:', error);
     }
   };
 
-  const saveSubscriptionToBackend = async (subscription) => {
+  const saveSubscriptionToBackend = async (subscription, coords = location, dist = distance) => {
     try {
       const accessToken = localStorage.getItem('access_token');
-
       const subscriptionData = {
         endpoint: subscription.endpoint,
         p256dh: arrayBufferToBase64(subscription.getKey('p256dh')),
         auth: arrayBufferToBase64(subscription.getKey('auth')),
-        lat: location.lat,
-        lon: location.lng,
-        distance,
+        lat: coords.lat,
+        lon: coords.lng,
+        distance: dist,
       };
-
       const response = await fetch(`${API_BASE_URL}/api/notifications/subscribe/`, {
         method: 'POST',
         headers: {
@@ -243,7 +232,6 @@ function UserSettings() {
         },
         body: JSON.stringify(subscriptionData),
       });
-
       if (!response.ok) {
         const error = await response.text();
         console.error('Subscription error:', error);

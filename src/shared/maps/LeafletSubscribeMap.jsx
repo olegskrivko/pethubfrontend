@@ -1,168 +1,31 @@
-// import React, { useState, useCallback } from 'react';
-// import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
-// import L from 'leaflet';
-// import 'leaflet/dist/leaflet.css';
-// import LocationOnIcon from '@mui/icons-material/LocationOn';
-// import { renderToStaticMarkup } from 'react-dom/server';
-// import CustomAlert from '../alert/CustomAlert';
-// // Custom hook to handle map events and marker placement
-// const LocationMarker = ({ position, onLocationChange }) => {
-//   //   const map = useMapEvents({
-//   //     click(e) {
-//   //       onLocationChange(e.latlng);
-//   //     },
-//   //     // Ensure marker updates when dragged
-//   //     dragend(e) {
-//   //       const newPos = e.target.getLatLng();
-//   //       onLocationChange(newPos);
-//   //     },
-//   //   });
-//   const map = useMapEvents({
-//     click(e) {
-//       onLocationChange(e.latlng);
-//     },
-//   });
-//   const iconMarkup = renderToStaticMarkup(
-//     <LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />,
-//   );
-//   const customIcon = L.divIcon({
-//     html: iconMarkup,
-//     className: 'custom-icon',
-//   });
-//   return (
-//     position && (
-//       <Marker
-//         position={position}
-//         icon={customIcon}
-//         draggable={true}
-//         eventHandlers={{
-//           dragend: (event) => {
-//             console.log('Dragend event:', event);
-//             const newPos = event.target.getLatLng();
-//             onLocationChange(newPos);
-//           },
-//         }}
-//       />
-//     )
-//   );
-// };
-// const LeafletSubscribeMap = ({ onLocationChange }) => {
-//   const [position, setPosition] = useState([56.946285, 24.105078]);
-//   const [errorMessage, setErrorMessage] = useState(null);
-//   const [solutionMessage, setSolutionMessage] = useState(null);
-//   const handleUseMyLocation = () => {
-//     navigator.geolocation.getCurrentPosition(
-//       (position) => {
-//         const { latitude, longitude } = position.coords;
-//         setPosition([latitude, longitude]);
-//         onLocationChange({ lat: latitude, lng: longitude });
-//       },
-//       (error) => {
-//         switch (error.code) {
-//           case error.PERMISSION_DENIED:
-//             setErrorMessage('Geolocation Permission Denied');
-//             setSolutionMessage(
-//               'Please enable GPS and allow location access in your browser settings.',
-//             );
-//             break;
-//           case error.POSITION_UNAVAILABLE:
-//             setErrorMessage('Location Information Unavailable');
-//             setSolutionMessage("Please check your device's location settings or try again later.");
-//             break;
-//           case error.TIMEOUT:
-//             setErrorMessage('Geolocation Request Timed Out');
-//             setSolutionMessage('Please ensure your device has a stable connection and try again.');
-//             break;
-//           case error.UNKNOWN_ERROR:
-//             setErrorMessage('Unknown Error Occurred');
-//             setSolutionMessage(
-//               'An unknown error occurred while retrieving your location. Please try again.',
-//             );
-//             break;
-//           default:
-//             setErrorMessage('An Error Occurred');
-//             setSolutionMessage('An unexpected error occurred. Please try again.');
-//         }
-//         // Fallback to hardcoded initial value
-//         const fallbackPosition = [56.946285, 24.105078];
-//         setPosition(fallbackPosition);
-//         onLocationChange({ lat: fallbackPosition[0], lng: fallbackPosition[1] });
-//       },
-//     );
-//   };
-//   // Memoize the setPosition callback to avoid unnecessary re-renders
-//   const handleLocationChange = useCallback(
-//     (newPosition) => {
-//       setPosition([newPosition.lat, newPosition.lng]);
-//       onLocationChange(newPosition);
-//     },
-//     [onLocationChange],
-//   );
-//   return (
-//     <div>
-//       {errorMessage && (
-//         <CustomAlert errorMessage={errorMessage} solutionMessage={solutionMessage} />
-//       )}
-//       <button onClick={handleUseMyLocation}>Use My Location</button>
-//       <MapContainer center={position} zoom={13} style={{ height: '500px', width: '100%' }}>
-//         <TileLayer
-//           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-//           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-//         />
-//         <LocationMarker position={position} onLocationChange={handleLocationChange} />
-//       </MapContainer>
-//     </div>
-//   );
-// };
-// export default LeafletSubscribeMap;
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
-
+import { MapContainer, Marker, useMap, useMapEvents } from 'react-leaflet';
+import { MaptilerLayer } from '@maptiler/leaflet-maptilersdk';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-//import CustomAlert from '../alert/CustomAlert'; // Ensure correct path
 import { Avatar, Box, Button, Grid, Paper, TextField, Typography } from '@mui/material';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-// const LocationMarker = ({ position, onLocationChange }) => {
-//   const map = useMapEvents({
-//     click(e) {
-//       onLocationChange(e.latlng);
-//     },
-//     dragend(e) {
-//       const newPos = e.target.getLatLng();
-//       onLocationChange(newPos);
-//     },
-//   });
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-//   const iconMarkup = renderToStaticMarkup(
-//     <LocationOnIcon style={{ color: '#D30A0A', fontSize: '2rem' }} />,
-//   );
-//   const customIcon = L.divIcon({
-//     html: iconMarkup,
-//     className: 'custom-icon',
-//   });
-
-//   return (
-//     position && (
-//       <Marker
-//         position={position}
-//         icon={customIcon}
-//         draggable={true}
-//         eventHandlers={{
-//           dragend: (event) => {
-//             const newPos = event.target.getLatLng();
-//             onLocationChange(newPos);
-//           },
-//         }}
-//       />
-//     )
-//   );
-// };
+const MapTilerLayerComponent = () => {
+  const map = useMap();
+  useEffect(() => {
+    const mtLayer = new MaptilerLayer({
+      apiKey: 'zqJA9kfFpP2bX0hmViWr',
+      style: 'basic-v2',
+    });
+    mtLayer.addTo(map);
+    return () => {
+      map.removeLayer(mtLayer);
+    };
+  }, [map]);
+  return null;
+};
 
 const LocationMarker = ({ position, onLocationChange }) => {
-  const map = useMapEvents({
+  useMapEvents({
     click(e) {
       onLocationChange(e.latlng);
     },
@@ -196,10 +59,39 @@ const LocationMarker = ({ position, onLocationChange }) => {
   );
 };
 
-const LeafletSubscribeMap = ({ onLocationChange }) => {
-  const [position, setPosition] = useState([56.946285, 24.105078]);
+const LeafletSubscribeMap = ({ onLocationChange, initialLocation }) => {
+  const [position, setPosition] = useState(initialLocation ? [initialLocation.lat, initialLocation.lon] : [56.946285, 24.105078]);
   const [errorMessage, setErrorMessage] = useState(null);
   const [solutionMessage, setSolutionMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch stored location on mount
+  useEffect(() => {
+    const fetchStoredLocation = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/notifications/user-location/`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+          },
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setPosition([data.lat, data.lon]);
+          onLocationChange({ lat: data.lat, lng: data.lon });
+        }
+      } catch (error) {
+        console.error('Error fetching stored location:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (!initialLocation) {
+      fetchStoredLocation();
+    } else {
+      setIsLoading(false);
+    }
+  }, [initialLocation, onLocationChange]);
 
   const handleUseMyLocation = () => {
     navigator.geolocation.getCurrentPosition(
@@ -230,13 +122,6 @@ const LeafletSubscribeMap = ({ onLocationChange }) => {
             setErrorMessage('An Error Occurred');
             setSolutionMessage('An unexpected error occurred. Please try again.');
         }
-        // Fallback to hardcoded initial value
-        const fallbackPosition = [56.946285, 24.105078];
-        setPosition(fallbackPosition);
-        onLocationChange({
-          lat: fallbackPosition[0],
-          lng: fallbackPosition[1],
-        });
       },
     );
   };
@@ -249,25 +134,47 @@ const LeafletSubscribeMap = ({ onLocationChange }) => {
     [onLocationChange],
   );
 
+  if (isLoading) {
+    return <div>Loading map...</div>;
+  }
+
   return (
-    <div>
+    <div style={{ position: 'relative' }}>
       {errorMessage && (
-        // <CustomAlert errorMessage={errorMessage} solutionMessage={solutionMessage} />
-        <p>Error</p>
+        <div
+          style={{
+            position: 'absolute',
+            top: 10,
+            left: 10,
+            zIndex: 1000,
+            backgroundColor: 'white',
+            padding: '8px',
+            borderRadius: '4px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+          }}
+        >
+          <Typography color="error">{errorMessage}</Typography>
+          <Typography>{solutionMessage}</Typography>
+        </div>
       )}
-      <Grid container spacing={2} justifyContent="center">
-        <Grid item xs={12}>
-          <Button variant="contained" onClick={handleUseMyLocation} fullWidth>
-            getCurrentLocation
-          </Button>
-        </Grid>
-      </Grid>
-      {/* <button onClick={handleUseMyLocation}>Use My Location</button> */}
-      <MapContainer center={position} zoom={13} style={{ height: '500px', width: '100%' }}>
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        />
+      <Button
+        variant="contained"
+        onClick={handleUseMyLocation}
+        sx={{
+          position: 'absolute',
+          top: 10,
+          right: 10,
+          zIndex: 1000,
+        }}
+      >
+        Use My Location
+      </Button>
+      <MapContainer
+        center={position}
+        zoom={13}
+        style={{ height: '500px', width: '100%' }}
+      >
+        <MapTilerLayerComponent />
         <LocationMarker position={position} onLocationChange={handleLocationChange} />
       </MapContainer>
     </div>

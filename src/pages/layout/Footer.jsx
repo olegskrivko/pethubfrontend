@@ -204,13 +204,13 @@ const Footer = () => {
               </Box>
             </Grid>
           </Grid>
-
+          </Container>
           <Box sx={{ mt: 4, pt: 2, borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
             <Typography variant="body2" color="#EAEAEA" style={{ fontWeight: '400' }}>
               © {YEAR} {APP_NAME}. {t('copyright')}
             </Typography>
           </Box>
-        </Container>
+    
       </Box>
       <InstallPWAButton />
     </React.Fragment>
