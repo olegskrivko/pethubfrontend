@@ -1,3 +1,9 @@
+/**
+ * App.css - Main Application Styles
+ * Contains global styles and utility classes for the PetHub application
+ */
+
+/* ===== DEFAULT APP STYLES ===== */
 .App {
   text-align: center;
 }
@@ -37,18 +43,17 @@
   }
 }
 
-/* Fixed size for pulsating icon */
+/* ===== PULSATING ICON STYLES ===== */
 .pulsating-icon {
   background-color: transparent;
   border: none;
-  width: 40px; /* Fixed size */
-  height: 40px; /* Fixed size */
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Pulsating circle effect */
 .pulsating-circle {
   width: 100%;
   height: 100%;
@@ -72,6 +77,7 @@
   }
 }
 
+/* ===== USER LOCATION MARKER STYLES ===== */
 .user-location-wrapper {
   position: relative;
   width: 30px;

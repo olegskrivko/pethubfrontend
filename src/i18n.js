@@ -3,6 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+// English translations
 import enAboutPage from './locales/en/aboutPage.json';
 import enChatbot from './locales/en/chatbot.json';
 import enCommon from './locales/en/common.json';
@@ -15,14 +16,14 @@ import enPetDetails from './locales/en/petDetails.json';
 import enPetTraining from './locales/en/petTraining.json';
 import enPets from './locales/en/pets.json';
 import enProfile from './locales/en/profile.json';
-// Import namespaces
-
 import enSavedPets from './locales/en/savedPets.json';
 import enSelectOptions from './locales/en/selectOptions.json';
 import enSupport from './locales/en/support.json';
 import enUserPets from './locales/en/userPets.json';
 import enUserPosters from './locales/en/userPosters.json';
 import enUserSettings from './locales/en/userSettings.json';
+
+// Latvian translations
 import lvAboutPage from './locales/lv/aboutPage.json';
 import lvChatbot from './locales/lv/chatbot.json';
 import lvCommon from './locales/lv/common.json';
@@ -41,6 +42,8 @@ import lvSupport from './locales/lv/support.json';
 import lvUserPets from './locales/lv/userPets.json';
 import lvUserPosters from './locales/lv/userPosters.json';
 import lvUserSettings from './locales/lv/userSettings.json';
+
+// Russian translations
 import ruAboutPage from './locales/ru/aboutPage.json';
 import ruChatbot from './locales/ru/chatbot.json';
 import ruCommon from './locales/ru/common.json';
@@ -60,6 +63,10 @@ import ruUserPets from './locales/ru/userPets.json';
 import ruUserPosters from './locales/ru/userPosters.json';
 import ruUserSettings from './locales/ru/userSettings.json';
 
+/**
+ * i18next Configuration
+ * Sets up internationalization with language detection and translation resources
+ */
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -155,7 +162,7 @@ i18n
       'userSettings',
       'userPosters',
     ],
-    defaultNS: 'common', // Default namespace
+    defaultNS: 'common',
   });
 
 export default i18n;

@@ -306,25 +306,25 @@ function UserSettings() {
     }
   };
 
-  const sendTestNotification = async () => {
-    try {
-      const accessToken = localStorage.getItem('access_token');
-      await fetch(`${API_BASE_URL}/api/notifications/send_notification/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
-        },
-        body: JSON.stringify({
-          title: 'Test Notification',
-          body: 'This is a test notification.',
-          url: 'https://example.com',
-        }),
-      });
-    } catch (error) {
-      console.error('Send notification failed:', error);
-    }
-  };
+  // const sendTestNotification = async () => {
+  //   try {
+  //     const accessToken = localStorage.getItem('access_token');
+  //     await fetch(`${API_BASE_URL}/api/notifications/send_notification/`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         Authorization: `Bearer ${accessToken}`,
+  //       },
+  //       body: JSON.stringify({
+  //         title: 'Test Notification',
+  //         body: 'This is a test notification.',
+  //         url: 'https://example.com',
+  //       }),
+  //     });
+  //   } catch (error) {
+  //     console.error('Send notification failed:', error);
+  //   }
+  // };
 
   useEffect(() => {
     checkExistingSubscription();
@@ -489,9 +489,9 @@ function UserSettings() {
                   >
                     Unsubscribe
                   </Button>
-                  <Button variant="outlined" fullWidth startIcon={<SendIcon />} onClick={sendTestNotification}>
+                  {/* <Button variant="outlined" fullWidth startIcon={<SendIcon />} onClick={sendTestNotification}>
                     Send Test Notification
-                  </Button>
+                  </Button> */}
                 </>
               ) : (
                 <Button

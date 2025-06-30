@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
 
+/**
+ * Upload Test Component
+ * A simple file upload component for testing purposes
+ * 
+ * @param {Function} onFileSelected - Callback function called when a file is selected
+ */
 const UploadTest = ({ onFileSelected }) => {
   const [selectedFile, setSelectedFile] = useState(null);
+
+  /**
+   * Handles file selection from input
+   * @param {Event} event - File input change event
+   */
   const onFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
@@ -9,7 +20,12 @@ const UploadTest = ({ onFileSelected }) => {
       onFileSelected(file);
     }
   };
-  const fileData = () => {
+
+  /**
+   * Renders file details or upload instruction
+   * @returns {JSX.Element} - File details or instruction message
+   */
+  const renderFileData = () => {
     if (selectedFile) {
       return (
         <div>
@@ -28,10 +44,11 @@ const UploadTest = ({ onFileSelected }) => {
       );
     }
   };
+
   return (
     <div>
       <input type="file" onChange={onFileChange} />
-      {fileData()}
+      {renderFileData()}
     </div>
   );
 };

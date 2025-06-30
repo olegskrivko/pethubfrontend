@@ -1,20 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+
 import { useMediaQuery } from '@mui/material';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
 
 import illustration from '../../../assets/images/home/navigation_animate.svg';
-
-{
-  /* <a href="https://storyset.com/business">Business illustrations by Storyset</a> */
-}
-
-{
-  /* <a href="https://storyset.com/city">City illustrations by Storyset</a> */
-}
 
 const MapBanner = () => {
   const theme = useTheme();

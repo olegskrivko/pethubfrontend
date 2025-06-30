@@ -1,7 +1,7 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {
   Box,
@@ -80,7 +80,6 @@ const RegisterPage = () => {
         if (response.status === 429) {
           setError('Pārsniegts pieprasījumu limits. Lūdzu, mēģiniet vēlreiz pēc kāda laika.');
         } else if (typeof data === 'object') {
-          // Extract first validation error message from any field
           const firstError = Object.values(data).flat()[0];
           setError(firstError || 'Radās kļūda reģistrācijas laikā.');
         } else {

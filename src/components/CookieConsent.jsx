@@ -5,6 +5,10 @@ import { styled } from '@mui/material/styles';
 
 import cookieIcon from '../assets/cookie-icon.png';
 
+/**
+ * Styled component for the cookie consent banner
+ * Provides a fixed position banner at the bottom of the screen
+ */
 const StyledCookieConsent = styled('div')(({ theme }) => ({
   position: 'fixed',
   bottom: 0,
@@ -28,6 +32,10 @@ const StyledCookieConsent = styled('div')(({ theme }) => ({
   },
 }));
 
+/**
+ * Styled component for the button group container
+ * Handles responsive layout for action buttons
+ */
 const ButtonGroup = styled(Box)(({ theme }) => ({
   display: 'flex',
   gap: '12px',
@@ -37,6 +45,10 @@ const ButtonGroup = styled(Box)(({ theme }) => ({
   },
 }));
 
+/**
+ * Styled component for action buttons
+ * Provides consistent styling for accept/decline buttons
+ */
 const StyledButton = styled(Button)(({ theme, variant }) => ({
   borderRadius: '30px',
   padding: '10px 24px',
@@ -61,6 +73,10 @@ const StyledButton = styled(Button)(({ theme, variant }) => ({
   }),
 }));
 
+/**
+ * Styled component for the cookie icon
+ * Provides consistent sizing and styling for the icon
+ */
 const CookieIcon = styled('img')({
   width: '32px',
   height: '32px',
@@ -68,6 +84,13 @@ const CookieIcon = styled('img')({
   filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))',
 });
 
+/**
+ * Cookie Consent Component
+ * Displays a banner to inform users about cookie usage and collect consent
+ * 
+ * @param {Function} onAccept - Callback function when user accepts cookies
+ * @param {Function} onDecline - Callback function when user declines cookies
+ */
 const CookieConsent = ({ onAccept, onDecline }) => {
   return (
     <StyledCookieConsent>

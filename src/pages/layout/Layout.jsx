@@ -26,20 +26,6 @@ const Layout = () => {
       </Box>
 
       {/* MAIN */}
-      {/* <Box
-        component="main"
-        sx={{
-          flex: '1 0 auto',
-          width: '100%',
-          p: { xs: 1, sm: 2, md: 3, lg: 4, xl: 5 },
-        }}
-      >
-        <Container disableGutters sx={{ flexGrow: 1 }}>
-          <Suspense fallback={<Loader />}>
-            <Outlet />
-          </Suspense>
-        </Container>
-      </Box> */}
       <Box
         component="main"
         sx={{

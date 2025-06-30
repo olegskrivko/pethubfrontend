@@ -5,6 +5,10 @@ import { Box, Button, CardMedia, Container, Link as MuiLink, Typography } from '
 
 import NotFoundImage from '../assets/images/pagenotfound/monster_404_error_rafiki.svg';
 
+/**
+ * 404 Page Not Found Component
+ * Displays a user-friendly error page when a route is not found
+ */
 const PageNotFound = () => {
   return (
     <Container maxWidth="sm">
@@ -16,26 +20,26 @@ const PageNotFound = () => {
           alignItems: 'center',
         }}
       >
-        {/* Image Above Text */}
+        {/* 404 Error Illustration */}
         <CardMedia
           component="img"
           src={NotFoundImage}
           alt="404 Not Found"
           sx={{
             width: {
-              xs: '100%', // full width on extra small screens
-              sm: '80%', // medium size on small screens
-              md: '80%', // larger on medium screens
-              lg: '80%', // even bigger on large screens
+              xs: '100%',
+              sm: '80%',
+              md: '80%',
+              lg: '80%',
             },
             objectFit: 'contain',
-
             pointerEvents: 'none',
             userSelect: 'none',
             border: 'none',
           }}
         />
-        {/* Image Credit */}
+        
+        {/* Image Attribution */}
         <MuiLink
           href="https://storyset.com/web"
           target="_blank"
@@ -49,7 +53,8 @@ const PageNotFound = () => {
         >
           Web illustrations by Storyset
         </MuiLink>
-        {/* 404 Page Text */}
+        
+        {/* Error Message */}
         <Typography component="h1" variant="h5" align="center" sx={{ mb: 2, mt: 4 }}>
           404 - Lapa Nav Atrasta
         </Typography>
@@ -57,7 +62,7 @@ const PageNotFound = () => {
           Oops! Lapa, kuru meklējat, neeksistē.
         </Typography>
 
-        {/* Button to Go Back Home */}
+        {/* Navigation Button */}
         <Button
           variant="contained"
           sx={{
@@ -65,7 +70,7 @@ const PageNotFound = () => {
             px: 4,
           }}
           component={Link}
-          to="/" // Redirect to home page
+          to="/"
           fullWidth
         >
           Atpakaļ uz sākumlapu

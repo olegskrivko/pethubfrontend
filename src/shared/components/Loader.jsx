@@ -1,9 +1,9 @@
 import { Box, CircularProgress } from '@mui/material';
-import Lottie from 'lottie-react';
 
-// import spinnerAnimation from '../../assets/Animation-1748807031338.json';
-// import spinnerAnimation from '../../assets/Animation-1747323887708.json';
-
+/**
+ * Loader Component
+ * Displays a loading spinner while content is being fetched or processed
+ */
 const Loader = () => {
   return (
     <Box
@@ -14,10 +14,7 @@ const Loader = () => {
         alignItems: 'center',
       }}
     >
-      {/* <CircularProgress color="secondary" /> */}
-      {/* <Box sx={{ width: 180, height: 180 }}>
-          <Lottie animationData={spinnerAnimation} loop autoplay />
-        </Box> */}
+      <CircularProgress color="secondary" />
     </Box>
   );
 };

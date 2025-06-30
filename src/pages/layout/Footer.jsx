@@ -27,21 +27,9 @@ const Footer = () => {
         ru: 'Найти питомца',
       },
     },
-    // {
-    //   path: '/services',
-    //   label: { lv: 'Pakalpojumi', en: 'Services', ru: 'Услуги' },
-    // },
   ];
 
   const exploreLinks = [
-    // {
-    //   path: '/shelters',
-    //   label: {
-    //     lv: 'Dzīvnieku patversmes',
-    //     en: 'Animal shelters',
-    //     ru: 'Приюты для животных',
-    //   },
-    // },
     {
       path: '/articles',
       label: {
@@ -77,15 +65,6 @@ const Footer = () => {
         ru: 'Какого питомца выбрать?',
       },
     },
-
-    // {
-    //   path: '/pricing',
-    //   label: {
-    //     lv: 'Maksāšanas plāns',
-    //     en: 'Pricing plan',
-    //     ru: 'Платёжный план',
-    //   },
-    // },
   ];
 
   const infoLinks = [
@@ -115,12 +94,8 @@ const Footer = () => {
           padding: '20px 0',
           textAlign: 'center',
           marginTop: 'auto',
-          // paddingBottom: '2rem',
           width: '100%',
           margin: 0,
-
-          // background: '#5B9BD5 !important',
-          // background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
           background: 'linear-gradient(190deg, #16477c 0%, #00b5ad 100%)',
         }}
       >
@@ -208,7 +183,7 @@ const Footer = () => {
 
             <Grid size={{ xs: 12, sm: 3, md: 3, lg: 3 }} textAlign="left">
               <Typography variant="h6" color="#DAFF84" style={{ fontWeight: '500' }}>
-                {t('info')}
+                {t('information')}
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 {infoLinks.map((link) => (
@@ -229,38 +204,14 @@ const Footer = () => {
               </Box>
             </Grid>
           </Grid>
-        </Container>
 
-        <Container>
-          <Grid container mt={4}>
-            {/* SUPPORT */}
-            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} textAlign="center">
-              <Typography gutterBottom variant="body2" sx={{ color: '#fff' }}>
-                {t('supportMessage')} -{' '}
-                <Link
-                  to="/support"
-                  style={{
-                    color: '#DAFF84',
-                    textDecoration: 'none',
-                    textTransform: 'uppercase',
-                    fontWeight: 500,
-                  }}
-                >
-                  {t('support')}
-                </Link>
-              </Typography>
-            </Grid>
-
-            {/* COPYRIGHT */}
-            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }} textAlign="center">
-              <Typography gutterBottom variant="body2" color="#fff">
-                &copy; {YEAR} {APP_NAME}. {t('copyright')}
-              </Typography>
-            </Grid>
-          </Grid>
+          <Box sx={{ mt: 4, pt: 2, borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
+            <Typography variant="body2" color="#EAEAEA" style={{ fontWeight: '400' }}>
+              © {YEAR} {APP_NAME}. {t('copyright')}
+            </Typography>
+          </Box>
         </Container>
       </Box>
-      {/* Install PWA Button Section */}
       <InstallPWAButton />
     </React.Fragment>
   );

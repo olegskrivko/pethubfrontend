@@ -3,9 +3,7 @@ import React, { useContext, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Dialog, DialogContent, Grid, IconButton, Typography, useMediaQuery, useTheme } from '@mui/material';
 
-// import WorldMapImg from '../assets/map2.webp';
 import WorldMapImg from '../assets/map4.png';
-// import WorldMapImg from '../assets/map6.png';
 import { LanguageContext } from '../contexts/LanguageContext';
 
 const languages = [
@@ -30,13 +28,7 @@ const LanguageSelectorModal = ({ open, onClose }) => {
         sx={{
           position: 'relative',
           minHeight: '60vh',
-          // background: `linear-gradient(180deg, #0f2027, #203a43, #2c5364)`,
-          //background: `linear-gradient(180deg, #1c1c1e, #2a2a2e)`,
-          //background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
-
-          //background: 'linear-gradient(to right, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
           background: 'linear-gradient(190deg, #16477c 0%, #00b5ad 100%)',
-          // background: 'linear-gradient(to top, rgba(0,150,136,0.7), rgba(63,81,181,0.7))',
           color: 'white',
           display: 'flex',
           alignItems: 'center',
@@ -56,23 +48,18 @@ const LanguageSelectorModal = ({ open, onClose }) => {
         </IconButton>
 
         <Box>
-          {/* <Typography variant="h5" align="center" mb={4} fontWeight="bold">
-            Choose Your Language
-          </Typography> */}
-          {/* 🌍 World Map Image */}
           <Box display="flex" justifyContent="center" mb={3}>
             <img
-              src={WorldMapImg} // Make sure the image exists in your public folder or is correctly imported
+              src={WorldMapImg}
               alt="World Map"
               style={{
-                // maxWidth: '250px',
                 maxWidth: '600px',
                 width: '100%',
                 opacity: 0.4,
                 filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.3))',
-                userSelect: 'none', // prevent selection
-                WebkitUserSelect: 'none', // for Safari
-                MozUserSelect: 'none', // for Firefox
+                userSelect: 'none',
+                WebkitUserSelect: 'none',
+                MozUserSelect: 'none',
               }}
             />
           </Box>

@@ -11,7 +11,6 @@ export default function RateLimitTester() {
     try {
       const res = await fetch('http://127.0.0.1:8000/api/auth/test-rate-limit/');
       if (res.status === 429) {
-        // Rate limit exceeded
         const data = await res.json();
         setMessage(data.error || 'Rate limit exceeded. Please wait and try again.');
         setError(true);

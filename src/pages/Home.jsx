@@ -216,7 +216,7 @@ function Home() {
                       fontFamily: 'Titillium Web, sans-serif',
                     }}
                   >
-                    {t('digitalSupport.features.pushNotifications.title')}
+                    {t('digitalSupport.features.notifications.title')}
                   </Typography>
                   <Typography
                     variant="body2"
@@ -226,7 +226,7 @@ function Home() {
                       fontFamily: 'Titillium Web, sans-serif',
                     }}
                   >
-                    {t('digitalSupport.features.pushNotifications.description')}
+                    {t('digitalSupport.features.notifications.description')}
                   </Typography>
                 </div>
               </CardContent>
