@@ -78,14 +78,14 @@ const Footer = () => {
       },
     },
 
-    {
-      path: '/pricing',
-      label: {
-        lv: 'Maksāšanas plāns',
-        en: 'Pricing plan',
-        ru: 'Платёжный план',
-      },
-    },
+    // {
+    //   path: '/pricing',
+    //   label: {
+    //     lv: 'Maksāšanas plāns',
+    //     en: 'Pricing plan',
+    //     ru: 'Платёжный план',
+    //   },
+    // },
   ];
 
   const infoLinks = [

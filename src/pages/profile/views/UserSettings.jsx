@@ -326,55 +326,9 @@ function UserSettings() {
     }
   };
 
-  const fetchSubscriptionStatus = async () => {
-    try {
-      setLoadingSubscription(true);
-      setSubscriptionError(null);
-      const accessToken = localStorage.getItem('access_token');
-      const response = await fetch(`${API_BASE_URL}/api/payment/subscription/status/`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      const data = await response.json();
-      setSubscriptionStatus(data);
-    } catch (error) {
-      setSubscriptionError('Failed to fetch subscription status');
-      console.error('Error fetching subscription status:', error);
-    } finally {
-      setLoadingSubscription(false);
-    }
-  };
-
-  const handleCancelSubscription = async () => {
-    try {
-      setLoadingSubscription(true);
-      setSubscriptionError(null);
-      const accessToken = localStorage.getItem('access_token');
-      const response = await fetch(`${API_BASE_URL}/api/payment/subscription/cancel/`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      const data = await response.json();
-      setSubscriptionStatus((prev) => ({
-        ...prev,
-        cancel_at_period_end: true,
-        cancel_at: data.cancel_at,
-      }));
-      setCancelDialogOpen(false);
-    } catch (error) {
-      setSubscriptionError('Failed to cancel subscription');
-      console.error('Error canceling subscription:', error);
-    } finally {
-      setLoadingSubscription(false);
-    }
-  };
-
   useEffect(() => {
     checkExistingSubscription();
-    fetchSubscriptionStatus();
+
     fetchUserPetQuota(); // ✅ Add this line
   }, []);
 
@@ -551,120 +505,6 @@ function UserSettings() {
               )}
             </Box>
           </Card>
-        </Grid>
-
-        <Grid container spacing={2} sx={{ mb: 3 }}>
-          <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-            <Card
-              sx={{
-                p: { xs: 1, sm: 2 },
-                borderRadius: 3,
-                background: 'linear-gradient(90deg, #e8f6f9 0%, #f1faff 100%)',
-              }}
-            >
-              <Box display="flex" alignItems="center" mb={2}>
-                {/* <CardMembershipIcon sx={{ mr: 1 }} /> */}
-                <Typography variant="h6">Subscription Management</Typography>
-              </Box>
-
-              {loadingSubscription ? (
-                <Box display="flex" justifyContent="center" p={2}>
-                  <CircularProgress />
-                </Box>
-              ) : subscriptionError ? (
-                <Alert severity="error" sx={{ mb: 2 }}>
-                  {subscriptionError}
-                </Alert>
-              ) : subscriptionStatus ? (
-                <Box>
-                  {subscriptionStatus.is_subscribed ? (
-                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                      <Alert severity="success" sx={{ mb: 2 }}>
-                        Active Subscription: {subscriptionStatus.subscription_type}
-                      </Alert>
-                      <Typography variant="body2" color="text.secondary" gutterBottom>
-                        Started: {new Date(subscriptionStatus.subscription_start).toLocaleDateString()}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary" gutterBottom>
-                        Current Period Ends: {new Date(subscriptionStatus.subscription_end).toLocaleDateString()}
-                      </Typography>
-
-                      {/* Quota */}
-                      {quota && (
-                        <Card
-                          sx={{
-                            p: { xs: 1, sm: 2 },
-                            mb: 2,
-                            borderRadius: 3,
-                            background: 'linear-gradient(90deg, #edf4ff 0%, #f3faff 100%)',
-                          }}
-                        >
-                          <Typography variant="h6" sx={{ fontWeight: 600 }} gutterBottom>
-                            Jūsu abonementa limits
-                          </Typography>
-                          <Typography variant="body2" component="p" sx={{ mb: 1 }}>
-                            Atļautais mājdzīvnieku skaits: <strong>{quota.limit}</strong>
-                          </Typography>
-                          <Typography variant="body2" component="p" sx={{ mb: 1 }}>
-                            Pašreiz izmantots: <strong>{quota.used}</strong>
-                          </Typography>
-                          {/* <Box mt={3}>
-                            <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1 }}>
-                              Abonementu limiti:
-                            </Typography>
-                            <Box display="flex" gap={2} flexWrap="wrap">
-                              <Chip label="Freemium: 1" size="small" color="primary" />
-                              <Chip label="Plus: 3" size="small" color="primary" />
-                              <Chip label="Premium: 5" size="small" color="primary" />
-                            </Box>
-                          </Box> */}
-                        </Card>
-                      )}
-
-                      {subscriptionStatus.cancel_at_period_end ? (
-                        <Box mt={2}>
-                          <Alert severity="warning" sx={{ mb: 2 }}>
-                            Subscription will end on {new Date(subscriptionStatus.cancel_at).toLocaleDateString()}
-                          </Alert>
-                        </Box>
-                      ) : (
-                        <Box>
-                          {/* <Button
-                            variant="contained"
-                            color="error"
-                            fullWidth
-                            onClick={() => setCancelDialogOpen(true)}
-                            startIcon={<CancelIcon />}
-                            sx={{ mt: 2 }}
-                            disabled={subscriptionStatus.cancel_at_period_end}
-                          >
-                            Cancel Subscription
-                          </Button> */}
-                          <Button
-                            variant="contained"
-                            color="error"
-                            fullWidth
-                            onClick={() => setCancelDialogOpen(true)}
-                            startIcon={<CancelIcon />}
-                            sx={{
-                              mt: 2,
-                              justifyContent: 'flex-start', // Align icon and text to the left
-                              pl: 2, // Optional: add left padding for spacing
-                            }}
-                            disabled={subscriptionStatus.cancel_at_period_end}
-                          >
-                            Cancel Subscription
-                          </Button>
-                        </Box>
-                      )}
-                    </Box>
-                  ) : (
-                    <Alert severity="info">No active subscription</Alert>
-                  )}
-                </Box>
-              ) : null}
-            </Card>
-          </Grid>
         </Grid>
 
         {/* <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
@@ -850,21 +690,6 @@ function UserSettings() {
         {/* </Container> */}
 
         {/* Add Cancel Subscription Dialog */}
-        <Dialog open={cancelDialogOpen} onClose={() => setCancelDialogOpen(false)}>
-          <DialogTitle>Cancel Subscription</DialogTitle>
-          <DialogContent>
-            <Typography>
-              Are you sure you want to cancel your subscription? You'll continue to have access until the end of your
-              current billing period.
-            </Typography>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={() => setCancelDialogOpen(false)}>Keep Subscription</Button>
-            <Button onClick={handleCancelSubscription} color="error">
-              Cancel Subscription
-            </Button>
-          </DialogActions>
-        </Dialog>
       </Box>
     </Container>
   );

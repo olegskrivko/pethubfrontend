@@ -4,9 +4,6 @@ import { Link, Route, BrowserRouter as Router, Routes, useNavigate } from 'react
 
 import { Box, CssBaseline } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-// Adjust the path as needed
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 import { SnackbarProvider } from 'notistack';
 
 import './App.css';
@@ -37,10 +34,6 @@ import PolicyPage from './pages/common/views/PolicyPage';
 import Support from './pages/common/views/Support';
 import FullLayout from './pages/layout/FullLayout';
 import Layout from './pages/layout/Layout';
-import CancelPage from './pages/payment/views/CancelPage';
-import CheckoutPage from './pages/payment/views/CheckoutPage';
-import Pricing from './pages/payment/views/Pricing';
-import SuccessPage from './pages/payment/views/SuccessPage';
 import EditPetPage from './pages/pets/views/EditPetPage';
 import PetAddStepper from './pages/pets/views/PetAddStepper';
 import PetDetailsPage from './pages/pets/views/PetDetailsPage';
@@ -96,10 +89,6 @@ const theme = createTheme({
   },
 });
 
-const stripePromise = loadStripe(
-  'pk_test_51MsAlCBnYVUZPzgiEPtA6hevdWCEOymSzerTmiA2mWpkutsMBMyo8aAuryBXQGXt7rqAk7pgkWCwCmPQddSCXoHQ00gJEKTAS3',
-);
-
 function App() {
   const [hasAcceptedCookies, setHasAcceptedCookies] = useState(false);
 
@@ -115,82 +104,73 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
-          <Elements stripe={stripePromise}>
-            <Router>
-              <AuthProvider>
-                <LanguageProvider>
-                  <Suspense fallback={<Loader />}>
-                    <Routes>
-                      {/* Routes with FullLayout (no container) */}
-                      <Route path="/" element={<FullLayout />}>
-                        <Route index element={<Home />} />
-                      </Route>
+          <Router>
+            <AuthProvider>
+              <LanguageProvider>
+                <Suspense fallback={<Loader />}>
+                  <Routes>
+                    {/* Routes with FullLayout (no container) */}
+                    <Route path="/" element={<FullLayout />}>
+                      <Route index element={<Home />} />
+                    </Route>
 
-                      {/* Routes with main Layout (container) */}
-                      <Route element={<Layout />}>
-                        <Route path="about" element={<About />} />
-                        <Route path="contact" element={<Contact />} />
-                        <Route path="support" element={<Support />} />
-                        <Route path="collaborate" element={<Collaborate />} />
-                        <Route path="frequently-asked-questions" element={<FrequentlyAskedQuestions />} />
-                        <Route path="virtual-pet-training-classes" element={<PetTraining />} />
-                        <Route path="policies" element={<PolicyPage />} />
-                        <Route path="pet-matching-quiz" element={<PetQuiz />} />
-                        <Route path="shelters" element={<SheltersListPage />} />
-                        <Route path="shelters/:id" element={<ShelterDetailsPage />} />
-                        <Route path="pets" element={<PetsListPage />} />
-                        <Route path="pets/:id" element={<PetDetailsPage />} />
-                        <Route path="pets/:id/poster" element={<Poster />} />
-                        <Route path="user-profile/edit-pet/:id" element={<EditPetPage />} />
-                        <Route path="test" element={<UploadTest />} />
-                        <Route path="services" element={<ServicesListPage />} />
-                        <Route path="services/:id" element={<ServiceDetailsPage />} />
-                        <Route path="articles" element={<ArticlesListPage />} />
-                        <Route path="articles/:slug" element={<ArticleDetailsPage />} />
+                    {/* Routes with main Layout (container) */}
+                    <Route element={<Layout />}>
+                      <Route path="about" element={<About />} />
+                      <Route path="contact" element={<Contact />} />
+                      <Route path="support" element={<Support />} />
+                      <Route path="collaborate" element={<Collaborate />} />
+                      <Route path="frequently-asked-questions" element={<FrequentlyAskedQuestions />} />
+                      <Route path="virtual-pet-training-classes" element={<PetTraining />} />
+                      <Route path="policies" element={<PolicyPage />} />
+                      <Route path="pet-matching-quiz" element={<PetQuiz />} />
+                      <Route path="shelters" element={<SheltersListPage />} />
+                      <Route path="shelters/:id" element={<ShelterDetailsPage />} />
+                      <Route path="pets" element={<PetsListPage />} />
+                      <Route path="pets/:id" element={<PetDetailsPage />} />
+                      <Route path="pets/:id/poster" element={<Poster />} />
+                      <Route path="user-profile/edit-pet/:id" element={<EditPetPage />} />
+                      <Route path="test" element={<UploadTest />} />
+                      <Route path="services" element={<ServicesListPage />} />
+                      <Route path="services/:id" element={<ServiceDetailsPage />} />
+                      <Route path="articles" element={<ArticlesListPage />} />
+                      <Route path="articles/:slug" element={<ArticleDetailsPage />} />
 
-                        <Route path="pricing" element={<Pricing />} />
-                        <Route path="checkout" element={<CheckoutPage />} />
-                        <Route path="success" element={<SuccessPage />} />
-                        <Route path="subscription-success" element={<SuccessPage />} />
-                        {/* <Route path="cancel" element={<CancelPage />} /> */}
-                        <Route path="subscription-cancel" element={<CancelPage />} />
-                        <Route path="login" element={<LoginPage />} />
-                        <Route path="register" element={<RegisterPage />} />
-                        <Route path="logout" element={<LogoutPage />} />
-                        <Route path="forgot-password" element={<ForgotPasswordPage />} />
-                        <Route path="reset-password/:token" element={<ResetPasswordPage />} />
-                        <Route path="account-deleted" element={<AccountDeletedPage />} />
-                        {/* <Route path="scan" element={<PosterScanPage />} /> */}
-                        <Route path="posters/:posterId/scan" element={<PosterScanPage />} />
+                      <Route path="login" element={<LoginPage />} />
+                      <Route path="register" element={<RegisterPage />} />
+                      <Route path="logout" element={<LogoutPage />} />
+                      <Route path="forgot-password" element={<ForgotPasswordPage />} />
+                      <Route path="reset-password/:token" element={<ResetPasswordPage />} />
+                      <Route path="account-deleted" element={<AccountDeletedPage />} />
+                      <Route path="posters/:posterId/scan" element={<PosterScanPage />} />
 
-                        {/* Protected routes */}
-                        <Route element={<PrivateRoute />}>
-                          <Route path="add-pet" element={<PetAddStepper />} />
-                          <Route path="user-profile" element={<Profile />} />
+                      {/* Protected routes */}
+                      <Route element={<PrivateRoute />}>
+                        <Route path="add-pet" element={<PetAddStepper />} />
+                        <Route path="user-profile" element={<Profile />} />
 
-                          <Route path="user-profile/settings" element={<UserSettings />} />
-                          <Route path="user-profile/bookmarks/pets" element={<UserPetBookmarks />} />
-                          <Route path="user-profile/bookmarks/services" element={<UserServiceBookmarks />} />
-                          <Route path="user-profile/bookmarks" element={<BookmarksIndexPage />} />
-                          <Route path="user-profile/pets" element={<UserPets />} />
-                          <Route path="user-profile/services" element={<UserServices />} />
-                          <Route path="user-profile/map" element={<UserPosters />} />
+                        <Route path="user-profile/settings" element={<UserSettings />} />
+                        <Route path="user-profile/bookmarks/pets" element={<UserPetBookmarks />} />
+                        <Route path="user-profile/bookmarks/services" element={<UserServiceBookmarks />} />
+                        <Route path="user-profile/bookmarks" element={<BookmarksIndexPage />} />
+                        <Route path="user-profile/pets" element={<UserPets />} />
+                        <Route path="user-profile/services" element={<UserServices />} />
+                        <Route path="user-profile/map" element={<UserPosters />} />
 
-                          {/* 
+                        {/* 
               <Route path="test-one/new" element={<About />} />
               <Route path="test-two/:id/edit" element={<About />} /> */}
-                        </Route>
-
-                        {/* Catch-all for 404 */}
-                        <Route path="*" element={<PageNotFound />} />
                       </Route>
-                    </Routes>
-                  </Suspense>
-                  <CookieConsent />
-                </LanguageProvider>
-              </AuthProvider>
-            </Router>
-          </Elements>
+
+                      {/* Catch-all for 404 */}
+                      <Route path="*" element={<PageNotFound />} />
+                    </Route>
+                  </Routes>
+                </Suspense>
+                <CookieConsent />
+              </LanguageProvider>
+            </AuthProvider>
+          </Router>
         </SnackbarProvider>
       </ThemeProvider>
     </HelmetProvider>
