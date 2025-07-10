@@ -175,11 +175,11 @@ const Support = () => {
             </Box>
 
             {/* PayPal Donation Button Section */}
-            <Typography variant="body1" sx={{ mt: 3, mb: 2 }}>
+            {/* <Typography variant="body1" sx={{ mt: 3, mb: 2 }}>
               {t('support.donationText')}
-            </Typography>
+            </Typography> */}
             {/* PayPal Button for donations */}
-            <Box display="flex" justifyContent="center" sx={{ mt: 2 }}>
+            {/* <Box display="flex" justifyContent="center" sx={{ mt: 2 }}>
               <Button
                 variant="contained"
                 fullWidth
@@ -192,7 +192,7 @@ const Support = () => {
               >
                 {t('support.donateButton')}
               </Button>
-            </Box>
+            </Box> */}
           </Grid>
 
           {/* Right Side - Content Section */}
